@@ -1,0 +1,20 @@
+name: Delete Documentation
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+  workflow_dispatch:
+    inputs:
+      folder:
+        description: "Choose the folder to delete"
+        required: true
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  call-workflow:
+    uses: Robotsix-UAV/robotsix_workflows/.github/workflows/delete-documentation.yaml@main

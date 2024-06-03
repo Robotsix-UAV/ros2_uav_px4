@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>ros2_uav_px4</name>
+  <version>0.1.15</version>
+  <description>An interface with PX4 from a companion computer using ROS2 based on PX4 ROS Interface Library and uav_cpp Library</description>
+  <maintainer email="damien@robotsix.net">Damien SIX</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>px4_ros2_cpp</depend>
+  <depend>ros2_uav_parameters</depend>
+  <depend>uav_cpp</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <test_depend>ament_cmake_gtest</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <rosdoc2>rosdoc2.yaml</rosdoc2>
+  </export>
+</package>

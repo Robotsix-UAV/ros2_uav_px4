@@ -1,0 +1,12 @@
+name: Versioning
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  call-workflow:
+    uses: Robotsix-UAV/robotsix_workflows/.github/workflows/version.yaml@main
