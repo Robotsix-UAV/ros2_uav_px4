@@ -28,6 +28,7 @@ AttitudeThrustMode<ModeT>::AttitudeThrustMode(
   rclcpp::Node & node)
 : ModeInterface(mode_settings, node)
 {
+  setSetpointUpdateRate(250.0);
   attitude_setpoint_ = std::make_shared<px4_ros2::AttitudeSetpointType>(*this);
   vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
   vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);

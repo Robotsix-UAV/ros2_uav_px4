@@ -33,7 +33,7 @@ using uav_cpp::parameters::ParameterMap;
  * @brief Concept that checks if ModeT is derived from Mode with a controller that uses AttitudeThrust control.
  */
 template<typename ModeT>
-concept DerivedFromAtittudeThrustMode = requires {
+concept DerivedFromAttitudeThrustMode = requires {
   std::is_base_of_v<Mode<typename ModeT::TrackerType, typename ModeT::ControllerType>, ModeT>;
   std::is_same_v<typename ModeT::ControllerType::ControlInputsType, AttitudeThrust>;
 };
@@ -43,7 +43,7 @@ concept DerivedFromAtittudeThrustMode = requires {
  *
  * @tparam ModeT The mode type derived from Mode.
  */
-template<DerivedFromAtittudeThrustMode ModeT>
+template<DerivedFromAttitudeThrustMode ModeT>
 class AttitudeThrustMode : public ModeInterface
 {
 public:
@@ -55,12 +55,21 @@ public:
    */
   AttitudeThrustMode(const ModeBase::Settings & mode_settings, rclcpp::Node & node);
 
+  // TODO(robotsix): The following two members should be in a base class.
+  // Probably we should upgrade mode_interface to also be a template Derived from Mode.
   /**
    * @brief Sets the setpoint for the mode.
    *
    * @param setpoint The setpoint to be set.
    */
   void setSetpoint(const ModeT::TrackerType::SetPointType & setpoint) {mode_.setSetpoint(setpoint);}
+
+  /**
+   * @brief Set the TF Buffer for the mode.
+   *
+   * @param tf_buffer The TF Buffer to be set.
+   */
+  void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {mode_.setTfBuffer(tf_buffer);}
 
 private:
   ModeT mode_;  ///< The mode instance.
