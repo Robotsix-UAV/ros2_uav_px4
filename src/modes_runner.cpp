@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include <tf2_ros/buffer.h>
 #include <ros2_uav_parameters/parameter_client.hpp>
 #include <ros2_uav_cpp/ros2_logger.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
@@ -39,6 +40,9 @@ int main(int argc, char * argv[])
   auto mode_node = std::make_shared<rclcpp::Node>("mode_node");
   ParamContainer param_container;
 
+  // Create tf buffer for the mode node
+  auto tf_buffer_ = std::make_shared<tf2_ros::Buffer>(mode_node->get_clock());
+
   // Spin mode
   auto spin_mode = Spin::make_unique<>(*mode_node);
   auto spin_executor = ExecutorArm::make_unique<>(*mode_node, *spin_mode);
@@ -48,11 +52,12 @@ int main(int argc, char * argv[])
   // Position mode
   auto position_mode = Position::make_shared<>(*mode_node);
   auto position_executor = ExecutorTakeOff::make_shared<>(*mode_node, *position_mode);
+  position_mode->setTfBuffer(tf_buffer_);
   param_container.addChildContainer(position_mode.get());
   param_container.addChildContainer(position_executor.get());
   // ROS callback for position mode setpoint
   auto position_setpoint_sub = mode_node->create_subscription<PoseHeading>(
-    "command/PoseHeading", 1,
+    "command/pose_heading", 1,
     [position_mode](const PoseHeading::SharedPtr msg) {
       position_mode->setSetpoint(uav_ros2::utils::convertToSetpoint(*msg));
     });

@@ -12,6 +12,7 @@
   <depend>px4_ros2_cpp</depend>
   <depend>ros2_uav_parameters</depend>
   <depend>uav_cpp</depend>
+  <depend>tf2_ros</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
