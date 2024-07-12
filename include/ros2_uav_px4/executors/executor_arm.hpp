@@ -42,7 +42,9 @@ public:
    * @param owned_mode Reference to the owned mode.
    */
   ExecutorArm(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
-  : px4_ros2::ModeExecutorBase(node, px4_ros2::ModeExecutorBase::Settings{false, true}, owned_mode)
+  : px4_ros2::ModeExecutorBase(node,
+      px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
+      owned_mode)
   {}
 
   /**
