@@ -13,6 +13,9 @@ on:
 
   workflow_dispatch:
 
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
   call-workflow:
     uses: Robotsix-UAV/robotsix_workflows/.github/workflows/build-docker.yaml@main
