@@ -29,6 +29,7 @@ uav_cpp::types::PoseHeading convertToSetpoint(const ros2_uav_interfaces::msg::Po
   uav_cpp::types::PoseHeading setpoint;
   setpoint.frame_id = msg.header.frame_id;
   setpoint.position = tf2::Vector3(msg.position.x, msg.position.y, msg.position.z);
+  setpoint.velocity = tf2::Vector3(msg.velocity.x, msg.velocity.y, msg.velocity.z);
   setpoint.heading = msg.heading;
   return setpoint;
 }
