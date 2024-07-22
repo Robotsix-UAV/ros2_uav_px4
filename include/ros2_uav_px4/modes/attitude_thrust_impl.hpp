@@ -61,8 +61,10 @@ void AttitudeThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
   double elapsed_time = (this->node_.now() - time_init_).seconds();
   AttitudeThrust control_inputs = this->mode_.triggerMode(elapsed_time);
   // Publish the coordinates for debug
-  auto coordinates = this->mode_.getCoordinates();
-  this->publishCoordinates(coordinates);
+  if (this->mode_.hasNewTrajectory()) {
+    auto coordinates = this->mode_.getCoordinates();
+    this->publishCoordinates(coordinates);
+  }
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
