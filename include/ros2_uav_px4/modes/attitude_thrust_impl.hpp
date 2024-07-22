@@ -26,18 +26,18 @@ template<typename ModeT>
 AttitudeThrustMode<ModeT>::AttitudeThrustMode(
   const ModeBase::Settings & mode_settings,
   rclcpp::Node & node)
-: ModeInterface(mode_settings, node)
+: ModeInterface<ModeT>(mode_settings, node)
 {
-  setSetpointUpdateRate(250.0);
+  this->setSetpointUpdateRate(250.0);
   attitude_setpoint_ = std::make_shared<px4_ros2::AttitudeSetpointType>(*this);
   vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
   vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
   vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
-  addRequiredParameter<double>("px4.thrust_constant_coefficient");
-  addRequiredParameter<double>("px4.thrust_linear_coefficient");
-  addRequiredParameter<double>("px4.thrust_quadratic_coefficient");
-  addChildContainer(&mode_);
-  time_init_ = node_.now();
+  this->addRequiredParameter("px4.thrust_constant_coefficient", std::type_index(typeid(0.0)));
+  this->addRequiredParameter("px4.thrust_linear_coefficient", std::type_index(typeid(0.0)));
+  this->addRequiredParameter("px4.thrust_quadratic_coefficient", std::type_index(typeid(0.0)));
+  this->addChildContainer(&(this->mode_));
+  time_init_ = this->node_.now();
 }
 
 template<typename ModeT>
@@ -47,7 +47,7 @@ void AttitudeThrustMode<ModeT>::odometryUpdate()
   auto velocity = vehicle_local_position_->velocityNed();
   auto attitude = vehicle_attitude_->attitude();
   auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
-  mode_.setCurrentOdometry(
+  this->mode_.setCurrentOdometry(
     eigenNedToTf2Nwu(position),
     eigenNedToTf2Nwu(attitude),
     eigenNedToTf2Nwu(velocity),
@@ -58,14 +58,17 @@ template<typename ModeT>
 void AttitudeThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
 {
   odometryUpdate();
-  double elapsed_time = (node_.now() - time_init_).seconds();
-  AttitudeThrust control_inputs = mode_.triggerMode(elapsed_time);
+  double elapsed_time = (this->node_.now() - time_init_).seconds();
+  AttitudeThrust control_inputs = this->mode_.triggerMode(elapsed_time);
+  // Publish the coordinates for debug
+  auto coordinates = this->mode_.getCoordinates();
+  this->publishCoordinates(coordinates);
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
-  getParameter("px4.thrust_constant_coefficient", thrust_constant_coefficient);
-  getParameter("px4.thrust_linear_coefficient", thrust_linear_coefficient);
-  getParameter("px4.thrust_quadratic_coefficient", thrust_quadratic_coefficient);
+  this->getParameter("px4.thrust_constant_coefficient", thrust_constant_coefficient);
+  this->getParameter("px4.thrust_linear_coefficient", thrust_linear_coefficient);
+  this->getParameter("px4.thrust_quadratic_coefficient", thrust_quadratic_coefficient);
   float thrust = control_inputs.thrust;
   float normalized_thrust = 0.0;
   // Find the normalized with thrust = c + l * t_n + q * t_n^2
@@ -73,7 +76,8 @@ void AttitudeThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
     4 * thrust_quadratic_coefficient * (thrust_constant_coefficient - thrust);
   if (discriminant < 0) {
     RCLCPP_WARN(
-      node_.get_logger(), "[Attitude Thrust Mode] Negative discriminant in thrust conversion");
+      this->node_.get_logger(),
+      "[Attitude Thrust Mode] Negative discriminant in thrust conversion");
   } else {
     normalized_thrust = (-thrust_linear_coefficient + std::sqrt(discriminant)) /
       (2 * thrust_quadratic_coefficient);

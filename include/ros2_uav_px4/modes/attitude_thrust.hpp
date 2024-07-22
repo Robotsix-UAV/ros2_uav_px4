@@ -15,7 +15,6 @@
 #pragma once
 
 #include <memory>
-#include <uav_cpp/modes/mode.hpp>
 #include <px4_ros2/control/setpoint_types/experimental/attitude.hpp>
 #include <px4_ros2/odometry/local_position.hpp>
 #include <px4_ros2/odometry/attitude.hpp>
@@ -24,7 +23,6 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::modes::Mode;
 using uav_cpp::types::AttitudeThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
@@ -34,7 +32,7 @@ using uav_cpp::parameters::ParameterMap;
  */
 template<typename ModeT>
 concept DerivedFromAttitudeThrustMode = requires {
-  std::is_base_of_v<Mode<typename ModeT::TrackerType, typename ModeT::ControllerType>, ModeT>;
+  DerivedFromUavCppMode<ModeT>;
   std::is_same_v<typename ModeT::ControllerType::ControlInputsType, AttitudeThrust>;
 };
 
@@ -44,9 +42,10 @@ concept DerivedFromAttitudeThrustMode = requires {
  * @tparam ModeT The mode type derived from Mode.
  */
 template<DerivedFromAttitudeThrustMode ModeT>
-class AttitudeThrustMode : public ModeInterface
+class AttitudeThrustMode : public ModeInterface<ModeT>
 {
 public:
+  using ModeInterface<ModeT>::addRequiredParameter;
   /**
    * @brief Constructs a new AttitudeThrustMode object.
    *
@@ -55,39 +54,11 @@ public:
    */
   AttitudeThrustMode(const ModeBase::Settings & mode_settings, rclcpp::Node & node);
 
-  // TODO(robotsix): The following two members should be in a base class.
-  // Probably we should upgrade mode_interface to also be a template Derived from Mode.
-  /**
-   * @brief Sets the setpoint for the mode.
-   *
-   * @param setpoint The setpoint to be set.
-   */
-  void setSetpoint(const ModeT::TrackerType::SetPointType & setpoint) {mode_.setSetpoint(setpoint);}
-
-  /**
-   * @brief Set the TF Buffer for the mode.
-   *
-   * @param tf_buffer The TF Buffer to be set.
-   */
-  void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {mode_.setTfBuffer(tf_buffer);}
-
 private:
-  ModeT mode_;  ///< The mode instance.
-  ParameterMap::SharedPtr parameters_;  ///< Shared pointer to the parameter map.
-  rclcpp::Time time_init_;  ///< Initialization time.
-  std::shared_ptr<px4_ros2::AttitudeSetpointType> attitude_setpoint_;
-  ///< Shared pointer to attitude setpoint.
-  std::shared_ptr<px4_ros2::OdometryLocalPosition> vehicle_local_position_;
-  ///< Shared pointer to vehicle local position.
-  std::shared_ptr<px4_ros2::OdometryAngularVelocity> vehicle_angular_velocity_;
-  ///< Shared pointer to vehicle angular velocity.
-  std::shared_ptr<px4_ros2::OdometryAttitude> vehicle_attitude_;
-  ///< Shared pointer to vehicle attitude.
-
   /**
    * @brief Function called when the mode is activated.
    */
-  void onActivate() override {odometryUpdate(); mode_.reset();}
+  void onActivate() override {odometryUpdate(); this->mode_.reset();}
 
   /**
    * @brief Function called when the mode is deactivated.
@@ -105,6 +76,17 @@ private:
    * @param dt Time delta since the last update.
    */
   void updateSetpoint([[maybe_unused]] float dt) override;
+
+  ParameterMap::SharedPtr parameters_;  ///< Shared pointer to the parameter map.
+  rclcpp::Time time_init_;  ///< Initialization time.
+  std::shared_ptr<px4_ros2::AttitudeSetpointType> attitude_setpoint_;
+  ///< Shared pointer to attitude setpoint.
+  std::shared_ptr<px4_ros2::OdometryLocalPosition> vehicle_local_position_;
+  ///< Shared pointer to vehicle local position.
+  std::shared_ptr<px4_ros2::OdometryAngularVelocity> vehicle_angular_velocity_;
+  ///< Shared pointer to vehicle angular velocity.
+  std::shared_ptr<px4_ros2::OdometryAttitude> vehicle_attitude_;
+  ///< Shared pointer to vehicle attitude.
 };
 
 }  // namespace ros2_uav::modes
