@@ -54,7 +54,7 @@ public:
     node_(node)
   {
     coordinate_publisher_ = node_.create_publisher<ros2_uav_interfaces::msg::Coordinate>(
-      "debug/coordinates", 1);
+      "debug/coordinates", 20);
   }
 
   /**
@@ -78,11 +78,11 @@ public:
    */
   void publishCoordinates(const std::vector<Coordinate::SharedPtr> & coordinates)
   {
-    ros2_uav_interfaces::msg::Coordinate coordinate_msg;
-    ros2_uav_interfaces::msg::FloatArray float_array_msg;
     float final_time;
     std::vector<double> sample_times;
     for (const auto & coordinate : coordinates) {
+      ros2_uav_interfaces::msg::Coordinate coordinate_msg;
+      ros2_uav_interfaces::msg::FloatArray float_array_msg;
       coordinate_msg.name = coordinate->getName();
       final_time = coordinate->getFinalTime();
       sample_times.clear();
@@ -94,10 +94,10 @@ public:
       {
         if (derivative < coordinate->getMinDerivativeOrder()) {
           coordinate_msg.derivatives.push_back(ros2_uav_interfaces::msg::FloatArray());
-          continue;
+        } else {
+          coordinate->getTrajectory(sample_times, derivative, float_array_msg.data);
+          coordinate_msg.derivatives.push_back(float_array_msg);
         }
-        coordinate->getTrajectory(sample_times, derivative, float_array_msg.data);
-        coordinate_msg.derivatives.push_back(float_array_msg);
       }
       coordinate_msg.frame_id = mode_.getControllerReferenceFrame();
       coordinate_msg.timestamps = sample_times;
