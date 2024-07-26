@@ -20,6 +20,7 @@
 #include <px4_ros2/components/mode.hpp>
 #include <uav_cpp/modes/mode.hpp>
 #include <ros2_uav_interfaces/msg/coordinate.hpp>
+#include <ros2_uav_interfaces/msg/disturbance.hpp>
 
 namespace ros2_uav::modes
 {
@@ -55,6 +56,15 @@ public:
   {
     coordinate_publisher_ = node_.create_publisher<ros2_uav_interfaces::msg::Coordinate>(
       "debug/coordinates", 20);
+
+    // Add a subscription to the disturbance topic
+    disturbance_sub_ = node_.create_subscription<ros2_uav_interfaces::msg::Disturbance>(
+      "disturbance", 1, [this](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
+        tf2::Vector3 disturbance_constant(msg->constant.x, msg->constant.y, msg->constant.z);
+        tf2::Vector3 disturbance_proportional(
+          msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        mode_.setDisturbance(disturbance_constant, disturbance_proportional);
+      });
   }
 
   /**
@@ -111,6 +121,8 @@ protected:
 
   rclcpp::Publisher<ros2_uav_interfaces::msg::Coordinate>::SharedPtr coordinate_publisher_;
   ///< The ROS2 publisher for the coordinates.
+  rclcpp::Subscription<ros2_uav_interfaces::msg::Disturbance>::SharedPtr disturbance_sub_;
+  ///< The ROS2 subscription for the disturbance.
 };
 
 }  // namespace ros2_uav::modes

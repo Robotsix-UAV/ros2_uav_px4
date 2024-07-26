@@ -22,6 +22,7 @@
 #include "ros2_uav_px4/executors/executor_take_off.hpp"
 #include "ros2_uav_px4/modes/spin.hpp"
 #include "ros2_uav_px4/modes/position.hpp"
+#include "ros2_uav_px4/modes/nlmpc_position.hpp"
 #include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
 
 using uav_cpp::parameters::ParameterMap;
@@ -29,6 +30,7 @@ using uav_cpp::parameters::ParamContainer;
 using ros2_uav::utils::RosLoggerInterface;
 using ros2_uav::modes::Spin;
 using ros2_uav::modes::Position;
+using ros2_uav::modes::NlmpcPosition;
 using ros2_uav::executors::ExecutorArm;
 using ros2_uav::executors::ExecutorTakeOff;
 using ros2_uav_interfaces::msg::PoseHeading;
@@ -55,13 +57,21 @@ int main(int argc, char * argv[])
   position_mode->setTfBuffer(tf_buffer_);
   param_container.addChildContainer(position_mode.get());
   param_container.addChildContainer(position_executor.get());
-  // ROS callback for position mode setpoint
-  auto position_setpoint_sub = mode_node->create_subscription<PoseHeading>(
-    "command/pose_heading", 1,
-    [position_mode](const PoseHeading::SharedPtr msg) {
-      position_mode->setSetpoint(uav_ros2::utils::convertToSetpoint(*msg));
-    });
 
+  // NLMPC Position mode
+  auto nlmpc_position_mode = NlmpcPosition::make_shared<>(*mode_node);
+  auto nlmpc_position_executor = ExecutorTakeOff::make_shared<>(*mode_node, *nlmpc_position_mode);
+  nlmpc_position_mode->setTfBuffer(tf_buffer_);
+  param_container.addChildContainer(nlmpc_position_mode.get());
+  param_container.addChildContainer(nlmpc_position_executor.get());
+  
+  // ROS callback for nlmpc positions setpoint
+  auto nlmpc_position_setpoint_sub = mode_node->create_subscription<PoseHeading>(
+    "command/pose_heading", 1,
+    [nlmpc_position_mode, position_mode](const PoseHeading::SharedPtr msg) {
+      position_mode->setSetpoint(uav_ros2::utils::convertToSetpoint(*msg));
+      nlmpc_position_mode->setSetpoint(uav_ros2::utils::convertToSetpoint(*msg));
+    });
 
   // Handle required parameters
   std::vector<std::string> required_parameters = param_container.getRequiredParameters();
@@ -88,6 +98,7 @@ int main(int argc, char * argv[])
   // Register modes in PX4
   spin_executor->doRegister();
   position_executor->doRegister();
+  nlmpc_position_executor->doRegister();
 
   // Spin the nodes
   executor.spin();
