@@ -50,7 +50,6 @@ public:
       owned_mode)
   {
     addRequiredParameter<double>("takeoff.altitude");
-    addRequiredParameter<double>("takeoff.heading");
   }
 
   /**
@@ -90,9 +89,8 @@ public:
         break;
       case State::TAKEOFF:
         RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Taking off");
-        double altitude, heading;
+        double altitude;
         getParameter("takeoff.altitude", altitude);
-        getParameter("takeoff.heading", heading);
         takeoff(
           [this](px4_ros2::Result result)
           {
@@ -100,9 +98,7 @@ public:
               runState(State::OWNED_MODE);
             }
           },
-          altitude,
-          // TODO(robotsix): Investigate why heading does not impact
-          heading * M_PI / 180);
+          altitude, 0);
         break;
 
       case State::OWNED_MODE:
