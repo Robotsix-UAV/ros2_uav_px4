@@ -16,9 +16,10 @@
 
 #include <memory>
 #include <vector>
+#include <string>
 #include <uav_cpp/parameters/param_container.hpp>
 #include <px4_ros2/components/mode.hpp>
-#include <uav_cpp/modes/mode.hpp>
+#include <uav_cpp/components/mode.hpp>
 #include <ros2_uav_interfaces/msg/coordinate.hpp>
 
 namespace ros2_uav::modes
@@ -28,9 +29,9 @@ using uav_cpp::utils::Coordinate;
 using px4_ros2::ModeBase;
 
 template<typename ModeT>
-concept DerivedFromUavCppMode = requires{
-  std::is_base_of_v<uav_cpp::modes::Mode<typename ModeT::TrackerType,
-    typename ModeT::ControllerType>, ModeT>;
+concept DerivedFromUavCppMode = requires(ModeT mode)
+{
+  [] < typename ... T > (uav_cpp::components::Mode<T...> &) {} (mode);
 };
 
 /**
@@ -53,6 +54,14 @@ public:
     ParamContainer(),
     node_(node)
   {
+    std::string node_namespace = node_.get_namespace();
+    if (node_namespace.empty()) {
+      node_namespace = "/";
+    }
+    // Remove the leading slash
+    node_namespace = node_namespace.substr(1);
+    mode_.setUavName(node_namespace);
+
     coordinate_publisher_ = node_.create_publisher<ros2_uav_interfaces::msg::Coordinate>(
       "debug/coordinates", 20);
   }
@@ -62,7 +71,7 @@ public:
    *
    * @param setpoint The setpoint to be set.
    */
-  void setSetpoint(const ModeT::TrackerType::SetPointType & setpoint) {mode_.setSetpoint(setpoint);}
+  void setSetpoint(const ModeT::InputType & setpoint) {mode_.setInput(setpoint);}
 
   /**
    * @brief Set the TF Buffer for the mode.
@@ -70,40 +79,6 @@ public:
    * @param tf_buffer The TF Buffer to be set.
    */
   void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {mode_.setTfBuffer(tf_buffer);}
-
-  /**
-   * @brief Publishes the coordinates for debug.
-   *
-   * @param coordinates The coordinates to be published.
-   */
-  void publishCoordinates(const std::vector<Coordinate::SharedPtr> & coordinates)
-  {
-    float final_time;
-    std::vector<double> sample_times;
-    for (const auto & coordinate : coordinates) {
-      ros2_uav_interfaces::msg::Coordinate coordinate_msg;
-      ros2_uav_interfaces::msg::FloatArray float_array_msg;
-      coordinate_msg.name = coordinate->getName();
-      final_time = coordinate->getFinalTime();
-      sample_times.clear();
-      for (double sample_time = 0.0; sample_time <= final_time; sample_time += 0.01) {
-        sample_times.push_back(sample_time);
-      }
-      for (uint8_t derivative = 0; derivative <= coordinate->getMaxDerivativeOrder();
-        ++derivative)
-      {
-        if (derivative < coordinate->getMinDerivativeOrder()) {
-          coordinate_msg.derivatives.push_back(ros2_uav_interfaces::msg::FloatArray());
-        } else {
-          coordinate->getTrajectory(sample_times, derivative, float_array_msg.data);
-          coordinate_msg.derivatives.push_back(float_array_msg);
-        }
-      }
-      coordinate_msg.frame_id = mode_.getControllerReferenceFrame();
-      coordinate_msg.timestamps = sample_times;
-      coordinate_publisher_->publish(coordinate_msg);
-    }
-  }
 
 protected:
   rclcpp::Node & node_;  ///< Reference to the ROS2 node.

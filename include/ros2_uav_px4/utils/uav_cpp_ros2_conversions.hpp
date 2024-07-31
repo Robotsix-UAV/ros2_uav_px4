@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include <uav_cpp/types/setpoints.hpp>
+#include <uav_cpp/types/module_io.hpp>
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 
 namespace uav_ros2::utils

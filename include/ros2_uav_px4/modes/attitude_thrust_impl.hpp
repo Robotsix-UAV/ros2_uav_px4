@@ -59,12 +59,8 @@ void AttitudeThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
 {
   odometryUpdate();
   double elapsed_time = (this->node_.now() - time_init_).seconds();
-  AttitudeThrust control_inputs = this->mode_.triggerMode(elapsed_time);
-  // Publish the coordinates for debug
-  if (this->mode_.hasNewTrajectory()) {
-    auto coordinates = this->mode_.getCoordinates();
-    this->publishCoordinates(coordinates);
-  }
+  this->mode_.execute(elapsed_time);
+  auto control_inputs = this->mode_.getFcuInputs();
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;

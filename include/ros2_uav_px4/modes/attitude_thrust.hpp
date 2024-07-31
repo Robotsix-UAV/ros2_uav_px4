@@ -33,7 +33,7 @@ using uav_cpp::parameters::ParameterMap;
 template<typename ModeT>
 concept DerivedFromAttitudeThrustMode = requires {
   DerivedFromUavCppMode<ModeT>;
-  std::is_same_v<typename ModeT::ControllerType::ControlInputsType, AttitudeThrust>;
+  std::is_same_v<typename ModeT::OutputType, AttitudeThrust>;
 };
 
 /**
