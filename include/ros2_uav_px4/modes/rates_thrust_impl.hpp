@@ -30,41 +30,20 @@ RatesThrustMode<ModeT>::RatesThrustMode(
 {
   this->setSetpointUpdateRate(250.0);
   rates_setpoint_ = std::make_shared<px4_ros2::RatesSetpointType>(*this);
-  vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
-  vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
-  vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
   this->addRequiredParameter("px4.thrust_constant_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_linear_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_quadratic_coefficient", std::type_index(typeid(0.0)));
-  this->addChildContainer(&(this->mode_));
+  this->addChildContainer(this->mode_.get());
   time_init_ = this->node_.now();
-}
-
-template<typename ModeT>
-void RatesThrustMode<ModeT>::odometryUpdate()
-{
-  auto position = vehicle_local_position_->positionNed();
-  auto velocity = vehicle_local_position_->velocityNed();
-  auto attitude = vehicle_attitude_->attitude();
-  auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
-  this->mode_.setCurrentOdometry(
-    eigenNedToTf2Nwu(position),
-    eigenNedToTf2Nwu(attitude),
-    eigenNedToTf2Nwu(velocity),
-    eigenNedToTf2Nwu(angular_velocity));
 }
 
 template<typename ModeT>
 void RatesThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
 {
-  odometryUpdate();
+  this->odometryUpdate();
   double elapsed_time = (this->node_.now() - time_init_).seconds();
-  RatesThrust control_inputs = this->mode_.triggerMode(elapsed_time);
-  // Publish the coordinates for debug
-  if (this->mode_.hasNewTrajectory()) {
-    auto coordinates = this->mode_.getCoordinates();
-    this->publishCoordinates(coordinates);
-  }
+  this->mode_->execute(elapsed_time);
+  auto control_inputs = this->mode_->getFcuInputs();
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
@@ -85,7 +64,7 @@ void RatesThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
       (2 * thrust_quadratic_coefficient);
   }
   const Eigen::Vector3f thrust_sp{0.0f, 0.0f, static_cast<float>(-normalized_thrust)};
-  const Eigen::Vector3f rates_sp = tf2FwuToEigenNed(control_inputs.angular_rates);
+  const Eigen::Vector3f rates_sp = tf2FwuToEigenNed(control_inputs.rates);
   rates_setpoint_->update(rates_sp, thrust_sp);
 }
 

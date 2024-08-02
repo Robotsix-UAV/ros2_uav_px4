@@ -33,7 +33,7 @@ using uav_cpp::parameters::ParameterMap;
 template<typename ModeT>
 concept DerivedFromRatesThrustMode = requires {
   DerivedFromUavCppMode<ModeT>;
-  std::is_same_v<typename ModeT::ControllerType::ControlInputsType, RatesThrust>;
+  std::is_same_v<typename ModeT::OutputType, RatesThrust>;
 };
 
 /**
@@ -56,21 +56,6 @@ public:
 
 private:
   /**
-   * @brief Function called when the mode is activated.
-   */
-  void onActivate() override {odometryUpdate(); this->mode_.reset();}
-
-  /**
-   * @brief Function called when the mode is deactivated.
-   */
-  void onDeactivate() override {}
-
-  /**
-   * @brief Updates the odometry data.
-   */
-  void odometryUpdate();
-
-  /**
    * @brief Updates the setpoint.
    *
    * @param dt Time delta since the last update.
@@ -81,12 +66,6 @@ private:
   rclcpp::Time time_init_;  ///< Initialization time.
   std::shared_ptr<px4_ros2::RatesSetpointType> rates_setpoint_;
   ///< Shared pointer to attitude setpoint.
-  std::shared_ptr<px4_ros2::OdometryLocalPosition> vehicle_local_position_;
-  ///< Shared pointer to vehicle local position.
-  std::shared_ptr<px4_ros2::OdometryAngularVelocity> vehicle_angular_velocity_;
-  ///< Shared pointer to vehicle angular velocity.
-  std::shared_ptr<px4_ros2::OdometryAttitude> vehicle_attitude_;
-  ///< Shared pointer to vehicle attitude.
 };
 
 }  // namespace ros2_uav::modes
