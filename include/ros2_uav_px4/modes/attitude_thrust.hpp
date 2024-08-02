@@ -23,7 +23,7 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::types::AttitudeThrust;
+using uav_cpp::module_io::AttitudeThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
 
