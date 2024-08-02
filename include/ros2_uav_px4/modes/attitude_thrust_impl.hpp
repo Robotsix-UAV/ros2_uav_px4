@@ -30,37 +30,19 @@ AttitudeThrustMode<ModeT>::AttitudeThrustMode(
 {
   this->setSetpointUpdateRate(250.0);
   attitude_setpoint_ = std::make_shared<px4_ros2::AttitudeSetpointType>(*this);
-  vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
-  vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
-  vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
   this->addRequiredParameter("px4.thrust_constant_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_linear_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_quadratic_coefficient", std::type_index(typeid(0.0)));
-  this->addChildContainer(&(this->mode_));
   time_init_ = this->node_.now();
-}
-
-template<typename ModeT>
-void AttitudeThrustMode<ModeT>::odometryUpdate()
-{
-  auto position = vehicle_local_position_->positionNed();
-  auto velocity = vehicle_local_position_->velocityNed();
-  auto attitude = vehicle_attitude_->attitude();
-  auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
-  this->mode_.setCurrentOdometry(
-    eigenNedToTf2Nwu(position),
-    eigenNedToTf2Nwu(attitude),
-    eigenNedToTf2Nwu(velocity),
-    eigenNedToTf2Nwu(angular_velocity));
 }
 
 template<typename ModeT>
 void AttitudeThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
 {
-  odometryUpdate();
+  this->odometryUpdate();
   double elapsed_time = (this->node_.now() - time_init_).seconds();
-  this->mode_.execute(elapsed_time);
-  auto control_inputs = this->mode_.getFcuInputs();
+  this->mode_->execute(elapsed_time);
+  auto control_inputs = this->mode_->getFcuInputs();
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
