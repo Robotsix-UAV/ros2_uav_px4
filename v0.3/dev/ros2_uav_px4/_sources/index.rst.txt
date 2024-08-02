@@ -1,0 +1,23 @@
+.. GENERATED_CONTENT by rosdoc2.verbs.build.builders.sphinx_builder.
+
+ros2_uav_px4
+============
+
+An interface with PX4 from a companion computer using ROS2 based on PX4 ROS Interface Library and uav_cpp Library
+
+.. toctree::
+   :maxdepth: 2
+
+
+   C++ API <generated/index>
+
+
+
+   Standard Documents <standards>
+
+.. include:: __readme_include.rst
+
+.. toctree::
+   :hidden:
+
+   genindex

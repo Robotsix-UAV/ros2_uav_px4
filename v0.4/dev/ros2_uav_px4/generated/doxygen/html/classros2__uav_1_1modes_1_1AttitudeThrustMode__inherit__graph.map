@@ -1,0 +1,6 @@
+<map id="ros2_uav::modes::AttitudeThrustMode&lt; ModeT &gt;" name="ros2_uav::modes::AttitudeThrustMode&lt; ModeT &gt;">
+<area shape="rect" id="node1" title="A mode class that uses attitude and thrust control." alt="" coords="27,169,219,211"/>
+<area shape="rect" id="node2" href="$classros2__uav_1_1modes_1_1ModeInterface.html" title="Interface class for UAV modes." alt="" coords="5,80,240,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="11,5,101,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="126,5,253,32"/>
+</map>

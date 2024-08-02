@@ -1,0 +1,35 @@
+
+.. _namespace_ros2_uav__modes:
+
+Namespace ros2_uav::modes
+=========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1modes_1_1AttitudeThrustMode`
+
+- :ref:`exhale_class_classros2__uav_1_1modes_1_1ModeInterface`
+
+- :ref:`exhale_class_classros2__uav_1_1modes_1_1Position`
+
+- :ref:`exhale_class_classros2__uav_1_1modes_1_1Spin`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_attitude__thrust_8hpp_1afd32347dfe3e93b86c3fd2aa6faafa39`
+
+- :ref:`exhale_variable_mode__interface_8hpp_1a58ba8f69cc3c23a4789fb96256960ed8`
