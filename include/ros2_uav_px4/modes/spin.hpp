@@ -14,16 +14,16 @@
 
 #pragma once
 
-#include <uav_cpp/modes/spin.hpp>
+#include <uav_cpp/custom_pipelines/spin.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
 #include "ros2_uav_px4/modes/attitude_thrust.hpp"
 
 namespace ros2_uav::modes
 {
 /**
- * @brief Spin mode class for UAV control, wrapping the uavcpp::modes::Spin class.
+ * @brief Spin mode class for UAV control, wrapping the uavcpp::pipelines::Spin class.
  */
-class Spin : public ros2_uav::modes::AttitudeThrustMode<uav_cpp::modes::Spin>,
+class Spin : public ros2_uav::modes::AttitudeThrustMode<uav_cpp::pipelines::Spin>,
   public uav_cpp::utils::SmartPointerBase<Spin>
 {
 public:
@@ -33,7 +33,7 @@ public:
    * @param node Reference to the ROS2 node.
    */
   explicit Spin(rclcpp::Node & node)
-  : AttitudeThrustMode<uav_cpp::modes::Spin>(ModeBase::Settings{"Offboard Spin", true}, node)
+  : AttitudeThrustMode<uav_cpp::pipelines::Spin>(ModeBase::Settings{"Offboard Spin", true}, node)
   {}
 };
 

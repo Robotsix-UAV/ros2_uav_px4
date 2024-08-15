@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include <uav_cpp/types/module_io.hpp>
+#include <uav_cpp/module_io/module_io.hpp>
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 
 namespace uav_ros2::utils
@@ -24,9 +24,11 @@ namespace uav_ros2::utils
  * @param msg The PoseHeading message to convert.
  * @return The converted PoseHeading type.
  */
-uav_cpp::types::PoseHeading convertToSetpoint(const ros2_uav_interfaces::msg::PoseHeading & msg)
+uav_cpp::pipelines::PoseHeading convertToSetpoint(const ros2_uav_interfaces::msg::PoseHeading & msg)
 {
-  uav_cpp::types::PoseHeading setpoint;
+  uav_cpp::pipelines::PoseHeading setpoint;
+  setpoint.timestamp =
+    std::chrono::nanoseconds{msg.header.stamp.sec * 1000000000 + msg.header.stamp.nanosec};
   setpoint.frame_id = msg.header.frame_id;
   setpoint.position = tf2::Vector3(msg.position.x, msg.position.y, msg.position.z);
   setpoint.velocity = tf2::Vector3(msg.velocity.x, msg.velocity.y, msg.velocity.z);

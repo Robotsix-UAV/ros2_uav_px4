@@ -29,11 +29,7 @@ endif()
 add_executable(modes_runner src/modes_runner.cpp)
 target_include_directories(modes_runner PUBLIC include)
 ament_target_dependencies(modes_runner px4_ros2_cpp ros2_uav_interfaces uav_cpp tf2_ros)
-target_link_libraries(modes_runner ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
-
-add_executable(disturbance_observer src/disturbance_observer.cpp)
-ament_target_dependencies(disturbance_observer uav_cpp px4_msgs)
-target_link_libraries(disturbance_observer ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
+target_link_libraries(modes_runner uav_cpp::pipelines ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
 
 install(TARGETS
   modes_runner

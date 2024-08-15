@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Tests](https://github.com/Robotsix-UAV/ros2_uav_px4/actions/workflows/build-test.yaml/badge.svg?branch=main)](https://github.com/Robotsix-UAV/uav_cpp/actions/workflows/build-test.yaml)
-[![lcov](https://robotsix-UAV.github.io/ros2_uav_px4/v0.4/lcov/badge.svg)](https://robotsix-UAV.github.io/ros2_uav_px4/v0.4/lcov)
+[![lcov](https://robotsix-UAV.github.io/ros2_uav_px4/v0.5/lcov/badge.svg)](https://robotsix-UAV.github.io/ros2_uav_px4/v0.5/lcov)
 
 # ROS2 UAV PX4
 
@@ -11,7 +11,7 @@ ROS2 UAV PX4 is a ROS 2 package designed to facilitate communication between a c
 
 ## Documentation
 
-Comprehensive documentation can be found at [ROS2 UAV PX4](https://robotsix-UAV.github.io/ros2_uav_px4/v0.4).
+Comprehensive documentation can be found at [ROS2 UAV PX4](https://robotsix-UAV.github.io/ros2_uav_px4/v0.5).
 
 ## Support
 

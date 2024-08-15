@@ -23,29 +23,28 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::types::AttitudeThrust;
+using uav_cpp::pipelines::AttitudeThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
 
 /**
- * @brief Concept that checks if ModeT is derived from Mode with a controller that uses AttitudeThrust control.
+ * @brief Concept that checks if PipelineT FcuInputType is AttitudeThrust.
  */
-template<typename ModeT>
+template<typename PipelineT>
 concept DerivedFromAttitudeThrustMode = requires {
-  DerivedFromUavCppMode<ModeT>;
-  std::is_same_v<typename ModeT::OutputType, AttitudeThrust>;
+  std::is_same_v<typename PipelineT::FcuInputType, AttitudeThrust>;
 };
 
 /**
  * @brief A mode class that uses attitude and thrust control.
  *
- * @tparam ModeT The mode type derived from Mode.
+ * @tparam PipelineT The pipeline type derived from uav_cpp::pipelines::ControlPipeline.
  */
-template<DerivedFromAttitudeThrustMode ModeT>
-class AttitudeThrustMode : public ModeInterface<ModeT>
+template<DerivedFromAttitudeThrustMode PipelineT>
+class AttitudeThrustMode : public ModeInterface<PipelineT>
 {
 public:
-  using ModeInterface<ModeT>::addRequiredParameter;
+  using ModeInterface<PipelineT>::addRequiredParameter;
   /**
    * @brief Constructs a new AttitudeThrustMode object.
    *
@@ -63,7 +62,6 @@ private:
   void updateSetpoint([[maybe_unused]] float dt) override;
 
   ParameterMap::SharedPtr parameters_;  ///< Shared pointer to the parameter map.
-  rclcpp::Time time_init_;  ///< Initialization time.
   std::shared_ptr<px4_ros2::AttitudeSetpointType> attitude_setpoint_;
   ///< Shared pointer to attitude setpoint.
 };
