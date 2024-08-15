@@ -21,7 +21,7 @@ repositories:
 
     px4-ros2-interface-lib:
         type: git
-        url: https://github.com/Auterion/px4-ros2-interface-lib
+        url: https://github.com/damien-robotsix/px4-ros2-interface-lib
         version: main
 
     px4_msgs:

@@ -66,7 +66,7 @@ TEST(QuaternionConversionTests, IdentityQuaternion) {
 // Test ROS Message to Setpoint Conversion
 TEST(ConversionToSetpointTests, DefaultMessage) {
   ros2_uav_interfaces::msg::PoseHeading msg;   // Default initialized
-  uav_cpp::module_io::PoseHeading setpoint = uav_ros2::utils::convertToSetpoint(msg);
+  uav_cpp::pipelines::PoseHeading setpoint = uav_ros2::utils::convertToSetpoint(msg);
 
   EXPECT_EQ(setpoint.frame_id, msg.header.frame_id);
   EXPECT_FLOAT_EQ(setpoint.position.x(), msg.position.x);

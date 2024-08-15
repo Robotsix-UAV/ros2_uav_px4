@@ -19,7 +19,7 @@
 #include <string>
 #include <uav_cpp/parameters/param_container.hpp>
 #include <px4_ros2/components/mode.hpp>
-#include <uav_cpp/components/mode.hpp>
+#include <uav_cpp/pipeline/control_pipeline.hpp>
 #include <ros2_uav_interfaces/msg/coordinate.hpp>
 #include "ros2_uav_px4/utils/tf2_eigen.hpp"
 
@@ -32,20 +32,20 @@ using uav_ros2::utils::eigenNedToTf2Nwu;
 using uav_ros2::utils::tf2FwuToEigenNed;
 
 /**
- * @brief Concept that checks if ModeT is derived from uav_cpp::components::Mode.
+ * @brief Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline.
  */
-template<typename ModeT>
-concept DerivedFromUavCppMode = requires(ModeT mode)
+template<typename PipelineT>
+concept DerivedFromUavCppPipeline = requires(PipelineT pipeline)
 {
-  [] < typename ... T > (uav_cpp::components::Mode<T...> &) {} (mode);
+  [] < typename ... T > (uav_cpp::pipelines::ControlPipeline<T...> &) {} (pipeline);
 };
 
 /**
  * @brief Interface class for UAV modes
  *
- * @tparam ModeT The mode type derived from uav_cpp::modes::Mode.
+ * @tparam PipelineT The pipeline type derived from uav_cpp::pipelines::ControlPipeline.
  */
-template<typename ModeT>
+template<DerivedFromUavCppPipeline PipelineT>
 class ModeInterface : public ModeBase, public ParamContainer
 {
 public:
@@ -61,14 +61,14 @@ public:
     node_(node)
   {
     this->createMode();
-    this->addChildContainer(this->mode_.get());
+    this->addChildContainer(this->pipeline_.get());
     vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
     vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
     vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
   }
 
   /**
-   * @brief Creates the uav_cpp::modes::Mode object.
+   * @brief Creates the uav_cpp::modes::ControlPipeline object.
    */
   void createMode()
   {
@@ -78,7 +78,7 @@ public:
     }
     // Remove the leading slash
     node_namespace = node_namespace.substr(1);
-    mode_ = std::make_shared<ModeT>(node_namespace);
+    pipeline_ = std::make_shared<PipelineT>(node_namespace);
   }
 
   /**
@@ -86,14 +86,14 @@ public:
    *
    * @param setpoint The setpoint to be set.
    */
-  void setSetpoint(const ModeT::InputType & setpoint) {mode_->setInput(setpoint);}
+  void setSetpoint(const PipelineT::InputType & setpoint) {pipeline_->setInput(setpoint);}
 
   /**
    * @brief Set the TF Buffer for the mode.
    *
    * @param tf_buffer The TF Buffer to be set.
    */
-  void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {mode_->setTfBuffer(tf_buffer);}
+  void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {pipeline_->setTfBuffer(tf_buffer);}
 
 protected:
   /**
@@ -102,7 +102,7 @@ protected:
   void onActivate() override
   {
     odometryUpdate();
-    this->mode_->reset();
+    this->pipeline_->reset();
   }
 
   /**
@@ -115,23 +115,24 @@ protected:
    */
   void odometryUpdate()
   {
+    uav_cpp::types::Odometry odometry;
     auto position = vehicle_local_position_->positionNed();
     auto velocity = vehicle_local_position_->velocityNed();
     auto attitude = vehicle_attitude_->attitude();
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
-    if (!mode_) {
-      RCLCPP_ERROR(node_.get_logger(), "Mode not initialized");
+    odometry.position = eigenNedToTf2Nwu(position);
+    odometry.velocity = eigenNedToTf2Nwu(velocity);
+    odometry.attitude = eigenNedToTf2Nwu(attitude);
+    odometry.angular_velocity = eigenNedToTf2Nwu(angular_velocity);
+    if (!pipeline_) {
+      RCLCPP_ERROR(node_.get_logger(), "ControlPipeline not initialized");
       return;
     }
-    this->mode_->setCurrentOdometry(
-      eigenNedToTf2Nwu(position),
-      eigenNedToTf2Nwu(attitude),
-      eigenNedToTf2Nwu(velocity),
-      eigenNedToTf2Nwu(angular_velocity));
+    this->pipeline_->setCurrentOdometry(odometry);
   }
 
   rclcpp::Node & node_;  ///< Reference to the ROS2 node.
-  std::shared_ptr<ModeT> mode_;  ///< The mode instance.
+  std::shared_ptr<PipelineT> pipeline_;  ///< The uav_cpp pipeline.
 
   rclcpp::Publisher<ros2_uav_interfaces::msg::Coordinate>::SharedPtr coordinate_publisher_;
   ///< The ROS2 publisher for the coordinates.
