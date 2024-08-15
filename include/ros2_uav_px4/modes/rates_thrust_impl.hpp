@@ -22,7 +22,7 @@ namespace ros2_uav::modes
 using uav_ros2::utils::eigenNedToTf2Nwu;
 using uav_ros2::utils::tf2FwuToEigenNed;
 
-template<typename ModeT>
+template<DerivedFromRatesThrustMode ModeT>
 RatesThrustMode<ModeT>::RatesThrustMode(
   const ModeBase::Settings & mode_settings,
   rclcpp::Node & node)
@@ -33,17 +33,16 @@ RatesThrustMode<ModeT>::RatesThrustMode(
   this->addRequiredParameter("px4.thrust_constant_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_linear_coefficient", std::type_index(typeid(0.0)));
   this->addRequiredParameter("px4.thrust_quadratic_coefficient", std::type_index(typeid(0.0)));
-  this->addChildContainer(this->mode_.get());
+  this->addChildContainer(this->pipeline_.get());
   time_init_ = this->node_.now();
 }
 
-template<typename ModeT>
+template<DerivedFromRatesThrustMode ModeT>
 void RatesThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
 {
   this->odometryUpdate();
-  double elapsed_time = (this->node_.now() - time_init_).seconds();
-  this->mode_->execute(elapsed_time);
-  auto control_inputs = this->mode_->getFcuInputs();
+  auto elapsed_time = (this->node_.now()).nanoseconds();
+  auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(elapsed_time));
   // Set the attitude setpoint
   // Conversion of the thrust
   double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;

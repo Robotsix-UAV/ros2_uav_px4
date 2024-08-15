@@ -54,7 +54,7 @@ int main(int argc, char * argv[])
     "fmu/out/vehicle_odometry", qos, callback);
 
   auto callback_setpoint = [&disturbance_observer, time_init, &disturbance_node, &parameters](const px4_msgs::msg::VehicleAttitudeSetpoint::SharedPtr msg) {
-    uav_cpp::types::AttitudeThrust inputs;
+    uav_cpp::pipelines::AttitudeThrust inputs;
     // Conversion from FRD to FLU
     inputs.orientation = tf2::Quaternion(msg->q_d[1], -msg->q_d[2], -msg->q_d[3], msg->q_d[0]);
     inputs.thrust = -msg->thrust_body[2];

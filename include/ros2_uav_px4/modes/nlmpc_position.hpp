@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include <uav_cpp/modes/nlmpc_position.hpp>
+#include <uav_cpp/custom_pipelines/nlmpc_position.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
 #include "ros2_uav_px4/modes/rates_thrust.hpp"
 
@@ -23,7 +23,7 @@ namespace ros2_uav::modes
 /**
  * @brief Position mode class for UAV control, wrapping the uavcpp::modes::Se3Position class.
  */
-class NlmpcPosition : public ros2_uav::modes::RatesThrustMode<uav_cpp::modes::NlmpcPosition>,
+class NlmpcPosition : public ros2_uav::modes::RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>,
   public uav_cpp::utils::SmartPointerBase<NlmpcPosition>
 {
 public:
@@ -33,7 +33,7 @@ public:
    * @param node Reference to the ROS2 node.
    */
   explicit NlmpcPosition(rclcpp::Node & node)
-  : RatesThrustMode<uav_cpp::modes::NlmpcPosition>(ModeBase::Settings{"Offboard Position NLMPC", true},
+  : RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>(ModeBase::Settings{"Offboard Position NLMPC", true},
       node)
   {
   }

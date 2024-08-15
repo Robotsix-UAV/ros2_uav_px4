@@ -23,7 +23,7 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::types::RatesThrust;
+using uav_cpp::pipelines::RatesThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
 
@@ -32,8 +32,7 @@ using uav_cpp::parameters::ParameterMap;
  */
 template<typename ModeT>
 concept DerivedFromRatesThrustMode = requires {
-  DerivedFromUavCppMode<ModeT>;
-  std::is_same_v<typename ModeT::OutputType, RatesThrust>;
+  std::is_same_v<typename ModeT::FcuInputType, RatesThrust>;
 };
 
 /**

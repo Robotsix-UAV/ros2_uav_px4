@@ -69,10 +69,10 @@ public:
     // Add a subscription to the disturbance topic
     disturbance_sub_ = node_.create_subscription<ros2_uav_interfaces::msg::Disturbance>(
       "disturbance", 1, [this](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
-        tf2::Vector3 disturbance_constant(msg->constant.x, msg->constant.y, msg->constant.z);
-        tf2::Vector3 disturbance_proportional(
-          msg->proportional.x, msg->proportional.y, msg->proportional.z);
-        mode_->setDisturbanceCoefficients(disturbance_constant, disturbance_proportional);
+        uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
+        disturbance_coefficients.constant = tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);
+        disturbance_coefficients.linear = tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
   }
 
