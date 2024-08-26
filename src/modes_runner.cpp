@@ -1,4 +1,4 @@
-// Copyright 2024 Damien SIX (damien@robotsix.net)
+// Copyright 2024 The Technology Innovation Institute (TII)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,6 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+/**
+ * @author Damien SIX (damien@robotsix.net)
+ */
 
 #include <tf2_ros/buffer.h>
 #include <ros2_uav_parameters/parameter_client.hpp>
@@ -59,7 +63,7 @@ int main(int argc, char * argv[])
   auto position_setpoint_sub = mode_node->create_subscription<PoseHeading>(
     "command/pose_heading", 1,
     [position_mode](const PoseHeading::SharedPtr msg) {
-      position_mode->setSetpoint(uav_ros2::utils::convertToSetpoint(*msg));
+      position_mode->setSetpoint(uav_ros2::utils::convertFromRosMsg(*msg));
     });
 
 

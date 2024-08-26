@@ -1,4 +1,4 @@
-// Copyright 2024 Damien SIX (damien@robotsix.net)
+// Copyright 2024 The Technology Innovation Institute (TII)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,11 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * @author Damien SIX (damien@robotsix.net)
+ */
+
 #include <gtest/gtest.h>
 #include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
 #include "ros2_uav_px4/utils/tf2_eigen.hpp"
 
-using uav_ros2::utils::convertToSetpoint;
+using uav_ros2::utils::convertFromRosMsg;
 using uav_ros2::utils::eigenNedToTf2Nwu;
 using uav_ros2::utils::tf2FwuToEigenNed;
 
@@ -66,7 +70,7 @@ TEST(QuaternionConversionTests, IdentityQuaternion) {
 // Test ROS Message to Setpoint Conversion
 TEST(ConversionToSetpointTests, DefaultMessage) {
   ros2_uav_interfaces::msg::PoseHeading msg;   // Default initialized
-  uav_cpp::pipelines::PoseHeading setpoint = uav_ros2::utils::convertToSetpoint(msg);
+  uav_cpp::pipelines::PoseHeading setpoint = uav_ros2::utils::convertFromRosMsg(msg);
 
   EXPECT_EQ(setpoint.frame_id, msg.header.frame_id);
   EXPECT_FLOAT_EQ(setpoint.position.x(), msg.position.x);
