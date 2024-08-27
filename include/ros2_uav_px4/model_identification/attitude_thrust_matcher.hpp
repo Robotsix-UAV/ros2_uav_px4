@@ -18,6 +18,7 @@
 
 #pragma once
 
+#include <vector>
 #include <rclcpp/rclcpp.hpp>
 #include <uav_cpp/model_identification/model_matcher.hpp>
 #include <uav_cpp/vehicle_models/quadrotor.hpp>
@@ -45,49 +46,51 @@ using std::chrono_literals::operator""ms;
 class AttitudeThrustMatcher : public rclcpp::Node, public uav_cpp::parameters::ParamContainer
 {
 public:
-    enum class Status {
-        INIT,
-        COLLECTING,
-        WAITING_DISARM,
-        MATCHING
-    };
+  enum class Status
+  {
+    INIT,
+    COLLECTING,
+    WAITING_DISARM,
+    MATCHING
+  };
 
-    AttitudeThrustMatcher();
+  AttitudeThrustMatcher();
 
-    /**
-     * @brief Callback for the attitude setpoint.
-     * @param attitude_setpoint Attitude setpoint message.
-     */
-    void attitudeSetpointCallback(const VehicleAttitudeSetpoint::SharedPtr attitude_setpoint);
+  /**
+   * @brief Callback for the attitude setpoint.
+   * @param attitude_setpoint Attitude setpoint message.
+   */
+  void attitudeSetpointCallback(const VehicleAttitudeSetpoint::SharedPtr attitude_setpoint);
 
-    /**
-     * @brief Callback for the odometry.
-     * @param odometry Odometry message.
-     */
-    void odometryCallback(const VehicleOdometry::SharedPtr odometry);
+  /**
+   * @brief Callback for the odometry.
+   * @param odometry Odometry message.
+   */
+  void odometryCallback(const VehicleOdometry::SharedPtr odometry);
 
-    /**
-     * @brief Callback for the control mode.
-     * @param control_mode Control mode message.
-     */
-    void controlModeCallback(const VehicleControlMode::SharedPtr control_mode);
+  /**
+   * @brief Callback for the control mode.
+   * @param control_mode Control mode message.
+   */
+  void controlModeCallback(const VehicleControlMode::SharedPtr control_mode);
 
 private:
-    Status status_ = Status::INIT; /**< Status of the attitude thrust matcher. */
-    std::chrono::milliseconds sampling_time_ = 1ms; /**< Sampling time. */
-    uav_ros2::utils::DataLogger data_logger_; /**< Data logger. */
-    double trigger_altitude_ = 2.0; /**< Altitude at which the data collection is triggered. */
-    uint8_t trigger_validation_ = 30; /**< Number of samples to validate the trigger. */
-    uint8_t trigger_counter_ = 0; /**< Counter for the trigger validation. */
-    rclcpp::Subscription<VehicleAttitudeSetpoint>::SharedPtr attitude_setpoint_subscriber_;
-    /**< Subscriber for the attitude setpoint. */
-    rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry_subscriber_;
-    /**< Subscriber for the odometry. */
-    rclcpp::Subscription<VehicleControlMode>::SharedPtr control_mode_subscriber_;
-    /**< Subscriber for the control mode. */
-    std::vector<VelocityQuaternion> velocity_data_; /**< Vector of velocity data. */
-    uav_ros2::utils::DerivativeFilter3D derivative_filter_; /**< Derivative filter for the velocity. */
-    uav_cpp::identification::ModelMatcher<QuadrotorModel, AttitudeThrustScaler> model_matcher_;
-    /**< Model matcher for the quadrotor and the attitude thrust scaler. */
+  Status status_ = Status::INIT;   /**< Status of the attitude thrust matcher. */
+  std::chrono::milliseconds sampling_time_ = 1ms;   /**< Sampling time. */
+  uav_ros2::utils::DataLogger data_logger_;   /**< Data logger. */
+  double trigger_altitude_ = 2.0;   /**< Altitude at which the data collection is triggered. */
+  uint8_t trigger_validation_ = 30;   /**< Number of samples to validate the trigger. */
+  uint8_t trigger_counter_ = 0;   /**< Counter for the trigger validation. */
+  rclcpp::Subscription<VehicleAttitudeSetpoint>::SharedPtr attitude_setpoint_subscriber_;
+  /**< Subscriber for the attitude setpoint. */
+  rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry_subscriber_;
+  /**< Subscriber for the odometry. */
+  rclcpp::Subscription<VehicleControlMode>::SharedPtr control_mode_subscriber_;
+  /**< Subscriber for the control mode. */
+  std::vector<VelocityQuaternion> velocity_data_;   /**< Vector of velocity data. */
+  uav_ros2::utils::DerivativeFilter3D derivative_filter_;
+  /**< Derivative filter for the velocity. */
+  uav_cpp::identification::ModelMatcher<QuadrotorModel, AttitudeThrustScaler> model_matcher_;
+  /**< Model matcher for the quadrotor and the attitude thrust scaler. */
 };
 }  // namespace ros2_uav::identification

@@ -42,7 +42,8 @@ uav_cpp::pipelines::PoseHeading convertFromRosMsg(const ros2_uav_interfaces::msg
   return setpoint;
 }
 
-uav_cpp::pipelines::AttitudeThrust convertFromPx4Msg(const px4_msgs::msg::VehicleAttitudeSetpoint & msg)
+uav_cpp::pipelines::AttitudeThrust convertFromPx4Msg(
+  const px4_msgs::msg::VehicleAttitudeSetpoint & msg)
 {
   uav_cpp::pipelines::AttitudeThrust att_thrust;
   att_thrust.timestamp =

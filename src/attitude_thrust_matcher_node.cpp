@@ -28,12 +28,14 @@ int main(int argc, char * argv[])
   auto uav_cpp_logger = rclcpp::get_logger("uav_cpp");
   auto logger = std::make_shared<RosLoggerInterface>(uav_cpp_logger);
   uav_cpp::logger::Logger::setCustomLogger(logger);
-  auto attitude_thrust_matcher = std::make_shared<ros2_uav::identification::AttitudeThrustMatcher>();
+  auto attitude_thrust_matcher =
+    std::make_shared<ros2_uav::identification::AttitudeThrustMatcher>();
   auto required_parameters = attitude_thrust_matcher->getRequiredParameters();
   // Parameter client node
   auto parameter_client = std::make_shared<ros2_uav::parameters::ParameterClient>(
     "mode_parameter_client", required_parameters);
-  auto parameters = uav_cpp::parameters::ParameterMap::make_shared<>(parameter_client->getParameters());
+  auto parameters = uav_cpp::parameters::ParameterMap::make_shared<>(
+    parameter_client->getParameters());
   attitude_thrust_matcher->setParameters(parameters);
   rclcpp::executors::SingleThreadedExecutor executor;
   executor.add_node(parameter_client);
