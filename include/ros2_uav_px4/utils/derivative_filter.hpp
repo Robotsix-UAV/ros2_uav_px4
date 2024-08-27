@@ -144,7 +144,7 @@ public:
     auto x = filter_x_.process();
     auto y = filter_y_.process();
     auto z = filter_z_.process();
-    if (x.empty() || y.empty() || z.empty()) {return {}}
+    if (x.empty() || y.empty() || z.empty()) {return {};}
     std::vector<tf2::Vector3> derivatives;
     for (size_t i = 0; i < x.size(); ++i) {
       derivatives.emplace_back(x[i], y[i], z[i]);
