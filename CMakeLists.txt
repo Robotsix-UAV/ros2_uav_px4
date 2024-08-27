@@ -14,6 +14,8 @@ find_package(ros2_uav_parameters REQUIRED)
 find_package(ros2_uav_cpp REQUIRED)
 find_package(ros2_uav_interfaces REQUIRED)
 find_package(px4_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(px4_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 
 if(BUILD_TESTING)
@@ -36,9 +38,15 @@ target_include_directories(disturbance_observer PUBLIC include)
 ament_target_dependencies(disturbance_observer px4_ros2_cpp ros2_uav_interfaces uav_cpp tf2_ros)
 target_link_libraries(disturbance_observer uav_cpp::pipelines ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
 
+add_executable(attitude_thrust_matcher src/attitude_thrust_matcher_node.cpp src/model_identification/attitude_thrust_matcher.cpp)
+target_include_directories(attitude_thrust_matcher PUBLIC include)
+ament_target_dependencies(attitude_thrust_matcher uav_cpp rclcpp px4_msgs ros2_uav_interfaces ros2_uav_cpp)
+target_link_libraries(attitude_thrust_matcher ros2_uav_parameters::parameter_client)
+
 install(TARGETS
   modes_runner
   disturbance_observer
+  attitude_thrust_matcher
   DESTINATION lib/${PROJECT_NAME}
 )
 
