@@ -30,9 +30,6 @@ RatesThrustMode<ModeT>::RatesThrustMode(
 {
   this->setSetpointUpdateRate(250.0);
   rates_setpoint_ = std::make_shared<px4_ros2::RatesSetpointType>(*this);
-  this->addRequiredParameter("px4.thrust_constant_coefficient", std::type_index(typeid(0.0)));
-  this->addRequiredParameter("px4.thrust_linear_coefficient", std::type_index(typeid(0.0)));
-  this->addRequiredParameter("px4.thrust_quadratic_coefficient", std::type_index(typeid(0.0)));
   this->addChildContainer(this->pipeline_.get());
   time_init_ = this->node_.now();
 }
@@ -43,26 +40,7 @@ void RatesThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
   this->odometryUpdate();
   auto elapsed_time = (this->node_.now()).nanoseconds();
   auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(elapsed_time));
-  // Set the attitude setpoint
-  // Conversion of the thrust
-  double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
-  this->getParameter("px4.thrust_constant_coefficient", thrust_constant_coefficient);
-  this->getParameter("px4.thrust_linear_coefficient", thrust_linear_coefficient);
-  this->getParameter("px4.thrust_quadratic_coefficient", thrust_quadratic_coefficient);
-  float thrust = control_inputs.thrust;
-  float normalized_thrust = 0.0;
-  // Find the normalized with thrust = c + l * t_n + q * t_n^2
-  float discriminant = thrust_linear_coefficient * thrust_linear_coefficient -
-    4 * thrust_quadratic_coefficient * (thrust_constant_coefficient - thrust);
-  if (discriminant < 0) {
-    RCLCPP_WARN(
-      this->node_.get_logger(),
-      "[Attitude Thrust Mode] Negative discriminant in thrust conversion");
-  } else {
-    normalized_thrust = (-thrust_linear_coefficient + std::sqrt(discriminant)) /
-      (2 * thrust_quadratic_coefficient);
-  }
-  const Eigen::Vector3f thrust_sp{0.0f, 0.0f, static_cast<float>(-normalized_thrust)};
+  const Eigen::Vector3f thrust_sp{0.0f, 0.0f, -static_cast<float>(control_inputs.thrust)};
   const Eigen::Vector3f rates_sp = tf2FwuToEigenNed(control_inputs.rates);
   rates_setpoint_->update(rates_sp, thrust_sp);
 }
