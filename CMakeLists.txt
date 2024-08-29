@@ -53,10 +53,7 @@ add_custom_target(generate_modes_runner DEPENDS ${MODES_RUNNER_CPP})
 
 # # Generate the ROS2 service for mode selection
 rosidl_generate_interfaces(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}:srv/ModeSelector.srv)
-add_dependencies(${PROJECT_NAME}__rosidl_typesupport_c  generate_service)
-add_dependencies(${PROJECT_NAME}__rosidl_typesupport_cpp generate_service)
-add_dependencies(${PROJECT_NAME}__rosidl_generator_c generate_service)
-add_dependencies(${PROJECT_NAME}__rosidl_generator_cpp generate_service)
+add_dependencies(${rosidl_generate_interfaces_TARGET} generate_service)
 
 # Generate mission executor
 set(MISSION_EXECUTOR_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/mission_template/mission_executor.jinja")
