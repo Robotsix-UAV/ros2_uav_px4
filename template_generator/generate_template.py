@@ -53,13 +53,17 @@ def generate_cpp(config_file, output_file, template_file):
         config = yaml.safe_load(file)
 
     # Setup Jinja2 environment
-    env = Environment(loader=FileSystemLoader('.'), trim_blocks=True, lstrip_blocks=True)
+    # Get template directory and file
+    template_dir = template_file.split('/')
+    template_file = template_dir[-1]
+    template_dir = '/'.join(template_dir[:-1])
+    env = Environment(loader=FileSystemLoader(template_dir), trim_blocks=True, lstrip_blocks=True)
     env.filters['camel_to_snake'] = camel_to_snake
     env.filters['replace_slash'] = replace_slash
     template = env.get_template(template_file)
 
     # Render the template with data
-    cpp_code = template.render(steps=config['steps'])
+    cpp_code = template.render(config)
 
     # Output to C++ file
     with open(output_file, 'w') as file:

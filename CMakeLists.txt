@@ -29,9 +29,9 @@ if(BUILD_TESTING)
 endif()
 
 # Generate files from templates
-set(MODES_RUNNER_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/runner_template/modes_runner.jinja")
-set(MODES_SERVICE_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/runner_template/modes_service.jinja")
-set(MISSION_EXECUTOR_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/mission_template/mission_executor.jinja")
+set(MODES_RUNNER_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/templates/modes_runner.jinja")
+set(MODES_SERVICE_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/templates/modes_service.jinja")
+set(MISSION_EXECUTOR_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/templates/mission_executor.jinja")
 set(MODES_CONFIG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/config/px4_modes.yaml")
 set(MISSION_EXECUTOR_CONFIG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/config/mission.yaml")
 set(MODES_RUNNER_CPP "${CMAKE_CURRENT_BINARY_DIR}/modes_runner.cpp")
