@@ -31,15 +31,23 @@ def camel_to_snake(name):
     return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
-def generate_cpp(config_file, output_file):
+def replace_slash(name):
+    """
+    Replace slashes with underscores.
+
+    :param name: The string with slashes.
+    :return: The string with underscores.
+    """
+    return name.replace("/", "_")
+
+
+def generate_cpp(config_file, output_file, template_file):
     """
     Generate C++ code from a configuration file.
 
     :param config_file: The path to the YAML configuration file.
     :param output_file: The path to the output C++ file.
     """
-    # TODO(robotsix): Check the the configuration file architecture
-
     # Load configuration
     with open(config_file, 'r') as file:
         config = yaml.safe_load(file)
@@ -47,47 +55,29 @@ def generate_cpp(config_file, output_file):
     # Setup Jinja2 environment
     env = Environment(loader=FileSystemLoader('.'), trim_blocks=True, lstrip_blocks=True)
     env.filters['camel_to_snake'] = camel_to_snake
-    template = env.get_template('modes_runner.jinja')
+    env.filters['replace_slash'] = replace_slash
+    template = env.get_template(template_file)
 
     # Render the template with data
-    cpp_code = template.render(modes=config['modes'])
+    cpp_code = template.render(steps=config['steps'])
 
     # Output to C++ file
     with open(output_file, 'w') as file:
         file.write(cpp_code)
 
 
-def generate_service(config_file, output_file):
-    """
-    Generate C++ code from a configuration file.
-
-    :param config_file: The path to the YAML configuration file.
-    :param output_file: The path to the output C++ file.
-    """
-    with open(config_file, 'r') as file:
-        config = yaml.safe_load(file)
-
-    env = Environment(loader=FileSystemLoader('.'), trim_blocks=True, lstrip_blocks=True)
-    template = env.get_template("modes_service.jinja")
-
-    service_content = template.render(modes=config['modes'])
-
-    with open(output_file, 'w') as file:
-        file.write(service_content)
-
-
 def main():
-    parser = argparse.ArgumentParser(description="Generate C++ code from a configuration file.")
+    parser = argparse.ArgumentParser(
+        description="Generate code from a configuration file.")
     parser.add_argument(
         "-c", "--config", type=str, required=True, help="Path to the YAML configuration file.")
     parser.add_argument(
-        "-o", "--output", type=str, required=True, help="Path to the output C++ file.")
+        "-o", "--output", type=str, required=True, help="Path to the output file.")
     parser.add_argument(
-        "-s", "--service", type=str, required=True, help="Path to the output service file.")
+        "-t", "--template", type=str, required=False, help="Path to the Jinja2 template file.")
 
     args = parser.parse_args()
-    generate_cpp(args.config, args.output)
-    generate_service(args.config, args.service)
+    generate_cpp(args.config, args.output, args.template)
 
 
 if __name__ == "__main__":
