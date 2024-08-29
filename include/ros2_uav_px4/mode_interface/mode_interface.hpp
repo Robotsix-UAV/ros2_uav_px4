@@ -24,7 +24,6 @@
 #include <uav_cpp/parameters/param_container.hpp>
 #include <px4_ros2/components/mode.hpp>
 #include <uav_cpp/pipeline/control_pipeline.hpp>
-#include <ros2_uav_interfaces/msg/coordinate.hpp>
 #include "ros2_uav_px4/utils/tf2_eigen.hpp"
 
 namespace ros2_uav::modes
@@ -34,6 +33,7 @@ using uav_cpp::utils::Coordinate;
 using px4_ros2::ModeBase;
 using uav_ros2::utils::eigenNedToTf2Nwu;
 using uav_ros2::utils::tf2FwuToEigenNed;
+using ros2_uav_interfaces::msg::ModeStatus;
 
 /**
  * @brief Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline.
@@ -69,6 +69,8 @@ public:
     vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
     vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
     vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
+    auto mode_name = mode_settings.name;
+    std::replace(mode_name.begin(), mode_name.end(), ' ', '_');
   }
 
   /**
@@ -98,6 +100,12 @@ public:
    * @param tf_buffer The TF Buffer to be set.
    */
   void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {pipeline_->setTfBuffer(tf_buffer);}
+
+  /**
+   * @brief Check if the mode is idle.
+   * @return True if the mode is idle, false otherwise.
+   */
+  bool isIdle() const {return pipeline_->isIdle();}
 
 protected:
   /**
@@ -138,8 +146,7 @@ protected:
   rclcpp::Node & node_;  ///< Reference to the ROS2 node.
   std::shared_ptr<PipelineT> pipeline_;  ///< The uav_cpp pipeline.
 
-  rclcpp::Publisher<ros2_uav_interfaces::msg::Coordinate>::SharedPtr coordinate_publisher_;
-  ///< The ROS2 publisher for the coordinates.
+  rclcpp::TimerBase::SharedPtr mode_status_timer_;  ///< Timer for the mode status.
 
   std::shared_ptr<px4_ros2::OdometryLocalPosition> vehicle_local_position_;
   ///< Shared pointer to vehicle local position.

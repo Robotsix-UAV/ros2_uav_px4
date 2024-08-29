@@ -17,7 +17,7 @@
  */
 
 #include <uav_cpp/module_io/module_io_utils.hpp>
-#include "ros2_uav_px4/model_identification/attitude_thrust_matcher.hpp"
+#include "ros2_uav_px4/model_identification/thrust_matcher_node.hpp"
 #include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
 
 namespace ros2_uav::identification
