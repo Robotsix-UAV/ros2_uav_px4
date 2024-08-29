@@ -2,7 +2,7 @@
 
 # Define the custom function for checking and generating files if needed
 function(check_and_generate_if_needed config_file output_file template_file)
-  set(PYTHON_GENERATOR "${CMAKE_CURRENT_SOURCE_DIR}/src/runner_template/generate_runner.py")
+  set(PYTHON_GENERATOR "${CMAKE_CURRENT_SOURCE_DIR}/template_generator/generate_template.py")
   # Check if the output file exists
   if(NOT EXISTS ${output_file})
     set(GENERATE_FILE TRUE)
