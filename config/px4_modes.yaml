@@ -1,0 +1,8 @@
+modes:
+  - name: "Spin"
+    executor: "ExecutorArm"
+  - name: "Position"
+    executor: "ExecutorTakeOff"
+    input:
+      topic: "command/pose_heading"
+      type: "PoseHeading"

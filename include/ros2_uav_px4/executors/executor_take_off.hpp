@@ -57,6 +57,12 @@ public:
   }
 
   /**
+   * @brief Check if the executor is completed.
+   */
+  bool isCompleted() const {return current_state_ == State::OWNED_MODE;}
+
+private:
+  /**
    * @brief Function called when the executor is activated.
    */
   void onActivate() override
@@ -80,9 +86,12 @@ public:
    */
   void runState(State state)
   {
+    current_state_ = state;
     switch (state) {
       case State::ARM:
-        RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Arming");
+        if (!isArmed()) {
+          RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Arming");
+        }
         arm(
           [this](px4_ros2::Result result)
           {
@@ -108,10 +117,12 @@ public:
       case State::OWNED_MODE:
         RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Owned mode");
         scheduleMode(
-          ownedMode().id(), [](px4_ros2::Result) {return;});
+          ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;
     }
   }
+
+  State current_state_{State::ARM};
 };
 
 }  // namespace ros2_uav::executors

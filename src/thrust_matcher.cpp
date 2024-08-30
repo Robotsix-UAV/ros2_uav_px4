@@ -18,7 +18,7 @@
 
 #include <ros2_uav_cpp/ros2_logger.hpp>
 #include <ros2_uav_parameters/parameter_client.hpp>
-#include "ros2_uav_px4/model_identification/attitude_thrust_matcher.hpp"
+#include "ros2_uav_px4/model_identification/thrust_matcher_node.hpp"
 
 using ros2_uav::utils::RosLoggerInterface;
 

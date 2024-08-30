@@ -13,6 +13,9 @@
   <depend>ros2_uav_parameters</depend>
   <depend>uav_cpp</depend>
   <depend>tf2_ros</depend>
+  <depend>python3-jinja2</depend>
+  <depend>python3-yaml</depend>
+  <depend>rosidl_default_generators</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
@@ -22,4 +25,6 @@
     <build_type>ament_cmake</build_type>
     <rosdoc2>rosdoc2.yaml</rosdoc2>
   </export>
+
+  <member_of_group>rosidl_interface_packages</member_of_group>
 </package>

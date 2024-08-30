@@ -1,0 +1,180 @@
+// Copyright 2024 The Technology Innovation Institute (TII)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @author Damien SIX (damien@robotsix.net)
+ */
+
+#include <tf2_ros/buffer.h>
+#include <tf2_ros/transform_listener.h>
+#include <ros2_uav_parameters/parameter_client.hpp>
+#include <ros2_uav_cpp/ros2_logger.hpp>
+#include <uav_cpp/parameters/param_container.hpp>
+#include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
+#include "ros2_uav_px4/srv/mode_selector.hpp"
+#include "ros2_uav_interfaces/msg/mode_status.hpp"
+
+{% set executors = [] %}
+{% set messages = [] %}
+
+{% for mode in modes %}
+#include "ros2_uav_px4/modes/{{ mode.name|camel_to_snake }}.hpp"
+{% if mode.executor and mode.executor not in executors %}
+#include "ros2_uav_px4/executors/{{ mode.executor|camel_to_snake }}.hpp"
+{% set executors = executors.append(mode.executor) %}
+{% endif %}
+{% if mode.input and mode.input.type not in messages %}
+#include <ros2_uav_interfaces/msg/{{ mode.input.type|camel_to_snake }}.hpp>
+{% set messages = messages.append(mode.input.type) %}
+{% endif %}
+{% endfor %}
+
+using namespace uav_cpp::parameters;
+using namespace ros2_uav::utils;
+using namespace ros2_uav::modes;
+using namespace ros2_uav::executors;
+using namespace ros2_uav_interfaces::msg;
+using namespace ros2_uav_px4::srv;
+
+int main(int argc, char * argv[]) {
+    rclcpp::init(argc, argv);
+    auto mode_node = std::make_shared<rclcpp::Node>("mode_node");
+    ParamContainer param_container;
+
+    auto qos = rclcpp::QoS(1);
+    qos.keep_last(1);
+    qos.best_effort();
+    qos.transient_local();
+
+    int target_system = -1;
+
+    auto status_sub = mode_node->create_subscription<px4_msgs::msg::VehicleStatus>(
+        "fmu/out/vehicle_status", qos,
+        [&](const px4_msgs::msg::VehicleStatus::SharedPtr msg) {
+            target_system = msg->system_id;
+        });
+
+    UAVCPP_INFO("Waiting for target system to be set");
+
+    while (target_system == -1) {
+        rclcpp::spin_some(mode_node);
+    }
+
+    auto tf_buffer = std::make_shared<tf2_ros::Buffer>(mode_node->get_clock());
+    auto tf_listener = std::make_shared<tf2_ros::TransformListener>(*tf_buffer);
+
+    {% for mode in modes %}
+    auto {{ mode.name|lower }}_mode = {{ mode.name }}::make_shared<>(*mode_node);
+    param_container.addChildContainer({{ mode.name|lower }}_mode.get());
+    {{ mode.name|lower }}_mode->setTfBuffer(tf_buffer);
+
+    {% if mode.executor %}
+    auto {{ mode.name|lower }}_executor = {{ mode.executor }}::make_shared<>(*mode_node, *{{ mode.name|lower }}_mode);
+    param_container.addChildContainer({{ mode.name|lower }}_executor.get());
+    {% endif %}
+
+    {% if mode.input %}
+    auto {{ mode.name|lower }}_setpoint_sub = mode_node->create_subscription<{{ mode.input.type }}>(
+        "{{ mode.input.topic }}", 1,
+        [{{ mode.name|lower }}_mode](const {{ mode.input.type }}::SharedPtr msg) {
+            auto setpoint = uav_ros2::utils::convertFromRosMsg(*msg);
+            UAVCPP_INFO("Received setpoint for {{ mode.name }}. Timestamp {}", setpoint.timestamp);
+            {{ mode.name|lower }}_mode->setSetpoint(setpoint);
+        });
+    {% endif %}
+    {% endfor %}
+
+    auto mode_switch_service = mode_node->create_service<ModeSelector>(
+    "set_mode", [&](const std::shared_ptr<ModeSelector::Request> request,
+                    [[maybe_unused]] std::shared_ptr<ModeSelector::Response> response) {
+        switch (request->mode) {
+        {% set i = 0 %}
+        {% for mode in modes %}
+        case ModeSelector::Request::{{ mode.name.upper() }}:
+            {
+            auto vehicle_command_pub = mode_node->create_publisher<px4_msgs::msg::VehicleCommand>(
+                "fmu/in/vehicle_command", 1);
+            px4_msgs::msg::VehicleCommand cmd{};
+            cmd.target_system = target_system;
+            cmd.target_component = 1;
+            cmd.source_system = 255;
+            cmd.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_DO_SET_MODE;
+            cmd.param1 = 1;
+            cmd.param2 = 4;
+            cmd.param3 = 10 + {{ loop.index }};
+            cmd.timestamp = mode_node->get_clock()->now().nanoseconds() / 1000;
+            cmd.from_external = true;
+            vehicle_command_pub->publish(cmd);
+            break;
+            }
+        {% endfor %}
+        default:
+            break;
+        }
+    });
+
+    {% for mode in modes %}
+    auto {{ mode.name|lower }}_status_publisher = mode_node->create_publisher<ModeStatus>(
+      "modes_status/{{ mode.name|lower }}", 1);
+    auto {{ mode.name|lower }}_status_timer = mode_node->create_wall_timer(
+      std::chrono::milliseconds(10),
+      [&]() {
+        ModeStatus msg;
+        bool executor_complete = true;
+        {% if mode.executor %}
+          executor_complete = {{ mode.name|lower }}_executor->isCompleted();
+        {% endif %}
+        if({{ mode.name|lower }}_mode->isActive())
+        {
+          msg.status = executor_complete && {{ mode.name|lower }}_mode->isIdle() ? ModeStatus::IDLE :
+            ModeStatus::EXECUTING;
+        }
+        else
+        {
+          msg.status = ModeStatus::INACTIVE;
+        }
+        {{ mode.name|lower }}_status_publisher->publish(msg);
+      });
+    {% endfor %}
+
+    std::vector<std::string> required_parameters = param_container.getRequiredParameters();
+
+    auto parameter_client = std::make_shared<ros2_uav::parameters::ParameterClient>(
+    "mode_parameter_client", required_parameters);
+    auto parameters = ParameterMap::make_shared<>(parameter_client->getParameters());
+
+    param_container.setParameters(parameters);
+
+    rclcpp::executors::SingleThreadedExecutor executor;
+    executor.add_node(mode_node);
+    executor.add_node(parameter_client);
+
+    auto uav_cpp_logger = rclcpp::get_logger("uav_cpp");
+    auto ret = rcutils_logging_set_logger_level("uav_cpp", RCUTILS_LOG_SEVERITY_DEBUG);
+    (void) ret;
+    auto logger = std::make_shared<RosLoggerInterface>(uav_cpp_logger);
+    uav_cpp::logger::Logger::setCustomLogger(logger);
+
+    {% for mode in modes %}
+    {% if mode.executor %}
+    {{ mode.name|lower }}_executor->doRegister();
+    {% else %}
+    {{ mode.name|lower }}_mode->doRegister();
+    {% endif %}
+    {% endfor %}
+
+    executor.spin();
+    rclcpp::shutdown();
+    return 0;
+}
