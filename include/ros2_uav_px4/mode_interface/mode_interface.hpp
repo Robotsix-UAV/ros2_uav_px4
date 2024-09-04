@@ -134,7 +134,7 @@ protected:
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
     odometry.position = eigenNedToTf2Nwu(position);
     odometry.velocity = eigenNedToTf2Nwu(velocity);
-    odometry.attitude = eigenNedToTf2Nwu(attitude);
+    odometry.orientation = eigenNedToTf2Nwu(attitude);
     odometry.angular_velocity = eigenNedToTf2Nwu(angular_velocity);
     if (!pipeline_) {
       RCLCPP_ERROR(node_.get_logger(), "ControlPipeline not initialized");

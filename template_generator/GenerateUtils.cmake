@@ -26,7 +26,7 @@ function(check_and_generate_if_needed config_file output_file template_file)
     file(TIMESTAMP ${output_file} OUTPUT_TIMESTAMP)
     file(TIMESTAMP ${template_file} TEMPLATE_TIMESTAMP)
 
-    # If the output file is older than the config file, mark for regeneration
+    # If the output file is older than the config file or the template file, generate it
     if(CONFIG_TIMESTAMP STRGREATER OUTPUT_TIMESTAMP OR TEMPLATE_TIMESTAMP STRGREATER OUTPUT_TIMESTAMP)
       set(GENERATE_FILE TRUE)
     else()

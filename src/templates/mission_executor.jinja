@@ -64,7 +64,7 @@ public:
         }
 
         // Wait for mode to be ready
-        sleep(0.5);
+        sleep(1.0);
         completed_ = false;
         while (!completed_) {
             rclcpp::spin_some(shared_from_this());
@@ -88,7 +88,7 @@ public:
         {% endfor %}
 
         {{ step.input.topic|replace_slash }}_publisher_->publish(msg{{ loop.index }});
-        sleep(0.5);
+        sleep(1.0);
         completed_ = false;
 
         // Loop the node until the step is completed
