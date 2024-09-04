@@ -104,7 +104,8 @@ private:
   std::vector<uav_cpp::pipelines::Thrust> thrusts_;   /**< Vector of thrusts. */
   std::vector<uav_cpp::pipelines::Odometry> odometries_;   /**< Vector of odometries. */
   std::vector<uav_cpp::pipelines::Acceleration> accelerations_;   /**< Vector of accelerations. */
-  std::vector<std::chrono::nanoseconds> actuator_timestamps_;   /**< Vector of actuator timestamps. */
+  std::vector<std::chrono::nanoseconds> actuator_timestamps_;
+  /**< Vector of actuator timestamps. */
   std::vector<std::vector<double>> actuators_;   /**< Vector of actuator values. */
 };
 }  // namespace ros2_uav::identification
