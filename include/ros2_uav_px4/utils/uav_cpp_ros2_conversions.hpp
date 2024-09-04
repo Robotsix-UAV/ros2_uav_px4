@@ -22,6 +22,8 @@
 #include <uav_cpp/module_io/fcu_inputs.hpp>
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 #include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
+#include <px4_msgs/msg/vehicle_thrust_setpoint.hpp>
+#include <px4_msgs/msg/vehicle_odometry.hpp>
 
 namespace uav_ros2::utils
 {
@@ -43,6 +45,11 @@ uav_cpp::pipelines::PoseHeading convertFromRosMsg(const ros2_uav_interfaces::msg
   return setpoint;
 }
 
+/**
+ * @brief Converts a px4_msgs/VehicleAttitudeSetpoint message to a uavcpp::types::AttitudeThrust.
+ * @param msg The VehicleAttitudeSetpoint message to convert.
+ * @return The converted AttitudeThrust type.
+ */
 uav_cpp::pipelines::AttitudeThrust convertFromPx4Msg(
   const px4_msgs::msg::VehicleAttitudeSetpoint & msg)
 {
@@ -52,5 +59,37 @@ uav_cpp::pipelines::AttitudeThrust convertFromPx4Msg(
   att_thrust.orientation = tf2::Quaternion(msg.q_d[1], -msg.q_d[2], -msg.q_d[3], msg.q_d[0]);
   att_thrust.thrust = -msg.thrust_body[2];
   return att_thrust;
+}
+
+/**
+ * @brief Converts a px4_msgs/VehicleOdometry message to a uavcpp::types::Odometry.
+ * @param msg The VehicleOdometry message to convert.
+ * @return The converted Odometry type.
+ */
+uav_cpp::pipelines::Odometry convertFromPx4Msg(const px4_msgs::msg::VehicleOdometry & msg)
+{
+  uav_cpp::pipelines::Odometry odometry;
+  odometry.timestamp = std::chrono::microseconds{msg.timestamp};
+  odometry.odometry.position = tf2::Vector3(msg.position[0], -msg.position[1], -msg.position[2]);
+  odometry.odometry.velocity = tf2::Vector3(msg.velocity[0], -msg.velocity[1], -msg.velocity[2]);
+  odometry.odometry.orientation = tf2::Quaternion(msg.q[1], -msg.q[2], -msg.q[3], msg.q[0]);
+  odometry.odometry.angular_velocity = tf2::Vector3(
+    msg.angular_velocity[0],
+    -msg.angular_velocity[1],
+    -msg.angular_velocity[2]);
+  return odometry;
+}
+
+/**
+ * @brief Converts a px4_msgs/VehicleThrustSetpoint message to a uavcpp::types::Thrust.
+ * @param msg The VehicleThrustSetpoint message to convert.
+ * @return The converted Thrust type.
+ */
+uav_cpp::pipelines::Thrust convertFromPx4Msg(const px4_msgs::msg::VehicleThrustSetpoint & msg)
+{
+  uav_cpp::pipelines::Thrust thrust;
+  thrust.timestamp = std::chrono::microseconds{msg.timestamp};
+  thrust.thrust = -msg.xyz[2];
+  return thrust;
 }
 }  // namespace uav_ros2::utils
