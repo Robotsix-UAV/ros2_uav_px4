@@ -1,0 +1,7 @@
+# Define enum for modes
+{% for mode in modes %}
+uint8 {{ mode.name.upper() }}={{ loop.index0 }}
+{% endfor %}
+
+uint8 mode
+---

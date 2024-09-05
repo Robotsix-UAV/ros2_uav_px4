@@ -24,7 +24,6 @@
 #include <uav_cpp/parameters/param_container.hpp>
 #include <px4_ros2/components/mode.hpp>
 #include <uav_cpp/pipeline/control_pipeline.hpp>
-#include <ros2_uav_interfaces/msg/coordinate.hpp>
 #include "ros2_uav_px4/utils/tf2_eigen.hpp"
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
 
@@ -35,6 +34,7 @@ using uav_cpp::utils::Coordinate;
 using px4_ros2::ModeBase;
 using uav_ros2::utils::eigenNedToTf2Nwu;
 using uav_ros2::utils::tf2FwuToEigenNed;
+using ros2_uav_interfaces::msg::ModeStatus;
 
 /**
  * @brief Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline.
@@ -78,6 +78,8 @@ public:
         disturbance_coefficients.linear = tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
         pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
+    auto mode_name = mode_settings.name;
+    std::replace(mode_name.begin(), mode_name.end(), ' ', '_');
   }
 
   /**
@@ -108,6 +110,12 @@ public:
    */
   void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {pipeline_->setTfBuffer(tf_buffer);}
 
+  /**
+   * @brief Check if the mode is idle.
+   * @return True if the mode is idle, false otherwise.
+   */
+  bool isIdle() const {return pipeline_->isIdle();}
+
 protected:
   /**
    * @brief Function called when the mode is activated.
@@ -135,7 +143,7 @@ protected:
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
     odometry.position = eigenNedToTf2Nwu(position);
     odometry.velocity = eigenNedToTf2Nwu(velocity);
-    odometry.attitude = eigenNedToTf2Nwu(attitude);
+    odometry.orientation = eigenNedToTf2Nwu(attitude);
     odometry.angular_velocity = eigenNedToTf2Nwu(angular_velocity);
     if (!pipeline_) {
       RCLCPP_ERROR(node_.get_logger(), "ControlPipeline not initialized");
@@ -147,8 +155,7 @@ protected:
   rclcpp::Node & node_;  ///< Reference to the ROS2 node.
   std::shared_ptr<PipelineT> pipeline_;  ///< The uav_cpp pipeline.
 
-  rclcpp::Publisher<ros2_uav_interfaces::msg::Coordinate>::SharedPtr coordinate_publisher_;
-  ///< The ROS2 publisher for the coordinates.
+  rclcpp::TimerBase::SharedPtr mode_status_timer_;  ///< Timer for the mode status.
   rclcpp::Subscription<ros2_uav_interfaces::msg::Disturbance>::SharedPtr disturbance_sub_;
   ///< The ROS2 subscription for the disturbance.
 

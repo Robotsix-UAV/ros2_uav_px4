@@ -23,21 +23,24 @@
 #include <uav_cpp/model_identification/model_matcher.hpp>
 #include <uav_cpp/vehicle_models/quadrotor.hpp>
 #include <uav_cpp/vehicle_models/thrust_scaler.hpp>
-#include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
-#include <px4_msgs/msg/vehicle_odometry.hpp>
+#include <uav_cpp/vehicle_models/lift_drag.hpp>
+#include <px4_msgs/msg/actuator_motors.hpp>
 #include <px4_msgs/msg/vehicle_control_mode.hpp>
+#include <px4_msgs/msg/vehicle_acceleration.hpp>
+#include <px4_msgs/msg/vehicle_odometry.hpp>
 #include "ros2_uav_px4/utils/data_logger.hpp"
-#include "ros2_uav_px4/utils/derivative_filter.hpp"
 
 namespace ros2_uav::identification
 {
 using uav_cpp::identification::ModelMatcher;
 using uav_cpp::models::QuadrotorModel;
 using uav_cpp::models::AttitudeThrustScaler;
+using uav_cpp::models::LiftDragQuaternion;
 using uav_cpp::pipelines::VelocityQuaternion;
-using px4_msgs::msg::VehicleAttitudeSetpoint;
+using px4_msgs::msg::VehicleAcceleration;
 using px4_msgs::msg::VehicleOdometry;
 using px4_msgs::msg::VehicleControlMode;
+using px4_msgs::msg::ActuatorMotors;
 using std::chrono_literals::operator""ms;
 
 /**
@@ -57,16 +60,22 @@ public:
   AttitudeThrustMatcher();
 
   /**
-   * @brief Callback for the attitude setpoint.
-   * @param attitude_setpoint Attitude setpoint message.
+   * @brief Callback for the actuator motors.
+   * @param actuator_motors Actuator motors message.
    */
-  void attitudeSetpointCallback(const VehicleAttitudeSetpoint::SharedPtr attitude_setpoint);
+  void actuatorMotorsCallback(const ActuatorMotors::SharedPtr actuator_motors);
 
   /**
    * @brief Callback for the odometry.
    * @param odometry Odometry message.
    */
   void odometryCallback(const VehicleOdometry::SharedPtr odometry);
+
+  /**
+   * @brief Callback for the vehicle acceleration.
+   * @param acceleration Acceleration message.
+   */
+  void accelerationCallback(const VehicleAcceleration::SharedPtr acceleration);
 
   /**
    * @brief Callback for the control mode.
@@ -78,19 +87,25 @@ private:
   Status status_ = Status::INIT;   /**< Status of the attitude thrust matcher. */
   std::chrono::milliseconds sampling_time_ = 1ms;   /**< Sampling time. */
   uav_ros2::utils::DataLogger data_logger_;   /**< Data logger. */
-  double trigger_altitude_ = 2.0;   /**< Altitude at which the data collection is triggered. */
+  double trigger_altitude_ = 5.0;   /**< Altitude at which the data collection is triggered. */
   uint8_t trigger_validation_ = 30;   /**< Number of samples to validate the trigger. */
   uint8_t trigger_counter_ = 0;   /**< Counter for the trigger validation. */
-  rclcpp::Subscription<VehicleAttitudeSetpoint>::SharedPtr attitude_setpoint_subscriber_;
-  /**< Subscriber for the attitude setpoint. */
+  rclcpp::Subscription<ActuatorMotors>::SharedPtr actuators_suscriber_;
+  /**< Subscriber for the actuator motors. */
   rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry_subscriber_;
   /**< Subscriber for the odometry. */
   rclcpp::Subscription<VehicleControlMode>::SharedPtr control_mode_subscriber_;
   /**< Subscriber for the control mode. */
-  std::vector<VelocityQuaternion> velocity_data_;   /**< Vector of velocity data. */
-  uav_ros2::utils::DerivativeFilter3D derivative_filter_;
+  rclcpp::Subscription<VehicleAcceleration>::SharedPtr acceleration_subscriber_;
   /**< Derivative filter for the velocity. */
-  uav_cpp::identification::ModelMatcher<QuadrotorModel, AttitudeThrustScaler> model_matcher_;
-  /**< Model matcher for the quadrotor and the attitude thrust scaler. */
+  uav_cpp::identification::ModelMatcher<LiftDragQuaternion, QuadrotorModel,
+    AttitudeThrustScaler> model_matcher_;
+  /**< Model matcher for the quadrotor model and the attitude thrust scaler. */
+  std::vector<uav_cpp::pipelines::Thrust> thrusts_;   /**< Vector of thrusts. */
+  std::vector<uav_cpp::pipelines::Odometry> odometries_;   /**< Vector of odometries. */
+  std::vector<uav_cpp::pipelines::Acceleration> accelerations_;   /**< Vector of accelerations. */
+  std::vector<std::chrono::nanoseconds> actuator_timestamps_;
+  /**< Vector of actuator timestamps. */
+  std::vector<std::vector<double>> actuators_;   /**< Vector of actuator values. */
 };
 }  // namespace ros2_uav::identification

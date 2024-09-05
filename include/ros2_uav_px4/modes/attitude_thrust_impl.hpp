@@ -35,14 +35,16 @@ AttitudeThrustMode<PipelineT>::AttitudeThrustMode(
 {
   this->setSetpointUpdateRate(250.0);
   attitude_setpoint_ = std::make_shared<px4_ros2::AttitudeSetpointType>(*this);
+  px4_ros2::Result result = px4_ros2::Result::Success;
+  this->completed(result);
 }
 
 template<DerivedFromAttitudeThrustMode PipelineT>
 void AttitudeThrustMode<PipelineT>::updateSetpoint([[maybe_unused]] float dt)
 {
   this->odometryUpdate();
-  auto elapsed_time = (this->node_.now()).nanoseconds();
-  auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(elapsed_time));
+  auto time_now = (this->node_.now()).nanoseconds();
+  auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(time_now));
   // Debug each module input/output
   // uav_ros2::debug::moduleLoop<0, PipelineT>(this->pipeline_);
 

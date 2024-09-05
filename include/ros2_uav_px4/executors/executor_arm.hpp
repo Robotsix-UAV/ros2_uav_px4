@@ -20,6 +20,7 @@
 
 #include <px4_ros2/components/mode_executor.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
+#include <uav_cpp/parameters/param_container.hpp>
 
 namespace ros2_uav::executors
 {
@@ -27,6 +28,7 @@ namespace ros2_uav::executors
  * @brief Executor class to manage arming and mode execution for UAVs.
  */
 class ExecutorArm : public px4_ros2::ModeExecutorBase,
+  public uav_cpp::parameters::ParamContainer,
   public uav_cpp::utils::SmartPointerBase<ExecutorArm>
 {
 public:
@@ -51,6 +53,12 @@ public:
       owned_mode)
   {}
 
+  /**
+   * @brief Check if the executor is completed.
+   */
+  bool isCompleted() const {return current_state_ == State::OWNED_MODE;}
+
+private:
   /**
    * @brief Function called when the executor is activated.
    */
@@ -77,9 +85,12 @@ public:
    */
   void runState(State state)
   {
+    current_state_ = state;
     switch (state) {
       case State::ARM:
-        RCLCPP_INFO(node().get_logger(), "[Arming Executor] Arming");
+        if (!isArmed()) {
+          RCLCPP_INFO(node().get_logger(), "[Arming Executor] Arming");
+        }
         arm(
           [this](px4_ros2::Result result)
           {
@@ -91,10 +102,12 @@ public:
       case State::OWNED_MODE:
         RCLCPP_INFO(node().get_logger(), "[Arming Executor] Owned mode");
         scheduleMode(
-          ownedMode().id(), [](px4_ros2::Result) {return;});
+          ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;
     }
   }
+
+  State current_state_{State::ARM};
 };
 
 }  // namespace ros2_uav::executors

@@ -47,6 +47,11 @@ public:
     }
   }
 
+  void setStartTime(std::chrono::nanoseconds start_time)
+  {
+    start_time_ = start_time;
+  }
+
   void logToFile(
     std::string file_name, std::vector<std::chrono::nanoseconds> timestamps,
     std::vector<std::string> labels, std::vector<std::vector<double>> data)
@@ -71,7 +76,8 @@ public:
       log_file << std::endl;
       for (const auto & row : data) {
         if (timestamp_index < timestamps.size()) {
-          log_file << timestamps[timestamp_index].count();
+          log_file <<
+            std::chrono::duration<double>(timestamps[timestamp_index] - start_time_).count();
           timestamp_index++;
         }
         for (size_t i = 0; i < row.size(); ++i) {
@@ -88,6 +94,7 @@ public:
 
 private:
   std::string log_folder_;
+  std::chrono::nanoseconds start_time_ = std::chrono::nanoseconds(0);
 
   std::string getRosLogDirectory()
   {
