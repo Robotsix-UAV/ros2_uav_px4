@@ -13,7 +13,7 @@ steps:
         y: 0.0
         z: 0.0
       heading: 1.57
-  - mode: "Position"
+  - mode: "NlmpcPosition"
     input:
       topic: "command/pose_heading"
       type: "PoseHeading"

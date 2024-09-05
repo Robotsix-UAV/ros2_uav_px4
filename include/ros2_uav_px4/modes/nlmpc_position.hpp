@@ -33,7 +33,8 @@ public:
    * @param node Reference to the ROS2 node.
    */
   explicit NlmpcPosition(rclcpp::Node & node)
-  : RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>(ModeBase::Settings{"Offboard Position NLMPC", true},
+  : RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>(ModeBase::Settings{"Offboard Position NLMPC",
+        true},
       node)
   {
   }

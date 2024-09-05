@@ -74,8 +74,10 @@ public:
     disturbance_sub_ = node_.create_subscription<ros2_uav_interfaces::msg::Disturbance>(
       "disturbance", 1, [this](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
         uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
-        disturbance_coefficients.constant = tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);
-        disturbance_coefficients.linear = tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        disturbance_coefficients.constant =
+        tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);
+        disturbance_coefficients.linear =
+        tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
         pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
     auto mode_name = mode_settings.name;
