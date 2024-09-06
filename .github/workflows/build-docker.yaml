@@ -25,3 +25,13 @@ jobs:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
     with:
       docker-repo: ${{ github.event.repository.name }}
+
+  call-workflow-arm64:
+    uses: Robotsix-UAV/robotsix_workflows/.github/workflows/build-docker.yaml@main
+    secrets:
+      MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+    with:
+      docker-repo: ${{ github.event.repository.name }}
+      architecture: "linux/arm64"
