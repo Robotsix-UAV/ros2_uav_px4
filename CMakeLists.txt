@@ -13,6 +13,7 @@ find_package(px4_ros2_cpp REQUIRED)
 find_package(ros2_uav_parameters REQUIRED)
 find_package(ros2_uav_cpp REQUIRED)
 find_package(ros2_uav_interfaces REQUIRED)
+find_package(px4_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(px4_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
@@ -55,6 +56,11 @@ ament_target_dependencies(modes_runner px4_ros2_cpp ros2_uav_interfaces uav_cpp 
 target_link_libraries(modes_runner uav_cpp::pipelines ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
 rosidl_target_interfaces(modes_runner ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
+add_executable(disturbance_observer src/disturbance_observer.cpp)
+target_include_directories(disturbance_observer PUBLIC include)
+ament_target_dependencies(disturbance_observer px4_ros2_cpp ros2_uav_interfaces uav_cpp tf2_ros)
+target_link_libraries(disturbance_observer uav_cpp::pipelines ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
+
 add_executable(mission_executor ${MISSION_EXECUTOR_CPP})
 ament_target_dependencies(mission_executor ros2_uav_interfaces rclcpp)
 rosidl_target_interfaces(mission_executor ${PROJECT_NAME} "rosidl_typesupport_cpp")
@@ -69,6 +75,7 @@ ament_target_dependencies(tf_publisher rclcpp tf2_ros px4_msgs)
 
 install(TARGETS
   modes_runner
+  disturbance_observer
   mission_executor
   thrust_matcher
   tf_publisher

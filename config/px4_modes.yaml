@@ -6,3 +6,8 @@ modes:
     input:
       topic: "command/pose_heading"
       type: "PoseHeading"
+  - name: "NlmpcPosition"
+    executor: "ExecutorTakeOff"
+    input:
+      topic: "command/pose_heading"
+      type: "PoseHeading"

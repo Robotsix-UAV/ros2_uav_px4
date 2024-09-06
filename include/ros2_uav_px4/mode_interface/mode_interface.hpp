@@ -25,6 +25,7 @@
 #include <px4_ros2/components/mode.hpp>
 #include <uav_cpp/pipeline/control_pipeline.hpp>
 #include "ros2_uav_px4/utils/tf2_eigen.hpp"
+#include <ros2_uav_interfaces/msg/disturbance.hpp>
 
 namespace ros2_uav::modes
 {
@@ -69,6 +70,16 @@ public:
     vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
     vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
     vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
+    // Add a subscription to the disturbance topic
+    disturbance_sub_ = node_.create_subscription<ros2_uav_interfaces::msg::Disturbance>(
+      "disturbance", 1, [this](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
+        uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
+        disturbance_coefficients.constant =
+        tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);
+        disturbance_coefficients.linear =
+        tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
+      });
     auto mode_name = mode_settings.name;
     std::replace(mode_name.begin(), mode_name.end(), ' ', '_');
   }
@@ -147,6 +158,8 @@ protected:
   std::shared_ptr<PipelineT> pipeline_;  ///< The uav_cpp pipeline.
 
   rclcpp::TimerBase::SharedPtr mode_status_timer_;  ///< Timer for the mode status.
+  rclcpp::Subscription<ros2_uav_interfaces::msg::Disturbance>::SharedPtr disturbance_sub_;
+  ///< The ROS2 subscription for the disturbance.
 
   std::shared_ptr<px4_ros2::OdometryLocalPosition> vehicle_local_position_;
   ///< Shared pointer to vehicle local position.
