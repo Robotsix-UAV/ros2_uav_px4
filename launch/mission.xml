@@ -1,7 +1,11 @@
 <launch>
+    <!-- Define a launch argument for the namespace -->
+    <arg name="uav_namespace" default="/uav0"/>
+
+    <!-- Node for the mission executor -->
     <node pkg="ros2_uav_px4"
           exec="mission_executor"
-          namespace="/uav0"
+          namespace="$(var uav_namespace)"
           output="screen">
     </node>
 </launch>
