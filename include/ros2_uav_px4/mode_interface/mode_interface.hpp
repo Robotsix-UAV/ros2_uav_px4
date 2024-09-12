@@ -70,9 +70,15 @@ public:
     vehicle_local_position_ = std::make_shared<px4_ros2::OdometryLocalPosition>(*this);
     vehicle_angular_velocity_ = std::make_shared<px4_ros2::OdometryAngularVelocity>(*this);
     vehicle_attitude_ = std::make_shared<px4_ros2::OdometryAttitude>(*this);
+    addRequiredParameter<bool>("disturbance_observer.enable");
     // Add a subscription to the disturbance topic
     disturbance_sub_ = node_.create_subscription<ros2_uav_interfaces::msg::Disturbance>(
       "disturbance", 1, [this](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
+        bool disturbance_flag;
+        getParameter("disturbance_observer.enable", disturbance_flag);
+        if (!disturbance_flag) {
+          return;
+        }
         uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
         disturbance_coefficients.constant =
         tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);

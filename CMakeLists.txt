@@ -49,12 +49,17 @@ check_and_generate_if_needed(${MISSION_EXECUTOR_CONFIG_FILE} ${MISSION_EXECUTOR_
 
 # Generate the ROS2 service for mode selection
 rosidl_generate_interfaces(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}:srv/ModeSelector.srv)
+rosidl_get_typesupport_target(ROS_SERVICE ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
 add_executable(modes_runner ${MODES_RUNNER_CPP})
 target_include_directories(modes_runner PUBLIC include)
+
 ament_target_dependencies(modes_runner px4_ros2_cpp ros2_uav_interfaces uav_cpp tf2_ros)
-target_link_libraries(modes_runner uav_cpp::pipelines ros2_uav_parameters::parameter_client ros2_uav_cpp::ros2_uav_logger)
-rosidl_target_interfaces(modes_runner ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(modes_runner
+  uav_cpp::pipelines
+  ros2_uav_parameters::parameter_client
+  ros2_uav_cpp::ros2_uav_logger
+  ${ROS_SERVICE})
 
 add_executable(disturbance_observer src/disturbance_observer.cpp)
 target_include_directories(disturbance_observer PUBLIC include)
@@ -63,7 +68,7 @@ target_link_libraries(disturbance_observer uav_cpp::pipelines ros2_uav_parameter
 
 add_executable(mission_executor ${MISSION_EXECUTOR_CPP})
 ament_target_dependencies(mission_executor ros2_uav_interfaces rclcpp)
-rosidl_target_interfaces(mission_executor ${PROJECT_NAME} "rosidl_typesupport_cpp")
+target_link_libraries(mission_executor ${ROS_SERVICE})
 
 add_executable(thrust_matcher src/thrust_matcher.cpp src/model_identification/thrust_matcher_node.cpp)
 target_include_directories(thrust_matcher PUBLIC include)
