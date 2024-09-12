@@ -89,7 +89,7 @@ private:
     switch (state) {
       case State::ARM:
         if (!isArmed()) {
-          RCLCPP_INFO(node().get_logger(), "[Arming Executor] Arming");
+          UAVCPP_INFO("[Arming Executor] Arming");
         }
         arm(
           [this](px4_ros2::Result result)
@@ -100,7 +100,7 @@ private:
           });
         break;
       case State::OWNED_MODE:
-        RCLCPP_INFO(node().get_logger(), "[Arming Executor] Owned mode");
+        UAVCPP_INFO("[Arming Executor] Owned mode");
         scheduleMode(
           ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;

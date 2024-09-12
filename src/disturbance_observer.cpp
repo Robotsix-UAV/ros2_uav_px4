@@ -25,9 +25,9 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);
   uav_cpp::disturbance_observers::DisturbanceObserver disturbance_observer;
   std::vector<std::string> required_parameters = disturbance_observer.getRequiredParameters();
-  required_parameters.push_back("px4.thrust_constant_coefficient");
-  required_parameters.push_back("px4.thrust_linear_coefficient");
-  required_parameters.push_back("px4.thrust_quadratic_coefficient");
+  required_parameters.push_back("model.thrust_constant_coefficient");
+  required_parameters.push_back("model.thrust_linear_coefficient");
+  required_parameters.push_back("model.thrust_quadratic_coefficient");
 
   // Parameter client node
   auto disturbance_node = std::make_shared<ros2_uav::parameters::ParameterClient>(
@@ -64,9 +64,9 @@ int main(int argc, char * argv[])
       inputs.orientation = tf2::Quaternion(msg->q_d[1], -msg->q_d[2], -msg->q_d[3], msg->q_d[0]);
       inputs.thrust = -msg->thrust_body[2];
       double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
-      (*parameters)["px4.thrust_constant_coefficient"]->getValue(thrust_constant_coefficient);
-      (*parameters)["px4.thrust_linear_coefficient"]->getValue(thrust_linear_coefficient);
-      (*parameters)["px4.thrust_quadratic_coefficient"]->getValue(thrust_quadratic_coefficient);
+      (*parameters)["model.thrust_constant_coefficient"]->getValue(thrust_constant_coefficient);
+      (*parameters)["model.thrust_linear_coefficient"]->getValue(thrust_linear_coefficient);
+      (*parameters)["model.thrust_quadratic_coefficient"]->getValue(thrust_quadratic_coefficient);
       inputs.thrust = thrust_constant_coefficient + thrust_linear_coefficient * inputs.thrust +
         thrust_quadratic_coefficient * inputs.thrust * inputs.thrust;
 

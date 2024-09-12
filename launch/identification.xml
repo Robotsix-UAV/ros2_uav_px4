@@ -6,6 +6,6 @@
     <node pkg="ros2_uav_px4"
           exec="thrust_matcher"
           namespace="$(var uav_namespace)"
-          output="screen">
+          output="both">
     </node>
 </launch>

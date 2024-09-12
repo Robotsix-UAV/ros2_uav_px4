@@ -90,7 +90,7 @@ private:
     switch (state) {
       case State::ARM:
         if (!isArmed()) {
-          RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Arming");
+          UAVCPP_INFO("[TakeOff executor] Arming");
         }
         arm(
           [this](px4_ros2::Result result)
@@ -101,7 +101,7 @@ private:
           });
         break;
       case State::TAKEOFF:
-        RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Taking off");
+        UAVCPP_INFO("[TakeOff executor] Taking off");
         double altitude;
         getParameter("takeoff.altitude", altitude);
         takeoff(
@@ -115,7 +115,7 @@ private:
         break;
 
       case State::OWNED_MODE:
-        RCLCPP_INFO(node().get_logger(), "[TakeOff executor] Owned mode");
+        UAVCPP_INFO("[TakeOff executor] Owned mode");
         scheduleMode(
           ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;

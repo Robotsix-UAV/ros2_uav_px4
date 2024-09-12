@@ -6,27 +6,27 @@
       <node pkg="ros2_uav_parameters"
             exec="parameter_server"
             namespace="$(var uav_namespace)"
-            output="screen">
+            output="both">
       </node>
 
       <!-- Node for modes runner -->
       <node pkg="ros2_uav_px4"
             exec="modes_runner"
             namespace="$(var uav_namespace)"
-            output="screen">
+            output="both">
       </node>
 
       <!-- Node for the disturbance observer -->
       <node pkg="ros2_uav_px4"
             exec="disturbance_observer"
             namespace="$(var uav_namespace)"
-            output="screen">
+            output="both">
       </node>
 
       <!-- Node for tf publisher -->
       <node pkg="ros2_uav_px4"
             exec="tf_publisher"
             namespace="$(var uav_namespace)"
-            output="screen">
+            output="both">
       </node>
 </launch>
