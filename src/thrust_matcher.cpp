@@ -16,18 +16,12 @@
  * @author Damien SIX (damien@robotsix.net)
  */
 
-#include <ros2_uav_cpp/ros2_logger.hpp>
 #include <ros2_uav_parameters/parameter_client.hpp>
 #include "ros2_uav_px4/model_identification/thrust_matcher_node.hpp"
-
-using ros2_uav::utils::RosLoggerInterface;
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
-  auto uav_cpp_logger = rclcpp::get_logger("uav_cpp");
-  auto logger = std::make_shared<RosLoggerInterface>(uav_cpp_logger);
-  uav_cpp::logger::Logger::setCustomLogger(logger);
   auto attitude_thrust_matcher =
     std::make_shared<ros2_uav::identification::AttitudeThrustMatcher>();
   auto required_parameters = attitude_thrust_matcher->getRequiredParameters();

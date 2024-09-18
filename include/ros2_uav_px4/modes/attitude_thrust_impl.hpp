@@ -19,14 +19,10 @@
 #pragma once
 
 #include <memory>
-#include "ros2_uav_px4/utils/tf2_eigen.hpp"
 #include "ros2_uav_px4/utils/debug.hpp"
 
 namespace ros2_uav::modes
 {
-using uav_ros2::utils::eigenNedToTf2Nwu;
-using uav_ros2::utils::tf2FwuToEigenNed;
-
 template<DerivedFromAttitudeThrustMode PipelineT>
 AttitudeThrustMode<PipelineT>::AttitudeThrustMode(
   const ModeBase::Settings & mode_settings,
@@ -50,7 +46,8 @@ void AttitudeThrustMode<PipelineT>::updateSetpoint([[maybe_unused]] float dt)
 
   // Set the attitude setpoint
   const Eigen::Vector3f thrust_sp{0.0f, 0.0f, static_cast<float>(-control_inputs.thrust)};
-  const Eigen::Quaternionf attitude_sp = tf2FwuToEigenNed(control_inputs.orientation);
+  const Eigen::Quaternionf attitude_sp =
+    NwuToNed(control_inputs.attitude.quaternion).template cast<float>();
   attitude_setpoint_->update(attitude_sp, thrust_sp);
 }
 

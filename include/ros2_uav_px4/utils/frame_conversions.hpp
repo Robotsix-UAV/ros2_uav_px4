@@ -18,20 +18,29 @@
 
 #pragma once
 
-#include <memory>
-#include "uav_cpp/utils/logger.hpp"
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Geometry>
 
-namespace uav_ros2::debug
+namespace uav_ros2::utils
 {
-
-template<std::size_t I, typename PipelineT>
-void moduleLoop(std::shared_ptr<PipelineT> pipeline)
+Eigen::Vector3d NedToNwu(const Eigen::Vector3d & ned)
 {
-  if constexpr (I < PipelineT::ModuleCount::value) {
-    UAVCPP_DEBUG(
-      "Module {} \nInput: {} \nOutput: {}", I,
-      pipeline->template getModuleInput<I>(), pipeline->template getModuleOutput<I>());
-    moduleLoop<I + 1, PipelineT>(pipeline);
-  }
+  return Eigen::Vector3d(ned.x(), -ned.y(), -ned.z());
 }
-}  // namespace uav_ros2::debug
+
+Eigen::Vector3d NwuToNed(const Eigen::Vector3d & nwu)
+{
+  return Eigen::Vector3d(nwu.x(), -nwu.y(), -nwu.z());
+}
+
+Eigen::Quaterniond NedToNwu(const Eigen::Quaterniond & ned)
+{
+  return Eigen::Quaterniond(ned.w(), ned.x(), -ned.y(), -ned.z());
+}
+
+Eigen::Quaterniond NwuToNed(const Eigen::Quaterniond & nwu)
+{
+  return Eigen::Quaterniond(nwu.w(), nwu.x(), -nwu.y(), -nwu.z());
+}
+
+}  // namespace uav_ros2::utils

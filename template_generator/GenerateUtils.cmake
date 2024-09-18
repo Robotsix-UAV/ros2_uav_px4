@@ -21,13 +21,17 @@ function(check_and_generate_if_needed config_file output_file template_file)
   if(NOT EXISTS ${output_file})
     set(GENERATE_FILE TRUE)
   else()
-    # Compare the modification times
-    file(TIMESTAMP ${config_file} CONFIG_TIMESTAMP)
-    file(TIMESTAMP ${output_file} OUTPUT_TIMESTAMP)
-    file(TIMESTAMP ${template_file} TEMPLATE_TIMESTAMP)
+    # Get the modification times in seconds since the UNIX epoch
+    file(TIMESTAMP ${config_file} CONFIG_TIMESTAMP "%s")
+    file(TIMESTAMP ${output_file} OUTPUT_TIMESTAMP "%s")
+    file(TIMESTAMP ${template_file} TEMPLATE_TIMESTAMP "%s")
+
+    message(STATUS "Config file: ${config_file} timestamp: ${CONFIG_TIMESTAMP}")
+    message(STATUS "Output file: ${output_file} timestamp: ${OUTPUT_TIMESTAMP}")
+    message(STATUS "Template file: ${template_file} timestamp: ${TEMPLATE_TIMESTAMP}")
 
     # If the output file is older than the config file or the template file, generate it
-    if(CONFIG_TIMESTAMP STRGREATER OUTPUT_TIMESTAMP OR TEMPLATE_TIMESTAMP STRGREATER OUTPUT_TIMESTAMP)
+    if(${CONFIG_TIMESTAMP} GREATER ${OUTPUT_TIMESTAMP} OR ${TEMPLATE_TIMESTAMP} GREATER ${OUTPUT_TIMESTAMP})
       set(GENERATE_FILE TRUE)
     else()
       set(GENERATE_FILE FALSE)

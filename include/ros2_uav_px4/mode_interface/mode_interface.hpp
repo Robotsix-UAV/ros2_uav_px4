@@ -24,16 +24,16 @@
 #include <uav_cpp/parameters/param_container.hpp>
 #include <px4_ros2/components/mode.hpp>
 #include <uav_cpp/pipeline/control_pipeline.hpp>
-#include "ros2_uav_px4/utils/tf2_eigen.hpp"
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
+#include "ros2_uav_px4/utils/frame_conversions.hpp"
 
 namespace ros2_uav::modes
 {
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::utils::Coordinate;
 using px4_ros2::ModeBase;
-using uav_ros2::utils::eigenNedToTf2Nwu;
-using uav_ros2::utils::tf2FwuToEigenNed;
+using uav_ros2::utils::NedToNwu;
+using uav_ros2::utils::NwuToNed;
 using ros2_uav_interfaces::msg::ModeStatus;
 
 /**
@@ -81,9 +81,9 @@ public:
         }
         uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
         disturbance_coefficients.constant =
-        tf2::Vector3(msg->constant.x, msg->constant.y, msg->constant.z);
-        disturbance_coefficients.linear =
-        tf2::Vector3(msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        Eigen::Vector3d(msg->constant.x, msg->constant.y, msg->constant.z);
+        disturbance_coefficients.proportional =
+        Eigen::Vector3d(msg->proportional.x, msg->proportional.y, msg->proportional.z);
         pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
     auto mode_name = mode_settings.name;
@@ -95,13 +95,7 @@ public:
    */
   void createMode()
   {
-    std::string node_namespace = node_.get_namespace();
-    if (node_namespace.empty()) {
-      node_namespace = "/";
-    }
-    // Remove the leading slash
-    node_namespace = node_namespace.substr(1);
-    pipeline_ = std::make_shared<PipelineT>(node_namespace);
+    pipeline_ = std::make_shared<PipelineT>();
   }
 
   /**
@@ -110,13 +104,6 @@ public:
    * @param setpoint The setpoint to be set.
    */
   void setSetpoint(const PipelineT::PipelineInputType & setpoint) {pipeline_->setInput(setpoint);}
-
-  /**
-   * @brief Set the TF Buffer for the mode.
-   *
-   * @param tf_buffer The TF Buffer to be set.
-   */
-  void setTfBuffer(std::shared_ptr<tf2_ros::Buffer> tf_buffer) {pipeline_->setTfBuffer(tf_buffer);}
 
   /**
    * @brief Check if the mode is idle.
@@ -149,12 +136,12 @@ protected:
     auto velocity = vehicle_local_position_->velocityNed();
     auto attitude = vehicle_attitude_->attitude();
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
-    odometry.position = eigenNedToTf2Nwu(position);
-    odometry.velocity = eigenNedToTf2Nwu(velocity);
-    odometry.orientation = eigenNedToTf2Nwu(attitude);
-    odometry.angular_velocity = eigenNedToTf2Nwu(angular_velocity);
+    odometry.position = NedToNwu(position.cast<double>());
+    odometry.velocity = NedToNwu(velocity.cast<double>());
+    odometry.attitude = NedToNwu(attitude.cast<double>());
+    odometry.angular_velocity = NedToNwu(angular_velocity.cast<double>());
     if (!pipeline_) {
-      RCLCPP_ERROR(node_.get_logger(), "ControlPipeline not initialized");
+      UAVCPP_ERROR("ControlPipeline not initialized");
       return;
     }
     this->pipeline_->setCurrentOdometry(odometry);

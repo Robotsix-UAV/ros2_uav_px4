@@ -1,4 +1,5 @@
 #include <rclcpp/rclcpp.hpp>
+#include <uav_cpp/utils/logger.hpp>
 #include "ros2_uav_px4/srv/mode_selector.hpp"
 #include "ros2_uav_interfaces/msg/mode_status.hpp"
 {% set types_header = [] %}
@@ -49,18 +50,18 @@ public:
         request{{ loop.index }}->mode = ros2_uav_px4::srv::ModeSelector::Request::{{ step.mode.upper() }};
         while (!set_mode_client_->wait_for_service(1s)) {
             if (!rclcpp::ok()) {
-                RCLCPP_ERROR(this->get_logger(), "Interrupted while waiting for the service. Exiting.");
+                UAVCPP_ERROR("Interrupted while waiting for the service. Exiting.");
                 return;
             }
-            RCLCPP_INFO(this->get_logger(), "waiting for service to appear...");
+            UAVCPP_INFO("Waiting for mode selector service to appear...");
         }
         auto result{{ loop.index }} = set_mode_client_->async_send_request(request{{ loop.index }});
         // wait for the server to act on the request
         if (rclcpp::spin_until_future_complete(shared_from_this(), result{{ loop.index }}.future) ==
             rclcpp::FutureReturnCode::SUCCESS) {
-            RCLCPP_INFO(this->get_logger(), "Mode set to {{ step.mode }}");
+            UAVCPP_INFO( "Mode set to {{ step.mode }}");
         } else {
-            RCLCPP_ERROR(this->get_logger(), "Failed to call service set_mode");
+            UAVCPP_ERROR("Failed to call service set_mode");
         }
 
         // Wait for mode to be ready

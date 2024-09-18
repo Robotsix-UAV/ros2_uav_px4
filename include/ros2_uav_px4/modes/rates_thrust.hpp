@@ -23,16 +23,16 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::pipelines::RatesThrust;
+using uav_cpp::types::RatesThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
 
 /**
- * @brief Concept that checks if ModeT is derived from Mode with a controller that uses AttitudeThrust control.
+ * @brief Concept that checks if PipelineT PipelineOutputType is RatesThrust.
  */
-template<typename ModeT>
+template<typename PipelineT>
 concept DerivedFromRatesThrustMode = requires {
-  std::is_same_v<typename ModeT::FcuInputType, RatesThrust>;
+  std::is_same_v<typename PipelineT::PipelineOutputType, RatesThrust>;
 };
 
 /**

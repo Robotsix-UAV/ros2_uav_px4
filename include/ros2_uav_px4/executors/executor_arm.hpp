@@ -21,6 +21,7 @@
 #include <px4_ros2/components/mode_executor.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
+#include <uav_cpp/utils/logger.hpp>
 
 namespace ros2_uav::executors
 {
@@ -29,7 +30,8 @@ namespace ros2_uav::executors
  */
 class ExecutorArm : public px4_ros2::ModeExecutorBase,
   public uav_cpp::parameters::ParamContainer,
-  public uav_cpp::utils::SmartPointerBase<ExecutorArm>
+  public uav_cpp::utils::SmartPointerBase<ExecutorArm>,
+  public uav_cpp::logger::LogTagHolder
 {
 public:
   /**
@@ -50,7 +52,8 @@ public:
   ExecutorArm(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
   : px4_ros2::ModeExecutorBase(node,
       px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
-      owned_mode)
+      owned_mode),
+    uav_cpp::logger::LogTagHolder("Executor Arm")
   {}
 
   /**
@@ -64,7 +67,7 @@ private:
    */
   void onActivate() override
   {
-    RCLCPP_DEBUG(node().get_logger(), "ExecutorArm activated");
+    UAVCPP_DEBUG_TAG(this, "ExecutorArm activated");
     runState(State::ARM);
   }
 
@@ -75,7 +78,7 @@ private:
    */
   void onDeactivate([[maybe_unused]] DeactivateReason reason) override
   {
-    RCLCPP_DEBUG(node().get_logger(), "ExecutorArm deactivated");
+    UAVCPP_DEBUG_TAG(this, "ExecutorArm deactivated");
   }
 
   /**
@@ -89,7 +92,7 @@ private:
     switch (state) {
       case State::ARM:
         if (!isArmed()) {
-          UAVCPP_INFO("[Arming Executor] Arming");
+          UAVCPP_INFO_TAG(this, "Arming");
         }
         arm(
           [this](px4_ros2::Result result)
@@ -100,7 +103,7 @@ private:
           });
         break;
       case State::OWNED_MODE:
-        UAVCPP_INFO("[Arming Executor] Owned mode");
+        UAVCPP_INFO_TAG(this, "Owned mode");
         scheduleMode(
           ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;

@@ -15,13 +15,9 @@
 #pragma once
 
 #include <memory>
-#include "ros2_uav_px4/utils/tf2_eigen.hpp"
 
 namespace ros2_uav::modes
 {
-using uav_ros2::utils::eigenNedToTf2Nwu;
-using uav_ros2::utils::tf2FwuToEigenNed;
-
 template<DerivedFromRatesThrustMode ModeT>
 RatesThrustMode<ModeT>::RatesThrustMode(
   const ModeBase::Settings & mode_settings,
@@ -41,7 +37,7 @@ void RatesThrustMode<ModeT>::updateSetpoint([[maybe_unused]] float dt)
   auto elapsed_time = (this->node_.now()).nanoseconds();
   auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(elapsed_time));
   const Eigen::Vector3f thrust_sp{0.0f, 0.0f, -static_cast<float>(control_inputs.thrust)};
-  const Eigen::Vector3f rates_sp = tf2FwuToEigenNed(control_inputs.rates);
+  const Eigen::Vector3f rates_sp = NwuToNed(control_inputs.rates.vector).template cast<float>();
   rates_setpoint_->update(rates_sp, thrust_sp);
 }
 

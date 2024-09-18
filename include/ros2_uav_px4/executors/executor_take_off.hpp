@@ -29,7 +29,8 @@ namespace ros2_uav::executors
  */
 class ExecutorTakeOff : public px4_ros2::ModeExecutorBase,
   public uav_cpp::parameters::ParamContainer,
-  public uav_cpp::utils::SmartPointerBase<ExecutorTakeOff>
+  public uav_cpp::utils::SmartPointerBase<ExecutorTakeOff>,
+  public uav_cpp::logger::LogTagHolder
 {
 public:
   /**
@@ -51,7 +52,8 @@ public:
   ExecutorTakeOff(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
   : px4_ros2::ModeExecutorBase(node,
       px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
-      owned_mode)
+      owned_mode),
+    uav_cpp::logger::LogTagHolder("Executor TakeOff")
   {
     addRequiredParameter<double>("takeoff.altitude");
   }
@@ -90,7 +92,7 @@ private:
     switch (state) {
       case State::ARM:
         if (!isArmed()) {
-          UAVCPP_INFO("[TakeOff executor] Arming");
+          UAVCPP_INFO_TAG(this, "Arming");
         }
         arm(
           [this](px4_ros2::Result result)
@@ -101,7 +103,7 @@ private:
           });
         break;
       case State::TAKEOFF:
-        UAVCPP_INFO("[TakeOff executor] Taking off");
+        UAVCPP_INFO_TAG(this, "Taking off");
         double altitude;
         getParameter("takeoff.altitude", altitude);
         takeoff(
@@ -115,7 +117,7 @@ private:
         break;
 
       case State::OWNED_MODE:
-        UAVCPP_INFO("[TakeOff executor] Owned mode");
+        UAVCPP_INFO_TAG(this, "Owned mode");
         scheduleMode(
           ownedMode().id(), [this](px4_ros2::Result) {return;});
         break;
