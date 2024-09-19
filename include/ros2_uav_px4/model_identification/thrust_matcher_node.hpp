@@ -33,7 +33,6 @@ namespace ros2_uav::identification
 {
 using uav_cpp::identification::ModelMatcher;
 using uav_cpp::models::QuadrotorModel;
-using uav_cpp::models::AttitudeThrustScaler;
 using uav_cpp::models::LiftDragQuaternion;
 using px4_msgs::msg::VehicleAcceleration;
 using px4_msgs::msg::VehicleOdometry;
@@ -41,6 +40,8 @@ using px4_msgs::msg::VehicleControlMode;
 using px4_msgs::msg::ActuatorMotors;
 using std::chrono_literals::operator""ms;
 using uav_cpp::logger::LogTagHolder;
+using AttitudeThrustScaler =
+  uav_cpp::models::ThrustScalerWrapper<uav_cpp::types::AttitudeThrustStamped>;
 
 /**
  * @brief Class for matching parameters governing the attitude and thrust control of a UAV.
@@ -102,7 +103,8 @@ private:
   /**< Model matcher for the quadrotor model and the attitude thrust scaler. */
   std::vector<uav_cpp::types::ThrustStamped> thrusts_;   /**< Vector of thrusts. */
   std::vector<uav_cpp::types::OdometryStamped> odometries_;   /**< Vector of odometries. */
-  std::vector<uav_cpp::types::AccelerationStamped> accelerations_;   /**< Vector of accelerations. */
+  std::vector<uav_cpp::types::AccelerationStamped> accelerations_;
+  /**< Vector of accelerations. */
   std::vector<std::chrono::nanoseconds> actuator_timestamps_;
   /**< Vector of actuator timestamps. */
   std::vector<std::vector<double>> actuators_;   /**< Vector of actuator values. */

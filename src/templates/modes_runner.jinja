@@ -26,7 +26,7 @@
 {% set messages = [] %}
 
 {% for mode in modes %}
-#include "ros2_uav_px4/modes/{{ mode.name|camel_to_snake }}.hpp"
+#include "ros2_uav_px4/modes/{{ mode.mode|camel_to_snake }}.hpp"
 {% if mode.executor and mode.executor not in executors %}
 #include "ros2_uav_px4/executors/{{ mode.executor|camel_to_snake }}.hpp"
 {% set executors = executors.append(mode.executor) %}
@@ -68,7 +68,7 @@ int main(int argc, char * argv[]) {
     }
 
     {% for mode in modes %}
-    auto {{ mode.name|lower }}_mode = {{ mode.name }}::make_shared<>(*mode_node);
+    auto {{ mode.name|lower }}_mode = {{ mode.mode }}::make_shared<>(*mode_node);
     param_container.addChildContainer({{ mode.name|lower }}_mode.get());
 
     {% if mode.executor %}
@@ -92,7 +92,6 @@ int main(int argc, char * argv[]) {
     "set_mode", [&](const std::shared_ptr<ModeSelector::Request> request,
                     [[maybe_unused]] std::shared_ptr<ModeSelector::Response> response) {
         switch (request->mode) {
-        {% set i = 0 %}
         {% for mode in modes %}
         case ModeSelector::Request::{{ mode.name.upper() }}:
             {
@@ -105,7 +104,7 @@ int main(int argc, char * argv[]) {
             cmd.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_DO_SET_MODE;
             cmd.param1 = 1;
             cmd.param2 = 4;
-            cmd.param3 = 10 + {{ loop.index }};
+            cmd.param3 = {{ mode.name|lower }}_mode->id() - 12;
             cmd.timestamp = mode_node->get_clock()->now().nanoseconds() / 1000;
             cmd.from_external = true;
             vehicle_command_pub->publish(cmd);

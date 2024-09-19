@@ -1,12 +1,18 @@
 modes:
-  - name: "Spin"
+  - name: "ArmSpin"
+    mode: "Spin"
     executor: "ExecutorArm"
+  - name: "LandSpin"
+    mode: "Spin"
+    executor: "ExecutorLand"
   - name: "Position"
+    mode: "Position"
     executor: "ExecutorTakeOff"
     input:
       topic: "command/pose_heading"
       type: "PoseHeading"
   - name: "NlmpcPosition"
+    mode: "NlmpcPosition"
     executor: "ExecutorTakeOff"
     input:
       topic: "command/pose_heading"

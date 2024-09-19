@@ -27,3 +27,4 @@ steps:
         y: 0.0
         z: 0.0
       heading: 0.0
+  - mode: "LandSpin"

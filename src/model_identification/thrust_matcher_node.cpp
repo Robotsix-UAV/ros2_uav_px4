@@ -183,7 +183,7 @@ void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::Shared
     // Match the model
     std::vector<double> optimized_parameters;
     std::vector<uav_cpp::types::AccelerationAttitudeStamped> computed_inputs, resampled_inputs;
-    std::vector<uav_cpp::models::AttitudeThrustScaler::OutputType> resampled_outputs;
+    std::vector<uav_cpp::types::AttitudeThrustStamped> resampled_outputs;
     model_matcher_.matchModel(
       optimized_parameters, computed_inputs, resampled_inputs,
       resampled_outputs);

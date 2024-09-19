@@ -4,7 +4,7 @@
 #include "ros2_uav_interfaces/msg/mode_status.hpp"
 {% set types_header = [] %}
 {% for step in steps %}
-{% if step.input.type not in types_header %}
+{% if step.input and step.input.type not in types_header %}
 #include <ros2_uav_interfaces/msg/{{ step.input.type|camel_to_snake }}.hpp>
 {% set types_header = types_header.append(step.input.type) %}
 {% endif %}
@@ -19,7 +19,7 @@ public:
         set_mode_client_ = this->create_client<ros2_uav_px4::srv::ModeSelector>("set_mode");
         {% set publishers = [] %}
         {% for step in steps %}
-        {% if step.input.topic not in publishers %}
+        {% if step.input and step.input.topic not in publishers %}
         {{ step.input.topic|replace_slash }}_publisher_ = this->create_publisher<{{ step.input.type }}>("{{ step.input.topic }}", 10);
         {% set publishers = publishers.append(step.input.topic) %}
         {% endif %}
@@ -71,6 +71,7 @@ public:
             rclcpp::spin_some(shared_from_this());
         }
 
+        {% if step.input %}
         // Send setpoint
         auto msg{{ loop.index }} = {{ step.input.type }}();
         msg{{ loop.index }}.header.stamp = this->get_clock()->now();
@@ -92,6 +93,8 @@ public:
         sleep(1.0);
         completed_ = false;
 
+        {% endif %}
+
         // Loop the node until the step is completed
         while (!completed_) {
             rclcpp::spin_some(shared_from_this());
@@ -104,7 +107,7 @@ private:
     rclcpp::Client<ros2_uav_px4::srv::ModeSelector>::SharedPtr set_mode_client_;
     {% set publishers = [] %}
     {% for step in steps %}
-    {% if step.input.topic not in publishers %}
+    {% if step.input and step.input.topic not in publishers %}
     rclcpp::Publisher<{{ step.input.type }}>::SharedPtr {{ step.input.topic|replace_slash }}_publisher_;
     {% set publishers = publishers.append(step.input.topic) %}
     {% endif %}

@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <string>
+
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 #include <uav_cpp/types/enums.hpp>
 #include <uav_cpp/types/timestamped_types.hpp>

@@ -26,11 +26,11 @@
 namespace ros2_uav::executors
 {
 /**
- * @brief Executor class to manage arming and mode execution for UAVs.
+ * @brief Executor class to manage landing.
  */
-class ExecutorArm : public px4_ros2::ModeExecutorBase,
+class ExecutorLand : public px4_ros2::ModeExecutorBase,
   public uav_cpp::parameters::ParamContainer,
-  public uav_cpp::utils::SmartPointerBase<ExecutorArm>,
+  public uav_cpp::utils::SmartPointerBase<ExecutorLand>,
   public uav_cpp::logger::LogTagHolder
 {
 public:
@@ -39,21 +39,21 @@ public:
    */
   enum class State
   {
-    ARM,        ///< State for arming the UAV.
+    LAND,       ///< State for landing the UAV.
     OWNED_MODE  ///< State for executing the owned mode.
   };
 
   /**
-   * @brief Constructs a new ExecutorArm object.
+   * @brief Constructs a new ExecutorLand object.
    *
    * @param node Reference to the ROS2 node.
    * @param owned_mode Reference to the owned mode.
    */
-  ExecutorArm(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
+  ExecutorLand(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
   : px4_ros2::ModeExecutorBase(node,
       px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
       owned_mode),
-    uav_cpp::logger::LogTagHolder("Executor Arm")
+    uav_cpp::logger::LogTagHolder("Executor Land")
   {}
 
   /**
@@ -68,7 +68,7 @@ private:
   void onActivate() override
   {
     UAVCPP_DEBUG_TAG(this, "Activated");
-    runState(State::ARM);
+    runState(State::LAND);
   }
 
   /**
@@ -90,11 +90,9 @@ private:
   {
     current_state_ = state;
     switch (state) {
-      case State::ARM:
-        if (!isArmed()) {
-          UAVCPP_INFO_TAG(this, "Arming");
-        }
-        arm(
+      case State::LAND:
+        UAVCPP_INFO_TAG(this, "Landing");
+        land(
           [this](px4_ros2::Result result)
           {
             if (result == px4_ros2::Result::Success) {
@@ -110,7 +108,7 @@ private:
     }
   }
 
-  State current_state_{State::ARM};
+  State current_state_{State::LAND};
 };
 
 }  // namespace ros2_uav::executors
