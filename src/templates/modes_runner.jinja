@@ -16,10 +16,7 @@
  * @author Damien SIX (damien@robotsix.net)
  */
 
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/transform_listener.h>
 #include <ros2_uav_parameters/parameter_client.hpp>
-#include <ros2_uav_cpp/ros2_logger.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
 #include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
 #include "ros2_uav_px4/srv/mode_selector.hpp"
@@ -29,7 +26,7 @@
 {% set messages = [] %}
 
 {% for mode in modes %}
-#include "ros2_uav_px4/modes/{{ mode.name|camel_to_snake }}.hpp"
+#include "ros2_uav_px4/modes/{{ mode.mode|camel_to_snake }}.hpp"
 {% if mode.executor and mode.executor not in executors %}
 #include "ros2_uav_px4/executors/{{ mode.executor|camel_to_snake }}.hpp"
 {% set executors = executors.append(mode.executor) %}
@@ -41,7 +38,6 @@
 {% endfor %}
 
 using namespace uav_cpp::parameters;
-using namespace ros2_uav::utils;
 using namespace ros2_uav::modes;
 using namespace ros2_uav::executors;
 using namespace ros2_uav_interfaces::msg;
@@ -71,13 +67,9 @@ int main(int argc, char * argv[]) {
         rclcpp::spin_some(mode_node);
     }
 
-    auto tf_buffer = std::make_shared<tf2_ros::Buffer>(mode_node->get_clock());
-    auto tf_listener = std::make_shared<tf2_ros::TransformListener>(*tf_buffer);
-
     {% for mode in modes %}
-    auto {{ mode.name|lower }}_mode = {{ mode.name }}::make_shared<>(*mode_node);
+    auto {{ mode.name|lower }}_mode = {{ mode.mode }}::make_shared<>(*mode_node);
     param_container.addChildContainer({{ mode.name|lower }}_mode.get());
-    {{ mode.name|lower }}_mode->setTfBuffer(tf_buffer);
 
     {% if mode.executor %}
     auto {{ mode.name|lower }}_executor = {{ mode.executor }}::make_shared<>(*mode_node, *{{ mode.name|lower }}_mode);
@@ -89,17 +81,17 @@ int main(int argc, char * argv[]) {
         "{{ mode.input.topic }}", 1,
         [{{ mode.name|lower }}_mode](const {{ mode.input.type }}::SharedPtr msg) {
             auto setpoint = uav_ros2::utils::convertFromRosMsg(*msg);
-            UAVCPP_INFO("Received setpoint for {{ mode.name }}. Timestamp {}", setpoint.timestamp);
+            UAVCPP_DEBUG("Received setpoint for {{ mode.name }}. Timestamp {}", setpoint.timestamp);
             {{ mode.name|lower }}_mode->setSetpoint(setpoint);
         });
     {% endif %}
+    UAVCPP_INFO("{{ mode.name }} mode initialized");
     {% endfor %}
 
     auto mode_switch_service = mode_node->create_service<ModeSelector>(
     "set_mode", [&](const std::shared_ptr<ModeSelector::Request> request,
                     [[maybe_unused]] std::shared_ptr<ModeSelector::Response> response) {
         switch (request->mode) {
-        {% set i = 0 %}
         {% for mode in modes %}
         case ModeSelector::Request::{{ mode.name.upper() }}:
             {
@@ -112,7 +104,7 @@ int main(int argc, char * argv[]) {
             cmd.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_DO_SET_MODE;
             cmd.param1 = 1;
             cmd.param2 = 4;
-            cmd.param3 = 10 + {{ loop.index }};
+            cmd.param3 = {{ mode.name|lower }}_mode->id() - 12;
             cmd.timestamp = mode_node->get_clock()->now().nanoseconds() / 1000;
             cmd.from_external = true;
             vehicle_command_pub->publish(cmd);
@@ -159,12 +151,6 @@ int main(int argc, char * argv[]) {
     rclcpp::executors::SingleThreadedExecutor executor;
     executor.add_node(mode_node);
     executor.add_node(parameter_client);
-
-    auto uav_cpp_logger = rclcpp::get_logger("uav_cpp");
-    auto ret = rcutils_logging_set_logger_level("uav_cpp", RCUTILS_LOG_SEVERITY_DEBUG);
-    (void) ret;
-    auto logger = std::make_shared<RosLoggerInterface>(uav_cpp_logger);
-    uav_cpp::logger::Logger::setCustomLogger(logger);
 
     {% for mode in modes %}
     {% if mode.executor %}

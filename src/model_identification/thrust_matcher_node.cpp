@@ -16,7 +16,6 @@
  * @author Damien SIX (damien@robotsix.net)
  */
 
-#include <uav_cpp/module_io/module_io_utils.hpp>
 #include "ros2_uav_px4/model_identification/thrust_matcher_node.hpp"
 #include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
 
@@ -24,6 +23,7 @@ namespace ros2_uav::identification
 {
 AttitudeThrustMatcher::AttitudeThrustMatcher()
 : Node("attitude_thrust_matcher"),
+  LogTagHolder("AttitudeThrust Matcher"),
   model_matcher_(1ms, {"limits.max_angle", "limits.min_z_acceleration", "model.vehicle_mass"})
 {
   addChildContainer(&model_matcher_);
@@ -49,9 +49,9 @@ AttitudeThrustMatcher::AttitudeThrustMatcher()
 void AttitudeThrustMatcher::actuatorMotorsCallback(const ActuatorMotors::SharedPtr actuator_motors)
 {
   if (status_ == Status::COLLECTING) {
-    uav_cpp::pipelines::Thrust thrust;
+    uav_cpp::types::ThrustStamped thrust;
     thrust.timestamp = std::chrono::microseconds{actuator_motors->timestamp};
-    thrust.thrust = (actuator_motors->control[0] + actuator_motors->control[1] +
+    thrust.value = (actuator_motors->control[0] + actuator_motors->control[1] +
       actuator_motors->control[2] + actuator_motors->control[3]) / 4.0;
     thrusts_.push_back(thrust);
     // Log actuator motors (for debug)
@@ -68,7 +68,7 @@ void AttitudeThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr od
   // Logic to trigger data collection
   if (altitude > trigger_altitude_ && status_ == Status::INIT) {
     if (trigger_counter_ >= trigger_validation_) {
-      UAVCPP_INFO("[Model Identification] Triggering data collection");
+      UAVCPP_INFO_TAG(this, "[Model Identification] Triggering data collection");
       status_ = Status::COLLECTING;
       trigger_counter_ = 0;
     } else {
@@ -76,7 +76,7 @@ void AttitudeThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr od
     }
   } else if (altitude < trigger_altitude_ && status_ == Status::COLLECTING) {
     if (trigger_counter_ >= trigger_validation_) {
-      UAVCPP_INFO("[Model Identification] Stopping data collection");
+      UAVCPP_INFO_TAG(this, "[Model Identification] Stopping data collection");
       status_ = Status::WAITING_DISARM;
     } else {
       trigger_counter_++;
@@ -95,9 +95,9 @@ void AttitudeThrustMatcher::accelerationCallback(
   const VehicleAcceleration::SharedPtr acceleration)
 {
   if (status_ == Status::COLLECTING) {
-    uav_cpp::pipelines::Acceleration acc;
+    uav_cpp::types::AccelerationStamped acc;
     acc.timestamp = std::chrono::microseconds{acceleration->timestamp};
-    acc.acceleration = tf2::Vector3(
+    acc.vector = Eigen::Vector3d(
       acceleration->xyz[0], -acceleration->xyz[1],
       -acceleration->xyz[2]);
     accelerations_.push_back(acc);
@@ -107,80 +107,70 @@ void AttitudeThrustMatcher::accelerationCallback(
 void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::SharedPtr control_mode)
 {
   if (status_ == Status::WAITING_DISARM && control_mode->flag_armed == false) {
-    UAVCPP_INFO("[Model Identification] Disarmed, matching model");
+    UAVCPP_INFO_TAG(this, "[Model Identification] Disarmed, matching model");
     status_ = Status::MATCHING;
-    // Log for debug
-    data_logger_.setStartTime(odometries_.front().timestamp);
-    std::vector<std::chrono::nanoseconds> thrust_timestamps, altitude_timestamps;
-    std::vector<std::vector<double>> thrusts, altitudes;
-    for (const auto & thrust : thrusts_) {
-      thrust_timestamps.push_back(thrust.timestamp);
-      thrusts.push_back({thrust.thrust});
-    }
-    for (const auto & odometry : odometries_) {
-      altitude_timestamps.push_back(odometry.timestamp);
-      altitudes.push_back({-odometry.odometry.position.z()});
-    }
-    data_logger_.logToFile("thrust.csv", thrust_timestamps, {"thrust"}, thrusts);
-    data_logger_.logToFile("altitude.csv", altitude_timestamps, {"altitude"}, altitudes);
-    data_logger_.logToFile(
-      "actuators.csv", actuator_timestamps_, {"motor0", "motor1", "motor2",
-        "motor3"}, actuators_);
+
     // Resample the data
     // Check that the data is not empty
     if (thrusts_.empty()) {
-      UAVCPP_ERROR("[Model Identification] No thrust data");
+      UAVCPP_ERROR_TAG(this, "[Model Identification] No thrust data");
       return;
     }
     if (odometries_.empty()) {
-      UAVCPP_ERROR("[Model Identification] No odometry data");
+      UAVCPP_ERROR_TAG(this, "[Model Identification] No odometry data");
       return;
     }
     if (accelerations_.empty()) {
-      UAVCPP_ERROR("[Model Identification] No acceleration data");
+      UAVCPP_ERROR_TAG(this, "[Model Identification] No acceleration data");
       return;
     }
-    std::vector<uav_cpp::pipelines::Acceleration> resampled_accelerations;
+    for (const auto & thrust : thrusts_) {
+      UAVCPP_DATA("identification_thrust_input", thrust);
+    }
+    for (const auto & odometry : odometries_) {
+      UAVCPP_DATA("identification_odometry", odometry);
+    }
+    std::vector<uav_cpp::types::AccelerationStamped> resampled_accelerations;
     auto start_time = std::max(
       {thrusts_.front().timestamp,
         odometries_.front().timestamp, accelerations_.front().timestamp});
     auto end_time = std::min(
       {thrusts_.back().timestamp,
         odometries_.back().timestamp, accelerations_.back().timestamp});
-    auto success = uav_cpp::utils::resampleModuleIO(
+    auto success = uav_cpp::utils::resampleUavCppData(
       accelerations_, resampled_accelerations, sampling_time_,
       start_time, end_time);
-    std::vector<uav_cpp::pipelines::Thrust> resampled_thrusts;
-    std::vector<uav_cpp::pipelines::Odometry> resampled_odometries;
-    success = uav_cpp::utils::resampleModuleIO(
+    std::vector<uav_cpp::types::ThrustStamped> resampled_thrusts;
+    std::vector<uav_cpp::types::OdometryStamped> resampled_odometries;
+    success = uav_cpp::utils::resampleUavCppData(
       thrusts_, resampled_thrusts, sampling_time_, start_time, end_time);
-    success &= uav_cpp::utils::resampleModuleIO(
+    success &= uav_cpp::utils::resampleUavCppData(
       odometries_, resampled_odometries, sampling_time_, start_time, end_time);
     if (!success) {
-      UAVCPP_ERROR("[Model Identification] Resampling failed");
+      UAVCPP_ERROR_TAG(this, "Resampling failed");
       return;
     }
 
     // Add the outputs to the model matcher
     for (size_t i = 0; i < resampled_thrusts.size(); ++i) {
-      uav_cpp::pipelines::AttitudeThrust output;
+      uav_cpp::types::AttitudeThrustStamped output;
       output.timestamp = resampled_thrusts[i].timestamp;
-      output.thrust = resampled_thrusts[i].thrust;
-      output.orientation = resampled_odometries[i].odometry.orientation;
+      output.thrust = resampled_thrusts[i];
+      output.attitude.quaternion = resampled_odometries[i].attitude.quaternion;
       model_matcher_.addOutput(output);
     }
 
     // Add the inputs to the model matcher
     for (size_t i = 0; i < resampled_accelerations.size(); ++i) {
-      uav_cpp::pipelines::AccelerationQuaternion input;
+      uav_cpp::types::AccelerationAttitudeStamped input;
       input.timestamp = resampled_accelerations[i].timestamp;
-      tf2::Vector3 acceleration = resampled_accelerations[i].acceleration;
+      auto acceleration = resampled_accelerations[i].vector;
       // Data from IMU is in the body frame, to convert to the world frame and remove gravity
-      tf2::Quaternion orientation = resampled_odometries[i].odometry.orientation.normalized();
-      acceleration = tf2::quatRotate(orientation, acceleration);
-      acceleration.setZ(acceleration.z() - 9.81);
-      input.acceleration = acceleration;
-      input.orientation = resampled_odometries[i].odometry.orientation;
+      auto orientation = resampled_odometries[i].attitude.quaternion.normalized();
+      acceleration = orientation * acceleration;
+      acceleration.z() = acceleration.z() - 9.81;
+      input.acceleration.vector = acceleration;
+      input.attitude.quaternion = resampled_odometries[i].attitude.quaternion;
       model_matcher_.addInput(input);
     }
 
@@ -192,46 +182,20 @@ void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::Shared
 
     // Match the model
     std::vector<double> optimized_parameters;
-    std::vector<uav_cpp::pipelines::AccelerationQuaternion> computed_inputs, resampled_inputs;
-    std::vector<uav_cpp::models::AttitudeThrustScaler::OutputType> resampled_outputs;
+    std::vector<uav_cpp::types::AccelerationAttitudeStamped> computed_inputs, resampled_inputs;
+    std::vector<uav_cpp::types::AttitudeThrustStamped> resampled_outputs;
     model_matcher_.matchModel(
       optimized_parameters, computed_inputs, resampled_inputs,
       resampled_outputs);
-    std::vector<std::vector<double>> output_data;
-    std::vector<std::chrono::nanoseconds> timestamps;
-    for (size_t i = 0; i < computed_inputs.size(); ++i) {
-      timestamps.push_back(computed_inputs[i].timestamp);
-      output_data.push_back(
-        {computed_inputs[i].acceleration.x(),
-          computed_inputs[i].acceleration.y(), computed_inputs[i].acceleration.z(),
-          computed_inputs[i].orientation.x(),
-          computed_inputs[i].orientation.y(), computed_inputs[i].orientation.z(),
-          computed_inputs[i].orientation.w(),
-          resampled_inputs[i].acceleration.x(),
-          resampled_inputs[i].acceleration.y(), resampled_inputs[i].acceleration.z(),
-          resampled_inputs[i].orientation.x(),
-          resampled_inputs[i].orientation.y(),
-          resampled_inputs[i].orientation.z(), resampled_inputs[i].orientation.w(),
-          resampled_outputs[i].thrust,
-          computed_inputs_default[i].acceleration.x(),
-          computed_inputs_default[i].acceleration.y(),
-          computed_inputs_default[i].acceleration.z(),
-          computed_inputs_default[i].orientation.x(),
-          computed_inputs_default[i].orientation.y(),
-          computed_inputs_default[i].orientation.z(),
-          computed_inputs_default[i].orientation.w()});
+    for (const auto & input : computed_inputs) {
+      UAVCPP_DATA("identification_computed_input", input);
     }
-    data_logger_.logToFile(
-      "identification.csv", timestamps, {"computed_acceleration_x", "computed_acceleration_y",
-        "computed_acceleration_z", "computed_orientation_x", "computed_orientation_y",
-        "computed_orientation_z", "computed_orientation_w",
-        "resampled_acceleration_x", "resampled_acceleration_y", "resampled_acceleration_z",
-        "resampled_orientation_x", "resampled_orientation_y", "resampled_orientation_z",
-        "resampled_orientation_w", "resampled_thrust",
-        "default_acceleration_x", "default_acceleration_y", "default_acceleration_z",
-        "default_orientation_x", "default_orientation_y", "default_orientation_z",
-        "default_orientation_w"},
-      output_data);
+    for (const auto & input : resampled_inputs) {
+      UAVCPP_DATA("identification_resampled_input", input);
+    }
+    for (const auto & output : resampled_outputs) {
+      UAVCPP_DATA("identification_resampled_output", output);
+    }
   }
 }
 }  // namespace ros2_uav::identification

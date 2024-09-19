@@ -27,16 +27,16 @@
 
 namespace ros2_uav::modes
 {
-using uav_cpp::pipelines::AttitudeThrust;
+using uav_cpp::types::AttitudeThrust;
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::parameters::ParameterMap;
 
 /**
- * @brief Concept that checks if PipelineT FcuInputType is AttitudeThrust.
+ * @brief Concept that checks if PipelineT PipelineOutputType is AttitudeThrust.
  */
 template<typename PipelineT>
 concept DerivedFromAttitudeThrustMode = requires {
-  std::is_same_v<typename PipelineT::FcuInputType, AttitudeThrust>;
+  std::is_same_v<typename PipelineT::PipelineOutputType, AttitudeThrust>;
 };
 
 /**
