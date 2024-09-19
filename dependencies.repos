@@ -14,11 +14,6 @@ repositories:
         url: https://github.com/Robotsix-UAV/uav_cpp
         version: main
 
-    ros2_uav_cpp:
-        type: git
-        url: https://github.com/Robotsix-UAV/ros2_uav_cpp
-        version: main
-
     px4-ros2-interface-lib:
         type: git
         url: https://github.com/damien-robotsix/px4-ros2-interface-lib
@@ -28,6 +23,7 @@ repositories:
         type: git
         url: https://github.com/PX4/px4_msgs
         version: main
+
     acados_vendor_ros2:
         type: git
         url: https://github.com/ICube-Robotics/acados_vendor_ros2
