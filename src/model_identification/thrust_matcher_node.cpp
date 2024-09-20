@@ -17,7 +17,7 @@
  */
 
 #include "ros2_uav_px4/model_identification/thrust_matcher_node.hpp"
-#include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
+#include "ros2_uav_px4/utils/type_conversions.hpp"
 
 namespace ros2_uav::identification
 {
@@ -87,7 +87,7 @@ void AttitudeThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr od
 
   // Collection of velocity data and orientation data
   if (status_ == Status::COLLECTING) {
-    odometries_.push_back(uav_ros2::utils::convertFromPx4Msg(*odometry));
+    odometries_.push_back(uav_ros2::utils::convert(*odometry));
   }
 }
 

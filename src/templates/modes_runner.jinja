@@ -18,7 +18,7 @@
 
 #include <ros2_uav_parameters/parameter_client.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
-#include "ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp"
+#include "ros2_uav_px4/utils/type_conversions.hpp"
 #include "ros2_uav_px4/srv/mode_selector.hpp"
 #include "ros2_uav_interfaces/msg/mode_status.hpp"
 
@@ -80,7 +80,7 @@ int main(int argc, char * argv[]) {
     auto {{ mode.name|lower }}_setpoint_sub = mode_node->create_subscription<{{ mode.input.type }}>(
         "{{ mode.input.topic }}", 1,
         [{{ mode.name|lower }}_mode](const {{ mode.input.type }}::SharedPtr msg) {
-            auto setpoint = uav_ros2::utils::convertFromRosMsg(*msg);
+            auto setpoint = uav_ros2::utils::convert(*msg);
             UAVCPP_DEBUG("Received setpoint for {{ mode.name }}. Timestamp {}", setpoint.timestamp);
             {{ mode.name|lower }}_mode->setSetpoint(setpoint);
         });

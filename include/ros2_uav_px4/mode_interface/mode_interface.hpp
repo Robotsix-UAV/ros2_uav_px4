@@ -26,6 +26,7 @@
 #include <uav_cpp/pipeline/control_pipeline.hpp>
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
 #include "ros2_uav_px4/utils/frame_conversions.hpp"
+#include "ros2_uav_px4/utils/type_conversions.hpp"
 
 namespace ros2_uav::modes
 {
@@ -79,11 +80,8 @@ public:
         if (!disturbance_flag) {
           return;
         }
-        uav_cpp::types::DisturbanceCoefficients disturbance_coefficients;
-        disturbance_coefficients.constant =
-        Eigen::Vector3d(msg->constant.x, msg->constant.y, msg->constant.z);
-        disturbance_coefficients.proportional =
-        Eigen::Vector3d(msg->proportional.x, msg->proportional.y, msg->proportional.z);
+        uav_cpp::types::DisturbanceCoefficientsStamped disturbance_coefficients;
+        disturbance_coefficients = uav_ros2::utils::convert(*msg);
         pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
     auto mode_name = mode_settings.name;
@@ -131,11 +129,13 @@ protected:
    */
   void odometryUpdate()
   {
-    uav_cpp::types::Odometry odometry;
+    uav_cpp::types::OdometryStamped odometry;
     auto position = vehicle_local_position_->positionNed();
     auto velocity = vehicle_local_position_->velocityNed();
     auto attitude = vehicle_attitude_->attitude();
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
+    odometry.frame_id = uav_cpp::enums::Frame::ODOM;
+    odometry.timestamp = std::chrono::microseconds(vehicle_local_position_->last().timestamp);
     odometry.position = NedToNwu(position.cast<double>());
     odometry.velocity = NedToNwu(velocity.cast<double>());
     odometry.attitude = NedToNwu(attitude.cast<double>());

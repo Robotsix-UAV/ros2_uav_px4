@@ -17,13 +17,14 @@
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
 #include <px4_msgs/msg/vehicle_odometry.hpp>
 #include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
+#include "ros2_uav_px4/utils/type_conversions.hpp"
 
 int main(int argc, char * argv[])
 {
   using Vec3 = Eigen::Vector3d;
   using uav_cpp::types::VelocityStamped;
   using uav_cpp::types::AttitudeThrustStamped;
-  using uav_cpp::types::DisturbanceCoefficients;
+  using uav_cpp::types::DisturbanceCoefficientsStamped;
   rclcpp::init(argc, argv);
   uav_cpp::disturbance_observer::DisturbanceObserver disturbance_observer;
   std::vector<std::string> required_parameters = disturbance_observer.getRequiredParameters();
@@ -80,14 +81,8 @@ int main(int argc, char * argv[])
   auto disturbance_pub = disturbance_node->create_publisher<ros2_uav_interfaces::msg::Disturbance>(
     "disturbance", 1);
   auto disturbance_callback =
-    [&disturbance_pub](const DisturbanceCoefficients & disturbance) {
-      ros2_uav_interfaces::msg::Disturbance msg;
-      msg.constant.x = disturbance.constant.vector.x();
-      msg.constant.y = disturbance.constant.vector.y();
-      msg.constant.z = disturbance.constant.vector.z();
-      msg.proportional.x = disturbance.proportional.vector.x();
-      msg.proportional.y = disturbance.proportional.vector.y();
-      msg.proportional.z = disturbance.proportional.vector.z();
+    [&disturbance_pub](const DisturbanceCoefficientsStamped & disturbance) {
+      ros2_uav_interfaces::msg::Disturbance msg = uav_ros2::utils::convert(disturbance);
       disturbance_pub->publish(msg);
     };
   disturbance_observer.setComputationCallback(disturbance_callback);
