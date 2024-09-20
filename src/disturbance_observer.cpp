@@ -26,6 +26,7 @@ int main(int argc, char * argv[])
   using uav_cpp::types::AttitudeThrustStamped;
   using uav_cpp::types::DisturbanceCoefficientsStamped;
   rclcpp::init(argc, argv);
+  uav_cpp::logger::LogManager::getInstance("disturbance.log");
   uav_cpp::disturbance_observer::DisturbanceObserver disturbance_observer;
   std::vector<std::string> required_parameters = disturbance_observer.getRequiredParameters();
   required_parameters.push_back("model.thrust_constant_coefficient");
