@@ -55,19 +55,9 @@ def generate_launch_description():
         emulate_tty=True
     )
 
-    # Node for tf publisher
-    tf_publisher_node = Node(
-        package='ros2_uav_px4',
-        executable='tf_publisher',
-        namespace=LaunchConfiguration('uav_namespace'),
-        output='screen',
-        emulate_tty=True
-    )
-
     return LaunchDescription([
         uav_namespace_arg,
         parameter_server_node,
         modes_runner_node,
-        disturbance_observer_node,
-        tf_publisher_node
+        disturbance_observer_node
     ])
