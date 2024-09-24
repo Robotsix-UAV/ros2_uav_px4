@@ -16,7 +16,8 @@
 #include <ros2_uav_parameters/parameter_client.hpp>
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
 #include <px4_msgs/msg/vehicle_odometry.hpp>
-#include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
+#include <px4_msgs/msg/vehicle_thrust_setpoint.hpp>
+#include <px4_msgs/msg/vehicle_land_detected.hpp>
 #include "ros2_uav_px4/utils/type_conversions.hpp"
 
 int main(int argc, char * argv[])
@@ -48,24 +49,36 @@ int main(int argc, char * argv[])
   qos.best_effort();
   qos.transient_local();
 
+  Eigen::Quaterniond current_attitude;
+  bool is_flying = false;
+
   auto callback =
     [&disturbance_observer,
-      &disturbance_node](const px4_msgs::msg::VehicleOdometry::SharedPtr msg) {
+      &disturbance_node,
+      &current_attitude](const px4_msgs::msg::VehicleOdometry::SharedPtr msg) {
       VelocityStamped velocity_stamped;
       velocity_stamped.vector = Vec3(msg->velocity[0], -msg->velocity[1], -msg->velocity[2]);
       velocity_stamped.timestamp = std::chrono::microseconds{msg->timestamp};
       disturbance_observer.setVelocity(velocity_stamped);
+      current_attitude = Eigen::Quaterniond(msg->q[0], msg->q[1], -msg->q[2], -msg->q[3]);
     };
   auto odometry_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleOdometry>(
     "fmu/out/vehicle_odometry", qos, callback);
 
+  auto callback_flying =
+    [&is_flying](const px4_msgs::msg::VehicleLandDetected::SharedPtr msg) {
+      is_flying = !msg->landed;
+    };
+  auto land_detected_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleLandDetected>(
+    "fmu/out/vehicle_land_detected", qos, callback_flying);
+
   auto callback_setpoint =
-    [&disturbance_observer, &disturbance_node,
-      &parameters](const px4_msgs::msg::VehicleAttitudeSetpoint::SharedPtr msg) {
+    [&disturbance_observer, &disturbance_node, &current_attitude, &is_flying,
+      &parameters](const px4_msgs::msg::VehicleThrustSetpoint::SharedPtr msg) {
       uav_cpp::types::AttitudeThrustStamped inputs;
       // Conversion from FRD to FLU
-      inputs.attitude = Eigen::Quaterniond(msg->q_d[0], msg->q_d[1], -msg->q_d[2], -msg->q_d[3]);
-      inputs.thrust = -msg->thrust_body[2];
+      inputs.attitude = current_attitude;
+      inputs.thrust = -msg->xyz[2];
       inputs.timestamp = std::chrono::microseconds{msg->timestamp};
       double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;
       (*parameters)["model.thrust_constant_coefficient"]->getValue(thrust_constant_coefficient);
@@ -73,10 +86,13 @@ int main(int argc, char * argv[])
       (*parameters)["model.thrust_quadratic_coefficient"]->getValue(thrust_quadratic_coefficient);
       inputs.thrust = thrust_constant_coefficient + thrust_linear_coefficient * inputs.thrust +
         thrust_quadratic_coefficient * inputs.thrust * inputs.thrust;
-      disturbance_observer.setInputs(inputs);
+      // If the drone is not flying the disturbance observer should not be updated
+      // It would measure the gravity as a disturbance
+      if (is_flying)
+        disturbance_observer.setInputs(inputs);
     };
-  auto setpoint_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleAttitudeSetpoint>(
-    "fmu/in/vehicle_attitude_setpoint", 1, callback_setpoint);
+  auto setpoint_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleThrustSetpoint>(
+    "fmu/out/vehicle_thrust_setpoint", qos, callback_setpoint);
 
   // Set the publisher for the disturbance observer
   auto disturbance_pub = disturbance_node->create_publisher<ros2_uav_interfaces::msg::Disturbance>(
