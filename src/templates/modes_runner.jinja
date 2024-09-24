@@ -45,6 +45,7 @@ using namespace ros2_uav_px4::srv;
 
 int main(int argc, char * argv[]) {
     rclcpp::init(argc, argv);
+    uav_cpp::logger::LogManager::getInstance("modes_runner.log");
     auto mode_node = std::make_shared<rclcpp::Node>("mode_node");
     ParamContainer param_container;
 
