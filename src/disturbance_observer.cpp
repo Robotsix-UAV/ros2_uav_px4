@@ -69,7 +69,8 @@ int main(int argc, char * argv[])
     [&is_flying](const px4_msgs::msg::VehicleLandDetected::SharedPtr msg) {
       is_flying = !msg->landed;
     };
-  auto land_detected_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleLandDetected>(
+  auto land_detected_sub =
+    disturbance_node->create_subscription<px4_msgs::msg::VehicleLandDetected>(
     "fmu/out/vehicle_land_detected", qos, callback_flying);
 
   auto callback_setpoint =
@@ -88,8 +89,9 @@ int main(int argc, char * argv[])
         thrust_quadratic_coefficient * inputs.thrust * inputs.thrust;
       // If the drone is not flying the disturbance observer should not be updated
       // It would measure the gravity as a disturbance
-      if (is_flying)
+      if (is_flying) {
         disturbance_observer.setInputs(inputs);
+      }
     };
   auto setpoint_sub = disturbance_node->create_subscription<px4_msgs::msg::VehicleThrustSetpoint>(
     "fmu/out/vehicle_thrust_setpoint", qos, callback_setpoint);
