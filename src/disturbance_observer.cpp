@@ -107,6 +107,7 @@ int main(int argc, char * argv[])
   disturbance_observer.setComputationCallback(disturbance_callback);
 
   rclcpp::spin(disturbance_node);
+  uav_cpp::logger::LogManager::getInstance().flushDataSinks();
   rclcpp::shutdown();
   return 0;
 }

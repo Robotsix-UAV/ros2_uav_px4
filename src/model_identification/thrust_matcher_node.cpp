@@ -196,6 +196,7 @@ void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::Shared
     for (const auto & output : resampled_outputs) {
       UAVCPP_DATA("identification_resampled_output", output);
     }
+    uav_cpp::logger::LogManager::getInstance().flushDataSinks();
   }
 }
 }  // namespace ros2_uav::identification
