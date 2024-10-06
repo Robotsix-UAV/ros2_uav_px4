@@ -1,3 +1,6 @@
 .vscode/
 .devcontainer/
 build/
+
+assistant_gpt.log
+repo_assistant_config.json
