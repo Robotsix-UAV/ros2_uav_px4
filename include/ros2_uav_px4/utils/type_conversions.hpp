@@ -22,6 +22,7 @@
 
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
+#include <ros2_uav_interfaces/msg/waypoint_list.hpp>
 #include <uav_cpp/types/enums.hpp>
 #include <uav_cpp/types/timestamped_types.hpp>
 #include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
@@ -167,5 +168,24 @@ uav_cpp::types::ThrustStamped convert(const px4_msgs::msg::VehicleThrustSetpoint
   thrust.timestamp = std::chrono::microseconds{msg.timestamp};
   thrust.value = -msg.xyz[2];
   return thrust;
+}
+
+uav_cpp::types::PoseSpeedVectorStamped convert(
+  const ros2_uav_interfaces::msg::WaypointList & msg)
+{
+  uav_cpp::types::PoseSpeedVectorStamped pose_speed_vector;
+  pose_speed_vector.timestamp =
+    std::chrono::nanoseconds{static_cast<uint64_t>(msg.header.stamp.sec) * 1000000000 +
+    static_cast<uint64_t>(msg.header.stamp.nanosec)};
+  pose_speed_vector.frame_id = convert(msg.header.frame_id);
+  for (const auto & waypoint : msg.waypoints) {
+    uav_cpp::types::PoseSpeed pose_speed;
+    pose_speed.position = Eigen::Vector3d(
+      waypoint.position.x, waypoint.position.y,
+      waypoint.position.z);
+    pose_speed.speed = waypoint.speed;
+    pose_speed_vector.waypoints.push_back(pose_speed);
+  }
+  return pose_speed_vector;
 }
 }  // namespace uav_ros2::utils

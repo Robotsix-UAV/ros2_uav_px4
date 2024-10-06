@@ -14,26 +14,27 @@
 
 #pragma once
 
-#include <uav_cpp/custom_pipelines/nlmpc_position.hpp>
+#include <uav_cpp/custom_pipelines/nlmpc_waypoints.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
 #include "ros2_uav_px4/modes/rates_thrust.hpp"
 
 namespace ros2_uav::modes
 {
 /**
- * @brief Position mode class for UAV control, wrapping the NlmpcPosition class.
+ * @brief Waypoints mode class for UAV control, wrapping the NlmpcWaypoints class.
  */
-class NlmpcPosition : public ros2_uav::modes::RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>,
-  public uav_cpp::utils::SmartPointerBase<NlmpcPosition>
+class NlmpcWaypoints : public ros2_uav::modes::RatesThrustMode<uav_cpp::pipelines::NlmpcWaypoints>,
+  public uav_cpp::utils::SmartPointerBase<NlmpcWaypoints>
 {
 public:
   /**
-   * @brief Constructs a new NlmpcPosition object.
+   * @brief Constructs a new NlmpcWaypoints object.
    *
    * @param node Reference to the ROS2 node.
    */
-  explicit NlmpcPosition(rclcpp::Node & node)
-  : RatesThrustMode<uav_cpp::pipelines::NlmpcPosition>(ModeBase::Settings{"Offboard Position NLMPC",
+  explicit NlmpcWaypoints(rclcpp::Node & node)
+  : RatesThrustMode<uav_cpp::pipelines::NlmpcWaypoints>(
+      ModeBase::Settings{"Offboard Waypoints NLMPC",
         true},
       node)
   {

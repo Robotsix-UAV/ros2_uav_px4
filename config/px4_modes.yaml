@@ -17,3 +17,9 @@ modes:
     input:
       topic: "command/pose_heading"
       type: "PoseHeading"
+  - name: "NlmpcWaypoints"
+    mode: "NlmpcWaypoints"
+    executor: "ExecutorTakeOff"
+    input:
+      topic: "command/waypoints"
+      type: "WaypointList"
