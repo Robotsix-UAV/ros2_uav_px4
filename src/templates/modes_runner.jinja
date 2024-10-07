@@ -159,6 +159,7 @@ int main(int argc, char * argv[]) {
     {% else %}
     {{ mode.name|lower }}_mode->doRegister();
     {% endif %}
+    executor.spin_some();
     {% endfor %}
 
     executor.spin();
