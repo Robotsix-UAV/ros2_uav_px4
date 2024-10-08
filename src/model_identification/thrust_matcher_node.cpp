@@ -200,7 +200,7 @@ void ThrustMatcher::controlModeCallback(const VehicleControlMode::SharedPtr cont
     for (const auto & output : resampled_outputs) {
       UAVCPP_DATA("identification_resampled_output", output);
     }
-    uav_cpp::logger::LogManager::getInstance().flushDataSinks();
+    uav_cpp::logger::LogManager::getInstance().flushAllSinks();
   }
 }
 }  // namespace ros2_uav::identification
