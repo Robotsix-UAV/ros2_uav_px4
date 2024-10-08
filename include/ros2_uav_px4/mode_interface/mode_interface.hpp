@@ -27,6 +27,7 @@
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
 #include "ros2_uav_px4/utils/frame_conversions.hpp"
 #include "ros2_uav_px4/utils/type_conversions.hpp"
+#include "ros2_uav_px4/utils/timestamp_validator.hpp"
 
 namespace ros2_uav::modes
 {
@@ -36,6 +37,7 @@ using px4_ros2::ModeBase;
 using uav_ros2::utils::NedToNwu;
 using uav_ros2::utils::NwuToNed;
 using ros2_uav_interfaces::msg::ModeStatus;
+using uav_ros2::utils::TimestampValidator;
 
 /**
  * @brief Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline.
@@ -136,6 +138,9 @@ protected:
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
     odometry.frame_id = uav_cpp::enums::Frame::ODOM;
     odometry.timestamp = std::chrono::microseconds(vehicle_local_position_->last().timestamp);
+    if(!timestamp_validator_.isValidTimestamp(odometry.timestamp.count())) {
+      return;
+    }
     odometry.position = NedToNwu(position.cast<double>());
     odometry.velocity = NedToNwu(velocity.cast<double>());
     odometry.attitude = NedToNwu(attitude.cast<double>());
@@ -149,6 +154,8 @@ protected:
 
   rclcpp::Node & node_;  ///< Reference to the ROS2 node.
   std::shared_ptr<PipelineT> pipeline_;  ///< The uav_cpp pipeline.
+
+  TimestampValidator timestamp_validator_;  ///< Timestamp validator for the odometry data.
 
   rclcpp::TimerBase::SharedPtr mode_status_timer_;  ///< Timer for the mode status.
   rclcpp::Subscription<ros2_uav_interfaces::msg::Disturbance>::SharedPtr disturbance_sub_;

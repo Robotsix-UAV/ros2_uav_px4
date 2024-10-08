@@ -19,6 +19,7 @@
 #include <px4_msgs/msg/vehicle_thrust_setpoint.hpp>
 #include <px4_msgs/msg/vehicle_land_detected.hpp>
 #include "ros2_uav_px4/utils/type_conversions.hpp"
+#include "ros2_uav_px4/utils/timestamp_validator.hpp"
 
 int main(int argc, char * argv[])
 {
@@ -26,6 +27,7 @@ int main(int argc, char * argv[])
   using uav_cpp::types::VelocityStamped;
   using uav_cpp::types::AttitudeThrustStamped;
   using uav_cpp::types::DisturbanceCoefficientsStamped;
+  using uav_ros2::utils::TimestampValidator;
   rclcpp::init(argc, argv);
   uav_cpp::logger::LogManager::getInstance("disturbance.log");
   uav_cpp::disturbance_observer::DisturbanceObserver disturbance_observer;
@@ -52,13 +54,18 @@ int main(int argc, char * argv[])
   Eigen::Quaterniond current_attitude;
   bool is_flying = false;
 
+  TimestampValidator timestamp_validator;
+
   auto callback =
     [&disturbance_observer,
       &disturbance_node,
+      &timestamp_validator,
       &current_attitude](const px4_msgs::msg::VehicleOdometry::SharedPtr msg) {
       VelocityStamped velocity_stamped;
       velocity_stamped.vector = Vec3(msg->velocity[0], -msg->velocity[1], -msg->velocity[2]);
       velocity_stamped.timestamp = std::chrono::microseconds{msg->timestamp};
+      if (!timestamp_validator.isValidTimestamp(velocity_stamped.timestamp.count()))
+        return;
       disturbance_observer.setVelocity(velocity_stamped);
       current_attitude = Eigen::Quaterniond(msg->q[0], msg->q[1], -msg->q[2], -msg->q[3]);
     };
