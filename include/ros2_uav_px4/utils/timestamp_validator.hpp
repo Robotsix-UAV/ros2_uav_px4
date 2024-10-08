@@ -40,7 +40,7 @@ public:
    * @param tolerance_ns Acceptable difference in nanoseconds
    * @param max_outliers Max allowed consecutive outliers before reset
    */
-  TimestampValidator(int64_t tolerance_ns = 1000000000, int max_outliers = 10)
+  explicit TimestampValidator(int64_t tolerance_ns = 1000000000, int max_outliers = 10)
   : uav_cpp::logger::LogTagHolder("Timestamp Validator"),
     previous_timestamp_ns_(0),
     tolerance_ns_(tolerance_ns),
@@ -95,8 +95,9 @@ public:
         resetReference();
       }
       UAVCPP_WARN_TAG(this, "Timestamp too far from expected, invalid");
-      UAVCPP_WARN_TAG(this, "Expected: {}, Received: {}", expected_timestamp_ns,
-                      timestamp_ns);
+      UAVCPP_WARN_TAG(
+        this, "Expected: {}, Received: {}", expected_timestamp_ns,
+        timestamp_ns);
       return false;
     }
 
@@ -124,8 +125,9 @@ private:
   int outlier_count_;                ///< Number of consecutive outliers
   int max_outliers_;                 ///< Max allowed consecutive outliers before reset
   bool is_first_timestamp_;          ///< Flag to check if first timestamp
-  std::chrono::steady_clock::time_point previous_time_point_;    ///< Time point of previous timestamp
+  std::chrono::steady_clock::time_point previous_time_point_;
+  ///< Time point of previous timestamp
 };
 
 }  // namespace utils
-}  // namespace ros2_uav_px4
+}  // namespace uav_ros2

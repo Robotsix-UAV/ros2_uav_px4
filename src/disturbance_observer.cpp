@@ -64,8 +64,9 @@ int main(int argc, char * argv[])
       VelocityStamped velocity_stamped;
       velocity_stamped.vector = Vec3(msg->velocity[0], -msg->velocity[1], -msg->velocity[2]);
       velocity_stamped.timestamp = std::chrono::microseconds{msg->timestamp};
-      if (!timestamp_validator.isValidTimestamp(velocity_stamped.timestamp.count()))
+      if (!timestamp_validator.isValidTimestamp(velocity_stamped.timestamp.count())) {
         return;
+      }
       disturbance_observer.setVelocity(velocity_stamped);
       current_attitude = Eigen::Quaterniond(msg->q[0], msg->q[1], -msg->q[2], -msg->q[3]);
     };

@@ -138,7 +138,7 @@ protected:
     auto angular_velocity = vehicle_angular_velocity_->angularVelocityFrd();
     odometry.frame_id = uav_cpp::enums::Frame::ODOM;
     odometry.timestamp = std::chrono::microseconds(vehicle_local_position_->last().timestamp);
-    if(!timestamp_validator_.isValidTimestamp(odometry.timestamp.count())) {
+    if (!timestamp_validator_.isValidTimestamp(odometry.timestamp.count())) {
       return;
     }
     odometry.position = NedToNwu(position.cast<double>());
