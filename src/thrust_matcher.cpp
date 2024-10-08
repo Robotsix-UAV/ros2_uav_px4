@@ -24,7 +24,7 @@ int main(int argc, char * argv[])
   rclcpp::init(argc, argv);
   uav_cpp::logger::LogManager::getInstance("identification.log");
   auto attitude_thrust_matcher =
-    std::make_shared<ros2_uav::identification::AttitudeThrustMatcher>();
+    std::make_shared<ros2_uav::identification::ThrustMatcher>();
   auto required_parameters = attitude_thrust_matcher->getRequiredParameters();
   // Parameter client node
   auto parameter_client = std::make_shared<ros2_uav::parameters::ParameterClient>(

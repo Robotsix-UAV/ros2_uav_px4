@@ -21,7 +21,7 @@
 
 namespace ros2_uav::identification
 {
-AttitudeThrustMatcher::AttitudeThrustMatcher()
+ThrustMatcher::ThrustMatcher()
 : Node("attitude_thrust_matcher"),
   LogTagHolder("AttitudeThrust Matcher"),
   model_matcher_(sampling_time_, {"limits.max_angle", "limits.min_z_acceleration",
@@ -35,19 +35,19 @@ AttitudeThrustMatcher::AttitudeThrustMatcher()
   qos.transient_local();
   actuators_suscriber_ = this->create_subscription<ActuatorMotors>(
     "fmu/out/actuator_motors", qos,
-    std::bind(&AttitudeThrustMatcher::actuatorMotorsCallback, this, std::placeholders::_1));
+    std::bind(&ThrustMatcher::actuatorMotorsCallback, this, std::placeholders::_1));
   odometry_subscriber_ = this->create_subscription<VehicleOdometry>(
     "fmu/out/vehicle_odometry", qos,
-    std::bind(&AttitudeThrustMatcher::odometryCallback, this, std::placeholders::_1));
+    std::bind(&ThrustMatcher::odometryCallback, this, std::placeholders::_1));
   control_mode_subscriber_ = this->create_subscription<VehicleControlMode>(
     "fmu/out/vehicle_control_mode", qos,
-    std::bind(&AttitudeThrustMatcher::controlModeCallback, this, std::placeholders::_1));
+    std::bind(&ThrustMatcher::controlModeCallback, this, std::placeholders::_1));
   acceleration_subscriber_ = this->create_subscription<VehicleAcceleration>(
     "fmu/out/vehicle_acceleration", qos,
-    std::bind(&AttitudeThrustMatcher::accelerationCallback, this, std::placeholders::_1));
+    std::bind(&ThrustMatcher::accelerationCallback, this, std::placeholders::_1));
 }
 
-void AttitudeThrustMatcher::actuatorMotorsCallback(const ActuatorMotors::SharedPtr actuator_motors)
+void ThrustMatcher::actuatorMotorsCallback(const ActuatorMotors::SharedPtr actuator_motors)
 {
   if (status_ == Status::COLLECTING) {
     uav_cpp::types::ThrustStamped thrust;
@@ -63,7 +63,7 @@ void AttitudeThrustMatcher::actuatorMotorsCallback(const ActuatorMotors::SharedP
   }
 }
 
-void AttitudeThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr odometry)
+void ThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr odometry)
 {
   double altitude = -odometry->position[2];
   // Logic to trigger data collection
@@ -92,7 +92,7 @@ void AttitudeThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr od
   }
 }
 
-void AttitudeThrustMatcher::accelerationCallback(
+void ThrustMatcher::accelerationCallback(
   const VehicleAcceleration::SharedPtr acceleration)
 {
   if (status_ == Status::COLLECTING) {
@@ -105,7 +105,7 @@ void AttitudeThrustMatcher::accelerationCallback(
   }
 }
 
-void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::SharedPtr control_mode)
+void ThrustMatcher::controlModeCallback(const VehicleControlMode::SharedPtr control_mode)
 {
   if (status_ == Status::WAITING_DISARM && control_mode->flag_armed == false) {
     UAVCPP_INFO_TAG(this, "[Model Identification] Disarmed, matching model");
@@ -130,6 +130,9 @@ void AttitudeThrustMatcher::controlModeCallback(const VehicleControlMode::Shared
     }
     for (const auto & odometry : odometries_) {
       UAVCPP_DATA("identification_odometry", odometry);
+    }
+    for (const auto & acceleration : accelerations_) {
+      UAVCPP_DATA("identification_acceleration", acceleration);
     }
     std::vector<uav_cpp::types::AccelerationStamped> resampled_accelerations;
     auto start_time = std::max(

@@ -46,7 +46,7 @@ using AttitudeThrustScaler =
 /**
  * @brief Class for matching parameters governing the attitude and thrust control of a UAV.
  */
-class AttitudeThrustMatcher : public rclcpp::Node, public uav_cpp::parameters::ParamContainer,
+class ThrustMatcher : public rclcpp::Node, public uav_cpp::parameters::ParamContainer,
   public LogTagHolder
 {
 public:
@@ -58,7 +58,7 @@ public:
     MATCHING
   };
 
-  AttitudeThrustMatcher();
+  ThrustMatcher();
 
   /**
    * @brief Callback for the actuator motors.
