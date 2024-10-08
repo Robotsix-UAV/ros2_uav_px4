@@ -24,7 +24,8 @@ namespace ros2_uav::identification
 AttitudeThrustMatcher::AttitudeThrustMatcher()
 : Node("attitude_thrust_matcher"),
   LogTagHolder("AttitudeThrust Matcher"),
-  model_matcher_(1ms, {"limits.max_angle", "limits.min_z_acceleration", "model.vehicle_mass"})
+  model_matcher_(sampling_time_, {"limits.max_angle", "limits.min_z_acceleration",
+      "model.vehicle_mass"})
 {
   addChildContainer(&model_matcher_);
   // Set callback for the PX4 messages

@@ -22,7 +22,7 @@ repositories:
     px4_msgs:
         type: git
         url: https://github.com/PX4/px4_msgs
-        version: main
+        version: release/1.15
 
     acados_vendor_ros2:
         type: git

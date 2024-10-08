@@ -86,8 +86,8 @@ public:
 
 private:
   Status status_ = Status::INIT;   /**< Status of the attitude thrust matcher. */
-  std::chrono::milliseconds sampling_time_ = 1ms;   /**< Sampling time. */
-  double trigger_altitude_ = 5.0;   /**< Altitude at which the data collection is triggered. */
+  const std::chrono::milliseconds sampling_time_ = 100ms;   /**< Sampling time. */
+  double trigger_altitude_ = 2.0;   /**< Altitude at which the data collection is triggered. */
   uint8_t trigger_validation_ = 30;   /**< Number of samples to validate the trigger. */
   uint8_t trigger_counter_ = 0;   /**< Counter for the trigger validation. */
   rclcpp::Subscription<ActuatorMotors>::SharedPtr actuators_suscriber_;
