@@ -177,6 +177,7 @@ int main(int argc, char * argv[]) {
     {% else %}
     {{ mode.name|lower }}_mode->doRegister();
     {% endif %}
+    sleep(1.0);
     {% endfor %}
 
     spin_thread.join();
