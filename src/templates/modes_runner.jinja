@@ -163,7 +163,7 @@ int main(int argc, char * argv[]) {
     {% endfor %}
 
     executor.spin();
-    uav_cpp::logger::LogManager::getInstance().flushDataSinks();
+    uav_cpp::logger::LogManager::getInstance().flushAllSinks();
     rclcpp::shutdown();
     return 0;
 }
