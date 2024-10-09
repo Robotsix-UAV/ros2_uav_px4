@@ -27,7 +27,7 @@ int main(int argc, char * argv[])
   using uav_cpp::types::VelocityStamped;
   using uav_cpp::types::AttitudeThrustStamped;
   using uav_cpp::types::DisturbanceCoefficientsStamped;
-  using uav_ros2::utils::TimestampValidator;
+  using ros2_uav::utils::TimestampValidator;
   rclcpp::init(argc, argv);
   uav_cpp::logger::LogManager::getInstance("disturbance.log");
   uav_cpp::disturbance_observer::DisturbanceObserver disturbance_observer;
@@ -109,7 +109,7 @@ int main(int argc, char * argv[])
     "disturbance", 1);
   auto disturbance_callback =
     [&disturbance_pub](const DisturbanceCoefficientsStamped & disturbance) {
-      ros2_uav_interfaces::msg::Disturbance msg = uav_ros2::utils::convert(disturbance);
+      ros2_uav_interfaces::msg::Disturbance msg = ros2_uav::utils::convert(disturbance);
       disturbance_pub->publish(msg);
     };
   disturbance_observer.setComputationCallback(disturbance_callback);

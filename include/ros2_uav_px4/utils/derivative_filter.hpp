@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <cmath>
 
-namespace uav_ros2::utils
+namespace ros2_uav::utils
 {
 /**
  * @brief Butterworth filter implementation.
@@ -252,4 +252,4 @@ private:
   DerivativeFilter filter_z_;  //< Derivative filter for the z-axis
   double fs_;                  //< Sampling frequency
 };
-}  // namespace uav_ros2::utils
+}  // namespace ros2_uav::utils

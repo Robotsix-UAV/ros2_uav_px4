@@ -18,9 +18,11 @@
 
 #pragma once
 
+#include <memory>
 #include <px4_ros2/components/mode_executor.hpp>
 #include <uav_cpp/utils/smart_pointer_base.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
+#include "ros2_uav_px4/utils/origin_reset.hpp"
 
 namespace ros2_uav::executors
 {
@@ -48,12 +50,16 @@ public:
    *
    * @param node Reference to the ROS2 node.
    * @param owned_mode Reference to the owned mode.
+   * @param origin_reset Reference to the origin reset object.
    */
-  ExecutorTakeOff(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
+  ExecutorTakeOff(
+    rclcpp::Node & node, px4_ros2::ModeBase & owned_mode,
+    std::shared_ptr<ros2_uav::utils::OriginReset> origin_reset)
   : px4_ros2::ModeExecutorBase(node,
       px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
       owned_mode),
-    uav_cpp::logger::LogTagHolder("Executor TakeOff")
+    uav_cpp::logger::LogTagHolder("Executor TakeOff"),
+    origin_reset_(origin_reset)
   {
     addRequiredParameter<double>("takeoff.altitude");
   }
@@ -92,6 +98,7 @@ private:
     switch (state) {
       case State::ARM:
         if (!isArmed()) {
+          origin_reset_->resetOrigin();
           UAVCPP_INFO_TAG(this, "Arming");
         }
         arm(
@@ -104,8 +111,6 @@ private:
         break;
       case State::TAKEOFF:
         UAVCPP_INFO_TAG(this, "Taking off");
-        double altitude;
-        getParameter("takeoff.altitude", altitude);
         takeoff(
           [this](px4_ros2::Result result)
           {
@@ -113,7 +118,7 @@ private:
               runState(State::OWNED_MODE);
             }
           },
-          altitude, 0);
+          2.0, 0);
         break;
 
       case State::OWNED_MODE:
@@ -125,6 +130,7 @@ private:
   }
 
   State current_state_{State::ARM};
+  std::shared_ptr<ros2_uav::utils::OriginReset> origin_reset_;
 };
 
 }  // namespace ros2_uav::executors

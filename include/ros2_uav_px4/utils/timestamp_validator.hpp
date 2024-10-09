@@ -23,7 +23,7 @@
 #include <cmath>
 #include "uav_cpp/utils/logger.hpp"
 
-namespace uav_ros2
+namespace ros2_uav
 {
 namespace utils
 {
@@ -130,4 +130,4 @@ private:
 };
 
 }  // namespace utils
-}  // namespace uav_ros2
+}  // namespace ros2_uav

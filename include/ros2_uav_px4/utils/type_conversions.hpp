@@ -29,7 +29,7 @@
 #include <px4_msgs/msg/vehicle_thrust_setpoint.hpp>
 #include <px4_msgs/msg/vehicle_odometry.hpp>
 
-namespace uav_ros2::utils
+namespace ros2_uav::utils
 {
 /**
  * @brief Converts a frame_id to a uavcpp::types::FrameId.
@@ -188,4 +188,4 @@ uav_cpp::types::PoseSpeedVectorStamped convert(
   }
   return pose_speed_vector;
 }
-}  // namespace uav_ros2::utils
+}  // namespace ros2_uav::utils

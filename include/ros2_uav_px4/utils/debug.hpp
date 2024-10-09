@@ -21,7 +21,7 @@
 #include <memory>
 #include "uav_cpp/utils/logger.hpp"
 
-namespace uav_ros2::debug
+namespace ros2_uav::debug
 {
 
 template<std::size_t I, typename PipelineT>
@@ -34,4 +34,4 @@ void moduleLoop(std::shared_ptr<PipelineT> pipeline)
     moduleLoop<I + 1, PipelineT>(pipeline);
   }
 }
-}  // namespace uav_ros2::debug
+}  // namespace ros2_uav::debug

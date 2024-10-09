@@ -88,7 +88,7 @@ void ThrustMatcher::odometryCallback(const VehicleOdometry::SharedPtr odometry)
 
   // Collection of velocity data and orientation data
   if (status_ == Status::COLLECTING) {
-    odometries_.push_back(uav_ros2::utils::convert(*odometry));
+    odometries_.push_back(ros2_uav::utils::convert(*odometry));
   }
 }
 

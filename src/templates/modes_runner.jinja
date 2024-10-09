@@ -16,11 +16,13 @@
  * @author Damien SIX (damien@robotsix.net)
  */
 
+#include <thread>
 #include <ros2_uav_parameters/parameter_client.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
+#include <ros2_uav_interfaces/msg/mode_status.hpp>
 #include "ros2_uav_px4/utils/type_conversions.hpp"
 #include "ros2_uav_px4/srv/mode_selector.hpp"
-#include "ros2_uav_interfaces/msg/mode_status.hpp"
+#include "ros2_uav_px4/utils/origin_reset.hpp"
 
 {% set executors = [] %}
 {% set messages = [] %}
@@ -68,20 +70,32 @@ int main(int argc, char * argv[]) {
         rclcpp::spin_some(mode_node);
     }
 
+    auto origin_reset = std::make_shared<ros2_uav::utils::OriginReset>(*mode_node, target_system);
+
+    UAVCPP_INFO("Waiting for global position to reset origin");
+
+    while(!origin_reset->resetOrigin()) {
+         rclcpp::spin_some(mode_node);
+    }
+
     {% for mode in modes %}
     auto {{ mode.name|lower }}_mode = {{ mode.mode }}::make_shared<>(*mode_node);
     param_container.addChildContainer({{ mode.name|lower }}_mode.get());
 
     {% if mode.executor %}
+    {% if mode.executor == "ExecutorTakeOff" %}
+    auto {{ mode.name|lower }}_executor = {{ mode.executor }}::make_shared<>(*mode_node, *{{ mode.name|lower }}_mode, origin_reset);
+    {% else %}
     auto {{ mode.name|lower }}_executor = {{ mode.executor }}::make_shared<>(*mode_node, *{{ mode.name|lower }}_mode);
     param_container.addChildContainer({{ mode.name|lower }}_executor.get());
+    {% endif %}
     {% endif %}
 
     {% if mode.input %}
     auto {{ mode.name|lower }}_setpoint_sub = mode_node->create_subscription<{{ mode.input.type }}>(
         "{{ mode.input.topic }}", 1,
         [{{ mode.name|lower }}_mode](const {{ mode.input.type }}::SharedPtr msg) {
-            auto setpoint = uav_ros2::utils::convert(*msg);
+            auto setpoint = ros2_uav::utils::convert(*msg);
             UAVCPP_DEBUG("Received setpoint for {{ mode.name }}. Timestamp {}", setpoint.timestamp);
             {{ mode.name|lower }}_mode->setSetpoint(setpoint);
         });
@@ -153,16 +167,19 @@ int main(int argc, char * argv[]) {
     executor.add_node(mode_node);
     executor.add_node(parameter_client);
 
+    auto spin_thread = std::thread([&executor]() {
+        executor.spin();
+    });
+
     {% for mode in modes %}
     {% if mode.executor %}
     {{ mode.name|lower }}_executor->doRegister();
     {% else %}
     {{ mode.name|lower }}_mode->doRegister();
     {% endif %}
-    executor.spin_some();
     {% endfor %}
 
-    executor.spin();
+    spin_thread.join();
     uav_cpp::logger::LogManager::getInstance().flushAllSinks();
     rclcpp::shutdown();
     return 0;

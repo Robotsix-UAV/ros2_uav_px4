@@ -34,10 +34,10 @@ namespace ros2_uav::modes
 using uav_cpp::parameters::ParamContainer;
 using uav_cpp::utils::Coordinate;
 using px4_ros2::ModeBase;
-using uav_ros2::utils::NedToNwu;
-using uav_ros2::utils::NwuToNed;
+using ros2_uav::utils::NedToNwu;
+using ros2_uav::utils::NwuToNed;
 using ros2_uav_interfaces::msg::ModeStatus;
-using uav_ros2::utils::TimestampValidator;
+using ros2_uav::utils::TimestampValidator;
 
 /**
  * @brief Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline.
@@ -83,7 +83,7 @@ public:
           return;
         }
         uav_cpp::types::DisturbanceCoefficientsStamped disturbance_coefficients;
-        disturbance_coefficients = uav_ros2::utils::convert(*msg);
+        disturbance_coefficients = ros2_uav::utils::convert(*msg);
         pipeline_->setDisturbanceCoefficients(disturbance_coefficients);
       });
     auto mode_name = mode_settings.name;

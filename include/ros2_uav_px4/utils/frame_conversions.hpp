@@ -21,7 +21,7 @@
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/Geometry>
 
-namespace uav_ros2::utils
+namespace ros2_uav::utils
 {
 Eigen::Vector3d NedToNwu(const Eigen::Vector3d & ned)
 {
@@ -43,4 +43,4 @@ Eigen::Quaterniond NwuToNed(const Eigen::Quaterniond & nwu)
   return Eigen::Quaterniond(nwu.w(), nwu.x(), -nwu.y(), -nwu.z());
 }
 
-}  // namespace uav_ros2::utils
+}  // namespace ros2_uav::utils

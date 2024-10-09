@@ -42,7 +42,7 @@ void AttitudeThrustMode<PipelineT>::updateSetpoint([[maybe_unused]] float dt)
   auto time_now = (this->node_.now()).nanoseconds();
   auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(time_now));
   // Debug each module input/output
-  // uav_ros2::debug::moduleLoop<0, PipelineT>(this->pipeline_);
+  // ros2_uav::debug::moduleLoop<0, PipelineT>(this->pipeline_);
 
   // Set the attitude setpoint
   const Eigen::Vector3f thrust_sp{0.0f, 0.0f, static_cast<float>(-control_inputs.thrust)};
