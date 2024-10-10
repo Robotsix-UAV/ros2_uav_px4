@@ -1,0 +1,24 @@
+.. _dir_include_ros2_uav_px4_modes:
+
+
+Directory modes
+===============
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4>` (``include/ros2_uav_px4``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``include/ros2_uav_px4/modes``
+
+
+Files
+-----
+
+- :ref:`file_include_ros2_uav_px4_modes_attitude_thrust.hpp`
+- :ref:`file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp`
+- :ref:`file_include_ros2_uav_px4_modes_position.hpp`
+- :ref:`file_include_ros2_uav_px4_modes_spin.hpp`
+
+

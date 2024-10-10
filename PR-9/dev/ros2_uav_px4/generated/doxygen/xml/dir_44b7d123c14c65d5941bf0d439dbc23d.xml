@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_44b7d123c14c65d5941bf0d439dbc23d" kind="dir">
+    <compoundname>include/ros2_uav_px4/model_identification</compoundname>
+    <innerfile refid="thrust__matcher__node_8hpp">thrust_matcher_node.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/model_identification/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,37 @@
+
+.. _namespace_ros2_uav__identification:
+
+Namespace ros2_uav::identification
+==================================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+Detailed Description
+--------------------
+
+Damien SIX (damien@robotsix.net) 
+
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1identification_1_1ThrustMatcher`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_namespaceros2__uav_1_1identification_1acbe58c06183b4ae76c3b9023b19853ea`

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceros2__uav_1_1modes" kind="namespace" language="C++">
+    <compoundname>ros2_uav::modes</compoundname>
+    <innerclass refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public">ros2_uav::modes::AttitudeThrustMode</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1ModeInterface" prot="public">ros2_uav::modes::ModeInterface</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1NlmpcPosition" prot="public">ros2_uav::modes::NlmpcPosition</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1Position" prot="public">ros2_uav::modes::Position</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1RatesThrustMode" prot="public">ros2_uav::modes::RatesThrustMode</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1Spin" prot="public">ros2_uav::modes::Spin</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="30" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1utils_1_1OriginReset" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::utils::OriginReset</compoundname>
+    <includes refid="origin__reset_8hpp" local="no">origin_reset.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1ab64f8094a309cabe07da4293887f2c39" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ros2_uav::utils::OriginReset::target_system_id_</definition>
+        <argsstring></argsstring>
+        <name>target_system_id_</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::target_system_id_</qualifiedname>
+        <briefdescription>
+<para>The UAV system id. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="81" column="7" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1a4a32bce6c9f455107b0c33bafdd827e6" prot="private" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; px4_msgs::msg::VehicleCommand &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;px4_msgs::msg::VehicleCommand&gt;::SharedPtr ros2_uav::utils::OriginReset::vehicle_command_pub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_command_pub</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::vehicle_command_pub</qualifiedname>
+        <briefdescription>
+<para>Publisher for the vehicle command. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="82" column="33" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1a983988441cea9a0ad2fc20dfa32a2e14" prot="private" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; px4_msgs::msg::VehicleGlobalPosition &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;px4_msgs::msg::VehicleGlobalPosition&gt;::SharedPtr ros2_uav::utils::OriginReset::vehicle_global_position_sub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_global_position_sub</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::vehicle_global_position_sub</qualifiedname>
+        <briefdescription>
+<para>Subscription for the vehicle global position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="84" column="36" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1a373687943bafda48b82d5d95f1b77bc2" prot="private" static="no" mutable="no">
+        <type>rclcpp::Node &amp;</type>
+        <definition>rclcpp::Node&amp; ros2_uav::utils::OriginReset::node_</definition>
+        <argsstring></argsstring>
+        <name>node_</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::node_</qualifiedname>
+        <briefdescription>
+<para>Reference node for the pub/sub. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="86" column="17" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1a7015ed10caf6c4b0e38efd368e153608" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ros2_uav::utils::OriginReset::global_position_received</definition>
+        <argsstring></argsstring>
+        <name>global_position_received</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::global_position_received</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>Flag to know if the global position was received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="87" column="8" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1acc3703b0dc7e40ba9adaae8a83afc915" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ros2_uav::utils::OriginReset::current_lat</definition>
+        <argsstring></argsstring>
+        <name>current_lat</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::current_lat</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Current latitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="88" column="9" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1ae9e0faaef2cc706e2636c1a2596d2d6e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ros2_uav::utils::OriginReset::current_lon</definition>
+        <argsstring></argsstring>
+        <name>current_lon</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::current_lon</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Current longitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="89" column="9" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1OriginReset_1afb752dac0e8bb2f3366dd975512a7e41" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ros2_uav::utils::OriginReset::current_alt</definition>
+        <argsstring></argsstring>
+        <name>current_alt</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::current_alt</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+<para>Current altitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="90" column="9" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1OriginReset_1a5e6168a014733c9c7fa9298c34c7f2ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::utils::OriginReset::OriginReset</definition>
+        <argsstring>(rclcpp::Node &amp;node, int target_system_id)</argsstring>
+        <name>OriginReset</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::OriginReset</qualifiedname>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>target_system_id</declname>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference node for the pub/sub </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target_system_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UAV system id </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="38" column="3" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="38" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1OriginReset_1a3f4b94d6d911461ac30b7f7c6e29a9f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ros2_uav::utils::OriginReset::resetOrigin</definition>
+        <argsstring>()</argsstring>
+        <name>resetOrigin</name>
+        <qualifiedname>ros2_uav::utils::OriginReset::resetOrigin</qualifiedname>
+        <briefdescription>
+<para>Reset the origin of the UAV. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the origin was reset, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="60" column="8" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="60" bodyend="78"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Convenient class to reset the origin of the PX4 UAV. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/origin_reset.hpp" line="30" column="1" bodyfile="include/ros2_uav_px4/utils/origin_reset.hpp" bodystart="31" bodyend="91"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1afb752dac0e8bb2f3366dd975512a7e41" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>current_alt</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1acc3703b0dc7e40ba9adaae8a83afc915" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>current_lat</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1ae9e0faaef2cc706e2636c1a2596d2d6e" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>current_lon</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a7015ed10caf6c4b0e38efd368e153608" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>global_position_received</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a373687943bafda48b82d5d95f1b77bc2" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a5e6168a014733c9c7fa9298c34c7f2ff" prot="public" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>OriginReset</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a3f4b94d6d911461ac30b7f7c6e29a9f4" prot="public" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>resetOrigin</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1ab64f8094a309cabe07da4293887f2c39" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>target_system_id_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a4a32bce6c9f455107b0c33bafdd827e6" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>vehicle_command_pub</name></member>
+      <member refid="classros2__uav_1_1utils_1_1OriginReset_1a983988441cea9a0ad2fc20dfa32a2e14" prot="private" virt="non-virtual"><scope>ros2_uav::utils::OriginReset</scope><name>vehicle_global_position_sub</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,65 @@
+
+.. _program_listing_file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp:
+
+Program Listing for File attitude_thrust_impl.hpp
+=================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp>` (``include/ros2_uav_px4/modes/attitude_thrust_impl.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Copyright 2024 The Technology Innovation Institute (TII)
+   //
+   // Licensed under the Apache License, Version 2.0 (the "License");
+   // you may not use this file except in compliance with the License.
+   // You may obtain a copy of the License at
+   //
+   //     http://www.apache.org/licenses/LICENSE-2.0
+   //
+   // Unless required by applicable law or agreed to in writing, software
+   // distributed under the License is distributed on an "AS IS" BASIS,
+   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   // See the License for the specific language governing permissions and
+   // limitations under the License.
+   
+   #pragma once
+   
+   #include <memory>
+   #include "ros2_uav_px4/utils/tf2_eigen.hpp"
+   #include "ros2_uav_px4/utils/debug.hpp"
+   
+   namespace ros2_uav::modes
+   {
+   using uav_ros2::utils::eigenNedToTf2Nwu;
+   using uav_ros2::utils::tf2FwuToEigenNed;
+   
+   template<DerivedFromAttitudeThrustMode PipelineT>
+   AttitudeThrustMode<PipelineT>::AttitudeThrustMode(
+     const ModeBase::Settings & mode_settings,
+     rclcpp::Node & node)
+   : ModeInterface<PipelineT>(mode_settings, node)
+   {
+     this->setSetpointUpdateRate(250.0);
+     attitude_setpoint_ = std::make_shared<px4_ros2::AttitudeSetpointType>(*this);
+     px4_ros2::Result result = px4_ros2::Result::Success;
+     this->completed(result);
+   }
+   
+   template<DerivedFromAttitudeThrustMode PipelineT>
+   void AttitudeThrustMode<PipelineT>::updateSetpoint([[maybe_unused]] float dt)
+   {
+     this->odometryUpdate();
+     auto time_now = (this->node_.now()).nanoseconds();
+     auto control_inputs = this->pipeline_->execute(std::chrono::nanoseconds(time_now));
+     // Debug each module input/output
+     // uav_ros2::debug::moduleLoop<0, PipelineT>(this->pipeline_);
+   
+     // Set the attitude setpoint
+     const Eigen::Vector3f thrust_sp{0.0f, 0.0f, static_cast<float>(-control_inputs.thrust)};
+     const Eigen::Quaternionf attitude_sp = tf2FwuToEigenNed(control_inputs.orientation);
+     attitude_setpoint_->update(attitude_sp, thrust_sp);
+   }
+   
+   }  // namespace ros2_uav::modes

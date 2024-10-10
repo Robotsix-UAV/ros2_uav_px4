@@ -1,0 +1,17 @@
+.. _exhale_class_classuav__ros2_1_1utils_1_1DataLogger:
+
+Class DataLogger
+================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_data_logger.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: uav_ros2::utils::DataLogger
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

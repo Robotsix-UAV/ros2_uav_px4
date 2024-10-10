@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="rates__thrust__impl_8hpp" kind="file" language="C++">
+    <compoundname>rates_thrust_impl.hpp</compoundname>
+    <includes local="no">memory</includes>
+    <includedby refid="rates__thrust_8hpp" local="yes">include/ros2_uav_px4/modes/rates_thrust.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/ros2_uav_px4/modes/rates_thrust_impl.hpp</label>
+        <link refid="rates__thrust__impl_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="3">
+        <label>include/ros2_uav_px4/modes/nlmpc_position.hpp</label>
+        <link refid="nlmpc__position_8hpp_source"/>
+      </node>
+      <node id="4">
+        <label>include/ros2_uav_px4/modes/nlmpc_waypoints.hpp</label>
+        <link refid="nlmpc__waypoints_8hpp_source"/>
+      </node>
+      <node id="2">
+        <label>include/ros2_uav_px4/modes/rates_thrust.hpp</label>
+        <link refid="rates__thrust_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>include/ros2_uav_px4/modes/rates_thrust_impl.hpp</label>
+        <link refid="rates__thrust__impl_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceros2__uav">ros2_uav</innernamespace>
+    <innernamespace refid="namespaceros2__uav_1_1modes">ros2_uav::modes</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2024<sp/>Damien<sp/>SIX<sp/>(damien@robotsix.net)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;License&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceros2__uav_1_1modes" kindref="compound">ros2_uav::modes</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;DerivedFromRatesThrustMode<sp/>ModeT&gt;</highlight></codeline>
+<codeline lineno="22" refid="classros2__uav_1_1modes_1_1RatesThrustMode_1af179021df07a41df773c83389b992473" refkind="member"><highlight class="normal"><ref refid="classros2__uav_1_1modes_1_1RatesThrustMode_1af179021df07a41df773c83389b992473" kindref="member">RatesThrustMode&lt;ModeT&gt;::RatesThrustMode</ref>(</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ModeBase::Settings<sp/>&amp;<sp/>mode_settings,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>rclcpp::Node<sp/>&amp;<sp/>node)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">:<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface" kindref="compound">ModeInterface</ref>&lt;ModeT&gt;(mode_settings,<sp/>node)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>this-&gt;setSetpointUpdateRate(250.0);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>rates_setpoint_<sp/>=<sp/>std::make_shared&lt;px4_ros2::RatesSetpointType&gt;(*</highlight><highlight class="keyword">this</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>this-&gt;addChildContainer(this-&gt;<ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" kindref="member">pipeline_</ref>.get());</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/>time_init_<sp/>=<sp/>this-&gt;<ref refid="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" kindref="member">node_</ref>.now();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;DerivedFromRatesThrustMode<sp/>ModeT&gt;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classros2__uav_1_1modes_1_1RatesThrustMode" kindref="compound">RatesThrustMode&lt;ModeT&gt;::updateSetpoint</ref>([[maybe_unused]]<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dt)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/>this-&gt;odometryUpdate();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>elapsed_time<sp/>=<sp/>(this-&gt;node_.now()).nanoseconds();</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>control_inputs<sp/>=<sp/>this-&gt;pipeline_-&gt;execute(std::chrono::nanoseconds(elapsed_time));</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3f<sp/>thrust_sp{0.0f,<sp/>0.0f,<sp/>-</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="keywordtype">float</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(control_inputs.thrust)};</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Eigen::Vector3f<sp/>rates_sp<sp/>=<sp/>NwuToNed(control_inputs.rates.vector).template<sp/>cast&lt;float&gt;();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/>rates_setpoint_-&gt;update(rates_sp,<sp/>thrust_sp);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ros2_uav::modes</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/ros2_uav_px4/modes/rates_thrust_impl.hpp"/>
+  </compounddef>
+</doxygen>

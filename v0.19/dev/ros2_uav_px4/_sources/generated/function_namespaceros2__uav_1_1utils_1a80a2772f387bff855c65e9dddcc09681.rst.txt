@@ -1,0 +1,14 @@
+.. _exhale_function_namespaceros2__uav_1_1utils_1a80a2772f387bff855c65e9dddcc09681:
+
+Function ros2_uav::utils::NedToNwu(const Eigen::Quaterniond&)
+=============================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_frame_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ros2_uav::utils::NedToNwu(const Eigen::Quaterniond&)
+   :project: ros2_uav_px4 Doxygen Project

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - total_coverage.info - src/ros2_uav_px4/src/disturbance_observer.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../../gcov.css">
+</head>
+
+<body>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="title">LCOV - code coverage report</td></tr>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+
+            <tr>
+              <td width="100%">
+                <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="10%" class="headerValue"><a href="../../../index.html" title="Click to go to top-level">top level</a> - <a href="index.html" title="Click to go to directory src/ros2_uav_px4/src">src/ros2_uav_px4/src</a> - disturbance_observer.cpp</td>
+            <td width="5%"></td>
+            <td width="5%"></td>
+            <td width="5%" class="headerCovTableHead">Coverage</td>
+            <td width="5%" class="headerCovTableHead" title="Covered + Uncovered code">Total</td>
+            <td width="5%" class="headerCovTableHead" title="Exercised code only">Hit</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">total_coverage.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntryLo">0.0&nbsp;%</td>
+            <td class="headerCovTableEntry">61</td>
+            <td class="headerCovTableEntry">0</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test Date:</td>
+            <td class="headerValue">2024-10-10 07:36:21</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="headerItem">Legend:</td>
+            <td class="headerValueLeg">            Lines:
+            <span class="coverLegendCov">hit</span>
+            <span class="coverLegendNoCov">not hit</span>
+</td>
+            <td></td>
+          </tr>
+                  <tr><td><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+          </table>
+
+          <table cellpadding=0 cellspacing=0 border=0>
+            <tr>
+              <td><br></td>
+            </tr>
+            <tr>
+              <td>
+<pre class="sourceHeading">            Line data    Source code</pre>
+<pre class="source">
+<span id="L1"><span class="lineNum">       1</span>              : // Copyright 2024 Damien SIX (damien@robotsix.net)</span>
+<span id="L2"><span class="lineNum">       2</span>              : //</span>
+<span id="L3"><span class="lineNum">       3</span>              : // Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span id="L4"><span class="lineNum">       4</span>              : // you may not use this file except in compliance with the License.</span>
+<span id="L5"><span class="lineNum">       5</span>              : // You may obtain a copy of the License at</span>
+<span id="L6"><span class="lineNum">       6</span>              : //</span>
+<span id="L7"><span class="lineNum">       7</span>              : //     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span id="L8"><span class="lineNum">       8</span>              : //</span>
+<span id="L9"><span class="lineNum">       9</span>              : // Unless required by applicable law or agreed to in writing, software</span>
+<span id="L10"><span class="lineNum">      10</span>              : // distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span id="L11"><span class="lineNum">      11</span>              : // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span id="L12"><span class="lineNum">      12</span>              : // See the License for the specific language governing permissions and</span>
+<span id="L13"><span class="lineNum">      13</span>              : // limitations under the License.</span>
+<span id="L14"><span class="lineNum">      14</span>              : </span>
+<span id="L15"><span class="lineNum">      15</span>              : #include &lt;uav_cpp/disturbance_observers/disturbance_observer.hpp&gt;</span>
+<span id="L16"><span class="lineNum">      16</span>              : #include &lt;ros2_uav_parameters/parameter_client.hpp&gt;</span>
+<span id="L17"><span class="lineNum">      17</span>              : #include &lt;ros2_uav_interfaces/msg/disturbance.hpp&gt;</span>
+<span id="L18"><span class="lineNum">      18</span>              : #include &lt;px4_msgs/msg/vehicle_odometry.hpp&gt;</span>
+<span id="L19"><span class="lineNum">      19</span>              : #include &lt;px4_msgs/msg/vehicle_thrust_setpoint.hpp&gt;</span>
+<span id="L20"><span class="lineNum">      20</span>              : #include &lt;px4_msgs/msg/vehicle_land_detected.hpp&gt;</span>
+<span id="L21"><span class="lineNum">      21</span>              : #include &quot;ros2_uav_px4/utils/type_conversions.hpp&quot;</span>
+<span id="L22"><span class="lineNum">      22</span>              : #include &quot;ros2_uav_px4/utils/timestamp_validator.hpp&quot;</span>
+<span id="L23"><span class="lineNum">      23</span>              : </span>
+<span id="L24"><span class="lineNum">      24</span> <span class="tlaUNC tlaBgUNC">           0 : int main(int argc, char * argv[])</span></span>
+<span id="L25"><span class="lineNum">      25</span>              : {</span>
+<span id="L26"><span class="lineNum">      26</span>              :   using Vec3 = Eigen::Vector3d;</span>
+<span id="L27"><span class="lineNum">      27</span>              :   using uav_cpp::types::VelocityStamped;</span>
+<span id="L28"><span class="lineNum">      28</span>              :   using uav_cpp::types::AttitudeThrustStamped;</span>
+<span id="L29"><span class="lineNum">      29</span>              :   using uav_cpp::types::DisturbanceCoefficientsStamped;</span>
+<span id="L30"><span class="lineNum">      30</span>              :   using ros2_uav::utils::TimestampValidator;</span>
+<span id="L31"><span class="lineNum">      31</span> <span class="tlaUNC">           0 :   rclcpp::init(argc, argv);</span></span>
+<span id="L32"><span class="lineNum">      32</span> <span class="tlaUNC">           0 :   uav_cpp::logger::LogManager::getInstance(&quot;disturbance.log&quot;);</span></span>
+<span id="L33"><span class="lineNum">      33</span> <span class="tlaUNC">           0 :   uav_cpp::disturbance_observer::DisturbanceObserver disturbance_observer;</span></span>
+<span id="L34"><span class="lineNum">      34</span> <span class="tlaUNC">           0 :   std::vector&lt;std::string&gt; required_parameters = disturbance_observer.getRequiredParameters();</span></span>
+<span id="L35"><span class="lineNum">      35</span> <span class="tlaUNC">           0 :   required_parameters.push_back(&quot;model.thrust_constant_coefficient&quot;);</span></span>
+<span id="L36"><span class="lineNum">      36</span> <span class="tlaUNC">           0 :   required_parameters.push_back(&quot;model.thrust_linear_coefficient&quot;);</span></span>
+<span id="L37"><span class="lineNum">      37</span> <span class="tlaUNC">           0 :   required_parameters.push_back(&quot;model.thrust_quadratic_coefficient&quot;);</span></span>
+<span id="L38"><span class="lineNum">      38</span>              : </span>
+<span id="L39"><span class="lineNum">      39</span>              :   // Parameter client node</span>
+<span id="L40"><span class="lineNum">      40</span>              :   auto disturbance_node = std::make_shared&lt;ros2_uav::parameters::ParameterClient&gt;(</span>
+<span id="L41"><span class="lineNum">      41</span> <span class="tlaUNC">           0 :     &quot;disturbance_observer&quot;, required_parameters);</span></span>
+<span id="L42"><span class="lineNum">      42</span>              :   auto parameters = uav_cpp::parameters::ParameterMap::make_shared&lt;&gt;(</span>
+<span id="L43"><span class="lineNum">      43</span> <span class="tlaUNC">           0 :     disturbance_node-&gt;getParameters());</span></span>
+<span id="L44"><span class="lineNum">      44</span>              : </span>
+<span id="L45"><span class="lineNum">      45</span>              :   // Set parameters</span>
+<span id="L46"><span class="lineNum">      46</span> <span class="tlaUNC">           0 :   disturbance_observer.setParameters(parameters);</span></span>
+<span id="L47"><span class="lineNum">      47</span>              : </span>
+<span id="L48"><span class="lineNum">      48</span>              :   // Set callback for the PX4 messages</span>
+<span id="L49"><span class="lineNum">      49</span> <span class="tlaUNC">           0 :   auto qos = rclcpp::QoS(1);</span></span>
+<span id="L50"><span class="lineNum">      50</span> <span class="tlaUNC">           0 :   qos.keep_last(1);</span></span>
+<span id="L51"><span class="lineNum">      51</span> <span class="tlaUNC">           0 :   qos.best_effort();</span></span>
+<span id="L52"><span class="lineNum">      52</span> <span class="tlaUNC">           0 :   qos.transient_local();</span></span>
+<span id="L53"><span class="lineNum">      53</span>              : </span>
+<span id="L54"><span class="lineNum">      54</span> <span class="tlaUNC">           0 :   Eigen::Quaterniond current_attitude;</span></span>
+<span id="L55"><span class="lineNum">      55</span> <span class="tlaUNC">           0 :   bool is_flying = false;</span></span>
+<span id="L56"><span class="lineNum">      56</span>              : </span>
+<span id="L57"><span class="lineNum">      57</span> <span class="tlaUNC">           0 :   TimestampValidator timestamp_validator;</span></span>
+<span id="L58"><span class="lineNum">      58</span>              : </span>
+<span id="L59"><span class="lineNum">      59</span>              :   auto callback =</span>
+<span id="L60"><span class="lineNum">      60</span> <span class="tlaUNC">           0 :     [&amp;disturbance_observer,</span></span>
+<span id="L61"><span class="lineNum">      61</span>              :       &amp;disturbance_node,</span>
+<span id="L62"><span class="lineNum">      62</span>              :       &amp;timestamp_validator,</span>
+<span id="L63"><span class="lineNum">      63</span>              :       &amp;current_attitude](const px4_msgs::msg::VehicleOdometry::SharedPtr msg) {</span>
+<span id="L64"><span class="lineNum">      64</span> <span class="tlaUNC">           0 :       VelocityStamped velocity_stamped;</span></span>
+<span id="L65"><span class="lineNum">      65</span> <span class="tlaUNC">           0 :       velocity_stamped.vector = Vec3(msg-&gt;velocity[0], -msg-&gt;velocity[1], -msg-&gt;velocity[2]);</span></span>
+<span id="L66"><span class="lineNum">      66</span> <span class="tlaUNC">           0 :       velocity_stamped.timestamp = std::chrono::microseconds{msg-&gt;timestamp};</span></span>
+<span id="L67"><span class="lineNum">      67</span> <span class="tlaUNC">           0 :       if (!timestamp_validator.isValidTimestamp(velocity_stamped.timestamp.count())) {</span></span>
+<span id="L68"><span class="lineNum">      68</span> <span class="tlaUNC">           0 :         return;</span></span>
+<span id="L69"><span class="lineNum">      69</span>              :       }</span>
+<span id="L70"><span class="lineNum">      70</span> <span class="tlaUNC">           0 :       disturbance_observer.setVelocity(velocity_stamped);</span></span>
+<span id="L71"><span class="lineNum">      71</span> <span class="tlaUNC">           0 :       current_attitude = Eigen::Quaterniond(msg-&gt;q[0], msg-&gt;q[1], -msg-&gt;q[2], -msg-&gt;q[3]);</span></span>
+<span id="L72"><span class="lineNum">      72</span> <span class="tlaUNC">           0 :     };</span></span>
+<span id="L73"><span class="lineNum">      73</span> <span class="tlaUNC">           0 :   auto odometry_sub = disturbance_node-&gt;create_subscription&lt;px4_msgs::msg::VehicleOdometry&gt;(</span></span>
+<span id="L74"><span class="lineNum">      74</span> <span class="tlaUNC">           0 :     &quot;fmu/out/vehicle_odometry&quot;, qos, callback);</span></span>
+<span id="L75"><span class="lineNum">      75</span>              : </span>
+<span id="L76"><span class="lineNum">      76</span>              :   auto callback_flying =</span>
+<span id="L77"><span class="lineNum">      77</span> <span class="tlaUNC">           0 :     [&amp;is_flying](const px4_msgs::msg::VehicleLandDetected::SharedPtr msg) {</span></span>
+<span id="L78"><span class="lineNum">      78</span> <span class="tlaUNC">           0 :       is_flying = !msg-&gt;landed;</span></span>
+<span id="L79"><span class="lineNum">      79</span> <span class="tlaUNC">           0 :     };</span></span>
+<span id="L80"><span class="lineNum">      80</span>              :   auto land_detected_sub =</span>
+<span id="L81"><span class="lineNum">      81</span> <span class="tlaUNC">           0 :     disturbance_node-&gt;create_subscription&lt;px4_msgs::msg::VehicleLandDetected&gt;(</span></span>
+<span id="L82"><span class="lineNum">      82</span> <span class="tlaUNC">           0 :     &quot;fmu/out/vehicle_land_detected&quot;, qos, callback_flying);</span></span>
+<span id="L83"><span class="lineNum">      83</span>              : </span>
+<span id="L84"><span class="lineNum">      84</span>              :   auto callback_setpoint =</span>
+<span id="L85"><span class="lineNum">      85</span> <span class="tlaUNC">           0 :     [&amp;disturbance_observer, &amp;disturbance_node, &amp;current_attitude, &amp;is_flying,</span></span>
+<span id="L86"><span class="lineNum">      86</span>              :       &amp;parameters](const px4_msgs::msg::VehicleThrustSetpoint::SharedPtr msg) {</span>
+<span id="L87"><span class="lineNum">      87</span> <span class="tlaUNC">           0 :       uav_cpp::types::AttitudeThrustStamped inputs;</span></span>
+<span id="L88"><span class="lineNum">      88</span>              :       // Conversion from FRD to FLU</span>
+<span id="L89"><span class="lineNum">      89</span> <span class="tlaUNC">           0 :       inputs.attitude = current_attitude;</span></span>
+<span id="L90"><span class="lineNum">      90</span> <span class="tlaUNC">           0 :       inputs.thrust = -msg-&gt;xyz[2];</span></span>
+<span id="L91"><span class="lineNum">      91</span> <span class="tlaUNC">           0 :       inputs.timestamp = std::chrono::microseconds{msg-&gt;timestamp};</span></span>
+<span id="L92"><span class="lineNum">      92</span>              :       double thrust_constant_coefficient, thrust_linear_coefficient, thrust_quadratic_coefficient;</span>
+<span id="L93"><span class="lineNum">      93</span> <span class="tlaUNC">           0 :       (*parameters)[&quot;model.thrust_constant_coefficient&quot;]-&gt;getValue(thrust_constant_coefficient);</span></span>
+<span id="L94"><span class="lineNum">      94</span> <span class="tlaUNC">           0 :       (*parameters)[&quot;model.thrust_linear_coefficient&quot;]-&gt;getValue(thrust_linear_coefficient);</span></span>
+<span id="L95"><span class="lineNum">      95</span> <span class="tlaUNC">           0 :       (*parameters)[&quot;model.thrust_quadratic_coefficient&quot;]-&gt;getValue(thrust_quadratic_coefficient);</span></span>
+<span id="L96"><span class="lineNum">      96</span> <span class="tlaUNC">           0 :       inputs.thrust = thrust_constant_coefficient + thrust_linear_coefficient * inputs.thrust +</span></span>
+<span id="L97"><span class="lineNum">      97</span> <span class="tlaUNC">           0 :         thrust_quadratic_coefficient * inputs.thrust * inputs.thrust;</span></span>
+<span id="L98"><span class="lineNum">      98</span>              :       // If the drone is not flying the disturbance observer should not be updated</span>
+<span id="L99"><span class="lineNum">      99</span>              :       // It would measure the gravity as a disturbance</span>
+<span id="L100"><span class="lineNum">     100</span> <span class="tlaUNC">           0 :       if (is_flying) {</span></span>
+<span id="L101"><span class="lineNum">     101</span> <span class="tlaUNC">           0 :         disturbance_observer.setInputs(inputs);</span></span>
+<span id="L102"><span class="lineNum">     102</span>              :       }</span>
+<span id="L103"><span class="lineNum">     103</span> <span class="tlaUNC">           0 :     };</span></span>
+<span id="L104"><span class="lineNum">     104</span> <span class="tlaUNC">           0 :   auto setpoint_sub = disturbance_node-&gt;create_subscription&lt;px4_msgs::msg::VehicleThrustSetpoint&gt;(</span></span>
+<span id="L105"><span class="lineNum">     105</span> <span class="tlaUNC">           0 :     &quot;fmu/out/vehicle_thrust_setpoint&quot;, qos, callback_setpoint);</span></span>
+<span id="L106"><span class="lineNum">     106</span>              : </span>
+<span id="L107"><span class="lineNum">     107</span>              :   // Set the publisher for the disturbance observer</span>
+<span id="L108"><span class="lineNum">     108</span> <span class="tlaUNC">           0 :   auto disturbance_pub = disturbance_node-&gt;create_publisher&lt;ros2_uav_interfaces::msg::Disturbance&gt;(</span></span>
+<span id="L109"><span class="lineNum">     109</span> <span class="tlaUNC">           0 :     &quot;disturbance&quot;, 1);</span></span>
+<span id="L110"><span class="lineNum">     110</span>              :   auto disturbance_callback =</span>
+<span id="L111"><span class="lineNum">     111</span> <span class="tlaUNC">           0 :     [&amp;disturbance_pub](const DisturbanceCoefficientsStamped &amp; disturbance) {</span></span>
+<span id="L112"><span class="lineNum">     112</span> <span class="tlaUNC">           0 :       ros2_uav_interfaces::msg::Disturbance msg = ros2_uav::utils::convert(disturbance);</span></span>
+<span id="L113"><span class="lineNum">     113</span> <span class="tlaUNC">           0 :       disturbance_pub-&gt;publish(msg);</span></span>
+<span id="L114"><span class="lineNum">     114</span> <span class="tlaUNC">           0 :     };</span></span>
+<span id="L115"><span class="lineNum">     115</span> <span class="tlaUNC">           0 :   disturbance_observer.setComputationCallback(disturbance_callback);</span></span>
+<span id="L116"><span class="lineNum">     116</span>              : </span>
+<span id="L117"><span class="lineNum">     117</span> <span class="tlaUNC">           0 :   rclcpp::spin(disturbance_node);</span></span>
+<span id="L118"><span class="lineNum">     118</span> <span class="tlaUNC">           0 :   uav_cpp::logger::LogManager::getInstance().flushAllSinks();</span></span>
+<span id="L119"><span class="lineNum">     119</span> <span class="tlaUNC">           0 :   rclcpp::shutdown();</span></span>
+<span id="L120"><span class="lineNum">     120</span> <span class="tlaUNC">           0 :   return 0;</span></span>
+<span id="L121"><span class="lineNum">     121</span> <span class="tlaUNC">           0 : }</span></span>
+        </pre>
+              </td>
+            </tr>
+          </table>
+          <br>
+
+          <table width="100%" border=0 cellspacing=0 cellpadding=0>
+            <tr><td class="ruler"><img src="../../../glass.png" width=3 height=3 alt=""></td></tr>
+            <tr><td class="versionInfo">Generated by: <a href="https://github.com//linux-test-project/lcov" target="_parent">LCOV version 2.1-1</a></td></tr>
+          </table>
+          <br>
+
+</body>
+</html>

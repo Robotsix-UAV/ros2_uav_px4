@@ -1,0 +1,17 @@
+.. _exhale_class_classuav__ros2_1_1utils_1_1ButterworthFilter:
+
+Class ButterworthFilter
+=======================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_derivative_filter.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: uav_ros2::utils::ButterworthFilter
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

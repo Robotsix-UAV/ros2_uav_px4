@@ -1,0 +1,74 @@
+
+.. _file_include_ros2_uav_px4_modes_attitude_thrust.hpp:
+
+File attitude_thrust.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_modes>` (``include/ros2_uav_px4/modes``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/modes/attitude_thrust.hpp``)
+---------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_modes_attitude_thrust.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``memory``
+
+- ``px4_ros2/control/setpoint_types/experimental/attitude.hpp``
+
+- ``px4_ros2/odometry/angular_velocity.hpp``
+
+- ``px4_ros2/odometry/attitude.hpp``
+
+- ``px4_ros2/odometry/local_position.hpp``
+
+- ``ros2_uav_px4/mode_interface/mode_interface.hpp`` (:ref:`file_include_ros2_uav_px4_mode_interface_mode_interface.hpp`)
+
+- ``ros2_uav_px4/modes/attitude_thrust_impl.hpp`` (:ref:`file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp`)
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_modes_position.hpp`
+
+- :ref:`file_include_ros2_uav_px4_modes_spin.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ros2_uav`
+
+- :ref:`namespace_ros2_uav__modes`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1modes_1_1AttitudeThrustMode`
+

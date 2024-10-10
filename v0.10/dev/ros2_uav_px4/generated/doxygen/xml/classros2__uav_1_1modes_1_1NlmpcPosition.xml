@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1modes_1_1NlmpcPosition" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::modes::NlmpcPosition</compoundname>
+    <basecompoundref refid="classros2__uav_1_1modes_1_1RatesThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::RatesThrustMode&lt; uav_cpp::pipelines::NlmpcPosition &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::utils::SmartPointerBase&lt; NlmpcPosition &gt;</basecompoundref>
+    <includes refid="nlmpc__position_8hpp" local="no">nlmpc_position.hpp</includes>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1NlmpcPosition_1ae661e4d02ec1e21f4f8a53ca7fcd76d6" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::modes::NlmpcPosition::NlmpcPosition</definition>
+        <argsstring>(rclcpp::Node &amp;node)</argsstring>
+        <name>NlmpcPosition</name>
+        <qualifiedname>ros2_uav::modes::NlmpcPosition::NlmpcPosition</qualifiedname>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1modes_1_1Position" kindref="compound">Position</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/nlmpc_position.hpp" line="35" column="12" bodyfile="include/ros2_uav_px4/modes/nlmpc_position.hpp" bodystart="35" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para><ref refid="classros2__uav_1_1modes_1_1Position" kindref="compound">Position</ref> mode class for UAV control, wrapping the uavcpp::modes::Se3Position class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>ModeBase</label>
+      </node>
+      <node id="3">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::NlmpcPosition</label>
+        <link refid="classros2__uav_1_1modes_1_1NlmpcPosition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::RatesThrustMode&lt; uav_cpp::pipelines::NlmpcPosition &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1RatesThrustMode"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ParamContainer</label>
+      </node>
+      <node id="6">
+        <label>uav_cpp::utils::SmartPointerBase&lt; NlmpcPosition &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>ModeBase</label>
+      </node>
+      <node id="3">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::NlmpcPosition</label>
+        <link refid="classros2__uav_1_1modes_1_1NlmpcPosition"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::RatesThrustMode&lt; uav_cpp::pipelines::NlmpcPosition &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1RatesThrustMode"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ParamContainer</label>
+      </node>
+      <node id="6">
+        <label>uav_cpp::utils::SmartPointerBase&lt; NlmpcPosition &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/modes/nlmpc_position.hpp" line="26" column="1" bodyfile="include/ros2_uav_px4/modes/nlmpc_position.hpp" bodystart="28" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a29f35537614ae21f3876cfa63fb823d5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>createMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5b1287e74568b72963285b3566f65b83" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>disturbance_sub_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a6f31522ed70a070a79ed5711aaaea63b" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>isIdle</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ab19dbe87f70033ab86467374620bed85" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>mode_status_timer_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a2b7891d1f6741b5332eb938b0cbf9686" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>ModeInterface</name></member>
+      <member refid="classros2__uav_1_1modes_1_1NlmpcPosition_1ae661e4d02ec1e21f4f8a53ca7fcd76d6" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>NlmpcPosition</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aee3170d2ed0452d08f9af0afbc0e4f48" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>odometryUpdate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aacf3d7664d0e2a41d1bfeabc39d3081c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a849397823fa6776114e28be4c8244b86" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>pipeline_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1af179021df07a41df773c83389b992473" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>RatesThrustMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5544604a61a1c7fa0176550d304e09b7" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>setSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ace6dbff28f09bbeb4114e53c05d9edf5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>setTfBuffer</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1b7fae8b6ad3c3924e56221e61248921" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>vehicle_angular_velocity_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a482fbd9034a8b1ae598413ad1cb5571c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>vehicle_attitude_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1af0e561d7af2a718c26971ca16cd459bb" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::NlmpcPosition</scope><name>vehicle_local_position_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

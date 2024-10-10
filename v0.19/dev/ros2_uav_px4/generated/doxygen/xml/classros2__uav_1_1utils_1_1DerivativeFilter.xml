@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1utils_1_1DerivativeFilter" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::utils::DerivativeFilter</compoundname>
+    <includes refid="derivative__filter_8hpp" local="no">derivative_filter.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a8b0686bc150bf6f846dd771347956edb" prot="private" static="no" mutable="no">
+        <type><ref refid="classros2__uav_1_1utils_1_1ButterworthFilter" kindref="compound">ButterworthFilter</ref></type>
+        <definition>ButterworthFilter ros2_uav::utils::DerivativeFilter::filter_</definition>
+        <argsstring></argsstring>
+        <name>filter_</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::filter_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="172" column="21" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a498009d3e93a818e22d0d6da01080ae4" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::DerivativeFilter::fs_</definition>
+        <argsstring></argsstring>
+        <name>fs_</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::fs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="173" column="10" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a7e27e70c5bb62d4728951b6062fcfa6f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; ros2_uav::utils::DerivativeFilter::data_</definition>
+        <argsstring></argsstring>
+        <name>data_</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::data_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="174" column="15" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="174" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a3eaba73d7bbc4c0fa5136adc7a37071f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::utils::DerivativeFilter::DerivativeFilter</definition>
+        <argsstring>(double cutoff_frequency, double sampling_frequency)</argsstring>
+        <name>DerivativeFilter</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::DerivativeFilter</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>cutoff_frequency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sampling_frequency</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1utils_1_1DerivativeFilter" kindref="compound">DerivativeFilter</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cutoff_frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cutoff frequency of the filter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampling_frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sampling frequency of the input data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="117" column="3" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="117" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a12c5ef16de855ec78aa961c90cd4fb2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::utils::DerivativeFilter::addData</definition>
+        <argsstring>(double value)</argsstring>
+        <name>addData</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::addData</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Add a new data point to the filter. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The data point to add. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="125" column="8" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="125" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a1de6e075d6368a610c7e73d59d92b27d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; ros2_uav::utils::DerivativeFilter::computeDerivative</definition>
+        <argsstring>()</argsstring>
+        <name>computeDerivative</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::computeDerivative</qualifiedname>
+        <briefdescription>
+<para>Compute the derivative of the input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;double&gt; The derivative of the input data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="135" column="15" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="135" bodyend="144"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a1431022e3a75df25c69fc99d213af78c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; ros2_uav::utils::DerivativeFilter::process</definition>
+        <argsstring>()</argsstring>
+        <name>process</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::process</qualifiedname>
+        <briefdescription>
+<para>Derive and filter the input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>std::vector&lt;double&gt; The filtered derivative. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="151" column="15" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="151" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1DerivativeFilter_1a125806fe3d9f1b6d59f467f1e163df06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::utils::DerivativeFilter::process</definition>
+        <argsstring>(std::vector&lt; double &gt; &amp;derivative, std::vector&lt; double &gt; &amp;derivative_filtered)</argsstring>
+        <name>process</name>
+        <qualifiedname>ros2_uav::utils::DerivativeFilter::process</qualifiedname>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>derivative</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; double &gt; &amp;</type>
+          <declname>derivative_filtered</declname>
+        </param>
+        <briefdescription>
+<para>Derive and filter the input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>derivative</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The derivative of the input data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>derivative_filtered</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The filtered derivative. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="164" column="8" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="164" bodyend="169"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Derivative filter implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="108" column="1" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="109" bodyend="175"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a12c5ef16de855ec78aa961c90cd4fb2e" prot="public" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>addData</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a1de6e075d6368a610c7e73d59d92b27d" prot="public" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>computeDerivative</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a7e27e70c5bb62d4728951b6062fcfa6f" prot="private" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>data_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a3eaba73d7bbc4c0fa5136adc7a37071f" prot="public" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>DerivativeFilter</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a8b0686bc150bf6f846dd771347956edb" prot="private" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>filter_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a498009d3e93a818e22d0d6da01080ae4" prot="private" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>fs_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a1431022e3a75df25c69fc99d213af78c" prot="public" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>process</name></member>
+      <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a125806fe3d9f1b6d59f467f1e163df06" prot="public" virt="non-virtual"><scope>ros2_uav::utils::DerivativeFilter</scope><name>process</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

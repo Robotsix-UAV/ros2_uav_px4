@@ -1,0 +1,6 @@
+<map id="ros2_uav::executors::ExecutorTakeOff" name="ros2_uav::executors::ExecutorTakeOff">
+<area shape="rect" id="node1" title="Executor class to manage takeoff and mode execution for UAVs." alt="" coords="267,57,417,98"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,219,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="33,57,191,98"/>
+<area shape="rect" id="node4" title=" " alt="" coords="9,122,215,163"/>
+</map>

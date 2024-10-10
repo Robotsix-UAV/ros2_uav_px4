@@ -1,0 +1,72 @@
+
+.. _file_include_ros2_uav_px4_model_identification_attitude_thrust_matcher.hpp:
+
+File attitude_thrust_matcher.hpp
+================================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_model_identification>` (``include/ros2_uav_px4/model_identification``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/model_identification/attitude_thrust_matcher.hpp``)
+--------------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_model_identification_attitude_thrust_matcher.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``px4_msgs/msg/vehicle_attitude_setpoint.hpp``
+
+- ``px4_msgs/msg/vehicle_control_mode.hpp``
+
+- ``px4_msgs/msg/vehicle_odometry.hpp``
+
+- ``rclcpp/rclcpp.hpp``
+
+- ``ros2_uav_px4/utils/data_logger.hpp`` (:ref:`file_include_ros2_uav_px4_utils_data_logger.hpp`)
+
+- ``ros2_uav_px4/utils/derivative_filter.hpp`` (:ref:`file_include_ros2_uav_px4_utils_derivative_filter.hpp`)
+
+- ``uav_cpp/model_identification/model_matcher.hpp``
+
+- ``uav_cpp/vehicle_models/quadrotor.hpp``
+
+- ``uav_cpp/vehicle_models/thrust_scaler.hpp``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ros2_uav`
+
+- :ref:`namespace_ros2_uav__identification`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1identification_1_1AttitudeThrustMatcher`
+

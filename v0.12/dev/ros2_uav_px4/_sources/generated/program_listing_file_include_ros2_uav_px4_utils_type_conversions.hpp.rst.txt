@@ -1,0 +1,140 @@
+
+.. _program_listing_file_include_ros2_uav_px4_utils_type_conversions.hpp:
+
+Program Listing for File type_conversions.hpp
+=============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ros2_uav_px4_utils_type_conversions.hpp>` (``include/ros2_uav_px4/utils/type_conversions.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Copyright 2024 The Technology Innovation Institute (TII)
+   //
+   // Licensed under the Apache License, Version 2.0 (the "License");
+   // you may not use this file except in compliance with the License.
+   // You may obtain a copy of the License at
+   //
+   //     http://www.apache.org/licenses/LICENSE-2.0
+   //
+   // Unless required by applicable law or agreed to in writing, software
+   // distributed under the License is distributed on an "AS IS" BASIS,
+   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   // See the License for the specific language governing permissions and
+   // limitations under the License.
+   
+   #pragma once
+   
+   #include <string>
+   
+   #include <ros2_uav_interfaces/msg/pose_heading.hpp>
+   #include <ros2_uav_interfaces/msg/disturbance.hpp>
+   #include <uav_cpp/types/enums.hpp>
+   #include <uav_cpp/types/timestamped_types.hpp>
+   #include <px4_msgs/msg/vehicle_attitude_setpoint.hpp>
+   #include <px4_msgs/msg/vehicle_thrust_setpoint.hpp>
+   #include <px4_msgs/msg/vehicle_odometry.hpp>
+   
+   namespace uav_ros2::utils
+   {
+   uav_cpp::types::Frame convert(const std::string & frame_id)
+   {
+     if (frame_id.find("odom") != std::string::npos) {
+       return uav_cpp::types::Frame::ODOM;
+     } else if (frame_id.find("base_link") != std::string::npos) {
+       return uav_cpp::types::Frame::BASE_LINK;
+     } else {
+       return uav_cpp::types::Frame::UNKNOWN;
+     }
+   }
+   
+   std::string convert(const uav_cpp::types::Frame & frame_id)
+   {
+     switch (frame_id) {
+       case uav_cpp::types::Frame::ODOM:
+         return "odom";
+       case uav_cpp::types::Frame::BASE_LINK:
+         return "base_link";
+       default:
+         return "unknown";
+     }
+   }
+   
+   uav_cpp::types::PoseHeadingStamped convert(
+     const ros2_uav_interfaces::msg::PoseHeading & msg)
+   {
+     uav_cpp::types::PoseHeadingStamped setpoint;
+     setpoint.timestamp =
+       std::chrono::nanoseconds{static_cast<uint64_t>(msg.header.stamp.sec) * 1000000000 +
+       static_cast<uint64_t>(msg.header.stamp.nanosec)};
+     setpoint.frame_id = convert(msg.header.frame_id);
+     setpoint.position = Eigen::Vector3d(msg.position.x, msg.position.y, msg.position.z);
+     setpoint.velocity = Eigen::Vector3d(msg.velocity.x, msg.velocity.y, msg.velocity.z);
+     setpoint.heading = msg.heading;
+     return setpoint;
+   }
+   
+   uav_cpp::types::DisturbanceCoefficientsStamped convert(
+     const ros2_uav_interfaces::msg::Disturbance & msg)
+   {
+     uav_cpp::types::DisturbanceCoefficientsStamped disturbance;
+     disturbance.timestamp =
+       std::chrono::nanoseconds{static_cast<uint64_t>(msg.header.stamp.sec) * 1000000000 +
+       static_cast<uint64_t>(msg.header.stamp.nanosec)};
+     disturbance.frame_id = convert(msg.header.frame_id);
+     disturbance.constant = Eigen::Vector3d(msg.constant.x, msg.constant.y, msg.constant.z);
+     disturbance.proportional = Eigen::Vector3d(
+       msg.proportional.x, msg.proportional.y,
+       msg.proportional.z);
+     return disturbance;
+   }
+   
+   ros2_uav_interfaces::msg::Disturbance convert(
+     const uav_cpp::types::DisturbanceCoefficientsStamped & disturbance)
+   {
+     ros2_uav_interfaces::msg::Disturbance msg;
+     msg.header.stamp.sec = disturbance.timestamp.count() / 1000000000;
+     msg.header.stamp.nanosec = disturbance.timestamp.count() % 1000000000;
+     msg.header.frame_id = convert(disturbance.frame_id);
+     msg.constant.x = disturbance.constant.vector.x();
+     msg.constant.y = disturbance.constant.vector.y();
+     msg.constant.z = disturbance.constant.vector.z();
+     msg.proportional.x = disturbance.proportional.vector.x();
+     msg.proportional.y = disturbance.proportional.vector.y();
+     msg.proportional.z = disturbance.proportional.vector.z();
+     return msg;
+   }
+   
+   uav_cpp::types::AttitudeThrustStamped convert(
+     const px4_msgs::msg::VehicleAttitudeSetpoint & msg)
+   {
+     uav_cpp::types::AttitudeThrustStamped att_thrust;
+     att_thrust.timestamp = std::chrono::microseconds{msg.timestamp};
+     att_thrust.attitude = Eigen::Quaterniond(msg.q_d[0], msg.q_d[1], -msg.q_d[2], -msg.q_d[3]);
+     att_thrust.thrust = -msg.thrust_body[2];
+     return att_thrust;
+   }
+   
+   uav_cpp::types::OdometryStamped convert(const px4_msgs::msg::VehicleOdometry & msg)
+   {
+     uav_cpp::types::OdometryStamped odometry;
+     odometry.timestamp = std::chrono::microseconds{msg.timestamp};
+     odometry.position = Eigen::Vector3d(msg.position[0], -msg.position[1], -msg.position[2]);
+     odometry.velocity = Eigen::Vector3d(msg.velocity[0], -msg.velocity[1], -msg.velocity[2]);
+     odometry.attitude = Eigen::Quaterniond(msg.q[0], msg.q[1], -msg.q[2], -msg.q[3]);
+     odometry.angular_velocity = Eigen::Vector3d(
+       msg.angular_velocity[0],
+       -msg.angular_velocity[1],
+       -msg.angular_velocity[2]);
+     return odometry;
+   }
+   
+   uav_cpp::types::ThrustStamped convert(const px4_msgs::msg::VehicleThrustSetpoint & msg)
+   {
+     uav_cpp::types::ThrustStamped thrust;
+     thrust.timestamp = std::chrono::microseconds{msg.timestamp};
+     thrust.value = -msg.xyz[2];
+     return thrust;
+   }
+   }  // namespace uav_ros2::utils

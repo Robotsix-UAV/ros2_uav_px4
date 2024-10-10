@@ -1,0 +1,26 @@
+.. _exhale_class_classuav__ros2_1_1utils_1_1TimestampValidator:
+
+Class TimestampValidator
+========================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_timestamp_validator.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public uav_cpp::logger::LogTagHolder``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: uav_ros2::utils::TimestampValidator
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

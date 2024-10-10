@@ -1,0 +1,122 @@
+
+.. _program_listing_file_include_ros2_uav_px4_utils_timestamp_validator.hpp:
+
+Program Listing for File timestamp_validator.hpp
+================================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ros2_uav_px4_utils_timestamp_validator.hpp>` (``include/ros2_uav_px4/utils/timestamp_validator.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Copyright 2024 The Technology Innovation Institute (TII)
+   //
+   // Licensed under the Apache License, Version 2.0 (the "License");
+   // you may not use this file except in compliance with the License.
+   // You may obtain a copy of the License at
+   //
+   //     http://www.apache.org/licenses/LICENSE-2.0
+   //
+   // Unless required by applicable law or agreed to in writing, software
+   // distributed under the License is distributed on an "AS IS" BASIS,
+   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   // See the License for the specific language governing permissions and
+   // limitations under the License.
+   
+   #pragma once
+   
+   #include <chrono>
+   #include <cstdint>
+   #include <cmath>
+   #include "uav_cpp/utils/logger.hpp"
+   
+   namespace uav_ros2
+   {
+   namespace utils
+   {
+   
+   class TimestampValidator : public uav_cpp::logger::LogTagHolder
+   {
+   public:
+     explicit TimestampValidator(int64_t tolerance_ns = 1000000000, int max_outliers = 10)
+     : uav_cpp::logger::LogTagHolder("Timestamp Validator"),
+       previous_timestamp_ns_(0),
+       tolerance_ns_(tolerance_ns),
+       outlier_count_(0),
+       max_outliers_(max_outliers),
+       is_first_timestamp_(true)
+     {
+       previous_time_point_ = std::chrono::steady_clock::now();
+     }
+   
+     bool isValidTimestamp(int64_t timestamp_ns)
+     {
+       auto now = std::chrono::steady_clock::now();
+   
+       if (is_first_timestamp_) {
+         // Always accept the first timestamp
+         previous_timestamp_ns_ = timestamp_ns;
+         previous_time_point_ = now;
+         is_first_timestamp_ = false;
+         outlier_count_ = 0;
+         return true;
+       }
+   
+       // Check if the timestamp is monotonic
+       if (timestamp_ns < previous_timestamp_ns_) {
+         // Timestamp decreased, invalid
+         outlier_count_++;
+         if (outlier_count_ >= max_outliers_) {
+           resetReference();
+         }
+         UAVCPP_WARN_TAG(this, "Timestamp decreased, invalid");
+         return false;
+       }
+   
+       // Compute expected timestamp based on previous timestamp and elapsed time
+       int64_t elapsed_ns = std::chrono::duration_cast<std::chrono::nanoseconds>(
+         now - previous_time_point_).count();
+       int64_t expected_timestamp_ns = previous_timestamp_ns_ + elapsed_ns;
+   
+       int64_t diff_ns = timestamp_ns - expected_timestamp_ns;
+   
+       if (std::abs(diff_ns) > tolerance_ns_) {
+         // Difference is larger than tolerance, invalid
+         outlier_count_++;
+         if (outlier_count_ >= max_outliers_) {
+           resetReference();
+         }
+         UAVCPP_WARN_TAG(this, "Timestamp too far from expected, invalid");
+         UAVCPP_WARN_TAG(
+           this, "Expected: {}, Received: {}", expected_timestamp_ns,
+           timestamp_ns);
+         return false;
+       }
+   
+       // Timestamp is valid
+       previous_timestamp_ns_ = timestamp_ns;
+       previous_time_point_ = now;
+       outlier_count_ = 0;      // Reset outlier count
+       return true;
+     }
+   
+     void resetReference()
+     {
+       previous_timestamp_ns_ = 0;
+       outlier_count_ = 0;
+       previous_time_point_ = std::chrono::steady_clock::now();
+       is_first_timestamp_ = true;
+     }
+   
+   private:
+     int64_t previous_timestamp_ns_;    
+     int64_t tolerance_ns_;             
+     int outlier_count_;                
+     int max_outliers_;                 
+     bool is_first_timestamp_;          
+     std::chrono::steady_clock::time_point previous_time_point_;
+   };
+   
+   }  // namespace utils
+   }  // namespace uav_ros2

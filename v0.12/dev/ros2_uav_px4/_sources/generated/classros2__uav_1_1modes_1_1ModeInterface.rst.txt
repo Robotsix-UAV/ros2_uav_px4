@@ -1,0 +1,35 @@
+.. _exhale_class_classros2__uav_1_1modes_1_1ModeInterface:
+
+Template Class ModeInterface
+============================
+
+- Defined in :ref:`file_include_ros2_uav_px4_mode_interface_mode_interface.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public ModeBase``
+- ``public ParamContainer``
+
+
+Derived Types
+*************
+
+- ``public ros2_uav::modes::AttitudeThrustMode< uav_cpp::pipelines::Se3Position >`` (:ref:`exhale_class_classros2__uav_1_1modes_1_1AttitudeThrustMode`)
+- ``public ros2_uav::modes::AttitudeThrustMode< uav_cpp::pipelines::Spin >`` (:ref:`exhale_class_classros2__uav_1_1modes_1_1AttitudeThrustMode`)
+- ``public ros2_uav::modes::AttitudeThrustMode< PipelineT >`` (:ref:`exhale_class_classros2__uav_1_1modes_1_1AttitudeThrustMode`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ros2_uav::modes::ModeInterface
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

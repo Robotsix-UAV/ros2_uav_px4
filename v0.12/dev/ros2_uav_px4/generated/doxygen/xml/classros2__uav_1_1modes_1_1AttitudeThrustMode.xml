@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1modes_1_1AttitudeThrustMode" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::modes::AttitudeThrustMode</compoundname>
+    <basecompoundref refid="classros2__uav_1_1modes_1_1ModeInterface" prot="public" virt="non-virtual">ros2_uav::modes::ModeInterface&lt; PipelineT &gt;</basecompoundref>
+    <includes refid="attitude__thrust_8hpp" local="no">attitude_thrust.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>DerivedFromAttitudeThrustMode</type>
+        <declname>PipelineT</declname>
+        <defname>PipelineT</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a38de5bea8a4611255ed1d3fa67ea8c88" prot="private" static="no" mutable="no">
+        <type>ParameterMap::SharedPtr</type>
+        <definition>ParameterMap::SharedPtr ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;::parameters_</definition>
+        <argsstring></argsstring>
+        <name>parameters_</name>
+        <qualifiedname>ros2_uav::modes::AttitudeThrustMode::parameters_</qualifiedname>
+        <briefdescription>
+<para>Shared pointer to the parameter map. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="68" column="27" bodyfile="include/ros2_uav_px4/modes/attitude_thrust.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a0bf0316efab56397241895ef5358e6b0" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; px4_ros2::AttitudeSetpointType &gt;</type>
+        <definition>std::shared_ptr&lt;px4_ros2::AttitudeSetpointType&gt; ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;::attitude_setpoint_</definition>
+        <argsstring></argsstring>
+        <name>attitude_setpoint_</name>
+        <qualifiedname>ros2_uav::modes::AttitudeThrustMode::attitude_setpoint_</qualifiedname>
+        <briefdescription>
+<para>Shared pointer to attitude setpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="69" column="19" bodyfile="include/ros2_uav_px4/modes/attitude_thrust.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a93baecac6fdc6436b7c4e2ac1a799d69" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;::AttitudeThrustMode</definition>
+        <argsstring>(const ModeBase::Settings &amp;mode_settings, rclcpp::Node &amp;node)</argsstring>
+        <name>AttitudeThrustMode</name>
+        <qualifiedname>ros2_uav::modes::AttitudeThrustMode::AttitudeThrustMode</qualifiedname>
+        <param>
+          <type>const ModeBase::Settings &amp;</type>
+          <declname>mode_settings</declname>
+        </param>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" kindref="compound">AttitudeThrustMode</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode_settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Settings for the mode. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="58" column="3" bodyfile="include/ros2_uav_px4/modes/attitude_thrust_impl.hpp" bodystart="27" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1AttitudeThrustMode_1aa2046b2458904d67397aa1f183488cc6" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;::updateSetpoint</definition>
+        <argsstring>(float dt) override</argsstring>
+        <name>updateSetpoint</name>
+        <qualifiedname>ros2_uav::modes::AttitudeThrustMode::updateSetpoint</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+<para>Updates the setpoint. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>dt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time delta since the last update. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="66" column="8" bodyfile="include/ros2_uav_px4/modes/attitude_thrust_impl.hpp" bodystart="39" bodyend="52"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>A mode class that uses attitude and thrust control. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PipelineT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pipeline type derived from uav_cpp::pipelines::ControlPipeline. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ModeBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::ModeInterface&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ParamContainer</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ModeBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::ModeInterface&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ParamContainer</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="48" column="1" bodyfile="include/ros2_uav_px4/modes/attitude_thrust.hpp" bodystart="49" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a0bf0316efab56397241895ef5358e6b0" prot="private" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>attitude_setpoint_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a93baecac6fdc6436b7c4e2ac1a799d69" prot="public" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>AttitudeThrustMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a29f35537614ae21f3876cfa63fb823d5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>createMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5b1287e74568b72963285b3566f65b83" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>disturbance_sub_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a6f31522ed70a070a79ed5711aaaea63b" prot="public" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>isIdle</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ab19dbe87f70033ab86467374620bed85" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>mode_status_timer_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a2b7891d1f6741b5332eb938b0cbf9686" prot="public" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>ModeInterface</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aee3170d2ed0452d08f9af0afbc0e4f48" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>odometryUpdate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aacf3d7664d0e2a41d1bfeabc39d3081c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a849397823fa6776114e28be4c8244b86" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a38de5bea8a4611255ed1d3fa67ea8c88" prot="private" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>parameters_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>pipeline_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5544604a61a1c7fa0176550d304e09b7" prot="public" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>setSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1aa2046b2458904d67397aa1f183488cc6" prot="private" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>updateSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1b7fae8b6ad3c3924e56221e61248921" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>vehicle_angular_velocity_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a482fbd9034a8b1ae598413ad1cb5571c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>vehicle_attitude_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1af0e561d7af2a718c26971ca16cd459bb" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::AttitudeThrustMode</scope><name>vehicle_local_position_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

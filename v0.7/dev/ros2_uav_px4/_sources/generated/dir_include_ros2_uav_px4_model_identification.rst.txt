@@ -1,0 +1,21 @@
+.. _dir_include_ros2_uav_px4_model_identification:
+
+
+Directory model_identification
+==============================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4>` (``include/ros2_uav_px4``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``include/ros2_uav_px4/model_identification``
+
+
+Files
+-----
+
+- :ref:`file_include_ros2_uav_px4_model_identification_attitude_thrust_matcher.hpp`
+
+

@@ -1,0 +1,14 @@
+.. _exhale_function_namespaceros2__uav_1_1utils_1ae330c3a0a3f3790d30c7bfabe8a11e58:
+
+Function ros2_uav::utils::NwuToNed(const Eigen::Vector3d&)
+==========================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_frame_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ros2_uav::utils::NwuToNed(const Eigen::Vector3d&)
+   :project: ros2_uav_px4 Doxygen Project

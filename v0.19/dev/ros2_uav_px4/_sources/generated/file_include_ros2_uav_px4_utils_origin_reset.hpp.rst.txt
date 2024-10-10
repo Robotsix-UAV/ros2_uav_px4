@@ -1,0 +1,64 @@
+
+.. _file_include_ros2_uav_px4_utils_origin_reset.hpp:
+
+File origin_reset.hpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_utils>` (``include/ros2_uav_px4/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/utils/origin_reset.hpp``)
+------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_utils_origin_reset.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``px4_msgs/msg/vehicle_command.hpp``
+
+- ``px4_msgs/msg/vehicle_global_position.hpp``
+
+- ``rclcpp/rclcpp.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_executors_executor_take_off.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ros2_uav`
+
+- :ref:`namespace_ros2_uav__utils`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1utils_1_1OriginReset`
+

@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceuav__ros2_1_1utils" kind="namespace" language="C++">
+    <compoundname>uav_ros2::utils</compoundname>
+    <innerclass refid="classuav__ros2_1_1utils_1_1ButterworthFilter" prot="public">uav_ros2::utils::ButterworthFilter</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1DataLogger" prot="public">uav_ros2::utils::DataLogger</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1DerivativeFilter" prot="public">uav_ros2::utils::DerivativeFilter</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1DerivativeFilter3D" prot="public">uav_ros2::utils::DerivativeFilter3D</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a7614bb5189983a1cbd6a1b7e01526c5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tf2::Vector3</type>
+        <definition>tf2::Vector3 uav_ros2::utils::eigenNedToTf2Nwu</definition>
+        <argsstring>(const Eigen::Vector3f &amp;eigen_vector)</argsstring>
+        <name>eigenNedToTf2Nwu</name>
+        <qualifiedname>uav_ros2::utils::eigenNedToTf2Nwu</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3f &amp;</type>
+          <declname>eigen_vector</declname>
+        </param>
+        <briefdescription>
+<para>Converts an Eigen vector from NED (North-East-Down) coordinate system to a tf2 vector in NWU (North-West-Up) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eigen_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Eigen vector in NED coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>tf2::Vector3 The tf2 vector in NWU coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="34" column="14" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1ae85fdca6c571963afa4a14f44bc3da3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3f</type>
+        <definition>Eigen::Vector3f uav_ros2::utils::tf2FwuToEigenNed</definition>
+        <argsstring>(const tf2::Vector3 &amp;tf2_vector)</argsstring>
+        <name>tf2FwuToEigenNed</name>
+        <qualifiedname>uav_ros2::utils::tf2FwuToEigenNed</qualifiedname>
+        <param>
+          <type>const tf2::Vector3 &amp;</type>
+          <declname>tf2_vector</declname>
+        </param>
+        <briefdescription>
+<para>Converts a tf2 vector from NWU (North-West-Up) coordinate system to an Eigen vector in NED (North-East-Down) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tf2_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tf2 vector in NWU coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Eigen::Vector3f The Eigen vector in NED coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="45" column="17" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1aebe982ad1e77aed280740bd6114c8380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tf2::Quaternion</type>
+        <definition>tf2::Quaternion uav_ros2::utils::eigenNedToTf2Nwu</definition>
+        <argsstring>(const Eigen::Quaternionf &amp;eigen_quaternion)</argsstring>
+        <name>eigenNedToTf2Nwu</name>
+        <qualifiedname>uav_ros2::utils::eigenNedToTf2Nwu</qualifiedname>
+        <param>
+          <type>const Eigen::Quaternionf &amp;</type>
+          <declname>eigen_quaternion</declname>
+        </param>
+        <briefdescription>
+<para>Converts an Eigen quaternion from NED (North-East-Down) coordinate system to a tf2 quaternion in NWU (North-West-Up) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eigen_quaternion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Eigen quaternion in NED coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>tf2::Quaternion The tf2 quaternion in NWU coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="56" column="17" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="56" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1ac168240a86c1b5aec05b18a6009e96eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Quaternionf</type>
+        <definition>Eigen::Quaternionf uav_ros2::utils::tf2FwuToEigenNed</definition>
+        <argsstring>(const tf2::Quaternion &amp;tf2_quaternion)</argsstring>
+        <name>tf2FwuToEigenNed</name>
+        <qualifiedname>uav_ros2::utils::tf2FwuToEigenNed</qualifiedname>
+        <param>
+          <type>const tf2::Quaternion &amp;</type>
+          <declname>tf2_quaternion</declname>
+        </param>
+        <briefdescription>
+<para>Converts a tf2 quaternion from NWU (North-West-Up) coordinate system to an Eigen quaternion in NED (North-East-Down) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tf2_quaternion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tf2 quaternion in NWU coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Eigen::Quaternionf The Eigen quaternion in NED coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="69" column="20" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="69" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1add5097611370add723120f1fc5a15269" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::pipelines::PoseHeading</type>
+        <definition>uav_cpp::pipelines::PoseHeading uav_ros2::utils::convertFromRosMsg</definition>
+        <argsstring>(const ros2_uav_interfaces::msg::PoseHeading &amp;msg)</argsstring>
+        <name>convertFromRosMsg</name>
+        <qualifiedname>uav_ros2::utils::convertFromRosMsg</qualifiedname>
+        <param>
+          <type>const ros2_uav_interfaces::msg::PoseHeading &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ros2_uav_interfaces/PoseHeading message to a uavcpp::types::PoseHeading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The PoseHeading message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted PoseHeading type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" line="35" column="33" bodyfile="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" bodystart="35" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a7316389ae8eeb5e4a08251842a549e6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::pipelines::AttitudeThrust</type>
+        <definition>uav_cpp::pipelines::AttitudeThrust uav_ros2::utils::convertFromPx4Msg</definition>
+        <argsstring>(const px4_msgs::msg::VehicleAttitudeSetpoint &amp;msg)</argsstring>
+        <name>convertFromPx4Msg</name>
+        <qualifiedname>uav_ros2::utils::convertFromPx4Msg</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleAttitudeSetpoint &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleAttitudeSetpoint message to a uavcpp::types::AttitudeThrust. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleAttitudeSetpoint message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted AttitudeThrust type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" line="53" column="36" bodyfile="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" bodystart="53" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1ab9fa271a9b8caba3469db163b811ffcf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::pipelines::Odometry</type>
+        <definition>uav_cpp::pipelines::Odometry uav_ros2::utils::convertFromPx4Msg</definition>
+        <argsstring>(const px4_msgs::msg::VehicleOdometry &amp;msg)</argsstring>
+        <name>convertFromPx4Msg</name>
+        <qualifiedname>uav_ros2::utils::convertFromPx4Msg</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleOdometry &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleOdometry message to a uavcpp::types::Odometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleOdometry message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted Odometry type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" line="69" column="30" bodyfile="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" bodystart="69" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a3ecedfcff05f08ddf7bee36954c33b7b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::pipelines::Thrust</type>
+        <definition>uav_cpp::pipelines::Thrust uav_ros2::utils::convertFromPx4Msg</definition>
+        <argsstring>(const px4_msgs::msg::VehicleThrustSetpoint &amp;msg)</argsstring>
+        <name>convertFromPx4Msg</name>
+        <qualifiedname>uav_ros2::utils::convertFromPx4Msg</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleThrustSetpoint &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleThrustSetpoint message to a uavcpp::types::Thrust. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleThrustSetpoint message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted Thrust type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" line="88" column="28" bodyfile="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" bodystart="88" bodyend="94"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="31" column="1"/>
+  </compounddef>
+</doxygen>

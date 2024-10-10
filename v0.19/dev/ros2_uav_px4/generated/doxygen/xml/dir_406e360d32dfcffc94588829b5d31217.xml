@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_406e360d32dfcffc94588829b5d31217" kind="dir">
+    <compoundname>include/ros2_uav_px4</compoundname>
+    <innerdir refid="dir_f850a7143d9119b14f4a4a38dcd1d803">include/ros2_uav_px4/executors</innerdir>
+    <innerdir refid="dir_0f8514f967a4b1f3198411ad6387afd9">include/ros2_uav_px4/mode_interface</innerdir>
+    <innerdir refid="dir_44b7d123c14c65d5941bf0d439dbc23d">include/ros2_uav_px4/model_identification</innerdir>
+    <innerdir refid="dir_e1109f9b6c06b1b424025803a8ac7738">include/ros2_uav_px4/modes</innerdir>
+    <innerdir refid="dir_cde7337ea2e04e9423af31e271bc6539">include/ros2_uav_px4/utils</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/"/>
+  </compounddef>
+</doxygen>

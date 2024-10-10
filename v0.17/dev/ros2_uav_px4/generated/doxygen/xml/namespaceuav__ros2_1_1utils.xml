@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceuav__ros2_1_1utils" kind="namespace" language="C++">
+    <compoundname>uav_ros2::utils</compoundname>
+    <innerclass refid="classuav__ros2_1_1utils_1_1ButterworthFilter" prot="public">uav_ros2::utils::ButterworthFilter</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1DerivativeFilter" prot="public">uav_ros2::utils::DerivativeFilter</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1DerivativeFilter3D" prot="public">uav_ros2::utils::DerivativeFilter3D</innerclass>
+    <innerclass refid="classuav__ros2_1_1utils_1_1TimestampValidator" prot="public">uav_ros2::utils::TimestampValidator</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1ac11f431c5e3487ad9cf8d01bb4222a1d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d uav_ros2::utils::NedToNwu</definition>
+        <argsstring>(const Eigen::Vector3d &amp;ned)</argsstring>
+        <name>NedToNwu</name>
+        <qualifiedname>uav_ros2::utils::NedToNwu</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>ned</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/frame_conversions.hpp" line="26" column="17" bodyfile="include/ros2_uav_px4/utils/frame_conversions.hpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a945a181f39e17eba92e92b141199f10a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3d</type>
+        <definition>Eigen::Vector3d uav_ros2::utils::NwuToNed</definition>
+        <argsstring>(const Eigen::Vector3d &amp;nwu)</argsstring>
+        <name>NwuToNed</name>
+        <qualifiedname>uav_ros2::utils::NwuToNed</qualifiedname>
+        <param>
+          <type>const Eigen::Vector3d &amp;</type>
+          <declname>nwu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/frame_conversions.hpp" line="31" column="17" bodyfile="include/ros2_uav_px4/utils/frame_conversions.hpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a4f09c01cffbc68de2a6103b87a11c32f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Quaterniond</type>
+        <definition>Eigen::Quaterniond uav_ros2::utils::NedToNwu</definition>
+        <argsstring>(const Eigen::Quaterniond &amp;ned)</argsstring>
+        <name>NedToNwu</name>
+        <qualifiedname>uav_ros2::utils::NedToNwu</qualifiedname>
+        <param>
+          <type>const Eigen::Quaterniond &amp;</type>
+          <declname>ned</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/frame_conversions.hpp" line="36" column="20" bodyfile="include/ros2_uav_px4/utils/frame_conversions.hpp" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1afa6e3527d759f4e886443ac74b13c34a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Quaterniond</type>
+        <definition>Eigen::Quaterniond uav_ros2::utils::NwuToNed</definition>
+        <argsstring>(const Eigen::Quaterniond &amp;nwu)</argsstring>
+        <name>NwuToNed</name>
+        <qualifiedname>uav_ros2::utils::NwuToNed</qualifiedname>
+        <param>
+          <type>const Eigen::Quaterniond &amp;</type>
+          <declname>nwu</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/frame_conversions.hpp" line="41" column="20" bodyfile="include/ros2_uav_px4/utils/frame_conversions.hpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1aa1ac38d63286bb12bc130ab703380c12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::Frame</type>
+        <definition>uav_cpp::types::Frame uav_ros2::utils::convert</definition>
+        <argsstring>(const std::string &amp;frame_id)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>frame_id</declname>
+        </param>
+        <briefdescription>
+<para>Converts a frame_id to a uavcpp::types::FrameId. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The frame_id to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted FrameId type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="39" column="23" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="39" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a74800ba0603198c77288bcfc96dc5009" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string uav_ros2::utils::convert</definition>
+        <argsstring>(const uav_cpp::types::Frame &amp;frame_id)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const uav_cpp::types::Frame &amp;</type>
+          <declname>frame_id</declname>
+        </param>
+        <briefdescription>
+<para>Converts a uavcpp::types::FrameId to a frame_id. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The FrameId to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted frame_id. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="55" column="13" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="55" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1ab8b296204029590fca360f23e89e2b1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::PoseHeadingStamped</type>
+        <definition>uav_cpp::types::PoseHeadingStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const ros2_uav_interfaces::msg::PoseHeading &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const ros2_uav_interfaces::msg::PoseHeading &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ros2_uav_interfaces/PoseHeading message to a uavcpp::types::PoseHeadingStamped. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The PoseHeading message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted PoseHeadingStamped type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="72" column="36" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="72" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a161c943eb9f122904013b16dd030b3ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::DisturbanceCoefficientsStamped</type>
+        <definition>uav_cpp::types::DisturbanceCoefficientsStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const ros2_uav_interfaces::msg::Disturbance &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const ros2_uav_interfaces::msg::Disturbance &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ros2_uav_interfaces/Disturbance message to a uavcpp::types::DisturbanceCoefficientsStamped. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Disturbance message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted DisturbanceCoefficientsStamped type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="91" column="48" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="91" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a8a885ee884d4ccf48fd553bfb2897051" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ros2_uav_interfaces::msg::Disturbance</type>
+        <definition>ros2_uav_interfaces::msg::Disturbance uav_ros2::utils::convert</definition>
+        <argsstring>(const uav_cpp::types::DisturbanceCoefficientsStamped &amp;disturbance)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const uav_cpp::types::DisturbanceCoefficientsStamped &amp;</type>
+          <declname>disturbance</declname>
+        </param>
+        <briefdescription>
+<para>Converts a uavcpp::types::DisturbanceCoefficientsStamped message to a ros2_uav_interfaces/Disturbance. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>disturbance</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The DisturbanceCoefficientsStamped message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="110" column="39" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="110" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1acf0577289fb03e46591c076b1b2cd323" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::AttitudeThrustStamped</type>
+        <definition>uav_cpp::types::AttitudeThrustStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const px4_msgs::msg::VehicleAttitudeSetpoint &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleAttitudeSetpoint &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleAttitudeSetpoint message to a uavcpp::types::AttitudeThrustStamped. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleAttitudeSetpoint message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted AttitudeThrust type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="131" column="39" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="131" bodyend="139"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a5d409629ccb5a348d662c8d69786c40f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::OdometryStamped</type>
+        <definition>uav_cpp::types::OdometryStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const px4_msgs::msg::VehicleOdometry &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleOdometry &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleOdometry message to a uavcpp::types::OdometryStamped. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleOdometry message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted Odometry type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="146" column="33" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="146" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a12a9bd87ee6c78657d617d5ac655b034" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::ThrustStamped</type>
+        <definition>uav_cpp::types::ThrustStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const px4_msgs::msg::VehicleThrustSetpoint &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const px4_msgs::msg::VehicleThrustSetpoint &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a px4_msgs/VehicleThrustSetpoint message to a uavcpp::types::ThrustStamped. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The VehicleThrustSetpoint message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted Thrust type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="165" column="31" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="165" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceuav__ros2_1_1utils_1a3b46647485c87aec7847530bd5122ef2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::PoseSpeedVectorStamped</type>
+        <definition>uav_cpp::types::PoseSpeedVectorStamped uav_ros2::utils::convert</definition>
+        <argsstring>(const ros2_uav_interfaces::msg::WaypointList &amp;msg)</argsstring>
+        <name>convert</name>
+        <qualifiedname>uav_ros2::utils::convert</qualifiedname>
+        <param>
+          <type>const ros2_uav_interfaces::msg::WaypointList &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/type_conversions.hpp" line="173" column="40" bodyfile="include/ros2_uav_px4/utils/type_conversions.hpp" bodystart="173" bodyend="190"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="26" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="conceptros2__uav_1_1modes_1_1DerivedFromAttitudeThrustMode" kind="concept">
+    <compoundname>ros2_uav::modes::DerivedFromAttitudeThrustMode</compoundname>
+    <includes refid="attitude__thrust_8hpp" local="no">attitude_thrust.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename PipelineT</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename PipelineT&gt;
+concept <ref refid="conceptros2__uav_1_1modes_1_1DerivedFromAttitudeThrustMode" kindref="compound">ros2_uav::modes::DerivedFromAttitudeThrustMode</ref> =  requires {
+  std::is_same_v&lt;typename PipelineT::FcuInputType, AttitudeThrust&gt;;
+}    </initializer>
+    <briefdescription>
+<para>Concept that checks if PipelineT FcuInputType is AttitudeThrust. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="34" column="1"/>
+  </compounddef>
+</doxygen>

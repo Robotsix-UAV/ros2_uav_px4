@@ -1,0 +1,14 @@
+.. _exhale_typedef_namespaceros2__uav_1_1identification_1acbe58c06183b4ae76c3b9023b19853ea:
+
+Typedef ros2_uav::identification::AttitudeThrustScaler
+======================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_model_identification_thrust_matcher_node.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: ros2_uav::identification::AttitudeThrustScaler
+   :project: ros2_uav_px4 Doxygen Project

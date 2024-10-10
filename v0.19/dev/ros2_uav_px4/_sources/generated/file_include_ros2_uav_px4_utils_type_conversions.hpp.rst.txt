@@ -1,0 +1,92 @@
+
+.. _file_include_ros2_uav_px4_utils_type_conversions.hpp:
+
+File type_conversions.hpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_utils>` (``include/ros2_uav_px4/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/utils/type_conversions.hpp``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_utils_type_conversions.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``px4_msgs/msg/vehicle_attitude_setpoint.hpp``
+
+- ``px4_msgs/msg/vehicle_odometry.hpp``
+
+- ``px4_msgs/msg/vehicle_thrust_setpoint.hpp``
+
+- ``ros2_uav_interfaces/msg/disturbance.hpp``
+
+- ``ros2_uav_interfaces/msg/pose_heading.hpp``
+
+- ``ros2_uav_interfaces/msg/waypoint_list.hpp``
+
+- ``string``
+
+- ``uav_cpp/types/enums.hpp``
+
+- ``uav_cpp/types/timestamped_types.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_mode_interface_mode_interface.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_ros2_uav`
+
+- :ref:`namespace_ros2_uav__utils`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a32831ac19257fcc5c5cd129524a45141`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a52cc96bc346c4a2cf503457c57f5f423`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1ae8c420cd2484b81f1b4a8606d189a623`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a9314aef9dbf808b65c89dfa8e34d442d`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a85018a9017acabe67a1ee2b87888d3f0`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924`
+
