@@ -67,7 +67,7 @@ private:
    */
   void onActivate() override
   {
-    UAVCPP_DEBUG_TAG(this, "Activated");
+    UAVCPP_INFO_TAG(this, "Activated");
     runState(State::ARM);
   }
 
