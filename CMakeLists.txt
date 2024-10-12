@@ -6,10 +6,11 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=lld")
+
 add_definitions(-DCMAKE_EXPORT_COMPILE_COMMANDS=ON)
 
 find_package(ament_cmake REQUIRED)
-find_package(px4_ros2_cpp REQUIRED)
 find_package(ros2_uav_parameters REQUIRED)
 find_package(ros2_uav_interfaces REQUIRED)
 find_package(px4_msgs REQUIRED)
@@ -24,48 +25,34 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
 endif()
 
-# Generate files from templates
-set(MODES_RUNNER_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/templates/modes_runner.jinja")
-set(MODES_SERVICE_TEMPLATE "${CMAKE_CURRENT_SOURCE_DIR}/src/templates/modes_service.jinja")
-set(MODES_CONFIG_FILE "${CMAKE_CURRENT_SOURCE_DIR}/config/px4_modes.yaml")
-set(MODES_RUNNER_CPP "${CMAKE_CURRENT_BINARY_DIR}/modes_runner.cpp")
-file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/srv)
-set(MODES_MESSAGE "${CMAKE_CURRENT_BINARY_DIR}/srv/ModeSelector.srv")
-
-# Force reconfiguration of the project if the templates or the config files have changed
-set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
-  ${MODES_CONFIG_FILE}
-  ${MODES_RUNNER_TEMPLATE}
-  ${MODES_SERVICE_TEMPLATE}
+# Generate the PX4CommBase class with all the subscribers and publishers
+set(FC_COMM_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include/ros2_uav_px4/px4_interface)
+add_custom_command(
+  OUTPUT ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp
+  COMMAND python3 generate_px4_comm.py
+  DEPENDS ${FC_COMM_INCLUDE_DIR}/generate_px4_comm.py
+  ${FC_COMM_INCLUDE_DIR}/dds_topics.yaml
+  ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp.j2
+  WORKING_DIRECTORY ${FC_COMM_INCLUDE_DIR}
+  COMMENT "Generating px4_comm_base.hpp"
 )
+add_custom_target(px4_comm_base DEPENDS ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp)
 
-# Include the generation utility function
-include(${CMAKE_CURRENT_SOURCE_DIR}/template_generator/GenerateUtils.cmake)
-
-check_and_generate_if_needed(${MODES_CONFIG_FILE} ${MODES_MESSAGE} ${MODES_SERVICE_TEMPLATE})
-check_and_generate_if_needed(${MODES_CONFIG_FILE} ${MODES_RUNNER_CPP} ${MODES_RUNNER_TEMPLATE})
-
-# Generate the ROS2 service for mode selection
-rosidl_generate_interfaces(${PROJECT_NAME} ${CMAKE_CURRENT_BINARY_DIR}:srv/ModeSelector.srv)
-rosidl_get_typesupport_target(ROS_SERVICE ${PROJECT_NAME} "rosidl_typesupport_cpp")
-
-add_executable(modes_runner ${MODES_RUNNER_CPP})
-target_include_directories(modes_runner PUBLIC include)
-
-ament_target_dependencies(modes_runner px4_ros2_cpp ros2_uav_interfaces uav_cpp ros2_uav_parameters)
-target_link_libraries(modes_runner
-  ${ROS_SERVICE})
+add_executable(controller src/controller.cpp src/px4_interface/px4_comm.cpp)
+target_include_directories(controller PUBLIC include)
+add_dependencies(controller px4_comm_base)
+ament_target_dependencies(controller ros2_uav_interfaces uav_cpp ros2_uav_parameters px4_msgs)
 
 add_executable(disturbance_observer src/disturbance_observer.cpp)
 target_include_directories(disturbance_observer PUBLIC include)
-ament_target_dependencies(disturbance_observer px4_ros2_cpp ros2_uav_interfaces uav_cpp ros2_uav_parameters)
+ament_target_dependencies(disturbance_observer ros2_uav_interfaces uav_cpp ros2_uav_parameters px4_msgs)
 
 add_executable(thrust_matcher src/thrust_matcher.cpp src/model_identification/thrust_matcher_node.cpp)
 target_include_directories(thrust_matcher PUBLIC include)
 ament_target_dependencies(thrust_matcher uav_cpp rclcpp px4_msgs ros2_uav_interfaces ros2_uav_parameters)
 
 install(TARGETS
-  modes_runner
+  controller
   disturbance_observer
   thrust_matcher
   DESTINATION lib/${PROJECT_NAME}

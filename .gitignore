@@ -1,7 +1,7 @@
 .vscode/
 .devcontainer/
 build/
+include/ros2_uav_px4/px4_interface/px4_comm_base.hpp
 
 assistant_gpt.log
 repo_assistant_config.json
-

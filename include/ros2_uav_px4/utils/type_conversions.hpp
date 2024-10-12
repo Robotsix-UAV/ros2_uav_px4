@@ -36,7 +36,7 @@ namespace ros2_uav::utils
  * @param frame_id The frame_id to convert.
  * @return The converted FrameId type.
  */
-uav_cpp::types::Frame convert(const std::string & frame_id)
+inline uav_cpp::types::Frame convert(const std::string & frame_id)
 {
   if (frame_id.find("odom") != std::string::npos) {
     return uav_cpp::types::Frame::ODOM;
@@ -52,7 +52,7 @@ uav_cpp::types::Frame convert(const std::string & frame_id)
  * @param frame_id The FrameId to convert.
  * @return The converted frame_id.
  */
-std::string convert(const uav_cpp::types::Frame & frame_id)
+inline std::string convert(const uav_cpp::types::Frame & frame_id)
 {
   switch (frame_id) {
     case uav_cpp::types::Frame::ODOM:
@@ -69,7 +69,7 @@ std::string convert(const uav_cpp::types::Frame & frame_id)
  * @param msg The PoseHeading message to convert.
  * @return The converted PoseHeadingStamped type.
  */
-uav_cpp::types::PoseHeadingStamped convert(
+inline uav_cpp::types::PoseHeadingStamped convert(
   const ros2_uav_interfaces::msg::PoseHeading & msg)
 {
   uav_cpp::types::PoseHeadingStamped setpoint;
@@ -88,7 +88,7 @@ uav_cpp::types::PoseHeadingStamped convert(
  * @param msg The Disturbance message to convert.
  * @return The converted DisturbanceCoefficientsStamped type.
  */
-uav_cpp::types::DisturbanceCoefficientsStamped convert(
+inline uav_cpp::types::DisturbanceCoefficientsStamped convert(
   const ros2_uav_interfaces::msg::Disturbance & msg)
 {
   uav_cpp::types::DisturbanceCoefficientsStamped disturbance;
@@ -107,7 +107,7 @@ uav_cpp::types::DisturbanceCoefficientsStamped convert(
  * @brief Converts a uavcpp::types::DisturbanceCoefficientsStamped message to a ros2_uav_interfaces/Disturbance.
  * @param disturbance The DisturbanceCoefficientsStamped message to convert.
  */
-ros2_uav_interfaces::msg::Disturbance convert(
+inline ros2_uav_interfaces::msg::Disturbance convert(
   const uav_cpp::types::DisturbanceCoefficientsStamped & disturbance)
 {
   ros2_uav_interfaces::msg::Disturbance msg;
@@ -128,7 +128,7 @@ ros2_uav_interfaces::msg::Disturbance convert(
  * @param msg The VehicleAttitudeSetpoint message to convert.
  * @return The converted AttitudeThrust type.
  */
-uav_cpp::types::AttitudeThrustStamped convert(
+inline uav_cpp::types::AttitudeThrustStamped convert(
   const px4_msgs::msg::VehicleAttitudeSetpoint & msg)
 {
   uav_cpp::types::AttitudeThrustStamped att_thrust;
@@ -143,7 +143,7 @@ uav_cpp::types::AttitudeThrustStamped convert(
  * @param msg The VehicleOdometry message to convert.
  * @return The converted Odometry type.
  */
-uav_cpp::types::OdometryStamped convert(const px4_msgs::msg::VehicleOdometry & msg)
+inline uav_cpp::types::OdometryStamped convert(const px4_msgs::msg::VehicleOdometry & msg)
 {
   uav_cpp::types::OdometryStamped odometry;
   odometry.timestamp = std::chrono::microseconds{msg.timestamp};
@@ -162,7 +162,7 @@ uav_cpp::types::OdometryStamped convert(const px4_msgs::msg::VehicleOdometry & m
  * @param msg The VehicleThrustSetpoint message to convert.
  * @return The converted Thrust type.
  */
-uav_cpp::types::ThrustStamped convert(const px4_msgs::msg::VehicleThrustSetpoint & msg)
+inline uav_cpp::types::ThrustStamped convert(const px4_msgs::msg::VehicleThrustSetpoint & msg)
 {
   uav_cpp::types::ThrustStamped thrust;
   thrust.timestamp = std::chrono::microseconds{msg.timestamp};
@@ -170,7 +170,7 @@ uav_cpp::types::ThrustStamped convert(const px4_msgs::msg::VehicleThrustSetpoint
   return thrust;
 }
 
-uav_cpp::types::PoseSpeedVectorStamped convert(
+inline uav_cpp::types::PoseSpeedVectorStamped convert(
   const ros2_uav_interfaces::msg::WaypointList & msg)
 {
   uav_cpp::types::PoseSpeedVectorStamped pose_speed_vector;

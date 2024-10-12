@@ -9,7 +9,7 @@
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
-  <depend>px4_ros2_cpp</depend>
+  <depend>px4_msgs</depend>
   <depend>ros2_uav_parameters</depend>
   <depend>uav_cpp</depend>
   <depend>tf2_ros</depend>

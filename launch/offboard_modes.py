@@ -38,9 +38,9 @@ def generate_launch_description():
     )
 
     # Node for modes runner
-    modes_runner_node = Node(
+    controller_node = Node(
         package='ros2_uav_px4',
-        executable='modes_runner',
+        executable='controller',
         namespace=LaunchConfiguration('uav_namespace'),
         output='screen',
         emulate_tty=True
@@ -58,6 +58,6 @@ def generate_launch_description():
     return LaunchDescription([
         uav_namespace_arg,
         parameter_server_node,
-        modes_runner_node,
+        controller_node,
         disturbance_observer_node
     ])
