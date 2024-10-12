@@ -1,0 +1,70 @@
+
+.. _file_include_ros2_uav_px4_utils_tf2_eigen.hpp:
+
+File tf2_eigen.hpp
+==================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_utils>` (``include/ros2_uav_px4/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/utils/tf2_eigen.hpp``)
+---------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_utils_tf2_eigen.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``Eigen/Geometry``
+
+- ``tf2/LinearMath/Quaternion.h``
+
+- ``tf2/LinearMath/Vector3.h``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_uav_ros2`
+
+- :ref:`namespace_uav_ros2__utils`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_tf2__eigen_8hpp_1a7614bb5189983a1cbd6a1b7e01526c5e`
+
+- :ref:`exhale_function_tf2__eigen_8hpp_1aebe982ad1e77aed280740bd6114c8380`
+
+- :ref:`exhale_function_tf2__eigen_8hpp_1ae85fdca6c571963afa4a14f44bc3da3a`
+
+- :ref:`exhale_function_tf2__eigen_8hpp_1ac168240a86c1b5aec05b18a6009e96eb`
+

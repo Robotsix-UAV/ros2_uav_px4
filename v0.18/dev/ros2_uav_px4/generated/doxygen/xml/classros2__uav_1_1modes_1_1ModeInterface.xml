@@ -1,0 +1,400 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1modes_1_1ModeInterface" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::modes::ModeInterface</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModeBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">ParamContainer</basecompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::pipelines::Se3Position &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::pipelines::Spin &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;</derivedcompoundref>
+    <includes refid="mode__interface_8hpp" local="no">mode_interface.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>DerivedFromUavCppPipeline</type>
+        <declname>PipelineT</declname>
+        <defname>PipelineT</defname>
+      </param>
+    </templateparamlist>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Node &amp;</type>
+        <definition>rclcpp::Node&amp; ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::node_</definition>
+        <argsstring></argsstring>
+        <name>node_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::node_</qualifiedname>
+        <briefdescription>
+<para>Reference to the ROS2 node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="155" column="17" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; PipelineT &gt;</type>
+        <definition>std::shared_ptr&lt;PipelineT&gt; ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::pipeline_</definition>
+        <argsstring></argsstring>
+        <name>pipeline_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::pipeline_</qualifiedname>
+        <briefdescription>
+<para>The uav_cpp pipeline. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="156" column="19" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1aa86ddae38f360ec1b71523b121b862ed" prot="protected" static="no" mutable="no">
+        <type><ref refid="classuav__ros2_1_1utils_1_1TimestampValidator" kindref="compound">TimestampValidator</ref></type>
+        <definition>TimestampValidator ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::timestamp_validator_</definition>
+        <argsstring></argsstring>
+        <name>timestamp_validator_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::timestamp_validator_</qualifiedname>
+        <briefdescription>
+<para>Timestamp validator for the odometry data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="158" column="22" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1ab19dbe87f70033ab86467374620bed85" prot="protected" static="no" mutable="no">
+        <type>rclcpp::TimerBase::SharedPtr</type>
+        <definition>rclcpp::TimerBase::SharedPtr ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::mode_status_timer_</definition>
+        <argsstring></argsstring>
+        <name>mode_status_timer_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::mode_status_timer_</qualifiedname>
+        <briefdescription>
+<para>Timer for the mode status. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="160" column="32" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1a5b1287e74568b72963285b3566f65b83" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; ros2_uav_interfaces::msg::Disturbance &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;ros2_uav_interfaces::msg::Disturbance&gt;::SharedPtr ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::disturbance_sub_</definition>
+        <argsstring></argsstring>
+        <name>disturbance_sub_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::disturbance_sub_</qualifiedname>
+        <briefdescription>
+<para>The ROS2 subscription for the disturbance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="161" column="36" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1af0e561d7af2a718c26971ca16cd459bb" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; px4_ros2::OdometryLocalPosition &gt;</type>
+        <definition>std::shared_ptr&lt;px4_ros2::OdometryLocalPosition&gt; ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::vehicle_local_position_</definition>
+        <argsstring></argsstring>
+        <name>vehicle_local_position_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::vehicle_local_position_</qualifiedname>
+        <briefdescription>
+<para>Shared pointer to vehicle local position. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="164" column="19" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1a1b7fae8b6ad3c3924e56221e61248921" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; px4_ros2::OdometryAngularVelocity &gt;</type>
+        <definition>std::shared_ptr&lt;px4_ros2::OdometryAngularVelocity&gt; ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::vehicle_angular_velocity_</definition>
+        <argsstring></argsstring>
+        <name>vehicle_angular_velocity_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::vehicle_angular_velocity_</qualifiedname>
+        <briefdescription>
+<para>Shared pointer to vehicle angular velocity. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="166" column="19" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1a482fbd9034a8b1ae598413ad1cb5571c" prot="protected" static="no" mutable="no">
+        <type>std::shared_ptr&lt; px4_ros2::OdometryAttitude &gt;</type>
+        <definition>std::shared_ptr&lt;px4_ros2::OdometryAttitude&gt; ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::vehicle_attitude_</definition>
+        <argsstring></argsstring>
+        <name>vehicle_attitude_</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::vehicle_attitude_</qualifiedname>
+        <briefdescription>
+<para>Shared pointer to vehicle attitude. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="168" column="19" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="168" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a2b7891d1f6741b5332eb938b0cbf9686" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::ModeInterface</definition>
+        <argsstring>(const ModeBase::Settings &amp;mode_settings, rclcpp::Node &amp;node)</argsstring>
+        <name>ModeInterface</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::ModeInterface</qualifiedname>
+        <param>
+          <type>const ModeBase::Settings &amp;</type>
+          <declname>mode_settings</declname>
+        </param>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1modes_1_1ModeInterface" kindref="compound">ModeInterface</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode_settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Settings for the mode. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="66" column="3" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="66" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a29f35537614ae21f3876cfa63fb823d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::createMode</definition>
+        <argsstring>()</argsstring>
+        <name>createMode</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::createMode</qualifiedname>
+        <briefdescription>
+<para>Creates the uav_cpp::modes::ControlPipeline object. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="96" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="96" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a5544604a61a1c7fa0176550d304e09b7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::setSetpoint</definition>
+        <argsstring>(const PipelineT::PipelineInputType &amp;setpoint)</argsstring>
+        <name>setSetpoint</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::setSetpoint</qualifiedname>
+        <param>
+          <type>const PipelineT::PipelineInputType &amp;</type>
+          <declname>setpoint</declname>
+        </param>
+        <briefdescription>
+<para>Sets the setpoint for the mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>setpoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The setpoint to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="106" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="106" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a6f31522ed70a070a79ed5711aaaea63b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::isIdle</definition>
+        <argsstring>() const</argsstring>
+        <name>isIdle</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::isIdle</qualifiedname>
+        <briefdescription>
+<para>Check if the mode is idle. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>True if the mode is idle, false otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="112" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="112" bodyend="112"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1aacf3d7664d0e2a41d1bfeabc39d3081c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::onActivate</definition>
+        <argsstring>() override</argsstring>
+        <name>onActivate</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::onActivate</qualifiedname>
+        <briefdescription>
+<para>Function called when the mode is activated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="118" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="118" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a849397823fa6776114e28be4c8244b86" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::onDeactivate</definition>
+        <argsstring>() override</argsstring>
+        <name>onDeactivate</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::onDeactivate</qualifiedname>
+        <briefdescription>
+<para>Function called when the mode is deactivated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="127" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="127" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1aee3170d2ed0452d08f9af0afbc0e4f48" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; PipelineT &gt;::odometryUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>odometryUpdate</name>
+        <qualifiedname>ros2_uav::modes::ModeInterface::odometryUpdate</qualifiedname>
+        <briefdescription>
+<para>Updates the odometry data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="132" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="132" bodyend="153"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Interface class for UAV modes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>PipelineT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pipeline type derived from uav_cpp::pipelines::ControlPipeline. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ModeBase</label>
+      </node>
+      <node id="8">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::pipelines::Se3Position &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::pipelines::Spin &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::ModeInterface&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ros2_uav::modes::Position</label>
+        <link refid="classros2__uav_1_1modes_1_1Position"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ros2_uav::modes::Spin</label>
+        <link refid="classros2__uav_1_1modes_1_1Spin"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ParamContainer</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ModeBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::ModeInterface&lt; PipelineT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>timestamp_validator_</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>uav_cpp::logger::LogTagHolder</label>
+      </node>
+      <node id="3">
+        <label>ParamContainer</label>
+      </node>
+      <node id="4">
+        <label>uav_ros2::utils::TimestampValidator</label>
+        <link refid="classuav__ros2_1_1utils_1_1TimestampValidator"/>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="57" column="1" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="58" bodyend="170"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a29f35537614ae21f3876cfa63fb823d5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>createMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5b1287e74568b72963285b3566f65b83" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>disturbance_sub_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a6f31522ed70a070a79ed5711aaaea63b" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>isIdle</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ab19dbe87f70033ab86467374620bed85" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>mode_status_timer_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a2b7891d1f6741b5332eb938b0cbf9686" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>ModeInterface</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aee3170d2ed0452d08f9af0afbc0e4f48" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>odometryUpdate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aacf3d7664d0e2a41d1bfeabc39d3081c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a849397823fa6776114e28be4c8244b86" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>pipeline_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5544604a61a1c7fa0176550d304e09b7" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>setSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aa86ddae38f360ec1b71523b121b862ed" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>timestamp_validator_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1b7fae8b6ad3c3924e56221e61248921" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>vehicle_angular_velocity_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a482fbd9034a8b1ae598413ad1cb5571c" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>vehicle_attitude_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1af0e561d7af2a718c26971ca16cd459bb" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>vehicle_local_position_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1executors_1_1ExecutorArm" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::executors::ExecutorArm</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">px4_ros2::ModeExecutorBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::utils::SmartPointerBase&lt; ExecutorArm &gt;</basecompoundref>
+    <includes refid="executor__arm_8hpp" local="no">executor_arm.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>State</name>
+        <qualifiedname>ros2_uav::executors::ExecutorArm::State</qualifiedname>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5a47f45e65244c17ec9fa8771a5c6d60e1" prot="public">
+          <name>ARM</name>
+          <briefdescription>
+<para>State for arming the UAV. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5a4dab4c093bafb64e050a9576c510adac" prot="public">
+          <name>OWNED_MODE</name>
+          <briefdescription>
+<para>State for executing the owned mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enum representing the states of the executor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="36" column="3" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorArm_1a2d60ee77878f8f1070799ba58cf58f04" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::executors::ExecutorArm::ExecutorArm</definition>
+        <argsstring>(rclcpp::Node &amp;node, px4_ros2::ModeBase &amp;owned_mode)</argsstring>
+        <name>ExecutorArm</name>
+        <qualifiedname>ros2_uav::executors::ExecutorArm::ExecutorArm</qualifiedname>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>px4_ros2::ModeBase &amp;</type>
+          <declname>owned_mode</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1executors_1_1ExecutorArm" kindref="compound">ExecutorArm</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>owned_mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the owned mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="48" column="3" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorArm_1a55f72c653f1e62a2abdb770a589beaa3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorArm::onActivate</definition>
+        <argsstring>() override</argsstring>
+        <name>onActivate</name>
+        <qualifiedname>ros2_uav::executors::ExecutorArm::onActivate</qualifiedname>
+        <briefdescription>
+<para>Function called when the executor is activated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="57" column="8" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="57" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorArm_1ab1b1330a891d62aba05e795ac3300ac4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorArm::onDeactivate</definition>
+        <argsstring>(DeactivateReason reason) override</argsstring>
+        <name>onDeactivate</name>
+        <qualifiedname>ros2_uav::executors::ExecutorArm::onDeactivate</qualifiedname>
+        <param>
+          <type>DeactivateReason</type>
+          <declname>reason</declname>
+        </param>
+        <briefdescription>
+<para>Function called when the executor is deactivated. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reason</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reason for deactivation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="68" column="8" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorArm_1aa392e6b97a26a1e2bf36469a63d147e5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorArm::runState</definition>
+        <argsstring>(State state)</argsstring>
+        <name>runState</name>
+        <qualifiedname>ros2_uav::executors::ExecutorArm::runState</qualifiedname>
+        <param>
+          <type><ref refid="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5" kindref="member">State</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Runs the specified state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state to run. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="78" column="8" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="78" bodyend="97"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Executor class to manage arming and mode execution for UAVs. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorArm</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorArm"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorArm &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorArm</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorArm"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorArm &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/executors/executor_arm.hpp" line="29" column="1" bodyfile="include/ros2_uav_px4/executors/executor_arm.hpp" bodystart="31" bodyend="98"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a2d60ee77878f8f1070799ba58cf58f04" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorArm</scope><name>ExecutorArm</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a55f72c653f1e62a2abdb770a589beaa3" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorArm</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1ab1b1330a891d62aba05e795ac3300ac4" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorArm</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1aa392e6b97a26a1e2bf36469a63d147e5" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorArm</scope><name>runState</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorArm</scope><name>State</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

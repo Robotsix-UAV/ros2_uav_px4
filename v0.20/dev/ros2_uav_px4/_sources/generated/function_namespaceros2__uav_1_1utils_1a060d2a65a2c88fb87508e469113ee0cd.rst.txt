@@ -1,0 +1,14 @@
+.. _exhale_function_namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd:
+
+Function ros2_uav::utils::convert(const px4_msgs::msg::VehicleOdometry&)
+========================================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_type_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ros2_uav::utils::convert(const px4_msgs::msg::VehicleOdometry&)
+   :project: ros2_uav_px4 Doxygen Project

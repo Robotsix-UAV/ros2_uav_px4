@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_f850a7143d9119b14f4a4a38dcd1d803" kind="dir">
+    <compoundname>include/ros2_uav_px4/executors</compoundname>
+    <innerfile refid="executor__arm_8hpp">executor_arm.hpp</innerfile>
+    <innerfile refid="executor__land_8hpp">executor_land.hpp</innerfile>
+    <innerfile refid="executor__take__off_8hpp">executor_take_off.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/executors/"/>
+  </compounddef>
+</doxygen>

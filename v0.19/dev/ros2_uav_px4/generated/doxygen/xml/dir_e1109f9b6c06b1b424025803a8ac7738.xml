@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_e1109f9b6c06b1b424025803a8ac7738" kind="dir">
+    <compoundname>include/ros2_uav_px4/modes</compoundname>
+    <innerfile refid="attitude__thrust_8hpp">attitude_thrust.hpp</innerfile>
+    <innerfile refid="attitude__thrust__impl_8hpp">attitude_thrust_impl.hpp</innerfile>
+    <innerfile refid="nlmpc__position_8hpp">nlmpc_position.hpp</innerfile>
+    <innerfile refid="nlmpc__waypoints_8hpp">nlmpc_waypoints.hpp</innerfile>
+    <innerfile refid="position_8hpp">position.hpp</innerfile>
+    <innerfile refid="rates__thrust_8hpp">rates_thrust.hpp</innerfile>
+    <innerfile refid="rates__thrust__impl_8hpp">rates_thrust_impl.hpp</innerfile>
+    <innerfile refid="spin_8hpp">spin.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/modes/"/>
+  </compounddef>
+</doxygen>

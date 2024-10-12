@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="px4__comm__base_8hpp" kind="file" language="C++">
+    <compoundname>px4_comm_base.hpp</compoundname>
+    <includes local="no">rclcpp/rclcpp.hpp</includes>
+    <includes local="no">px4_msgs/msg/offboard_control_mode.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_attitude_setpoint.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_rates_setpoint.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_command.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_odometry.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_status.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_control_mode.hpp</includes>
+    <includedby refid="px4__comm_8hpp" local="yes">include/ros2_uav_px4/px4_interface/px4_comm.hpp</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/ros2_uav_px4/px4_interface/px4_comm_base.hpp</label>
+        <link refid="px4__comm__base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>px4_msgs/msg/offboard_control_mode.hpp</label>
+      </node>
+      <node id="4">
+        <label>px4_msgs/msg/vehicle_attitude_setpoint.hpp</label>
+      </node>
+      <node id="6">
+        <label>px4_msgs/msg/vehicle_command.hpp</label>
+      </node>
+      <node id="9">
+        <label>px4_msgs/msg/vehicle_control_mode.hpp</label>
+      </node>
+      <node id="7">
+        <label>px4_msgs/msg/vehicle_odometry.hpp</label>
+      </node>
+      <node id="5">
+        <label>px4_msgs/msg/vehicle_rates_setpoint.hpp</label>
+      </node>
+      <node id="8">
+        <label>px4_msgs/msg/vehicle_status.hpp</label>
+      </node>
+      <node id="2">
+        <label>rclcpp/rclcpp.hpp</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/ros2_uav_px4/px4_interface/px4_comm.hpp</label>
+        <link refid="px4__comm_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>include/ros2_uav_px4/px4_interface/px4_comm_base.hpp</label>
+        <link refid="px4__comm__base_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classPx4CommBase" prot="public">Px4CommBase</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2024<sp/>The<sp/>Technology<sp/>Innovation<sp/>Institute<sp/>(TII)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;License&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;rclcpp/rclcpp.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/offboard_control_mode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_attitude_setpoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_rates_setpoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_command.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_odometry.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_status.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_control_mode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="classPx4CommBase" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classPx4CommBase" kindref="compound">Px4CommBase</ref></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="42" refid="classPx4CommBase_1a4b6a6f14d282043e2c463eb10f879948" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classPx4CommBase_1a4b6a6f14d282043e2c463eb10f879948" kindref="member">Px4CommBase</ref>(rclcpp::Node<sp/>*<sp/>node)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>:<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>(node)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setting<sp/>qos</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>qos<sp/>=<sp/>rclcpp::QoS(1);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>qos.keep_last(1);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>qos.best_effort();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>qos.transient_local();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a96a8d73f9bf99ce394e5dcdc3b45ad07" kindref="member">offboard_control_mode_pub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_publisher&lt;px4_msgs::msg::OffboardControlMode&gt;(</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/in/offboard_control_mode&quot;</highlight><highlight class="normal">,<sp/>qos);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a427514943074f90123885d747430ba72" kindref="member">vehicle_attitude_setpoint_pub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_publisher&lt;px4_msgs::msg::VehicleAttitudeSetpoint&gt;(</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/in/vehicle_attitude_setpoint&quot;</highlight><highlight class="normal">,<sp/>qos);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1aa378f85974009f08f28747d2abc39823" kindref="member">vehicle_rates_setpoint_pub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_publisher&lt;px4_msgs::msg::VehicleRatesSetpoint&gt;(</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/in/vehicle_rates_setpoint&quot;</highlight><highlight class="normal">,<sp/>qos);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a33a9395e50beb3cdf38f4432da33ab99" kindref="member">vehicle_command_pub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_publisher&lt;px4_msgs::msg::VehicleCommand&gt;(</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/in/vehicle_command&quot;</highlight><highlight class="normal">,<sp/>qos);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1ad687d1fb51b6b537f80d230c93961786" kindref="member">vehicle_odometry_sub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_subscription&lt;px4_msgs::msg::VehicleOdometry&gt;(</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/out/vehicle_odometry&quot;</highlight><highlight class="normal">,<sp/>qos,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleOdometry::SharedPtr<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a866209df54f57adda6d5525a2bd2b588" kindref="member">onVehicleOdometry</ref>(msg);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a1ccfd0073fb868a3de45540f6a900858" kindref="member">vehicle_status_sub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_subscription&lt;px4_msgs::msg::VehicleStatus&gt;(</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/out/vehicle_status&quot;</highlight><highlight class="normal">,<sp/>qos,<sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleStatus::SharedPtr<sp/>msg)<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a47f326da05fcddf4bb95f85829a481a8" kindref="member">onVehicleStatus</ref>(msg);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a162b1bf4f8c067ac668e4e62ce0c185a" kindref="member">vehicle_control_mode_sub</ref><sp/>=<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>-&gt;create_subscription&lt;px4_msgs::msg::VehicleControlMode&gt;(</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;fmu/out/vehicle_control_mode&quot;</highlight><highlight class="normal">,<sp/>qos,</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>[</highlight><highlight class="keyword">this</highlight><highlight class="normal">](</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleControlMode::SharedPtr<sp/>msg)<sp/>{<ref refid="classPx4CommBase_1ab00a775e5e564fca0abc6d68187f262a" kindref="member">onVehicleControlMode</ref>(msg);});</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="76" refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Node<sp/>*<sp/><ref refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" kindref="member">node_</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;px4_msgs::msg::VehicleOdometry&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="79" refid="classPx4CommBase_1ad687d1fb51b6b537f80d230c93961786" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1ad687d1fb51b6b537f80d230c93961786" kindref="member">vehicle_odometry_sub</ref>;</highlight></codeline>
+<codeline lineno="85" refid="classPx4CommBase_1a866209df54f57adda6d5525a2bd2b588" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPx4CommBase_1a866209df54f57adda6d5525a2bd2b588" kindref="member">onVehicleOdometry</ref>(</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>[[maybe_unused]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleOdometry::SharedPtr<sp/>msg)<sp/>{}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;px4_msgs::msg::VehicleStatus&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="88" refid="classPx4CommBase_1a1ccfd0073fb868a3de45540f6a900858" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a1ccfd0073fb868a3de45540f6a900858" kindref="member">vehicle_status_sub</ref>;</highlight></codeline>
+<codeline lineno="94" refid="classPx4CommBase_1a47f326da05fcddf4bb95f85829a481a8" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPx4CommBase_1a47f326da05fcddf4bb95f85829a481a8" kindref="member">onVehicleStatus</ref>([[maybe_unused]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleStatus::SharedPtr<sp/>msg)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/>rclcpp::Subscription&lt;px4_msgs::msg::VehicleControlMode&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="98" refid="classPx4CommBase_1a162b1bf4f8c067ac668e4e62ce0c185a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a162b1bf4f8c067ac668e4e62ce0c185a" kindref="member">vehicle_control_mode_sub</ref>;</highlight></codeline>
+<codeline lineno="104" refid="classPx4CommBase_1ab00a775e5e564fca0abc6d68187f262a" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classPx4CommBase_1ab00a775e5e564fca0abc6d68187f262a" kindref="member">onVehicleControlMode</ref>(</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>[[maybe_unused]]<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleControlMode::SharedPtr<sp/>msg)<sp/>{}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;px4_msgs::msg::OffboardControlMode&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="109" refid="classPx4CommBase_1a96a8d73f9bf99ce394e5dcdc3b45ad07" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a96a8d73f9bf99ce394e5dcdc3b45ad07" kindref="member">offboard_control_mode_pub</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;px4_msgs::msg::VehicleAttitudeSetpoint&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="112" refid="classPx4CommBase_1a427514943074f90123885d747430ba72" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a427514943074f90123885d747430ba72" kindref="member">vehicle_attitude_setpoint_pub</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;px4_msgs::msg::VehicleRatesSetpoint&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="115" refid="classPx4CommBase_1aa378f85974009f08f28747d2abc39823" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1aa378f85974009f08f28747d2abc39823" kindref="member">vehicle_rates_setpoint_pub</ref>;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;px4_msgs::msg::VehicleCommand&gt;::SharedPtr</highlight></codeline>
+<codeline lineno="118" refid="classPx4CommBase_1a33a9395e50beb3cdf38f4432da33ab99" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classPx4CommBase_1a33a9395e50beb3cdf38f4432da33ab99" kindref="member">vehicle_command_pub</ref>;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp"/>
+  </compounddef>
+</doxygen>

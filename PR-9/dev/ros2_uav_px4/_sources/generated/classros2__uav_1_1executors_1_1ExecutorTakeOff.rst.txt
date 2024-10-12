@@ -1,0 +1,29 @@
+.. _exhale_class_classros2__uav_1_1executors_1_1ExecutorTakeOff:
+
+Class ExecutorTakeOff
+=====================
+
+- Defined in :ref:`file_include_ros2_uav_px4_executors_executor_take_off.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public px4_ros2::ModeExecutorBase``
+- ``public uav_cpp::parameters::ParamContainer``
+- ``public uav_cpp::utils::SmartPointerBase< ExecutorTakeOff >``
+- ``public uav_cpp::logger::LogTagHolder``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ros2_uav::executors::ExecutorTakeOff
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

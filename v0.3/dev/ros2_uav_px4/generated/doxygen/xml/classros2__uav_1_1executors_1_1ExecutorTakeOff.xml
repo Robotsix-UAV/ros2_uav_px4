@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1executors_1_1ExecutorTakeOff" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::executors::ExecutorTakeOff</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">px4_ros2::ModeExecutorBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::parameters::ParamContainer</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::utils::SmartPointerBase&lt; ExecutorTakeOff &gt;</basecompoundref>
+    <includes refid="executor__take__off_8hpp" local="no">executor_take_off.hpp</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>State</name>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a47f45e65244c17ec9fa8771a5c6d60e1" prot="public">
+          <name>ARM</name>
+          <briefdescription>
+<para>State for arming the UAV. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a8fabc74a4ed0781d663336cbf8c9c53d" prot="public">
+          <name>TAKEOFF</name>
+          <briefdescription>
+<para>State for taking off the UAV. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a4dab4c093bafb64e050a9576c510adac" prot="public">
+          <name>OWNED_MODE</name>
+          <briefdescription>
+<para>State for executing the owned mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enum representing the states of the executor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="34" column="3" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="35" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ab0509fad34e57925fe2ca36477e33d60" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::executors::ExecutorTakeOff::ExecutorTakeOff</definition>
+        <argsstring>(rclcpp::Node &amp;node, px4_ros2::ModeBase &amp;owned_mode)</argsstring>
+        <name>ExecutorTakeOff</name>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>px4_ros2::ModeBase &amp;</type>
+          <declname>owned_mode</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1executors_1_1ExecutorTakeOff" kindref="compound">ExecutorTakeOff</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>owned_mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the owned mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="47" column="3" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="47" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a7943df4bccf2bc8d6f91a015341e92db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorTakeOff::onActivate</definition>
+        <argsstring>() override</argsstring>
+        <name>onActivate</name>
+        <briefdescription>
+<para>Function called when the executor is activated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="58" column="8" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ad506c9211cc3d58d4f8965049debc9a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorTakeOff::onDeactivate</definition>
+        <argsstring>([[maybe_unused]] DeactivateReason reason) override</argsstring>
+        <name>onDeactivate</name>
+        <param>
+          <attributes>[[maybe_unused]</attributes>
+          <type>] DeactivateReason</type>
+          <declname>reason</declname>
+        </param>
+        <briefdescription>
+<para>Function called when the executor is deactivated. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reason</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reason for deactivation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="68" column="8" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a0df3ec05fc67089936f4556e244d1c7e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorTakeOff::runState</definition>
+        <argsstring>(State state)</argsstring>
+        <name>runState</name>
+        <param>
+          <type><ref refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63" kindref="member">State</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Runs the specified state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state to run. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="77" column="8" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="77" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Executor class to manage takeoff and mode execution for UAVs. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="4">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorTakeOff &gt;</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorTakeOff</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorTakeOff"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="4">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorTakeOff &gt;</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorTakeOff</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorTakeOff"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/executors/executor_take_off.hpp" line="26" column="1" bodyfile="include/ros2_uav_px4/executors/executor_take_off.hpp" bodystart="29" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ab0509fad34e57925fe2ca36477e33d60" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorTakeOff</scope><name>ExecutorTakeOff</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a7943df4bccf2bc8d6f91a015341e92db" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorTakeOff</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ad506c9211cc3d58d4f8965049debc9a7" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorTakeOff</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a0df3ec05fc67089936f4556e244d1c7e" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorTakeOff</scope><name>runState</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorTakeOff</scope><name>State</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

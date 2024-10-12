@@ -1,0 +1,8 @@
+ModeSelector
+============
+This is a ROS service definition.
+
+**Source**
+
+.. literalinclude:: ../../../../../../src/ros2_uav_px4/srv/ModeSelector.srv
+

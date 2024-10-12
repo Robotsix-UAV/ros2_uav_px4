@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1modes_1_1Spin" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::modes::Spin</compoundname>
+    <basecompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Spin &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::utils::SmartPointerBase&lt; Spin &gt;</basecompoundref>
+    <includes refid="spin_8hpp" local="no">spin.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1Spin_1abf405c412377e80283738fd23d4167e7" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::modes::Spin::Spin</definition>
+        <argsstring>(rclcpp::Node &amp;node)</argsstring>
+        <name>Spin</name>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1modes_1_1Spin" kindref="compound">Spin</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/spin.hpp" line="35" column="12" bodyfile="include/ros2_uav_px4/modes/spin.hpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classros2__uav_1_1modes_1_1Spin" kindref="compound">Spin</ref> mode class for UAV control, wrapping the uavcpp::modes::Spin class. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="6">
+        <label>uav_cpp::utils::SmartPointerBase&lt; Spin &gt;</label>
+      </node>
+      <node id="5">
+        <label>ParamContainer</label>
+      </node>
+      <node id="3">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ModeBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::Spin</label>
+        <link refid="classros2__uav_1_1modes_1_1Spin"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Spin &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="7">
+        <label>uav_cpp::utils::SmartPointerBase&lt; Spin &gt;</label>
+      </node>
+      <node id="5">
+        <label>ParamContainer</label>
+      </node>
+      <node id="3">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mode_</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ModeBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::Spin</label>
+        <link refid="classros2__uav_1_1modes_1_1Spin"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ModeT</label>
+      </node>
+      <node id="2">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Spin &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/modes/spin.hpp" line="26" column="1" bodyfile="include/ros2_uav_px4/modes/spin.hpp" bodystart="28" bodyend="38"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1aed228c48e33e8302942ea1dbfd1115a7" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>AttitudeThrustMode</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>coordinate_publisher_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>mode_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1529393806fe03a1dd15f23b78f038d5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>ModeInterface</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ac546df1fb3486fe24c18e43c386edc97" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>publishCoordinates</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1abc914e47f767b5de1160657050e0f3dd" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>setSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a553b81dac812a8e795a6ca18782ada06" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>setTfBuffer</name></member>
+      <member refid="classros2__uav_1_1modes_1_1Spin_1abf405c412377e80283738fd23d4167e7" prot="public" virt="non-virtual"><scope>ros2_uav::modes::Spin</scope><name>Spin</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

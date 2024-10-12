@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classuav__ros2_1_1utils_1_1DataLogger" kind="class" language="C++" prot="public">
+    <compoundname>uav_ros2::utils::DataLogger</compoundname>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classuav__ros2_1_1utils_1_1DataLogger_1a6d672d58ee7de6d83bfb5ba598be129e" prot="private" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string uav_ros2::utils::DataLogger::log_folder_</definition>
+        <argsstring></argsstring>
+        <name>log_folder_</name>
+        <qualifiedname>uav_ros2::utils::DataLogger::log_folder_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="90" column="15" bodyfile="include/ros2_uav_px4/utils/data_logger.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classuav__ros2_1_1utils_1_1DataLogger_1a3b609569e286157398a9e85a7cf6cc44" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>uav_ros2::utils::DataLogger::DataLogger</definition>
+        <argsstring>()</argsstring>
+        <name>DataLogger</name>
+        <qualifiedname>uav_ros2::utils::DataLogger::DataLogger</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="36" column="3" bodyfile="include/ros2_uav_px4/utils/data_logger.hpp" bodystart="36" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classuav__ros2_1_1utils_1_1DataLogger_1a6a1ee194e20402c098118fa33cd1e4ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void uav_ros2::utils::DataLogger::logToFile</definition>
+        <argsstring>(std::string file_name, std::vector&lt; std::chrono::nanoseconds &gt; timestamps, std::vector&lt; std::string &gt; labels, std::vector&lt; std::vector&lt; double &gt; &gt; data)</argsstring>
+        <name>logToFile</name>
+        <qualifiedname>uav_ros2::utils::DataLogger::logToFile</qualifiedname>
+        <param>
+          <type>std::string</type>
+          <declname>file_name</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::chrono::nanoseconds &gt;</type>
+          <declname>timestamps</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::string &gt;</type>
+          <declname>labels</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="50" column="8" bodyfile="include/ros2_uav_px4/utils/data_logger.hpp" bodystart="50" bodyend="87"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classuav__ros2_1_1utils_1_1DataLogger_1acce80483516ebc8a88dcd37c59d36c0f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string uav_ros2::utils::DataLogger::getRosLogDirectory</definition>
+        <argsstring>()</argsstring>
+        <name>getRosLogDirectory</name>
+        <qualifiedname>uav_ros2::utils::DataLogger::getRosLogDirectory</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="92" column="15" bodyfile="include/ros2_uav_px4/utils/data_logger.hpp" bodystart="92" bodyend="104"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/data_logger.hpp" line="33" column="1" bodyfile="include/ros2_uav_px4/utils/data_logger.hpp" bodystart="34" bodyend="105"/>
+    <listofallmembers>
+      <member refid="classuav__ros2_1_1utils_1_1DataLogger_1a3b609569e286157398a9e85a7cf6cc44" prot="public" virt="non-virtual"><scope>uav_ros2::utils::DataLogger</scope><name>DataLogger</name></member>
+      <member refid="classuav__ros2_1_1utils_1_1DataLogger_1acce80483516ebc8a88dcd37c59d36c0f" prot="private" virt="non-virtual"><scope>uav_ros2::utils::DataLogger</scope><name>getRosLogDirectory</name></member>
+      <member refid="classuav__ros2_1_1utils_1_1DataLogger_1a6d672d58ee7de6d83bfb5ba598be129e" prot="private" virt="non-virtual"><scope>uav_ros2::utils::DataLogger</scope><name>log_folder_</name></member>
+      <member refid="classuav__ros2_1_1utils_1_1DataLogger_1a6a1ee194e20402c098118fa33cd1e4ff" prot="public" virt="non-virtual"><scope>uav_ros2::utils::DataLogger</scope><name>logToFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

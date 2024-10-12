@@ -1,0 +1,26 @@
+.. _exhale_class_classPx4CommBase:
+
+Class Px4CommBase
+=================
+
+- Defined in :ref:`file_include_ros2_uav_px4_px4_interface_px4_comm_base.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Derived Type
+************
+
+- ``public ros2_uav::Px4Comm`` (:ref:`exhale_class_classros2__uav_1_1Px4Comm`)
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: Px4CommBase
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

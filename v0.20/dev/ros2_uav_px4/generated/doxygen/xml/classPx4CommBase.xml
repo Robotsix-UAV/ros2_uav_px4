@@ -1,0 +1,284 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classPx4CommBase" kind="class" language="C++" prot="public">
+    <compoundname>Px4CommBase</compoundname>
+    <derivedcompoundref refid="classros2__uav_1_1Px4Comm" prot="public" virt="non-virtual">ros2_uav::Px4Comm</derivedcompoundref>
+    <includes refid="px4__comm__base_8hpp" local="no">px4_comm_base.hpp</includes>
+    <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Node *</type>
+        <definition>rclcpp::Node* Px4CommBase::node_</definition>
+        <argsstring></argsstring>
+        <name>node_</name>
+        <qualifiedname>Px4CommBase::node_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The ROS2 node </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="76" column="17" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1ad687d1fb51b6b537f80d230c93961786" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; px4_msgs::msg::VehicleOdometry &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;px4_msgs::msg::VehicleOdometry&gt;::SharedPtr Px4CommBase::vehicle_odometry_sub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_odometry_sub</name>
+        <qualifiedname>Px4CommBase::vehicle_odometry_sub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for px4_msgs::msg::VehicleOdometry </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="79" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1a1ccfd0073fb868a3de45540f6a900858" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; px4_msgs::msg::VehicleStatus &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;px4_msgs::msg::VehicleStatus&gt;::SharedPtr Px4CommBase::vehicle_status_sub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_status_sub</name>
+        <qualifiedname>Px4CommBase::vehicle_status_sub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for px4_msgs::msg::VehicleStatus </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="88" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1a162b1bf4f8c067ac668e4e62ce0c185a" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; px4_msgs::msg::VehicleControlMode &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;px4_msgs::msg::VehicleControlMode&gt;::SharedPtr Px4CommBase::vehicle_control_mode_sub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_control_mode_sub</name>
+        <qualifiedname>Px4CommBase::vehicle_control_mode_sub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for px4_msgs::msg::VehicleControlMode </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="98" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1a96a8d73f9bf99ce394e5dcdc3b45ad07" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; px4_msgs::msg::OffboardControlMode &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;px4_msgs::msg::OffboardControlMode&gt;::SharedPtr Px4CommBase::offboard_control_mode_pub</definition>
+        <argsstring></argsstring>
+        <name>offboard_control_mode_pub</name>
+        <qualifiedname>Px4CommBase::offboard_control_mode_pub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Publisher for px4_msgs::msg::OffboardControlMode </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="109" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1a427514943074f90123885d747430ba72" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; px4_msgs::msg::VehicleAttitudeSetpoint &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;px4_msgs::msg::VehicleAttitudeSetpoint&gt;::SharedPtr Px4CommBase::vehicle_attitude_setpoint_pub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_attitude_setpoint_pub</name>
+        <qualifiedname>Px4CommBase::vehicle_attitude_setpoint_pub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Publisher for px4_msgs::msg::VehicleAttitudeSetpoint </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="112" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1aa378f85974009f08f28747d2abc39823" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; px4_msgs::msg::VehicleRatesSetpoint &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;px4_msgs::msg::VehicleRatesSetpoint&gt;::SharedPtr Px4CommBase::vehicle_rates_setpoint_pub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_rates_setpoint_pub</name>
+        <qualifiedname>Px4CommBase::vehicle_rates_setpoint_pub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Publisher for px4_msgs::msg::VehicleRatesSetpoint </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="115" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classPx4CommBase_1a33a9395e50beb3cdf38f4432da33ab99" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; px4_msgs::msg::VehicleCommand &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;px4_msgs::msg::VehicleCommand&gt;::SharedPtr Px4CommBase::vehicle_command_pub</definition>
+        <argsstring></argsstring>
+        <name>vehicle_command_pub</name>
+        <qualifiedname>Px4CommBase::vehicle_command_pub</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Publisher for px4_msgs::msg::VehicleCommand </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="118" column="5" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="118" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPx4CommBase_1a4b6a6f14d282043e2c463eb10f879948" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Px4CommBase::Px4CommBase</definition>
+        <argsstring>(rclcpp::Node *node)</argsstring>
+        <name>Px4CommBase</name>
+        <qualifiedname>Px4CommBase::Px4CommBase</qualifiedname>
+        <param>
+          <type>rclcpp::Node *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Constructor</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A pointer to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="42" column="12" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="42" bodyend="73"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classPx4CommBase_1a866209df54f57adda6d5525a2bd2b588" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Px4CommBase::onVehicleOdometry</definition>
+        <argsstring>(const px4_msgs::msg::VehicleOdometry::SharedPtr msg)</argsstring>
+        <name>onVehicleOdometry</name>
+        <qualifiedname>Px4CommBase::onVehicleOdometry</qualifiedname>
+        <reimplementedby refid="classros2__uav_1_1Px4Comm_1adb511e95cea7485fafa3bad4a63ae362">onVehicleOdometry</reimplementedby>
+        <param>
+          <type>const px4_msgs::msg::VehicleOdometry::SharedPtr</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>px4_msgs::msg::VehicleOdometry callback <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message from PX4 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="85" column="16" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="85" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="classPx4CommBase_1a47f326da05fcddf4bb95f85829a481a8" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Px4CommBase::onVehicleStatus</definition>
+        <argsstring>(const px4_msgs::msg::VehicleStatus::SharedPtr msg)</argsstring>
+        <name>onVehicleStatus</name>
+        <qualifiedname>Px4CommBase::onVehicleStatus</qualifiedname>
+        <reimplementedby refid="classros2__uav_1_1Px4Comm_1a1602c638a3b011d9a30d354149858f45">onVehicleStatus</reimplementedby>
+        <param>
+          <type>const px4_msgs::msg::VehicleStatus::SharedPtr</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>px4_msgs::msg::VehicleStatus callback <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message from PX4 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="94" column="16" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classPx4CommBase_1ab00a775e5e564fca0abc6d68187f262a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void Px4CommBase::onVehicleControlMode</definition>
+        <argsstring>(const px4_msgs::msg::VehicleControlMode::SharedPtr msg)</argsstring>
+        <name>onVehicleControlMode</name>
+        <qualifiedname>Px4CommBase::onVehicleControlMode</qualifiedname>
+        <reimplementedby refid="classros2__uav_1_1Px4Comm_1ae40609909d18b528eec1342b0285021c">onVehicleControlMode</reimplementedby>
+        <param>
+          <type>const px4_msgs::msg::VehicleControlMode::SharedPtr</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>px4_msgs::msg::VehicleControlMode callback <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message from PX4 </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="104" column="16" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="104" bodyend="105"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) Base class for communication with a PX4 FCU. Generated automatically from the dd_topics.yaml file. </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Px4CommBase</label>
+        <link refid="classPx4CommBase"/>
+      </node>
+      <node id="2">
+        <label>ros2_uav::Px4Comm</label>
+        <link refid="classros2__uav_1_1Px4Comm"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" line="34" column="1" bodyfile="include/ros2_uav_px4/px4_interface/px4_comm_base.hpp" bodystart="35" bodyend="119"/>
+    <listofallmembers>
+      <member refid="classPx4CommBase_1a88fc385bc1b173df113c18b8f76a3998" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>node_</name></member>
+      <member refid="classPx4CommBase_1a96a8d73f9bf99ce394e5dcdc3b45ad07" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>offboard_control_mode_pub</name></member>
+      <member refid="classPx4CommBase_1ab00a775e5e564fca0abc6d68187f262a" prot="protected" virt="virtual"><scope>Px4CommBase</scope><name>onVehicleControlMode</name></member>
+      <member refid="classPx4CommBase_1a866209df54f57adda6d5525a2bd2b588" prot="protected" virt="virtual"><scope>Px4CommBase</scope><name>onVehicleOdometry</name></member>
+      <member refid="classPx4CommBase_1a47f326da05fcddf4bb95f85829a481a8" prot="protected" virt="virtual"><scope>Px4CommBase</scope><name>onVehicleStatus</name></member>
+      <member refid="classPx4CommBase_1a4b6a6f14d282043e2c463eb10f879948" prot="public" virt="non-virtual"><scope>Px4CommBase</scope><name>Px4CommBase</name></member>
+      <member refid="classPx4CommBase_1a427514943074f90123885d747430ba72" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_attitude_setpoint_pub</name></member>
+      <member refid="classPx4CommBase_1a33a9395e50beb3cdf38f4432da33ab99" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_command_pub</name></member>
+      <member refid="classPx4CommBase_1a162b1bf4f8c067ac668e4e62ce0c185a" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_control_mode_sub</name></member>
+      <member refid="classPx4CommBase_1ad687d1fb51b6b537f80d230c93961786" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_odometry_sub</name></member>
+      <member refid="classPx4CommBase_1aa378f85974009f08f28747d2abc39823" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_rates_setpoint_pub</name></member>
+      <member refid="classPx4CommBase_1a1ccfd0073fb868a3de45540f6a900858" prot="protected" virt="non-virtual"><scope>Px4CommBase</scope><name>vehicle_status_sub</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

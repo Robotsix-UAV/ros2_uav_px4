@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1utils_1_1TimestampValidator" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::utils::TimestampValidator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::logger::LogTagHolder</basecompoundref>
+    <includes refid="timestamp__validator_8hpp" local="no">timestamp_validator.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1a5f55a0af6ab8804dc1c0b4a2c1d31e4a" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t ros2_uav::utils::TimestampValidator::previous_timestamp_ns_</definition>
+        <argsstring></argsstring>
+        <name>previous_timestamp_ns_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::previous_timestamp_ns_</qualifiedname>
+        <briefdescription>
+<para>Previous valid timestamp in nanoseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="123" column="11" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1a9402be4c7fa1daf6a2ec239da49f70be" prot="private" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t ros2_uav::utils::TimestampValidator::tolerance_ns_</definition>
+        <argsstring></argsstring>
+        <name>tolerance_ns_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::tolerance_ns_</qualifiedname>
+        <briefdescription>
+<para>Acceptable difference in nanoseconds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="124" column="11" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1a2a6a72a79ab2b269147a0238253a6b52" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ros2_uav::utils::TimestampValidator::outlier_count_</definition>
+        <argsstring></argsstring>
+        <name>outlier_count_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::outlier_count_</qualifiedname>
+        <briefdescription>
+<para>Number of consecutive outliers. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="125" column="7" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1aa60fc1e85c8e2a375b2e0e5b3a91d9c1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ros2_uav::utils::TimestampValidator::max_outliers_</definition>
+        <argsstring></argsstring>
+        <name>max_outliers_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::max_outliers_</qualifiedname>
+        <briefdescription>
+<para>Max allowed consecutive outliers before reset. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="126" column="7" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1a1934137171b276f80d0ee328406773e8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ros2_uav::utils::TimestampValidator::is_first_timestamp_</definition>
+        <argsstring></argsstring>
+        <name>is_first_timestamp_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::is_first_timestamp_</qualifiedname>
+        <briefdescription>
+<para>Flag to check if first timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="127" column="8" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1TimestampValidator_1a1836840c45902aafa5956eb9cb90aad9" prot="private" static="no" mutable="no">
+        <type>std::chrono::steady_clock::time_point</type>
+        <definition>std::chrono::steady_clock::time_point ros2_uav::utils::TimestampValidator::previous_time_point_</definition>
+        <argsstring></argsstring>
+        <name>previous_time_point_</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::previous_time_point_</qualifiedname>
+        <briefdescription>
+<para>Time point of previous timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="128" column="41" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="128" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1TimestampValidator_1a045f775c1390e7aeac565f37b4dd9e8f" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::utils::TimestampValidator::TimestampValidator</definition>
+        <argsstring>(int64_t tolerance_ns=1000000000, int max_outliers=10)</argsstring>
+        <name>TimestampValidator</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::TimestampValidator</qualifiedname>
+        <param>
+          <type>int64_t</type>
+          <declname>tolerance_ns</declname>
+          <defval>1000000000</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_outliers</declname>
+          <defval>10</defval>
+        </param>
+        <briefdescription>
+<para>Construct a new Timestamp Validator object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tolerance_ns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Acceptable difference in nanoseconds </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_outliers</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Max allowed consecutive outliers before reset </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="43" column="12" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="43" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1TimestampValidator_1a7ca653a3e0c624bf0256fcea3bc03fac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ros2_uav::utils::TimestampValidator::isValidTimestamp</definition>
+        <argsstring>(int64_t timestamp_ns)</argsstring>
+        <name>isValidTimestamp</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::isValidTimestamp</qualifiedname>
+        <param>
+          <type>int64_t</type>
+          <declname>timestamp_ns</declname>
+        </param>
+        <briefdescription>
+<para>Method to validate a timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timestamp_ns</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Timestamp in nanoseconds </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if timestamp is valid, false otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="60" column="8" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="60" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1TimestampValidator_1a43296d11d47d20575eb92bee09205674" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::utils::TimestampValidator::resetReference</definition>
+        <argsstring>()</argsstring>
+        <name>resetReference</name>
+        <qualifiedname>ros2_uav::utils::TimestampValidator::resetReference</qualifiedname>
+        <briefdescription>
+<para>Method to reset the reference timestamp. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="114" column="8" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="114" bodyend="120"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class to validate timestamps based on monotonicity and tolerance. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ros2_uav::utils::TimestampValidator</label>
+        <link refid="classros2__uav_1_1utils_1_1TimestampValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>uav_cpp::logger::LogTagHolder</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ros2_uav::utils::TimestampValidator</label>
+        <link refid="classros2__uav_1_1utils_1_1TimestampValidator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>uav_cpp::logger::LogTagHolder</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/utils/timestamp_validator.hpp" line="34" column="1" bodyfile="include/ros2_uav_px4/utils/timestamp_validator.hpp" bodystart="35" bodyend="130"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a1934137171b276f80d0ee328406773e8" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>is_first_timestamp_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a7ca653a3e0c624bf0256fcea3bc03fac" prot="public" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>isValidTimestamp</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1aa60fc1e85c8e2a375b2e0e5b3a91d9c1" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>max_outliers_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a2a6a72a79ab2b269147a0238253a6b52" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>outlier_count_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a1836840c45902aafa5956eb9cb90aad9" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>previous_time_point_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a5f55a0af6ab8804dc1c0b4a2c1d31e4a" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>previous_timestamp_ns_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a43296d11d47d20575eb92bee09205674" prot="public" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>resetReference</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a045f775c1390e7aeac565f37b4dd9e8f" prot="public" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>TimestampValidator</name></member>
+      <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a9402be4c7fa1daf6a2ec239da49f70be" prot="private" virt="non-virtual"><scope>ros2_uav::utils::TimestampValidator</scope><name>tolerance_ns_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

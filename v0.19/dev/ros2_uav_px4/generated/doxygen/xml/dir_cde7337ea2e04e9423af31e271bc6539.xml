@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_cde7337ea2e04e9423af31e271bc6539" kind="dir">
+    <compoundname>include/ros2_uav_px4/utils</compoundname>
+    <innerfile refid="debug_8hpp">debug.hpp</innerfile>
+    <innerfile refid="derivative__filter_8hpp">derivative_filter.hpp</innerfile>
+    <innerfile refid="frame__conversions_8hpp">frame_conversions.hpp</innerfile>
+    <innerfile refid="origin__reset_8hpp">origin_reset.hpp</innerfile>
+    <innerfile refid="timestamp__validator_8hpp">timestamp_validator.hpp</innerfile>
+    <innerfile refid="type__conversions_8hpp">type_conversions.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/"/>
+  </compounddef>
+</doxygen>

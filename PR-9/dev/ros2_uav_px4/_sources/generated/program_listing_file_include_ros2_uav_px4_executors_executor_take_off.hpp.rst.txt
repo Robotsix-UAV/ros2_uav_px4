@@ -1,0 +1,110 @@
+
+.. _program_listing_file_include_ros2_uav_px4_executors_executor_take_off.hpp:
+
+Program Listing for File executor_take_off.hpp
+==============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ros2_uav_px4_executors_executor_take_off.hpp>` (``include/ros2_uav_px4/executors/executor_take_off.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Copyright 2024 The Technology Innovation Institute (TII)
+   //
+   // Licensed under the Apache License, Version 2.0 (the "License");
+   // you may not use this file except in compliance with the License.
+   // You may obtain a copy of the License at
+   //
+   //     http://www.apache.org/licenses/LICENSE-2.0
+   //
+   // Unless required by applicable law or agreed to in writing, software
+   // distributed under the License is distributed on an "AS IS" BASIS,
+   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   // See the License for the specific language governing permissions and
+   // limitations under the License.
+   
+   #pragma once
+   
+   #include <px4_ros2/components/mode_executor.hpp>
+   #include <uav_cpp/utils/smart_pointer_base.hpp>
+   #include <uav_cpp/parameters/param_container.hpp>
+   
+   namespace ros2_uav::executors
+   {
+   class ExecutorTakeOff : public px4_ros2::ModeExecutorBase,
+     public uav_cpp::parameters::ParamContainer,
+     public uav_cpp::utils::SmartPointerBase<ExecutorTakeOff>,
+     public uav_cpp::logger::LogTagHolder
+   {
+   public:
+     enum class State
+     {
+       ARM,        
+       TAKEOFF,    
+       OWNED_MODE  
+     };
+   
+     ExecutorTakeOff(rclcpp::Node & node, px4_ros2::ModeBase & owned_mode)
+     : px4_ros2::ModeExecutorBase(node,
+         px4_ros2::ModeExecutorBase::Settings{Settings::Activation::ActivateAlways},
+         owned_mode),
+       uav_cpp::logger::LogTagHolder("Executor TakeOff")
+     {
+       addRequiredParameter<double>("takeoff.altitude");
+     }
+   
+     bool isCompleted() const {return current_state_ == State::OWNED_MODE;}
+   
+   private:
+     void onActivate() override
+     {
+       runState(State::ARM);
+     }
+   
+     void onDeactivate([[maybe_unused]] DeactivateReason reason) override
+     {
+     }
+   
+     void runState(State state)
+     {
+       current_state_ = state;
+       switch (state) {
+         case State::ARM:
+           if (!isArmed()) {
+             UAVCPP_INFO_TAG(this, "Arming");
+           }
+           arm(
+             [this](px4_ros2::Result result)
+             {
+               if (result == px4_ros2::Result::Success) {
+                 runState(State::TAKEOFF);
+               }
+             });
+           break;
+         case State::TAKEOFF:
+           UAVCPP_INFO_TAG(this, "Taking off");
+           double altitude;
+           getParameter("takeoff.altitude", altitude);
+           takeoff(
+             [this](px4_ros2::Result result)
+             {
+               if (result == px4_ros2::Result::Success) {
+                 runState(State::OWNED_MODE);
+               }
+             },
+             altitude, 0);
+           break;
+   
+         case State::OWNED_MODE:
+           UAVCPP_INFO_TAG(this, "Owned mode");
+           scheduleMode(
+             ownedMode().id(), [this](px4_ros2::Result) {return;});
+           break;
+       }
+     }
+   
+     State current_state_{State::ARM};
+   };
+   
+   }  // namespace ros2_uav::executors

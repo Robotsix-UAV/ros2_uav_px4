@@ -1,0 +1,14 @@
+.. _exhale_variable_mode__interface_8hpp_1a58ba8f69cc3c23a4789fb96256960ed8:
+
+Variable ros2_uav::modes::DerivedFromUavCppMode
+===============================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_mode_interface_mode_interface.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ros2_uav::modes::DerivedFromUavCppMode
+   :project: ros2_uav_px4 Doxygen Project

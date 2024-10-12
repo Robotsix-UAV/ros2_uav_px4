@@ -1,0 +1,260 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.11.0" xml:lang="en-US">
+  <compound refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" kind="class"><name>ros2_uav::modes::AttitudeThrustMode</name>
+    <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a38de5bea8a4611255ed1d3fa67ea8c88" kind="variable"><name>parameters_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a0bf0316efab56397241895ef5358e6b0" kind="variable"><name>attitude_setpoint_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1a93baecac6fdc6436b7c4e2ac1a799d69" kind="function"><name>AttitudeThrustMode</name></member>
+    <member refid="classros2__uav_1_1modes_1_1AttitudeThrustMode_1aa2046b2458904d67397aa1f183488cc6" kind="function"><name>updateSetpoint</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1utils_1_1ButterworthFilter" kind="class"><name>ros2_uav::utils::ButterworthFilter</name>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1aa2dce702384b99c277081c16652caa24" kind="variable"><name>cutoff_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a776bfdcca5484e1693aa0ef437607a9c" kind="variable"><name>fs_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a9096fb9a6c7e58ffb512b660b726e9d2" kind="variable"><name>a0</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1afd4305c47032b3aff6b3c61ab3870270" kind="variable"><name>a1</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1ae5305178c6bebf72b80fff765d490890" kind="variable"><name>a2</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1aa01be734179b2012fb053c210e4b1a7d" kind="variable"><name>b1</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a1fbf19ba7d0e8c1f821d0d96968389ab" kind="variable"><name>b2</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a55f09ca3ce85f7e5f2b17c4689e8f6a6" kind="function"><name>ButterworthFilter</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a9ef948e62081f43383cba96edfd71e81" kind="function"><name>filtfilt</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1abc1b53ed41c896f3c71f2ccfe854a98e" kind="function"><name>filter</name></member>
+    <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1abf405bc5101bf7e001f46b73b6271c16" kind="function"><name>computeCoefficients</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1utils_1_1DerivativeFilter" kind="class"><name>ros2_uav::utils::DerivativeFilter</name>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a8b0686bc150bf6f846dd771347956edb" kind="variable"><name>filter_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a498009d3e93a818e22d0d6da01080ae4" kind="variable"><name>fs_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a7e27e70c5bb62d4728951b6062fcfa6f" kind="variable"><name>data_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a3eaba73d7bbc4c0fa5136adc7a37071f" kind="function"><name>DerivativeFilter</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a12c5ef16de855ec78aa961c90cd4fb2e" kind="function"><name>addData</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a1de6e075d6368a610c7e73d59d92b27d" kind="function"><name>computeDerivative</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a1431022e3a75df25c69fc99d213af78c" kind="function"><name>process</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter_1a125806fe3d9f1b6d59f467f1e163df06" kind="function"><name>process</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1utils_1_1DerivativeFilter3D" kind="class"><name>ros2_uav::utils::DerivativeFilter3D</name>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1afee6125d0af9beb73731c9f200b1bd95" kind="variable"><name>filter_x_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1ac4de7eac82fcfa3a27bc989ae17b8432" kind="variable"><name>filter_y_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1a9054a5109202bd9492716bc5e63eca74" kind="variable"><name>filter_z_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1a31519adddf6d74782dd0c90d1bc6150c" kind="variable"><name>fs_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1aac919e5d6bc2800f0810625805fddefb" kind="function"><name>DerivativeFilter3D</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1a84e1481d339ffa5728671534464f70bf" kind="function"><name>addData</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1a556eae6ee057a5f7d5bd8b5711489d6c" kind="function"><name>process</name></member>
+    <member refid="classros2__uav_1_1utils_1_1DerivativeFilter3D_1a5957b9e8efd43add779f537b0bac76ca" kind="function"><name>process</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1executors_1_1ExecutorArm" kind="class"><name>ros2_uav::executors::ExecutorArm</name>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5" kind="enum"><name>State</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5a47f45e65244c17ec9fa8771a5c6d60e1" kind="enumvalue"><name>ARM</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a7abe1b3ae997d55b267ddfd06ff5f6d5a4dab4c093bafb64e050a9576c510adac" kind="enumvalue"><name>OWNED_MODE</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a9a5fa49cd6917e908af3dc06bf2a5a19" kind="variable"><name>current_state_</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a2d60ee77878f8f1070799ba58cf58f04" kind="function"><name>ExecutorArm</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a6eb4694d86da71c7bdc8c59f4b62cc60" kind="function"><name>isCompleted</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1a55f72c653f1e62a2abdb770a589beaa3" kind="function"><name>onActivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1ab1b1330a891d62aba05e795ac3300ac4" kind="function"><name>onDeactivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorArm_1aa392e6b97a26a1e2bf36469a63d147e5" kind="function"><name>runState</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1executors_1_1ExecutorLand" kind="class"><name>ros2_uav::executors::ExecutorLand</name>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37" kind="enum"><name>State</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37a479a809c0b6eaaefd3b1df16f976df06" kind="enumvalue"><name>LAND</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37a4dab4c093bafb64e050a9576c510adac" kind="enumvalue"><name>OWNED_MODE</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1aaff92d05e8a8ce1558bae8532e61d6e4" kind="variable"><name>current_state_</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a0c1439c91ef0eae3e4dffb59ba4830b4" kind="function"><name>ExecutorLand</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a4768e3423ba524cd3cb12ffddf259ee5" kind="function"><name>isCompleted</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a03dfc3fc57674e600a69a9d31a79b2c1" kind="function"><name>onActivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a5c52315082e5e60d56793f5ba427b045" kind="function"><name>onDeactivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a804026ab1738e2ae010aaae33abb05cc" kind="function"><name>runState</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1executors_1_1ExecutorTakeOff" kind="class"><name>ros2_uav::executors::ExecutorTakeOff</name>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63" kind="enum"><name>State</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a47f45e65244c17ec9fa8771a5c6d60e1" kind="enumvalue"><name>ARM</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a8fabc74a4ed0781d663336cbf8c9c53d" kind="enumvalue"><name>TAKEOFF</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1ac05ed663a3acc3417532169516af7f63a4dab4c093bafb64e050a9576c510adac" kind="enumvalue"><name>OWNED_MODE</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1abda30e988928fb415dcb0d1cdab556c1" kind="variable"><name>current_state_</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1aab81ce5417ceb0107b2bf987a3e62c70" kind="variable"><name>origin_reset_</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a3c4f8b8deb1a4cb4db789259282bea4c" kind="function"><name>ExecutorTakeOff</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a531e4b7841a779697d392aeee574db0a" kind="function"><name>isCompleted</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a7943df4bccf2bc8d6f91a015341e92db" kind="function"><name>onActivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1adf6e5bd91e2079a5a9755b201aec77f9" kind="function"><name>onDeactivate</name></member>
+    <member refid="classros2__uav_1_1executors_1_1ExecutorTakeOff_1a0df3ec05fc67089936f4556e244d1c7e" kind="function"><name>runState</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1ModeInterface" kind="class"><name>ros2_uav::modes::ModeInterface</name>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1afac5611984bf54d4ff95cb6c46d32962" kind="variable"><name>node_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a14f4b44257f4641c81679c07ee1e951b" kind="variable"><name>pipeline_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aa86ddae38f360ec1b71523b121b862ed" kind="variable"><name>timestamp_validator_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ab19dbe87f70033ab86467374620bed85" kind="variable"><name>mode_status_timer_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5b1287e74568b72963285b3566f65b83" kind="variable"><name>disturbance_sub_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1af0e561d7af2a718c26971ca16cd459bb" kind="variable"><name>vehicle_local_position_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1b7fae8b6ad3c3924e56221e61248921" kind="variable"><name>vehicle_angular_velocity_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a482fbd9034a8b1ae598413ad1cb5571c" kind="variable"><name>vehicle_attitude_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a2b7891d1f6741b5332eb938b0cbf9686" kind="function"><name>ModeInterface</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a29f35537614ae21f3876cfa63fb823d5" kind="function"><name>createMode</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a5544604a61a1c7fa0176550d304e09b7" kind="function"><name>setSetpoint</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a6f31522ed70a070a79ed5711aaaea63b" kind="function"><name>isIdle</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aacf3d7664d0e2a41d1bfeabc39d3081c" kind="function"><name>onActivate</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a849397823fa6776114e28be4c8244b86" kind="function"><name>onDeactivate</name></member>
+    <member refid="classros2__uav_1_1modes_1_1ModeInterface_1aee3170d2ed0452d08f9af0afbc0e4f48" kind="function"><name>odometryUpdate</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1NlmpcPosition" kind="class"><name>ros2_uav::modes::NlmpcPosition</name>
+    <member refid="classros2__uav_1_1modes_1_1NlmpcPosition_1ae661e4d02ec1e21f4f8a53ca7fcd76d6" kind="function"><name>NlmpcPosition</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1NlmpcWaypoints" kind="class"><name>ros2_uav::modes::NlmpcWaypoints</name>
+    <member refid="classros2__uav_1_1modes_1_1NlmpcWaypoints_1a4e4a90da12be4adcd12ec202424f2875" kind="function"><name>NlmpcWaypoints</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1utils_1_1OriginReset" kind="class"><name>ros2_uav::utils::OriginReset</name>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1ab64f8094a309cabe07da4293887f2c39" kind="variable"><name>target_system_id_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a4a32bce6c9f455107b0c33bafdd827e6" kind="variable"><name>vehicle_command_pub</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a983988441cea9a0ad2fc20dfa32a2e14" kind="variable"><name>vehicle_global_position_sub</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a373687943bafda48b82d5d95f1b77bc2" kind="variable"><name>node_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a7015ed10caf6c4b0e38efd368e153608" kind="variable"><name>global_position_received</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1acc3703b0dc7e40ba9adaae8a83afc915" kind="variable"><name>current_lat</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1ae9e0faaef2cc706e2636c1a2596d2d6e" kind="variable"><name>current_lon</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1afb752dac0e8bb2f3366dd975512a7e41" kind="variable"><name>current_alt</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a5e6168a014733c9c7fa9298c34c7f2ff" kind="function"><name>OriginReset</name></member>
+    <member refid="classros2__uav_1_1utils_1_1OriginReset_1a3f4b94d6d911461ac30b7f7c6e29a9f4" kind="function"><name>resetOrigin</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1Position" kind="class"><name>ros2_uav::modes::Position</name>
+    <member refid="classros2__uav_1_1modes_1_1Position_1ad4ddc4dc2f6de8b2fd9f15015338c2c4" kind="function"><name>Position</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1RatesThrustMode" kind="class"><name>ros2_uav::modes::RatesThrustMode</name>
+    <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1af8e5d9a2e42b0f66900b48d78a80ca1e" kind="variable"><name>parameters_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1a035306bc59da4657114c84df4e492084" kind="variable"><name>time_init_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1a63479e11c9a3b3779f07ddc0983dbfe0" kind="variable"><name>rates_setpoint_</name></member>
+    <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1af179021df07a41df773c83389b992473" kind="function"><name>RatesThrustMode</name></member>
+    <member refid="classros2__uav_1_1modes_1_1RatesThrustMode_1afaaab1c2ccd23aee03705abacaac8ba9" kind="function"><name>updateSetpoint</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1modes_1_1Spin" kind="class"><name>ros2_uav::modes::Spin</name>
+    <member refid="classros2__uav_1_1modes_1_1Spin_1abf405c412377e80283738fd23d4167e7" kind="function"><name>Spin</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1identification_1_1ThrustMatcher" kind="class"><name>ros2_uav::identification::ThrustMatcher</name>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252d" kind="enum"><name>Status</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252dafaee4ca3c30ee18148ce3ada37466498" kind="enumvalue"><name>INIT</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252da279d7651aba75af46949322315dd5045" kind="enumvalue"><name>COLLECTING</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252da9c9cae4cac5bf329ea389728514183cc" kind="enumvalue"><name>WAITING_DISARM</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252dadc200c38d359b36bd5853f53f130bc42" kind="enumvalue"><name>MATCHING</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae2ac50e5b30a6fa8235933996f4f7f4e" kind="variable"><name>status_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a9a5594838a4b969a7a8673bb88e4d355" kind="variable"><name>sampling_time_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4d43cb01259ed55547e27fe2f3248249" kind="variable"><name>trigger_altitude_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae5ec077f44e6cd175d995b42cc950610" kind="variable"><name>trigger_validation_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e9e8f4fbdf5ae3fba4b0bf3ba8c1fc8" kind="variable"><name>trigger_counter_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1af367af1a01add86ecae0a7f4dd7f706b" kind="variable"><name>actuators_suscriber_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1afe191dcd814df9d93cb5e8fa3b86abc7" kind="variable"><name>odometry_subscriber_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a187eab3efbd9dba30e95e9c6c938b5ea" kind="variable"><name>control_mode_subscriber_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae27229feee9e9d826815fe020a90ce4d" kind="variable"><name>acceleration_subscriber_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4f050fae9ec59c7b60b99bdf5938ed07" kind="variable"><name>model_matcher_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1aad167d3a4a26466d88d9ecd7c871e13c" kind="variable"><name>thrusts_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ab8c2486776f816911fa9bdfa73610c80" kind="variable"><name>odometries_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e5cf16a769ad86d60851f7218000a0d" kind="variable"><name>accelerations_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a8063d26c62f13d49ec9b2c8e8dbabff8" kind="variable"><name>actuator_timestamps_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1adc9f060d8ca508e5b445a4a8ac8a435f" kind="variable"><name>actuators_</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a62d10789f5f479a02ea9c889b824c2a8" kind="function"><name>ThrustMatcher</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5701fab1f4772ee23e75ebf3f09690b4" kind="function"><name>actuatorMotorsCallback</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a8c1d17cadbb1f89f99b20438651ce124" kind="function"><name>odometryCallback</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a31109ee90122d807466513dfb45f94fa" kind="function"><name>accelerationCallback</name></member>
+    <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a89c3fa8526215afb53f62c3d2d87e67b" kind="function"><name>controlModeCallback</name></member>
+  </compound>
+  <compound refid="classros2__uav_1_1utils_1_1TimestampValidator" kind="class"><name>ros2_uav::utils::TimestampValidator</name>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a5f55a0af6ab8804dc1c0b4a2c1d31e4a" kind="variable"><name>previous_timestamp_ns_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a9402be4c7fa1daf6a2ec239da49f70be" kind="variable"><name>tolerance_ns_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a2a6a72a79ab2b269147a0238253a6b52" kind="variable"><name>outlier_count_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1aa60fc1e85c8e2a375b2e0e5b3a91d9c1" kind="variable"><name>max_outliers_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a1934137171b276f80d0ee328406773e8" kind="variable"><name>is_first_timestamp_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a1836840c45902aafa5956eb9cb90aad9" kind="variable"><name>previous_time_point_</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a045f775c1390e7aeac565f37b4dd9e8f" kind="function"><name>TimestampValidator</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a7ca653a3e0c624bf0256fcea3bc03fac" kind="function"><name>isValidTimestamp</name></member>
+    <member refid="classros2__uav_1_1utils_1_1TimestampValidator_1a43296d11d47d20575eb92bee09205674" kind="function"><name>resetReference</name></member>
+  </compound>
+  <compound refid="conceptros2__uav_1_1modes_1_1DerivedFromAttitudeThrustMode" kind="concept"><name>ros2_uav::modes::DerivedFromAttitudeThrustMode</name>
+  </compound>
+  <compound refid="conceptros2__uav_1_1modes_1_1DerivedFromRatesThrustMode" kind="concept"><name>ros2_uav::modes::DerivedFromRatesThrustMode</name>
+  </compound>
+  <compound refid="conceptros2__uav_1_1modes_1_1DerivedFromUavCppPipeline" kind="concept"><name>ros2_uav::modes::DerivedFromUavCppPipeline</name>
+  </compound>
+  <compound refid="namespacepx4__ros2" kind="namespace"><name>px4_ros2</name>
+  </compound>
+  <compound refid="namespacerclcpp" kind="namespace"><name>rclcpp</name>
+  </compound>
+  <compound refid="namespaceros2__uav" kind="namespace"><name>ros2_uav</name>
+  </compound>
+  <compound refid="namespaceros2__uav_1_1debug" kind="namespace"><name>ros2_uav::debug</name>
+    <member refid="namespaceros2__uav_1_1debug_1ad005802541bb1d2749d40c66908065f3" kind="function"><name>moduleLoop</name></member>
+  </compound>
+  <compound refid="namespaceros2__uav_1_1executors" kind="namespace"><name>ros2_uav::executors</name>
+  </compound>
+  <compound refid="namespaceros2__uav_1_1identification" kind="namespace"><name>ros2_uav::identification</name>
+    <member refid="namespaceros2__uav_1_1identification_1acbe58c06183b4ae76c3b9023b19853ea" kind="typedef"><name>AttitudeThrustScaler</name></member>
+  </compound>
+  <compound refid="namespaceros2__uav_1_1modes" kind="namespace"><name>ros2_uav::modes</name>
+  </compound>
+  <compound refid="namespaceros2__uav_1_1utils" kind="namespace"><name>ros2_uav::utils</name>
+    <member refid="namespaceros2__uav_1_1utils_1ad90bb9a90751f2b4183b96ac49ed1cde" kind="function"><name>NedToNwu</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1ae330c3a0a3f3790d30c7bfabe8a11e58" kind="function"><name>NwuToNed</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a80a2772f387bff855c65e9dddcc09681" kind="function"><name>NedToNwu</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a216f8146f115c35ef9a4db81fa297f84" kind="function"><name>NwuToNed</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a32831ac19257fcc5c5cd129524a45141" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a52cc96bc346c4a2cf503457c57f5f423" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1ae8c420cd2484b81f1b4a8606d189a623" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a9314aef9dbf808b65c89dfa8e34d442d" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d" kind="function"><name>convert</name></member>
+    <member refid="namespaceros2__uav_1_1utils_1a85018a9017acabe67a1ee2b87888d3f0" kind="function"><name>convert</name></member>
+  </compound>
+  <compound refid="namespaceuav__cpp" kind="namespace"><name>uav_cpp</name>
+  </compound>
+  <compound refid="namespaceuav__cpp_1_1logger" kind="namespace"><name>uav_cpp::logger</name>
+  </compound>
+  <compound refid="namespaceuav__cpp_1_1parameters" kind="namespace"><name>uav_cpp::parameters</name>
+  </compound>
+  <compound refid="namespaceuav__cpp_1_1utils" kind="namespace"><name>uav_cpp::utils</name>
+  </compound>
+  <compound refid="executor__arm_8hpp" kind="file"><name>executor_arm.hpp</name>
+  </compound>
+  <compound refid="executor__land_8hpp" kind="file"><name>executor_land.hpp</name>
+  </compound>
+  <compound refid="executor__take__off_8hpp" kind="file"><name>executor_take_off.hpp</name>
+  </compound>
+  <compound refid="mode__interface_8hpp" kind="file"><name>mode_interface.hpp</name>
+  </compound>
+  <compound refid="thrust__matcher__node_8hpp" kind="file"><name>thrust_matcher_node.hpp</name>
+  </compound>
+  <compound refid="attitude__thrust_8hpp" kind="file"><name>attitude_thrust.hpp</name>
+  </compound>
+  <compound refid="attitude__thrust__impl_8hpp" kind="file"><name>attitude_thrust_impl.hpp</name>
+  </compound>
+  <compound refid="nlmpc__position_8hpp" kind="file"><name>nlmpc_position.hpp</name>
+  </compound>
+  <compound refid="nlmpc__waypoints_8hpp" kind="file"><name>nlmpc_waypoints.hpp</name>
+  </compound>
+  <compound refid="position_8hpp" kind="file"><name>position.hpp</name>
+  </compound>
+  <compound refid="rates__thrust_8hpp" kind="file"><name>rates_thrust.hpp</name>
+  </compound>
+  <compound refid="rates__thrust__impl_8hpp" kind="file"><name>rates_thrust_impl.hpp</name>
+  </compound>
+  <compound refid="spin_8hpp" kind="file"><name>spin.hpp</name>
+  </compound>
+  <compound refid="debug_8hpp" kind="file"><name>debug.hpp</name>
+  </compound>
+  <compound refid="derivative__filter_8hpp" kind="file"><name>derivative_filter.hpp</name>
+  </compound>
+  <compound refid="frame__conversions_8hpp" kind="file"><name>frame_conversions.hpp</name>
+  </compound>
+  <compound refid="origin__reset_8hpp" kind="file"><name>origin_reset.hpp</name>
+  </compound>
+  <compound refid="timestamp__validator_8hpp" kind="file"><name>timestamp_validator.hpp</name>
+  </compound>
+  <compound refid="type__conversions_8hpp" kind="file"><name>type_conversions.hpp</name>
+  </compound>
+  <compound refid="dir_f850a7143d9119b14f4a4a38dcd1d803" kind="dir"><name>include/ros2_uav_px4/executors</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+  <compound refid="dir_0f8514f967a4b1f3198411ad6387afd9" kind="dir"><name>include/ros2_uav_px4/mode_interface</name>
+  </compound>
+  <compound refid="dir_44b7d123c14c65d5941bf0d439dbc23d" kind="dir"><name>include/ros2_uav_px4/model_identification</name>
+  </compound>
+  <compound refid="dir_e1109f9b6c06b1b424025803a8ac7738" kind="dir"><name>include/ros2_uav_px4/modes</name>
+  </compound>
+  <compound refid="dir_406e360d32dfcffc94588829b5d31217" kind="dir"><name>include/ros2_uav_px4</name>
+  </compound>
+  <compound refid="dir_cde7337ea2e04e9423af31e271bc6539" kind="dir"><name>include/ros2_uav_px4/utils</name>
+  </compound>
+</doxygenindex>

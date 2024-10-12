@@ -1,0 +1,28 @@
+.. _exhale_class_classros2__uav_1_1identification_1_1ThrustMatcher:
+
+Class ThrustMatcher
+===================
+
+- Defined in :ref:`file_include_ros2_uav_px4_model_identification_thrust_matcher_node.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Types
+**********
+
+- ``public rclcpp::Node``
+- ``public uav_cpp::parameters::ParamContainer``
+- ``public LogTagHolder``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: ros2_uav::identification::ThrustMatcher
+   :project: ros2_uav_px4 Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

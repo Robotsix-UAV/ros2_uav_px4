@@ -1,0 +1,15 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="475,71,688,98"/>
+<area shape="rect" id="node2" href="$classros2__uav_1_1executors_1_1ExecutorArm.html" title="Executor class to manage arming and mode execution for UAVs." alt="" coords="769,115,919,156"/>
+<area shape="rect" id="node3" href="$classros2__uav_1_1executors_1_1ExecutorTakeOff.html" title="Executor class to manage takeoff and mode execution for UAVs." alt="" coords="769,49,919,91"/>
+<area shape="rect" id="node4" title=" " alt="" coords="502,5,661,47"/>
+<area shape="rect" id="node5" title=" " alt="" coords="463,122,700,149"/>
+<area shape="rect" id="node6" href="$classros2__uav_1_1modes_1_1Position.html" title="Position mode class for UAV control, wrapping the uavcpp::modes::Se3Position class." alt="" coords="748,185,940,211"/>
+<area shape="rect" id="node7" href="$classros2__uav_1_1modes_1_1Spin.html" title="Spin mode class for UAV control, wrapping the uavcpp::modes::Spin class." alt="" coords="760,250,928,277"/>
+<area shape="rect" id="node8" title=" " alt="" coords="23,242,114,269"/>
+<area shape="rect" id="node9" href="$classros2__uav_1_1modes_1_1ModeInterface.html" title="Interface class for UAV modes." alt="" coords="180,260,415,301"/>
+<area shape="rect" id="node10" href="$classros2__uav_1_1modes_1_1AttitudeThrustMode.html" title=" " alt="" coords="471,173,691,229"/>
+<area shape="rect" id="node11" href="$classros2__uav_1_1modes_1_1AttitudeThrustMode.html" title=" " alt="" coords="471,253,691,309"/>
+<area shape="rect" id="node12" href="$classros2__uav_1_1modes_1_1AttitudeThrustMode.html" title="A mode class that uses attitude and thrust control." alt="" coords="485,333,677,375"/>
+<area shape="rect" id="node13" title=" " alt="" coords="5,293,132,319"/>
+</map>

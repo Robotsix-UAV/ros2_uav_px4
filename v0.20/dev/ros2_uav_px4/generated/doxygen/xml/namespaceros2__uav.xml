@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceros2__uav" kind="namespace" language="C++">
+    <compoundname>ros2_uav</compoundname>
+    <innerclass refid="classros2__uav_1_1Px4Comm" prot="public">ros2_uav::Px4Comm</innerclass>
+    <innernamespace refid="namespaceros2__uav_1_1debug">ros2_uav::debug</innernamespace>
+    <innernamespace refid="namespaceros2__uav_1_1identification">ros2_uav::identification</innernamespace>
+    <innernamespace refid="namespaceros2__uav_1_1utils">ros2_uav::utils</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="32" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,14 @@
+.. _exhale_function_namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d:
+
+Function ros2_uav::utils::convert(const px4_msgs::msg::VehicleThrustSetpoint&)
+==============================================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_type_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ros2_uav::utils::convert(const px4_msgs::msg::VehicleThrustSetpoint&)
+   :project: ros2_uav_px4 Doxygen Project

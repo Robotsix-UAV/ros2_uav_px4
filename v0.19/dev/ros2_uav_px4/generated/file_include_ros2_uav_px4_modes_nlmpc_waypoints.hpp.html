@@ -1,0 +1,271 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File nlmpc_waypoints.hpp &mdash; ros2_uav_px4 0.19.2 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=587b3f23"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+      <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Program Listing for File nlmpc_waypoints.hpp" href="program_listing_file_include_ros2_uav_px4_modes_nlmpc_waypoints.hpp.html" />
+    <link rel="prev" title="Program Listing for File nlmpc_position.hpp" href="program_listing_file_include_ros2_uav_px4_modes_nlmpc_position.hpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ros2_uav_px4
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_px4_ros2.html">Namespace px4_ros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav.html">Namespace ros2_uav</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__debug.html">Namespace ros2_uav::debug</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__executors.html">Namespace ros2_uav::executors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__identification.html">Namespace ros2_uav::identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__modes.html">Namespace ros2_uav::modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__utils.html">Namespace ros2_uav::utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp.html">Namespace uav_cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp__logger.html">Namespace uav_cpp::logger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp__parameters.html">Namespace uav_cpp::parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp__utils.html">Namespace uav_cpp::utils</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1executors_1_1ExecutorArm.html">Class ExecutorArm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1executors_1_1ExecutorLand.html">Class ExecutorLand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1executors_1_1ExecutorTakeOff.html">Class ExecutorTakeOff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1identification_1_1ThrustMatcher.html">Class ThrustMatcher</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1AttitudeThrustMode.html">Template Class AttitudeThrustMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1ModeInterface.html">Template Class ModeInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1NlmpcPosition.html">Class NlmpcPosition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1NlmpcWaypoints.html">Class NlmpcWaypoints</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1Position.html">Class Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1RatesThrustMode.html">Template Class RatesThrustMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1Spin.html">Class Spin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1utils_1_1ButterworthFilter.html">Class ButterworthFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1utils_1_1DerivativeFilter.html">Class DerivativeFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1utils_1_1DerivativeFilter3D.html">Class DerivativeFilter3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1utils_1_1OriginReset.html">Class OriginReset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1utils_1_1TimestampValidator.html">Class TimestampValidator</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1debug_1ad005802541bb1d2749d40c66908065f3.html">Template Function ros2_uav::debug::moduleLoop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924.html">Function ros2_uav::utils::convert(const std::string&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a32831ac19257fcc5c5cd129524a45141.html">Function ros2_uav::utils::convert(const uav_cpp::types::Frame&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a52cc96bc346c4a2cf503457c57f5f423.html">Function ros2_uav::utils::convert(const ros2_uav_interfaces::msg::PoseHeading&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1ae8c420cd2484b81f1b4a8606d189a623.html">Function ros2_uav::utils::convert(const ros2_uav_interfaces::msg::Disturbance&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa.html">Function ros2_uav::utils::convert(const uav_cpp::types::DisturbanceCoefficientsStamped&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a9314aef9dbf808b65c89dfa8e34d442d.html">Function ros2_uav::utils::convert(const px4_msgs::msg::VehicleAttitudeSetpoint&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd.html">Function ros2_uav::utils::convert(const px4_msgs::msg::VehicleOdometry&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d.html">Function ros2_uav::utils::convert(const px4_msgs::msg::VehicleThrustSetpoint&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a85018a9017acabe67a1ee2b87888d3f0.html">Function ros2_uav::utils::convert(const ros2_uav_interfaces::msg::WaypointList&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1ad90bb9a90751f2b4183b96ac49ed1cde.html">Function ros2_uav::utils::NedToNwu(const Eigen::Vector3d&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a80a2772f387bff855c65e9dddcc09681.html">Function ros2_uav::utils::NedToNwu(const Eigen::Quaterniond&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1ae330c3a0a3f3790d30c7bfabe8a11e58.html">Function ros2_uav::utils::NwuToNed(const Eigen::Vector3d&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_namespaceros2__uav_1_1utils_1a216f8146f115c35ef9a4db81fa297f84.html">Function ros2_uav::utils::NwuToNed(const Eigen::Quaterniond&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_namespaceros2__uav_1_1identification_1acbe58c06183b4ae76c3b9023b19853ea.html">Typedef ros2_uav::identification::AttitudeThrustScaler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4.html">Directory ros2_uav_px4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_executors.html">Directory executors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_mode_interface.html">Directory mode_interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_model_identification.html">Directory model_identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_modes.html">Directory modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_utils.html">Directory utils</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#files">Files</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_attitude_thrust.hpp.html">File attitude_thrust.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html">File attitude_thrust_impl.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_debug.hpp.html">File debug.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_derivative_filter.hpp.html">File derivative_filter.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_executors_executor_arm.hpp.html">File executor_arm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_executors_executor_land.hpp.html">File executor_land.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_executors_executor_take_off.hpp.html">File executor_take_off.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_frame_conversions.hpp.html">File frame_conversions.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_mode_interface_mode_interface.hpp.html">File mode_interface.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_nlmpc_position.hpp.html">File nlmpc_position.hpp</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">File nlmpc_waypoints.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_origin_reset.hpp.html">File origin_reset.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_position.hpp.html">File position.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_rates_thrust.hpp.html">File rates_thrust.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_rates_thrust_impl.hpp.html">File rates_thrust_impl.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_spin.hpp.html">File spin.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_model_identification_thrust_matcher_node.hpp.html">File thrust_matcher_node.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_timestamp_validator.hpp.html">File timestamp_validator.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_type_conversions.hpp.html">File type_conversions.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../interfaces/service_definitions.html">Service Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../interfaces/srv/ModeSelector.html">ModeSelector</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/CONTRIBUTING.html">CONTRIBUTING</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/LICENSE.html">LICENSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#ros2-uav-px4">ROS2 UAV PX4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#documentation">Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#support">Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#contributing">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#tested-with-the-following-software-versions">Tested with the following software versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id1">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ros2_uav_px4</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+      <li class="breadcrumb-item active">File nlmpc_waypoints.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/file_include_ros2_uav_px4_modes_nlmpc_waypoints.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-nlmpc-waypoints-hpp">
+<span id="file-include-ros2-uav-px4-modes-nlmpc-waypoints-hpp"></span><h1>File nlmpc_waypoints.hpp<a class="headerlink" href="#file-nlmpc-waypoints-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_ros2_uav_px4_modes.html#dir-include-ros2-uav-px4-modes"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/ros2_uav_px4/modes</span></code>)</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-ros2-uav-px4-modes-nlmpc-waypoints-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/ros2_uav_px4/modes/nlmpc_waypoints.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id3">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id4">Classes</a></p></li>
+</ul>
+</nav>
+<section id="definition-include-ros2-uav-px4-modes-nlmpc-waypoints-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/ros2_uav_px4/modes/nlmpc_waypoints.hpp</span></code>)<a class="headerlink" href="#definition-include-ros2-uav-px4-modes-nlmpc-waypoints-hpp" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_ros2_uav_px4_modes_nlmpc_waypoints.hpp.html">Program Listing for File nlmpc_waypoints.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ros2_uav_px4/modes/rates_thrust.hpp</span></code> (<a class="reference internal" href="file_include_ros2_uav_px4_modes_rates_thrust.hpp.html#file-include-ros2-uav-px4-modes-rates-thrust-hpp"><span class="std std-ref">File rates_thrust.hpp</span></a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uav_cpp/custom_pipelines/nlmpc_waypoints.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uav_cpp/utils/smart_pointer_base.hpp</span></code></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_ros2_uav.html#namespace-ros2-uav"><span class="std std-ref">Namespace ros2_uav</span></a></p></li>
+<li><p><a class="reference internal" href="namespace_ros2_uav__modes.html#namespace-ros2-uav-modes"><span class="std std-ref">Namespace ros2_uav::modes</span></a></p></li>
+</ul>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="classros2__uav_1_1modes_1_1NlmpcWaypoints.html#exhale-class-classros2-uav-1-1modes-1-1nlmpcwaypoints"><span class="std std-ref">Class NlmpcWaypoints</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="program_listing_file_include_ros2_uav_px4_modes_nlmpc_position.hpp.html" class="btn btn-neutral float-left" title="Program Listing for File nlmpc_position.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="program_listing_file_include_ros2_uav_px4_modes_nlmpc_waypoints.hpp.html" class="btn btn-neutral float-right" title="Program Listing for File nlmpc_waypoints.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;ros2_uav_px4&gt; Contributors. License: Apache-2.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

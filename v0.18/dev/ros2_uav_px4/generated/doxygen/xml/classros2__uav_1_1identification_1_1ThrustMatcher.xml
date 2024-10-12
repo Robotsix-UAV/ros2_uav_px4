@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1identification_1_1ThrustMatcher" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::identification::ThrustMatcher</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">rclcpp::Node</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::parameters::ParamContainer</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">LogTagHolder</basecompoundref>
+    <includes refid="thrust__matcher__node_8hpp" local="no">thrust_matcher_node.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252d" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>Status</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::Status</qualifiedname>
+        <enumvalue id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252dafaee4ca3c30ee18148ce3ada37466498" prot="public">
+          <name>INIT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252da279d7651aba75af46949322315dd5045" prot="public">
+          <name>COLLECTING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252da9c9cae4cac5bf329ea389728514183cc" prot="public">
+          <name>WAITING_DISARM</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252dadc200c38d359b36bd5853f53f130bc42" prot="public">
+          <name>MATCHING</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="53" column="3" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="54" bodyend="59"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1ae2ac50e5b30a6fa8235933996f4f7f4e" prot="private" static="no" mutable="no">
+        <type>Status</type>
+        <definition>Status ros2_uav::identification::ThrustMatcher::status_</definition>
+        <argsstring></argsstring>
+        <name>status_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::status_</qualifiedname>
+        <initializer>= Status::INIT</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Status of the attitude thrust matcher. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="88" column="10" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a9a5594838a4b969a7a8673bb88e4d355" prot="private" static="no" mutable="no">
+        <type>const std::chrono::milliseconds</type>
+        <definition>const std::chrono::milliseconds ros2_uav::identification::ThrustMatcher::sampling_time_</definition>
+        <argsstring></argsstring>
+        <name>sampling_time_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::sampling_time_</qualifiedname>
+        <initializer>= 100ms</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sampling time. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="89" column="35" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a4d43cb01259ed55547e27fe2f3248249" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::identification::ThrustMatcher::trigger_altitude_</definition>
+        <argsstring></argsstring>
+        <name>trigger_altitude_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::trigger_altitude_</qualifiedname>
+        <initializer>= 2.0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Altitude at which the data collection is triggered. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="90" column="10" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1ae5ec077f44e6cd175d995b42cc950610" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ros2_uav::identification::ThrustMatcher::trigger_validation_</definition>
+        <argsstring></argsstring>
+        <name>trigger_validation_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::trigger_validation_</qualifiedname>
+        <initializer>= 30</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Number of samples to validate the trigger. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="91" column="11" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e9e8f4fbdf5ae3fba4b0bf3ba8c1fc8" prot="private" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ros2_uav::identification::ThrustMatcher::trigger_counter_</definition>
+        <argsstring></argsstring>
+        <name>trigger_counter_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::trigger_counter_</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Counter for the trigger validation. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="92" column="11" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1af367af1a01add86ecae0a7f4dd7f706b" prot="private" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; ActuatorMotors &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;ActuatorMotors&gt;::SharedPtr ros2_uav::identification::ThrustMatcher::actuators_suscriber_</definition>
+        <argsstring></argsstring>
+        <name>actuators_suscriber_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::actuators_suscriber_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for the actuator motors. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="93" column="36" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1afe191dcd814df9d93cb5e8fa3b86abc7" prot="private" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; VehicleOdometry &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;VehicleOdometry&gt;::SharedPtr ros2_uav::identification::ThrustMatcher::odometry_subscriber_</definition>
+        <argsstring></argsstring>
+        <name>odometry_subscriber_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::odometry_subscriber_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for the odometry. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="95" column="36" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a187eab3efbd9dba30e95e9c6c938b5ea" prot="private" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; VehicleControlMode &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;VehicleControlMode&gt;::SharedPtr ros2_uav::identification::ThrustMatcher::control_mode_subscriber_</definition>
+        <argsstring></argsstring>
+        <name>control_mode_subscriber_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::control_mode_subscriber_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Subscriber for the control mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="97" column="36" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1ae27229feee9e9d826815fe020a90ce4d" prot="private" static="no" mutable="no">
+        <type>rclcpp::Subscription&lt; VehicleAcceleration &gt;::SharedPtr</type>
+        <definition>rclcpp::Subscription&lt;VehicleAcceleration&gt;::SharedPtr ros2_uav::identification::ThrustMatcher::acceleration_subscriber_</definition>
+        <argsstring></argsstring>
+        <name>acceleration_subscriber_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::acceleration_subscriber_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Derivative filter for the velocity. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="99" column="36" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a4f050fae9ec59c7b60b99bdf5938ed07" prot="private" static="no" mutable="no">
+        <type>uav_cpp::identification::ModelMatcher&lt; LiftDragQuaternion, QuadrotorModel, AttitudeThrustScaler &gt;</type>
+        <definition>uav_cpp::identification::ModelMatcher&lt;LiftDragQuaternion, QuadrotorModel, AttitudeThrustScaler&gt; ros2_uav::identification::ThrustMatcher::model_matcher_</definition>
+        <argsstring></argsstring>
+        <name>model_matcher_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::model_matcher_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Model matcher for the quadrotor model and the attitude thrust scaler. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="102" column="2" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1aad167d3a4a26466d88d9ecd7c871e13c" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uav_cpp::types::ThrustStamped &gt;</type>
+        <definition>std::vector&lt;uav_cpp::types::ThrustStamped&gt; ros2_uav::identification::ThrustMatcher::thrusts_</definition>
+        <argsstring></argsstring>
+        <name>thrusts_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::thrusts_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector of thrusts. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="104" column="15" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1ab8c2486776f816911fa9bdfa73610c80" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uav_cpp::types::OdometryStamped &gt;</type>
+        <definition>std::vector&lt;uav_cpp::types::OdometryStamped&gt; ros2_uav::identification::ThrustMatcher::odometries_</definition>
+        <argsstring></argsstring>
+        <name>odometries_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::odometries_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector of odometries. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="105" column="15" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e5cf16a769ad86d60851f7218000a0d" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; uav_cpp::types::AccelerationStamped &gt;</type>
+        <definition>std::vector&lt;uav_cpp::types::AccelerationStamped&gt; ros2_uav::identification::ThrustMatcher::accelerations_</definition>
+        <argsstring></argsstring>
+        <name>accelerations_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::accelerations_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector of accelerations. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="106" column="15" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a8063d26c62f13d49ec9b2c8e8dbabff8" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::chrono::nanoseconds &gt;</type>
+        <definition>std::vector&lt;std::chrono::nanoseconds&gt; ros2_uav::identification::ThrustMatcher::actuator_timestamps_</definition>
+        <argsstring></argsstring>
+        <name>actuator_timestamps_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::actuator_timestamps_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector of actuator timestamps. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="108" column="15" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1identification_1_1ThrustMatcher_1adc9f060d8ca508e5b445a4a8ac8a435f" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; double &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;double&gt; &gt; ros2_uav::identification::ThrustMatcher::actuators_</definition>
+        <argsstring></argsstring>
+        <name>actuators_</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::actuators_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Vector of actuator values. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="110" column="15" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a62d10789f5f479a02ea9c889b824c2a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::identification::ThrustMatcher::ThrustMatcher</definition>
+        <argsstring>()</argsstring>
+        <name>ThrustMatcher</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::ThrustMatcher</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="61" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a5701fab1f4772ee23e75ebf3f09690b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::identification::ThrustMatcher::actuatorMotorsCallback</definition>
+        <argsstring>(const ActuatorMotors::SharedPtr actuator_motors)</argsstring>
+        <name>actuatorMotorsCallback</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::actuatorMotorsCallback</qualifiedname>
+        <param>
+          <type>const ActuatorMotors::SharedPtr</type>
+          <declname>actuator_motors</declname>
+        </param>
+        <briefdescription>
+<para>Callback for the actuator motors. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>actuator_motors</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Actuator motors message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="67" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a8c1d17cadbb1f89f99b20438651ce124" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::identification::ThrustMatcher::odometryCallback</definition>
+        <argsstring>(const VehicleOdometry::SharedPtr odometry)</argsstring>
+        <name>odometryCallback</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::odometryCallback</qualifiedname>
+        <param>
+          <type>const VehicleOdometry::SharedPtr</type>
+          <declname>odometry</declname>
+        </param>
+        <briefdescription>
+<para>Callback for the odometry. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>odometry</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Odometry message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="73" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a31109ee90122d807466513dfb45f94fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::identification::ThrustMatcher::accelerationCallback</definition>
+        <argsstring>(const VehicleAcceleration::SharedPtr acceleration)</argsstring>
+        <name>accelerationCallback</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::accelerationCallback</qualifiedname>
+        <param>
+          <type>const VehicleAcceleration::SharedPtr</type>
+          <declname>acceleration</declname>
+        </param>
+        <briefdescription>
+<para>Callback for the vehicle acceleration. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>acceleration</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Acceleration message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="79" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1identification_1_1ThrustMatcher_1a89c3fa8526215afb53f62c3d2d87e67b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::identification::ThrustMatcher::controlModeCallback</definition>
+        <argsstring>(const VehicleControlMode::SharedPtr control_mode)</argsstring>
+        <name>controlModeCallback</name>
+        <qualifiedname>ros2_uav::identification::ThrustMatcher::controlModeCallback</qualifiedname>
+        <param>
+          <type>const VehicleControlMode::SharedPtr</type>
+          <declname>control_mode</declname>
+        </param>
+        <briefdescription>
+<para>Callback for the control mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>control_mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Control mode message. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="85" column="8"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Class for matching parameters governing the attitude and thrust control of a UAV. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::identification::ThrustMatcher</label>
+        <link refid="classros2__uav_1_1identification_1_1ThrustMatcher"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>LogTagHolder</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::identification::ThrustMatcher</label>
+        <link refid="classros2__uav_1_1identification_1_1ThrustMatcher"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>LogTagHolder</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="49" column="1" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="51" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae27229feee9e9d826815fe020a90ce4d" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>acceleration_subscriber_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a31109ee90122d807466513dfb45f94fa" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>accelerationCallback</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e5cf16a769ad86d60851f7218000a0d" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>accelerations_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a8063d26c62f13d49ec9b2c8e8dbabff8" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>actuator_timestamps_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5701fab1f4772ee23e75ebf3f09690b4" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>actuatorMotorsCallback</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1adc9f060d8ca508e5b445a4a8ac8a435f" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>actuators_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1af367af1a01add86ecae0a7f4dd7f706b" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>actuators_suscriber_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a187eab3efbd9dba30e95e9c6c938b5ea" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>control_mode_subscriber_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a89c3fa8526215afb53f62c3d2d87e67b" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>controlModeCallback</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4f050fae9ec59c7b60b99bdf5938ed07" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>model_matcher_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ab8c2486776f816911fa9bdfa73610c80" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>odometries_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1afe191dcd814df9d93cb5e8fa3b86abc7" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>odometry_subscriber_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a8c1d17cadbb1f89f99b20438651ce124" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>odometryCallback</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a9a5594838a4b969a7a8673bb88e4d355" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>sampling_time_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a5909378b06f5a34e01e5a104343e252d" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>Status</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae2ac50e5b30a6fa8235933996f4f7f4e" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>status_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a62d10789f5f479a02ea9c889b824c2a8" prot="public" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>ThrustMatcher</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1aad167d3a4a26466d88d9ecd7c871e13c" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>thrusts_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4d43cb01259ed55547e27fe2f3248249" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>trigger_altitude_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1a4e9e8f4fbdf5ae3fba4b0bf3ba8c1fc8" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>trigger_counter_</name></member>
+      <member refid="classros2__uav_1_1identification_1_1ThrustMatcher_1ae5ec077f44e6cd175d995b42cc950610" prot="private" virt="non-virtual"><scope>ros2_uav::identification::ThrustMatcher</scope><name>trigger_validation_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

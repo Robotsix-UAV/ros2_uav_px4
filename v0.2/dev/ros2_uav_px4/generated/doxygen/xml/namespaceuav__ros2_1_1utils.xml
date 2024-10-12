@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceuav__ros2_1_1utils" kind="namespace" language="C++">
+    <compoundname>uav_ros2::utils</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="tf2__eigen_8hpp_1a7614bb5189983a1cbd6a1b7e01526c5e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tf2::Vector3</type>
+        <definition>tf2::Vector3 uav_ros2::utils::eigenNedToTf2Nwu</definition>
+        <argsstring>(const Eigen::Vector3f &amp;eigen_vector)</argsstring>
+        <name>eigenNedToTf2Nwu</name>
+        <param>
+          <type>const Eigen::Vector3f &amp;</type>
+          <declname>eigen_vector</declname>
+        </param>
+        <briefdescription>
+<para>Converts an Eigen vector from NED (North-East-Down) coordinate system to a tf2 vector in NWU (North-West-Up) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eigen_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Eigen vector in NED coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>tf2::Vector3 The tf2 vector in NWU coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="30" column="14" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="tf2__eigen_8hpp_1ae85fdca6c571963afa4a14f44bc3da3a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Vector3f</type>
+        <definition>Eigen::Vector3f uav_ros2::utils::tf2FwuToEigenNed</definition>
+        <argsstring>(const tf2::Vector3 &amp;tf2_vector)</argsstring>
+        <name>tf2FwuToEigenNed</name>
+        <param>
+          <type>const tf2::Vector3 &amp;</type>
+          <declname>tf2_vector</declname>
+        </param>
+        <briefdescription>
+<para>Converts a tf2 vector from NWU (North-West-Up) coordinate system to an Eigen vector in NED (North-East-Down) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tf2_vector</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tf2 vector in NWU coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Eigen::Vector3f The Eigen vector in NED coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="41" column="17" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="tf2__eigen_8hpp_1aebe982ad1e77aed280740bd6114c8380" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>tf2::Quaternion</type>
+        <definition>tf2::Quaternion uav_ros2::utils::eigenNedToTf2Nwu</definition>
+        <argsstring>(const Eigen::Quaternionf &amp;eigen_quaternion)</argsstring>
+        <name>eigenNedToTf2Nwu</name>
+        <param>
+          <type>const Eigen::Quaternionf &amp;</type>
+          <declname>eigen_quaternion</declname>
+        </param>
+        <briefdescription>
+<para>Converts an Eigen quaternion from NED (North-East-Down) coordinate system to a tf2 quaternion in NWU (North-West-Up) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>eigen_quaternion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The Eigen quaternion in NED coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>tf2::Quaternion The tf2 quaternion in NWU coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="52" column="17" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="tf2__eigen_8hpp_1ac168240a86c1b5aec05b18a6009e96eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>Eigen::Quaternionf</type>
+        <definition>Eigen::Quaternionf uav_ros2::utils::tf2FwuToEigenNed</definition>
+        <argsstring>(const tf2::Quaternion &amp;tf2_quaternion)</argsstring>
+        <name>tf2FwuToEigenNed</name>
+        <param>
+          <type>const tf2::Quaternion &amp;</type>
+          <declname>tf2_quaternion</declname>
+        </param>
+        <briefdescription>
+<para>Converts a tf2 quaternion from NWU (North-West-Up) coordinate system to an Eigen quaternion in NED (North-East-Down) coordinate system. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tf2_quaternion</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The tf2 quaternion in NWU coordinate system. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Eigen::Quaternionf The Eigen quaternion in NED coordinate system. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="65" column="20" bodyfile="include/ros2_uav_px4/utils/tf2_eigen.hpp" bodystart="65" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="uav__cpp__ros2__conversions_8hpp_1a59d6555831c3aef50428a1b54ec5379a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uav_cpp::types::PoseHeading</type>
+        <definition>uav_cpp::types::PoseHeading uav_ros2::utils::convertToSetpoint</definition>
+        <argsstring>(const ros2_uav_interfaces::msg::PoseHeading &amp;msg)</argsstring>
+        <name>convertToSetpoint</name>
+        <param>
+          <type>const ros2_uav_interfaces::msg::PoseHeading &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+<para>Converts a ros2_uav_interfaces/PoseHeading message to a uavcpp::types::PoseHeading. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>msg</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The PoseHeading message to convert. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The converted PoseHeading type. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" line="27" column="29" bodyfile="include/ros2_uav_px4/utils/uav_cpp_ros2_conversions.hpp" bodystart="27" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/tf2_eigen.hpp" line="21" column="1"/>
+  </compounddef>
+</doxygen>

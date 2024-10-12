@@ -1,0 +1,259 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1executors_1_1ExecutorLand" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::executors::ExecutorLand</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">px4_ros2::ModeExecutorBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::parameters::ParamContainer</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::utils::SmartPointerBase&lt; ExecutorLand &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">uav_cpp::logger::LogTagHolder</basecompoundref>
+    <includes refid="executor__land_8hpp" local="no">executor_land.hpp</includes>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum" id="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>State</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::State</qualifiedname>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37a479a809c0b6eaaefd3b1df16f976df06" prot="public">
+          <name>LAND</name>
+          <briefdescription>
+<para>State for landing the UAV. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37a4dab4c093bafb64e050a9576c510adac" prot="public">
+          <name>OWNED_MODE</name>
+          <briefdescription>
+<para>State for executing the owned mode. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Enum representing the states of the executor. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="40" column="3" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="41" bodyend="44"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1executors_1_1ExecutorLand_1aaff92d05e8a8ce1558bae8532e61d6e4" prot="private" static="no" mutable="no">
+        <type><ref refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37" kindref="member">State</ref></type>
+        <definition>State ros2_uav::executors::ExecutorLand::current_state_</definition>
+        <argsstring></argsstring>
+        <name>current_state_</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::current_state_</qualifiedname>
+        <initializer>{<ref refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37a479a809c0b6eaaefd3b1df16f976df06" kindref="member">State::LAND</ref>}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="111" column="9" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="111" bodyend="111"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorLand_1a0c1439c91ef0eae3e4dffb59ba4830b4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::executors::ExecutorLand::ExecutorLand</definition>
+        <argsstring>(rclcpp::Node &amp;node, px4_ros2::ModeBase &amp;owned_mode)</argsstring>
+        <name>ExecutorLand</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::ExecutorLand</qualifiedname>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <param>
+          <type>px4_ros2::ModeBase &amp;</type>
+          <declname>owned_mode</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1executors_1_1ExecutorLand" kindref="compound">ExecutorLand</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>owned_mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the owned mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="52" column="3" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="52" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorLand_1a4768e3423ba524cd3cb12ffddf259ee5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ros2_uav::executors::ExecutorLand::isCompleted</definition>
+        <argsstring>() const</argsstring>
+        <name>isCompleted</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::isCompleted</qualifiedname>
+        <briefdescription>
+<para>Check if the executor is completed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="62" column="8" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="62" bodyend="62"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorLand_1a03dfc3fc57674e600a69a9d31a79b2c1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorLand::onActivate</definition>
+        <argsstring>() override</argsstring>
+        <name>onActivate</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::onActivate</qualifiedname>
+        <briefdescription>
+<para>Function called when the executor is activated. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="68" column="8" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="68" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorLand_1a5c52315082e5e60d56793f5ba427b045" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorLand::onDeactivate</definition>
+        <argsstring>(DeactivateReason reason) override</argsstring>
+        <name>onDeactivate</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::onDeactivate</qualifiedname>
+        <param>
+          <type>DeactivateReason</type>
+          <declname>reason</declname>
+        </param>
+        <briefdescription>
+<para>Function called when the executor is deactivated. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reason</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The reason for deactivation. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="79" column="8" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="79" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1executors_1_1ExecutorLand_1a804026ab1738e2ae010aaae33abb05cc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::executors::ExecutorLand::runState</definition>
+        <argsstring>(State state)</argsstring>
+        <name>runState</name>
+        <qualifiedname>ros2_uav::executors::ExecutorLand::runState</qualifiedname>
+        <param>
+          <type><ref refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37" kindref="member">State</ref></type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+<para>Runs the specified state. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>state</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The state to run. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="89" column="8" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="89" bodyend="109"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Executor class to manage landing. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorLand</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorLand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>uav_cpp::logger::LogTagHolder</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+      <node id="4">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorLand &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>px4_ros2::ModeExecutorBase</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::executors::ExecutorLand</label>
+        <link refid="classros2__uav_1_1executors_1_1ExecutorLand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>uav_cpp::logger::LogTagHolder</label>
+      </node>
+      <node id="3">
+        <label>uav_cpp::parameters::ParamContainer</label>
+      </node>
+      <node id="4">
+        <label>uav_cpp::utils::SmartPointerBase&lt; ExecutorLand &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/executors/executor_land.hpp" line="31" column="1" bodyfile="include/ros2_uav_px4/executors/executor_land.hpp" bodystart="35" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1aaff92d05e8a8ce1558bae8532e61d6e4" prot="private" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>current_state_</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a0c1439c91ef0eae3e4dffb59ba4830b4" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>ExecutorLand</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a4768e3423ba524cd3cb12ffddf259ee5" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>isCompleted</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a03dfc3fc57674e600a69a9d31a79b2c1" prot="private" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>onActivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a5c52315082e5e60d56793f5ba427b045" prot="private" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>onDeactivate</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a804026ab1738e2ae010aaae33abb05cc" prot="private" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>runState</name></member>
+      <member refid="classros2__uav_1_1executors_1_1ExecutorLand_1a06776e35262e1779cc7cb3085cab0c37" prot="public" virt="non-virtual"><scope>ros2_uav::executors::ExecutorLand</scope><name>State</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

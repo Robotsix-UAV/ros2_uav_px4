@@ -1,0 +1,55 @@
+
+.. _namespace_ros2_uav__utils:
+
+Namespace ros2_uav::utils
+=========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+Detailed Description
+--------------------
+
+Damien SIX (damien@robotsix.net) 
+
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classros2__uav_1_1utils_1_1OriginReset`
+
+- :ref:`exhale_class_classros2__uav_1_1utils_1_1TimestampValidator`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a9314aef9dbf808b65c89dfa8e34d442d`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a85018a9017acabe67a1ee2b87888d3f0`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a32831ac19257fcc5c5cd129524a45141`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a52cc96bc346c4a2cf503457c57f5f423`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1ae8c420cd2484b81f1b4a8606d189a623`
+
+- :ref:`exhale_function_namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa`

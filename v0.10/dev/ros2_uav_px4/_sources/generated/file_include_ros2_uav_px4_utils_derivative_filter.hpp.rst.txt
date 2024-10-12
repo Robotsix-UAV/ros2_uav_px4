@@ -1,0 +1,64 @@
+
+.. _file_include_ros2_uav_px4_utils_derivative_filter.hpp:
+
+File derivative_filter.hpp
+==========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_utils>` (``include/ros2_uav_px4/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/utils/derivative_filter.hpp``)
+-----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_utils_derivative_filter.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm``
+
+- ``cmath``
+
+- ``tf2/LinearMath/Vector3.h``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_uav_ros2`
+
+- :ref:`namespace_uav_ros2__utils`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classuav__ros2_1_1utils_1_1ButterworthFilter`
+
+- :ref:`exhale_class_classuav__ros2_1_1utils_1_1DerivativeFilter`
+
+- :ref:`exhale_class_classuav__ros2_1_1utils_1_1DerivativeFilter3D`
+

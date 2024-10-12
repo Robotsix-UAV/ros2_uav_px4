@@ -1,0 +1,65 @@
+
+.. _file_include_ros2_uav_px4_px4_interface_px4_comm_base.hpp:
+
+File px4_comm_base.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_px4_interface>` (``include/ros2_uav_px4/px4_interface``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/px4_interface/px4_comm_base.hpp``)
+---------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_px4_interface_px4_comm_base.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``px4_msgs/msg/offboard_control_mode.hpp``
+
+- ``px4_msgs/msg/vehicle_attitude_setpoint.hpp``
+
+- ``px4_msgs/msg/vehicle_command.hpp``
+
+- ``px4_msgs/msg/vehicle_control_mode.hpp``
+
+- ``px4_msgs/msg/vehicle_odometry.hpp``
+
+- ``px4_msgs/msg/vehicle_rates_setpoint.hpp``
+
+- ``px4_msgs/msg/vehicle_status.hpp``
+
+- ``rclcpp/rclcpp.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_px4_interface_px4_comm.hpp`
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classPx4CommBase`
+

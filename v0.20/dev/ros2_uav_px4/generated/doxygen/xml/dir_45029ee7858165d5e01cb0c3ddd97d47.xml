@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="dir_45029ee7858165d5e01cb0c3ddd97d47" kind="dir">
+    <compoundname>include/ros2_uav_px4/px4_interface</compoundname>
+    <innerfile refid="px4__comm_8hpp">px4_comm.hpp</innerfile>
+    <innerfile refid="px4__comm__base_8hpp">px4_comm_base.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/px4_interface/"/>
+  </compounddef>
+</doxygen>

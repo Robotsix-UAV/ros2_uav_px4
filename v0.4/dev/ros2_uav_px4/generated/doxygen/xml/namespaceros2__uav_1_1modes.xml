@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceros2__uav_1_1modes" kind="namespace" language="C++">
+    <compoundname>ros2_uav::modes</compoundname>
+    <innerclass refid="classros2__uav_1_1modes_1_1ModeInterface" prot="public">ros2_uav::modes::ModeInterface</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public">ros2_uav::modes::AttitudeThrustMode</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1Position" prot="public">ros2_uav::modes::Position</innerclass>
+    <innerclass refid="classros2__uav_1_1modes_1_1Spin" prot="public">ros2_uav::modes::Spin</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="mode__interface_8hpp_1a58ba8f69cc3c23a4789fb96256960ed8" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename ModeT</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept ros2_uav::modes::DerivedFromUavCppMode</definition>
+        <argsstring></argsstring>
+        <name>DerivedFromUavCppMode</name>
+        <initializer>= requires(ModeT mode)
+{
+  [] &lt; typename ... T &gt; (uav_cpp::components::Mode&lt;T...&gt; &amp;) {} (mode);
+}</initializer>
+        <briefdescription>
+<para>Concept that checks if ModeT is derived from uav_cpp::components::Mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="38" column="9" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="attitude__thrust_8hpp_1afd32347dfe3e93b86c3fd2aa6faafa39" prot="public" static="no" mutable="no">
+        <templateparamlist>
+          <param>
+            <type>typename ModeT</type>
+          </param>
+        </templateparamlist>
+        <type>concept</type>
+        <definition>concept ros2_uav::modes::DerivedFromAttitudeThrustMode</definition>
+        <argsstring></argsstring>
+        <name>DerivedFromAttitudeThrustMode</name>
+        <initializer>= requires {
+  DerivedFromUavCppMode&lt;ModeT&gt;;
+  std::is_same_v&lt;typename ModeT::OutputType, AttitudeThrust&gt;;
+}</initializer>
+        <briefdescription>
+<para>Concept that checks if ModeT is derived from Mode with a controller that uses AttitudeThrust control. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/modes/attitude_thrust.hpp" line="34" column="9" bodyfile="include/ros2_uav_px4/modes/attitude_thrust.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="26" column="1"/>
+  </compounddef>
+</doxygen>

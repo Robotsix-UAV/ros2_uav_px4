@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File attitude_thrust_impl.hpp &mdash; ros2_uav_px4 0.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css?v=a885cde7" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=1dd76d02"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js?v=73120307"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js?v=660e4f45"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="File executor_arm.hpp" href="file_include_ros2_uav_px4_executors_executor_arm.hpp.html" />
+    <link rel="prev" title="File attitude_thrust_impl.hpp" href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ros2_uav_px4
+          </a>
+              <div class="version">
+                0.5
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_px4_ros2.html">Namespace px4_ros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav.html">Namespace ros2_uav</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__executors.html">Namespace ros2_uav::executors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_ros2_uav__modes.html">Namespace ros2_uav::modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp.html">Namespace uav_cpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp__parameters.html">Namespace uav_cpp::parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_cpp__utils.html">Namespace uav_cpp::utils</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_ros2.html">Namespace uav_ros2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_uav_ros2__utils.html">Namespace uav_ros2::utils</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1executors_1_1ExecutorArm.html">Class ExecutorArm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1executors_1_1ExecutorTakeOff.html">Class ExecutorTakeOff</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1AttitudeThrustMode.html">Template Class AttitudeThrustMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1ModeInterface.html">Template Class ModeInterface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1Position.html">Class Position</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classros2__uav_1_1modes_1_1Spin.html">Class Spin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_uav__cpp__ros2__conversions_8hpp_1a03758df9144a08a66afe670e9ed0e041.html">Function uav_ros2::utils::convertToSetpoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_tf2__eigen_8hpp_1a7614bb5189983a1cbd6a1b7e01526c5e.html">Function uav_ros2::utils::eigenNedToTf2Nwu(const Eigen::Vector3f&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_tf2__eigen_8hpp_1aebe982ad1e77aed280740bd6114c8380.html">Function uav_ros2::utils::eigenNedToTf2Nwu(const Eigen::Quaternionf&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_tf2__eigen_8hpp_1ae85fdca6c571963afa4a14f44bc3da3a.html">Function uav_ros2::utils::tf2FwuToEigenNed(const tf2::Vector3&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_tf2__eigen_8hpp_1ac168240a86c1b5aec05b18a6009e96eb.html">Function uav_ros2::utils::tf2FwuToEigenNed(const tf2::Quaternion&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4.html">Directory ros2_uav_px4</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_executors.html">Directory executors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_mode_interface.html">Directory mode_interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_modes.html">Directory modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_ros2_uav_px4_utils.html">Directory utils</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#files">Files</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_attitude_thrust.hpp.html">File attitude_thrust.hpp</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html">File attitude_thrust_impl.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_executors_executor_arm.hpp.html">File executor_arm.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_executors_executor_take_off.hpp.html">File executor_take_off.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_mode_interface_mode_interface.hpp.html">File mode_interface.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_position.hpp.html">File position.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_modes_spin.hpp.html">File spin.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_tf2_eigen.hpp.html">File tf2_eigen.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_ros2_uav_px4_utils_uav_cpp_ros2_conversions.hpp.html">File uav_cpp_ros2_conversions.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/CONTRIBUTING.html">CONTRIBUTING</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/LICENSE.html">LICENSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#ros2-uav-px4">ROS2 UAV PX4</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#documentation">Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#support">Support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#contributing">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#tested-with-the-following-software-versions">Tested with the following software versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#id1">Contributing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#license">License</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Index</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ros2_uav_px4</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">C++ API</a></li>
+          <li class="breadcrumb-item"><a href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html">File attitude_thrust_impl.hpp</a></li>
+      <li class="breadcrumb-item active">Program Listing for File attitude_thrust_impl.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/program_listing_file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-attitude-thrust-impl-hpp">
+<span id="program-listing-file-include-ros2-uav-px4-modes-attitude-thrust-impl-hpp"></span><h1>Program Listing for File attitude_thrust_impl.hpp<a class="headerlink" href="#program-listing-for-file-attitude-thrust-impl-hpp" title="Link to this heading"></a></h1>
+<p>↰ <a class="reference internal" href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html#file-include-ros2-uav-px4-modes-attitude-thrust-impl-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/ros2_uav_px4/modes/attitude_thrust_impl.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Copyright 2024 Damien SIX (damien@robotsix.net)</span>
+<span class="c1">//</span>
+<span class="c1">// Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1">// you may not use this file except in compliance with the License.</span>
+<span class="c1">// You may obtain a copy of the License at</span>
+<span class="c1">//</span>
+<span class="c1">//     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">//</span>
+<span class="c1">// Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1">// distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1">// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1">// See the License for the specific language governing permissions and</span>
+<span class="c1">// limitations under the License.</span>
+
+<span class="cp">#pragma once</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;memory&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;ros2_uav_px4/utils/tf2_eigen.hpp&quot;</span>
+
+<span class="k">namespace</span><span class="w"> </span><span class="nn">ros2_uav</span><span class="o">::</span><span class="nn">modes</span>
+<span class="p">{</span>
+<span class="k">using</span><span class="w"> </span><span class="n">uav_ros2</span><span class="o">::</span><span class="n">utils</span><span class="o">::</span><span class="n">eigenNedToTf2Nwu</span><span class="p">;</span>
+<span class="k">using</span><span class="w"> </span><span class="n">uav_ros2</span><span class="o">::</span><span class="n">utils</span><span class="o">::</span><span class="n">tf2FwuToEigenNed</span><span class="p">;</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">ModeT</span><span class="o">&gt;</span>
+<span class="n">AttitudeThrustMode</span><span class="o">&lt;</span><span class="n">ModeT</span><span class="o">&gt;::</span><span class="n">AttitudeThrustMode</span><span class="p">(</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">ModeBase</span><span class="o">::</span><span class="n">Settings</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">mode_settings</span><span class="p">,</span>
+<span class="w">  </span><span class="n">rclcpp</span><span class="o">::</span><span class="n">Node</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">node</span><span class="p">)</span>
+<span class="o">:</span><span class="w"> </span><span class="n">ModeInterface</span><span class="o">&lt;</span><span class="n">ModeT</span><span class="o">&gt;</span><span class="p">(</span><span class="n">mode_settings</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">setSetpointUpdateRate</span><span class="p">(</span><span class="mf">250.0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">attitude_setpoint_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">px4_ros2</span><span class="o">::</span><span class="n">AttitudeSetpointType</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">addRequiredParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_constant_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)));</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">addRequiredParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_linear_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)));</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">addRequiredParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_quadratic_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">type_index</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)));</span>
+<span class="w">  </span><span class="n">time_init_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">node_</span><span class="p">.</span><span class="n">now</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">ModeT</span><span class="o">&gt;</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">AttitudeThrustMode</span><span class="o">&lt;</span><span class="n">ModeT</span><span class="o">&gt;::</span><span class="n">updateSetpoint</span><span class="p">([[</span><span class="n">maybe_unused</span><span class="p">]]</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">odometryUpdate</span><span class="p">();</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">elapsed_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">node_</span><span class="p">.</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time_init_</span><span class="p">).</span><span class="n">seconds</span><span class="p">();</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">mode_</span><span class="o">-&gt;</span><span class="n">execute</span><span class="p">(</span><span class="n">elapsed_time</span><span class="p">);</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">control_inputs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">mode_</span><span class="o">-&gt;</span><span class="n">getFcuInputs</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Set the attitude setpoint</span>
+<span class="w">  </span><span class="c1">// Conversion of the thrust</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">thrust_constant_coefficient</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_linear_coefficient</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_quadratic_coefficient</span><span class="p">;</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_constant_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_constant_coefficient</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_linear_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_linear_coefficient</span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">getParameter</span><span class="p">(</span><span class="s">&quot;px4.thrust_quadratic_coefficient&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_quadratic_coefficient</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">thrust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">control_inputs</span><span class="p">.</span><span class="n">thrust</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">normalized_thrust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Find the normalized with thrust = c + l * t_n + q * t_n^2</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">discriminant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">thrust_linear_coefficient</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">thrust_linear_coefficient</span><span class="w"> </span><span class="o">-</span>
+<span class="w">    </span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">thrust_quadratic_coefficient</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">thrust_constant_coefficient</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">thrust</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">discriminant</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RCLCPP_WARN</span><span class="p">(</span>
+<span class="w">      </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">node_</span><span class="p">.</span><span class="n">get_logger</span><span class="p">(),</span>
+<span class="w">      </span><span class="s">&quot;[Attitude Thrust Mode] Negative discriminant in thrust conversion&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">normalized_thrust</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">thrust_linear_coefficient</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">sqrt</span><span class="p">(</span><span class="n">discriminant</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+<span class="w">      </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">thrust_quadratic_coefficient</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Vector3f</span><span class="w"> </span><span class="n">thrust_sp</span><span class="p">{</span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="p">(</span><span class="o">-</span><span class="n">normalized_thrust</span><span class="p">)};</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Eigen</span><span class="o">::</span><span class="n">Quaternionf</span><span class="w"> </span><span class="n">attitude_sp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tf2FwuToEigenNed</span><span class="p">(</span><span class="n">control_inputs</span><span class="p">.</span><span class="n">orientation</span><span class="p">);</span>
+<span class="w">  </span><span class="n">attitude_setpoint_</span><span class="o">-&gt;</span><span class="n">update</span><span class="p">(</span><span class="n">attitude_sp</span><span class="p">,</span><span class="w"> </span><span class="n">thrust_sp</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">}</span><span class="w">  </span><span class="c1">// namespace ros2_uav::modes</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_include_ros2_uav_px4_modes_attitude_thrust_impl.hpp.html" class="btn btn-neutral float-left" title="File attitude_thrust_impl.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file_include_ros2_uav_px4_executors_executor_arm.hpp.html" class="btn btn-neutral float-right" title="File executor_arm.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;ros2_uav_px4&gt; Contributors. License: Apache-2.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

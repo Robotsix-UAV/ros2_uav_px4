@@ -1,0 +1,282 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1modes_1_1ModeInterface" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::modes::ModeInterface</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ModeBase</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">ParamContainer</basecompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Se3Position &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Spin &gt;</derivedcompoundref>
+    <derivedcompoundref refid="classros2__uav_1_1modes_1_1AttitudeThrustMode" prot="public" virt="non-virtual">ros2_uav::modes::AttitudeThrustMode&lt; ModeT &gt;</derivedcompoundref>
+    <includes refid="mode__interface_8hpp" local="no">mode_interface.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>DerivedFromUavCppMode</type>
+        <declname>ModeT</declname>
+        <defname>ModeT</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Node &amp;</type>
+        <definition>rclcpp::Node&amp; ros2_uav::modes::ModeInterface&lt; ModeT &gt;::node_</definition>
+        <argsstring></argsstring>
+        <name>node_</name>
+        <briefdescription>
+<para>Reference to the ROS2 node. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="109" column="17" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" prot="protected" static="no" mutable="no">
+        <type>ModeT</type>
+        <definition>ModeT ros2_uav::modes::ModeInterface&lt; ModeT &gt;::mode_</definition>
+        <argsstring></argsstring>
+        <name>mode_</name>
+        <briefdescription>
+<para>The mode instance. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="110" column="9" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" prot="protected" static="no" mutable="no">
+        <type>rclcpp::Publisher&lt; ros2_uav_interfaces::msg::Coordinate &gt;::SharedPtr</type>
+        <definition>rclcpp::Publisher&lt;ros2_uav_interfaces::msg::Coordinate&gt;::SharedPtr ros2_uav::modes::ModeInterface&lt; ModeT &gt;::coordinate_publisher_</definition>
+        <argsstring></argsstring>
+        <name>coordinate_publisher_</name>
+        <briefdescription>
+<para>The ROS2 publisher for the coordinates. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="112" column="33" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a1529393806fe03a1dd15f23b78f038d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::modes::ModeInterface&lt; ModeT &gt;::ModeInterface</definition>
+        <argsstring>(const ModeBase::Settings &amp;mode_settings, rclcpp::Node &amp;node)</argsstring>
+        <name>ModeInterface</name>
+        <param>
+          <type>const ModeBase::Settings &amp;</type>
+          <declname>mode_settings</declname>
+        </param>
+        <param>
+          <type>rclcpp::Node &amp;</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1modes_1_1ModeInterface" kindref="compound">ModeInterface</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode_settings</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Settings for the mode. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ROS2 node. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="51" column="3" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="51" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1abc914e47f767b5de1160657050e0f3dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; ModeT &gt;::setSetpoint</definition>
+        <argsstring>(const ModeT::TrackerType::SetPointType &amp;setpoint)</argsstring>
+        <name>setSetpoint</name>
+        <param>
+          <type>const ModeT::TrackerType::SetPointType &amp;</type>
+          <declname>setpoint</declname>
+        </param>
+        <briefdescription>
+<para>Sets the setpoint for the mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>setpoint</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The setpoint to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="65" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="65" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1a553b81dac812a8e795a6ca18782ada06" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; ModeT &gt;::setTfBuffer</definition>
+        <argsstring>(std::shared_ptr&lt; tf2_ros::Buffer &gt; tf_buffer)</argsstring>
+        <name>setTfBuffer</name>
+        <param>
+          <type>std::shared_ptr&lt; tf2_ros::Buffer &gt;</type>
+          <declname>tf_buffer</declname>
+        </param>
+        <briefdescription>
+<para>Set the TF Buffer for the mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>tf_buffer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The TF Buffer to be set. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="72" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="72" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1modes_1_1ModeInterface_1ac546df1fb3486fe24c18e43c386edc97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::modes::ModeInterface&lt; ModeT &gt;::publishCoordinates</definition>
+        <argsstring>(const std::vector&lt; Coordinate::SharedPtr &gt; &amp;coordinates)</argsstring>
+        <name>publishCoordinates</name>
+        <param>
+          <type>const std::vector&lt; Coordinate::SharedPtr &gt; &amp;</type>
+          <declname>coordinates</declname>
+        </param>
+        <briefdescription>
+<para>Publishes the coordinates for debug. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>coordinates</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The coordinates to be published. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="79" column="8" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="79" bodyend="106"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Interface class for UAV modes. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>ModeT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The mode type derived from uav_cpp::modes::Mode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ParamContainer</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ModeBase</label>
+      </node>
+      <node id="5">
+        <label>ros2_uav::modes::Position</label>
+        <link refid="classros2__uav_1_1modes_1_1Position"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>ros2_uav::modes::Spin</label>
+        <link refid="classros2__uav_1_1modes_1_1Spin"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Spin &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ros2_uav::modes::AttitudeThrustMode&lt; uav_cpp::modes::Se3Position &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1AttitudeThrustMode"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ParamContainer</label>
+      </node>
+      <node id="1">
+        <label>ros2_uav::modes::ModeInterface&lt; ModeT &gt;</label>
+        <link refid="classros2__uav_1_1modes_1_1ModeInterface"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>mode_</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ModeBase</label>
+      </node>
+      <node id="4">
+        <label>ModeT</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="42" column="1" bodyfile="include/ros2_uav_px4/mode_interface/mode_interface.hpp" bodystart="43" bodyend="114"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>coordinate_publisher_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>mode_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a1529393806fe03a1dd15f23b78f038d5" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>ModeInterface</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" prot="protected" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>node_</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1ac546df1fb3486fe24c18e43c386edc97" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>publishCoordinates</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1abc914e47f767b5de1160657050e0f3dd" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>setSetpoint</name></member>
+      <member refid="classros2__uav_1_1modes_1_1ModeInterface_1a553b81dac812a8e795a6ca18782ada06" prot="public" virt="non-virtual"><scope>ros2_uav::modes::ModeInterface</scope><name>setTfBuffer</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="conceptros2__uav_1_1modes_1_1DerivedFromUavCppPipeline" kind="concept">
+    <compoundname>ros2_uav::modes::DerivedFromUavCppPipeline</compoundname>
+    <includes refid="mode__interface_8hpp" local="no">mode_interface.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename PipelineT</type>
+      </param>
+    </templateparamlist>
+    <initializer>template&lt;typename PipelineT&gt;
+concept <ref refid="conceptros2__uav_1_1modes_1_1DerivedFromUavCppPipeline" kindref="compound">ros2_uav::modes::DerivedFromUavCppPipeline</ref> =  requires(PipelineT pipeline)
+{
+  [] &lt; typename ... T &gt; (uav_cpp::pipelines::ControlPipeline&lt;T...&gt; &amp;) {} (pipeline);
+}    </initializer>
+    <briefdescription>
+<para>Concept that checks if PipelineT is derived from uav_cpp::pipelines::ControlPipeline. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp" line="46" column="1"/>
+  </compounddef>
+</doxygen>

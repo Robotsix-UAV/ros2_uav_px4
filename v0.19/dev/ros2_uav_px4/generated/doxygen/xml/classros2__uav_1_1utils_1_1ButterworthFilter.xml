@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="classros2__uav_1_1utils_1_1ButterworthFilter" kind="class" language="C++" prot="public">
+    <compoundname>ros2_uav::utils::ButterworthFilter</compoundname>
+    <includes refid="derivative__filter_8hpp" local="no">derivative_filter.hpp</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1aa2dce702384b99c277081c16652caa24" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::cutoff_</definition>
+        <argsstring></argsstring>
+        <name>cutoff_</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::cutoff_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="83" column="10" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1a776bfdcca5484e1693aa0ef437607a9c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::fs_</definition>
+        <argsstring></argsstring>
+        <name>fs_</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::fs_</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="84" column="10" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1a9096fb9a6c7e58ffb512b660b726e9d2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::a0</definition>
+        <argsstring></argsstring>
+        <name>a0</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::a0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="85" column="10" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1afd4305c47032b3aff6b3c61ab3870270" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::a1</definition>
+        <argsstring></argsstring>
+        <name>a1</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::a1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="85" column="13" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1ae5305178c6bebf72b80fff765d490890" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::a2</definition>
+        <argsstring></argsstring>
+        <name>a2</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::a2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="85" column="16" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1aa01be734179b2012fb053c210e4b1a7d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::b1</definition>
+        <argsstring></argsstring>
+        <name>b1</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::b1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="85" column="19" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classros2__uav_1_1utils_1_1ButterworthFilter_1a1fbf19ba7d0e8c1f821d0d96968389ab" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ros2_uav::utils::ButterworthFilter::b2</definition>
+        <argsstring></argsstring>
+        <name>b2</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::b2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="85" column="22" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1ButterworthFilter_1a55f09ca3ce85f7e5f2b17c4689e8f6a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ros2_uav::utils::ButterworthFilter::ButterworthFilter</definition>
+        <argsstring>(double cutoff_frequency, double sampling_frequency)</argsstring>
+        <name>ButterworthFilter</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::ButterworthFilter</qualifiedname>
+        <param>
+          <type>double</type>
+          <declname>cutoff_frequency</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sampling_frequency</declname>
+        </param>
+        <briefdescription>
+<para>Constructs a new <ref refid="classros2__uav_1_1utils_1_1ButterworthFilter" kindref="compound">ButterworthFilter</ref> object. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cutoff_frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The cutoff frequency of the filter. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sampling_frequency</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The sampling frequency of the input data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="40" column="3" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="40" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1ButterworthFilter_1a9ef948e62081f43383cba96edfd71e81" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; ros2_uav::utils::ButterworthFilter::filtfilt</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;input)</argsstring>
+        <name>filtfilt</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::filtfilt</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Apply a forward-backward Butterworth filter to the input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;double&gt; The filtered data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="52" column="15" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="52" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1ButterworthFilter_1abc1b53ed41c896f3c71f2ccfe854a98e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt; double &gt; ros2_uav::utils::ButterworthFilter::filter</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;input)</argsstring>
+        <name>filter</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::filter</qualifiedname>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>input</declname>
+        </param>
+        <briefdescription>
+<para>Apply a forward Butterworth filter to the input data. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>input</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The input data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>std::vector&lt;double&gt; The filtered data. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="67" column="15" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="67" bodyend="80"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="private-func">
+      <memberdef kind="function" id="classros2__uav_1_1utils_1_1ButterworthFilter_1abf405bc5101bf7e001f46b73b6271c16" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ros2_uav::utils::ButterworthFilter::computeCoefficients</definition>
+        <argsstring>()</argsstring>
+        <name>computeCoefficients</name>
+        <qualifiedname>ros2_uav::utils::ButterworthFilter::computeCoefficients</qualifiedname>
+        <briefdescription>
+<para>Compute the filter coefficients as function of the cutoff frequency and the sampling frequency. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="90" column="8" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="90" bodyend="102"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Butterworth filter implementation. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/derivative_filter.hpp" line="31" column="1" bodyfile="include/ros2_uav_px4/utils/derivative_filter.hpp" bodystart="32" bodyend="103"/>
+    <listofallmembers>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a9096fb9a6c7e58ffb512b660b726e9d2" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>a0</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1afd4305c47032b3aff6b3c61ab3870270" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>a1</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1ae5305178c6bebf72b80fff765d490890" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>a2</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1aa01be734179b2012fb053c210e4b1a7d" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>b1</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a1fbf19ba7d0e8c1f821d0d96968389ab" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>b2</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a55f09ca3ce85f7e5f2b17c4689e8f6a6" prot="public" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>ButterworthFilter</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1abf405bc5101bf7e001f46b73b6271c16" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>computeCoefficients</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1aa2dce702384b99c277081c16652caa24" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>cutoff_</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1abc1b53ed41c896f3c71f2ccfe854a98e" prot="public" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>filter</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a9ef948e62081f43383cba96edfd71e81" prot="public" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>filtfilt</name></member>
+      <member refid="classros2__uav_1_1utils_1_1ButterworthFilter_1a776bfdcca5484e1693aa0ef437607a9c" prot="private" virt="non-virtual"><scope>ros2_uav::utils::ButterworthFilter</scope><name>fs_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

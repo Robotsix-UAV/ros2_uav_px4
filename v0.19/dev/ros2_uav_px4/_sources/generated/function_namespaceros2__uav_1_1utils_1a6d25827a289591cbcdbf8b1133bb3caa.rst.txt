@@ -1,0 +1,14 @@
+.. _exhale_function_namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa:
+
+Function ros2_uav::utils::convert(const uav_cpp::types::DisturbanceCoefficientsStamped&)
+========================================================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_type_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: ros2_uav::utils::convert(const uav_cpp::types::DisturbanceCoefficientsStamped&)
+   :project: ros2_uav_px4 Doxygen Project

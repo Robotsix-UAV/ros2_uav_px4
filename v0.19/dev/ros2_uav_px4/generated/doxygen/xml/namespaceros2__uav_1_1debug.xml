@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceros2__uav_1_1debug" kind="namespace" language="C++">
+    <compoundname>ros2_uav::debug</compoundname>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceros2__uav_1_1debug_1ad005802541bb1d2749d40c66908065f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>std::size_t</type>
+            <declname>I</declname>
+            <defname>I</defname>
+          </param>
+          <param>
+            <type>typename PipelineT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void ros2_uav::debug::moduleLoop</definition>
+        <argsstring>(std::shared_ptr&lt; PipelineT &gt; pipeline)</argsstring>
+        <name>moduleLoop</name>
+        <qualifiedname>ros2_uav::debug::moduleLoop</qualifiedname>
+        <param>
+          <type>std::shared_ptr&lt; PipelineT &gt;</type>
+          <declname>pipeline</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/utils/debug.hpp" line="28" column="6" bodyfile="include/ros2_uav_px4/utils/debug.hpp" bodystart="28" bodyend="36"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/utils/debug.hpp" line="24" column="1"/>
+  </compounddef>
+</doxygen>

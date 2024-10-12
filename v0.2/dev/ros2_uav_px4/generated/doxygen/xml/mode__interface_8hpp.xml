@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="mode__interface_8hpp" kind="file" language="C++">
+    <compoundname>mode_interface.hpp</compoundname>
+    <includes local="no">memory</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">uav_cpp/parameters/param_container.hpp</includes>
+    <includes local="no">px4_ros2/components/mode.hpp</includes>
+    <includes local="no">uav_cpp/modes/mode.hpp</includes>
+    <includes local="no">ros2_uav_interfaces/msg/coordinate.hpp</includes>
+    <includedby refid="attitude__thrust_8hpp" local="yes">include/ros2_uav_px4/modes/attitude_thrust.hpp</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>uav_cpp/parameters/param_container.hpp</label>
+      </node>
+      <node id="5">
+        <label>px4_ros2/components/mode.hpp</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+      <node id="1">
+        <label>include/ros2_uav_px4/mode_interface/mode_interface.hpp</label>
+        <link refid="mode__interface_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>uav_cpp/modes/mode.hpp</label>
+      </node>
+      <node id="7">
+        <label>ros2_uav_interfaces/msg/coordinate.hpp</label>
+      </node>
+      <node id="2">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>include/ros2_uav_px4/modes/attitude_thrust.hpp</label>
+        <link refid="attitude__thrust_8hpp_source"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>include/ros2_uav_px4/modes/spin.hpp</label>
+        <link refid="spin_8hpp_source"/>
+      </node>
+      <node id="1">
+        <label>include/ros2_uav_px4/mode_interface/mode_interface.hpp</label>
+        <link refid="mode__interface_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>include/ros2_uav_px4/modes/position.hpp</label>
+        <link refid="position_8hpp_source"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classros2__uav_1_1modes_1_1ModeInterface" prot="public">ros2_uav::modes::ModeInterface</innerclass>
+    <innernamespace refid="namespaceros2__uav">ros2_uav</innernamespace>
+    <innernamespace refid="namespaceros2__uav_1_1modes">ros2_uav::modes</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2024<sp/>Damien<sp/>SIX<sp/>(damien@robotsix.net)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;License&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;memory&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;uav_cpp/parameters/param_container.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_ros2/components/mode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;uav_cpp/modes/mode.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros2_uav_interfaces/msg/coordinate.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">ros2_uav::modes</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>uav_cpp::parameters::ParamContainer;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>uav_cpp::utils::Coordinate;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>px4_ros2::ModeBase;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ModeT&gt;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">concept<sp/>DerivedFromUavCppMode<sp/>=<sp/>requires{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>std::is_base_of_v&lt;uav_cpp::modes::Mode&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ModeT::TrackerType,</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>ModeT::ControllerType&gt;,<sp/>ModeT&gt;;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;DerivedFromUavCppMode<sp/>ModeT&gt;</highlight></codeline>
+<codeline lineno="42" refid="classros2__uav_1_1modes_1_1ModeInterface" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classros2__uav_1_1modes_1_1ModeInterface" kindref="compound">ModeInterface</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ModeBase,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>ParamContainer</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="51" refid="classros2__uav_1_1modes_1_1ModeInterface_1a1529393806fe03a1dd15f23b78f038d5" refkind="member"><highlight class="normal"><sp/><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a1529393806fe03a1dd15f23b78f038d5" kindref="member">ModeInterface</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ModeBase::Settings<sp/>&amp;<sp/>mode_settings,<sp/>rclcpp::Node<sp/>&amp;<sp/>node)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/>:<sp/>ModeBase(node,<sp/>mode_settings),</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>ParamContainer(),</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" kindref="member">node_</ref>(node)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" kindref="member">coordinate_publisher_</ref><sp/>=<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" kindref="member">node_</ref>.create_publisher&lt;ros2_uav_interfaces::msg::Coordinate&gt;(</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;debug/coordinates&quot;</highlight><highlight class="normal">,<sp/>20);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="classros2__uav_1_1modes_1_1ModeInterface_1abc914e47f767b5de1160657050e0f3dd" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1abc914e47f767b5de1160657050e0f3dd" kindref="member">setSetpoint</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ModeT::TrackerType::SetPointType<sp/>&amp;<sp/>setpoint)<sp/>{<ref refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" kindref="member">mode_</ref>.setSetpoint(setpoint);}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="classros2__uav_1_1modes_1_1ModeInterface_1a553b81dac812a8e795a6ca18782ada06" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a553b81dac812a8e795a6ca18782ada06" kindref="member">setTfBuffer</ref>(std::shared_ptr&lt;tf2_ros::Buffer&gt;<sp/>tf_buffer)<sp/>{<ref refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" kindref="member">mode_</ref>.setTfBuffer(tf_buffer);}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="classros2__uav_1_1modes_1_1ModeInterface_1ac546df1fb3486fe24c18e43c386edc97" refkind="member"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1ac546df1fb3486fe24c18e43c386edc97" kindref="member">publishCoordinates</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::vector&lt;Coordinate::SharedPtr&gt;<sp/>&amp;<sp/>coordinates)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>final_time;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>std::vector&lt;double&gt;<sp/>sample_times;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>coordinate<sp/>:<sp/>coordinates)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ros2_uav_interfaces::msg::Coordinate<sp/>coordinate_msg;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>ros2_uav_interfaces::msg::FloatArray<sp/>float_array_msg;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coordinate_msg.name<sp/>=<sp/>coordinate-&gt;getName();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>final_time<sp/>=<sp/>coordinate-&gt;getFinalTime();</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sample_times.clear();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sample_time<sp/>=<sp/>0.0;<sp/>sample_time<sp/>&lt;=<sp/>final_time;<sp/>sample_time<sp/>+=<sp/>0.01)<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sample_times.push_back(sample_time);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint8_t<sp/>derivative<sp/>=<sp/>0;<sp/>derivative<sp/>&lt;=<sp/>coordinate-&gt;getMaxDerivativeOrder();</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>++derivative)</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(derivative<sp/>&lt;<sp/>coordinate-&gt;getMinDerivativeOrder())<sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coordinate_msg.derivatives.push_back(ros2_uav_interfaces::msg::FloatArray());</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coordinate-&gt;getTrajectory(sample_times,<sp/>derivative,<sp/>float_array_msg.data);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>coordinate_msg.derivatives.push_back(float_array_msg);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coordinate_msg.frame_id<sp/>=<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" kindref="member">mode_</ref>.getControllerReferenceFrame();</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>coordinate_msg.timestamps<sp/>=<sp/>sample_times;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" kindref="member">coordinate_publisher_</ref>-&gt;publish(coordinate_msg);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight><highlight class="keyword">protected</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="109" refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Node<sp/>&amp;<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1ad19c470e704727df1959a77cd0a12478" kindref="member">node_</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="110" refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" refkind="member"><highlight class="normal"><sp/><sp/>ModeT<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1adc3cb76557a4d133611643727ba0d2f6" kindref="member">mode_</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" refkind="member"><highlight class="normal"><sp/><sp/>rclcpp::Publisher&lt;ros2_uav_interfaces::msg::Coordinate&gt;::SharedPtr<sp/><ref refid="classros2__uav_1_1modes_1_1ModeInterface_1a8f97140ca3cd8f3f5cebdf73e85c270f" kindref="member">coordinate_publisher_</ref>;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ros2_uav::modes</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/ros2_uav_px4/mode_interface/mode_interface.hpp"/>
+  </compounddef>
+</doxygen>

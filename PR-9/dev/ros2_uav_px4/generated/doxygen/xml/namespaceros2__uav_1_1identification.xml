@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="namespaceros2__uav_1_1identification" kind="namespace" language="C++">
+    <compoundname>ros2_uav::identification</compoundname>
+    <innerclass refid="classros2__uav_1_1identification_1_1AttitudeThrustMatcher" prot="public">ros2_uav::identification::AttitudeThrustMatcher</innerclass>
+    <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespaceros2__uav_1_1identification_1acbe58c06183b4ae76c3b9023b19853ea" prot="public" static="no">
+        <type>uav_cpp::models::ThrustScalerWrapper&lt; uav_cpp::types::AttitudeThrustStamped &gt;</type>
+        <definition>using ros2_uav::identification::AttitudeThrustScaler = 
+  uav_cpp::models::ThrustScalerWrapper&lt;uav_cpp::types::AttitudeThrustStamped&gt;</definition>
+        <argsstring></argsstring>
+        <name>AttitudeThrustScaler</name>
+        <qualifiedname>ros2_uav::identification::AttitudeThrustScaler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="43" column="1" bodyfile="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Damien SIX (<ulink url="mailto:damien@robotsix.net">damien@robotsix.net</ulink>) </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/ros2_uav_px4/model_identification/thrust_matcher_node.hpp" line="32" column="1"/>
+  </compounddef>
+</doxygen>

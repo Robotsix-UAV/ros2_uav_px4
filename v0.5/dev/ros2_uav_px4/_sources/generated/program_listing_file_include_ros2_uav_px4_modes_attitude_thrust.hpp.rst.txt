@@ -1,0 +1,65 @@
+
+.. _program_listing_file_include_ros2_uav_px4_modes_attitude_thrust.hpp:
+
+Program Listing for File attitude_thrust.hpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_ros2_uav_px4_modes_attitude_thrust.hpp>` (``include/ros2_uav_px4/modes/attitude_thrust.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   // Copyright 2024 Damien SIX (damien@robotsix.net)
+   //
+   // Licensed under the Apache License, Version 2.0 (the "License");
+   // you may not use this file except in compliance with the License.
+   // You may obtain a copy of the License at
+   //
+   //     http://www.apache.org/licenses/LICENSE-2.0
+   //
+   // Unless required by applicable law or agreed to in writing, software
+   // distributed under the License is distributed on an "AS IS" BASIS,
+   // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   // See the License for the specific language governing permissions and
+   // limitations under the License.
+   
+   #pragma once
+   
+   #include <memory>
+   #include <px4_ros2/control/setpoint_types/experimental/attitude.hpp>
+   #include <px4_ros2/odometry/local_position.hpp>
+   #include <px4_ros2/odometry/attitude.hpp>
+   #include <px4_ros2/odometry/angular_velocity.hpp>
+   #include "ros2_uav_px4/mode_interface/mode_interface.hpp"
+   
+   namespace ros2_uav::modes
+   {
+   using uav_cpp::module_io::AttitudeThrust;
+   using uav_cpp::parameters::ParamContainer;
+   using uav_cpp::parameters::ParameterMap;
+   
+   template<typename ModeT>
+   concept DerivedFromAttitudeThrustMode = requires {
+     DerivedFromUavCppMode<ModeT>;
+     std::is_same_v<typename ModeT::OutputType, AttitudeThrust>;
+   };
+   
+   template<DerivedFromAttitudeThrustMode ModeT>
+   class AttitudeThrustMode : public ModeInterface<ModeT>
+   {
+   public:
+     using ModeInterface<ModeT>::addRequiredParameter;
+     AttitudeThrustMode(const ModeBase::Settings & mode_settings, rclcpp::Node & node);
+   
+   private:
+     void updateSetpoint([[maybe_unused]] float dt) override;
+   
+     ParameterMap::SharedPtr parameters_;  
+     rclcpp::Time time_init_;  
+     std::shared_ptr<px4_ros2::AttitudeSetpointType> attitude_setpoint_;
+   };
+   
+   }  // namespace ros2_uav::modes
+   
+   #include "ros2_uav_px4/modes/attitude_thrust_impl.hpp"

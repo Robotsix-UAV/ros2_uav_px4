@@ -1,0 +1,14 @@
+.. _exhale_function_uav__cpp__ros2__conversions_8hpp_1a1278258de480407d55aa64a2f55be6a9:
+
+Function uav_ros2::utils::convertToSetpoint
+===========================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_utils_uav_cpp_ros2_conversions.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: uav_ros2::utils::convertToSetpoint(const ros2_uav_interfaces::msg::PoseHeading&)
+   :project: ros2_uav_px4 Doxygen Project

@@ -1,0 +1,14 @@
+.. _exhale_variable_attitude__thrust_8hpp_1afd32347dfe3e93b86c3fd2aa6faafa39:
+
+Variable ros2_uav::modes::DerivedFromAttitudeThrustMode
+=======================================================
+
+- Defined in :ref:`file_include_ros2_uav_px4_modes_attitude_thrust.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: ros2_uav::modes::DerivedFromAttitudeThrustMode
+   :project: ros2_uav_px4 Doxygen Project

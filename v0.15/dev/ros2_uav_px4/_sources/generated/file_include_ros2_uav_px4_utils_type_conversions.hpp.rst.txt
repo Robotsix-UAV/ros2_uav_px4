@@ -1,0 +1,92 @@
+
+.. _file_include_ros2_uav_px4_utils_type_conversions.hpp:
+
+File type_conversions.hpp
+=========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_ros2_uav_px4_utils>` (``include/ros2_uav_px4/utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/ros2_uav_px4/utils/type_conversions.hpp``)
+----------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_ros2_uav_px4_utils_type_conversions.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``px4_msgs/msg/vehicle_attitude_setpoint.hpp``
+
+- ``px4_msgs/msg/vehicle_odometry.hpp``
+
+- ``px4_msgs/msg/vehicle_thrust_setpoint.hpp``
+
+- ``ros2_uav_interfaces/msg/disturbance.hpp``
+
+- ``ros2_uav_interfaces/msg/pose_heading.hpp``
+
+- ``ros2_uav_interfaces/msg/waypoint_list.hpp``
+
+- ``string``
+
+- ``uav_cpp/types/enums.hpp``
+
+- ``uav_cpp/types/timestamped_types.hpp``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file_include_ros2_uav_px4_mode_interface_mode_interface.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_uav_ros2`
+
+- :ref:`namespace_uav_ros2__utils`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a5d409629ccb5a348d662c8d69786c40f`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a12a9bd87ee6c78657d617d5ac655b034`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a3b46647485c87aec7847530bd5122ef2`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1aa1ac38d63286bb12bc130ab703380c12`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a74800ba0603198c77288bcfc96dc5009`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1ab8b296204029590fca360f23e89e2b1e`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a161c943eb9f122904013b16dd030b3ba`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1a8a885ee884d4ccf48fd553bfb2897051`
+
+- :ref:`exhale_function_namespaceuav__ros2_1_1utils_1acf0577289fb03e46591c076b1b2cd323`
+

@@ -1,0 +1,8 @@
+<map id="ros2_uav::modes::Spin" name="ros2_uav::modes::Spin">
+<area shape="rect" id="node1" title="Spin mode class for UAV control, wrapping the uavcpp::modes::Spin class." alt="" coords="731,68,899,95"/>
+<area shape="rect" id="node2" href="$classros2__uav_1_1modes_1_1AttitudeThrustMode.html" title=" " alt="" coords="463,16,683,72"/>
+<area shape="rect" id="node3" href="$classros2__uav_1_1modes_1_1ModeInterface.html" title="Interface class for UAV modes, inheriting from ModeBase and ParamContainer." alt="" coords="180,31,415,57"/>
+<area shape="rect" id="node4" title=" " alt="" coords="23,5,114,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,56,132,83"/>
+<area shape="rect" id="node6" title=" " alt="" coords="470,97,675,138"/>
+</map>

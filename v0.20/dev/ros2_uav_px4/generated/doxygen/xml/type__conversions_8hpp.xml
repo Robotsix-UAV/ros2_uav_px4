@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.11.0" xml:lang="en-US">
+  <compounddef id="type__conversions_8hpp" kind="file" language="C++">
+    <compoundname>type_conversions.hpp</compoundname>
+    <includes local="no">string</includes>
+    <includes local="no">ros2_uav_interfaces/msg/pose_heading.hpp</includes>
+    <includes local="no">ros2_uav_interfaces/msg/disturbance.hpp</includes>
+    <includes local="no">ros2_uav_interfaces/msg/waypoint_list.hpp</includes>
+    <includes local="no">uav_cpp/types/enums.hpp</includes>
+    <includes local="no">uav_cpp/types/timestamped_types.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_attitude_setpoint.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_thrust_setpoint.hpp</includes>
+    <includes local="no">px4_msgs/msg/vehicle_odometry.hpp</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>include/ros2_uav_px4/utils/type_conversions.hpp</label>
+        <link refid="type__conversions_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>px4_msgs/msg/vehicle_attitude_setpoint.hpp</label>
+      </node>
+      <node id="10">
+        <label>px4_msgs/msg/vehicle_odometry.hpp</label>
+      </node>
+      <node id="9">
+        <label>px4_msgs/msg/vehicle_thrust_setpoint.hpp</label>
+      </node>
+      <node id="4">
+        <label>ros2_uav_interfaces/msg/disturbance.hpp</label>
+      </node>
+      <node id="3">
+        <label>ros2_uav_interfaces/msg/pose_heading.hpp</label>
+      </node>
+      <node id="5">
+        <label>ros2_uav_interfaces/msg/waypoint_list.hpp</label>
+      </node>
+      <node id="2">
+        <label>string</label>
+      </node>
+      <node id="6">
+        <label>uav_cpp/types/enums.hpp</label>
+      </node>
+      <node id="7">
+        <label>uav_cpp/types/timestamped_types.hpp</label>
+      </node>
+    </incdepgraph>
+    <innernamespace refid="namespaceros2__uav">ros2_uav</innernamespace>
+    <innernamespace refid="namespaceros2__uav_1_1utils">ros2_uav::utils</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>Copyright<sp/>2024<sp/>The<sp/>Technology<sp/>Innovation<sp/>Institute<sp/>(TII)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>Apache<sp/>License,<sp/>Version<sp/>2.0<sp/>(the<sp/>&quot;License&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>you<sp/>may<sp/>not<sp/>use<sp/>this<sp/>file<sp/>except<sp/>in<sp/>compliance<sp/>with<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>may<sp/>obtain<sp/>a<sp/>copy<sp/>of<sp/>the<sp/>License<sp/>at</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/>http://www.apache.org/licenses/LICENSE-2.0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Unless<sp/>required<sp/>by<sp/>applicable<sp/>law<sp/>or<sp/>agreed<sp/>to<sp/>in<sp/>writing,<sp/>software</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>distributed<sp/>under<sp/>the<sp/>License<sp/>is<sp/>distributed<sp/>on<sp/>an<sp/>&quot;AS<sp/>IS&quot;<sp/>BASIS,</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>WITHOUT<sp/>WARRANTIES<sp/>OR<sp/>CONDITIONS<sp/>OF<sp/>ANY<sp/>KIND,<sp/>either<sp/>express<sp/>or<sp/>implied.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>See<sp/>the<sp/>License<sp/>for<sp/>the<sp/>specific<sp/>language<sp/>governing<sp/>permissions<sp/>and</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>limitations<sp/>under<sp/>the<sp/>License.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros2_uav_interfaces/msg/pose_heading.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros2_uav_interfaces/msg/disturbance.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ros2_uav_interfaces/msg/waypoint_list.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;uav_cpp/types/enums.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;uav_cpp/types/timestamped_types.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_attitude_setpoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_thrust_setpoint.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;px4_msgs/msg/vehicle_odometry.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespaceros2__uav_1_1utils" kindref="compound">ros2_uav::utils</ref></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>frame_id)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frame_id.find(</highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">)<sp/>!=<sp/>std::string::npos)<sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame::ODOM;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frame_id.find(</highlight><highlight class="stringliteral">&quot;base_link&quot;</highlight><highlight class="normal">)<sp/>!=<sp/>std::string::npos)<sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame::BASE_LINK;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame::UNKNOWN;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="namespaceros2__uav_1_1utils_1a32831ac19257fcc5c5cd129524a45141" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>std::string<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame<sp/>&amp;<sp/>frame_id)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(frame_id)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame::ODOM:</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;odom&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>uav_cpp::types::Frame::BASE_LINK:</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;base_link&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;unknown&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="namespaceros2__uav_1_1utils_1a52cc96bc346c4a2cf503457c57f5f423" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::PoseHeadingStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ros2_uav_interfaces::msg::PoseHeading<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="74"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>uav_cpp::types::PoseHeadingStamped<sp/>setpoint;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/>setpoint.timestamp<sp/>=</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>std::chrono::nanoseconds{</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.sec)<sp/>*<sp/>1000000000<sp/>+</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.nanosec)};</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/>setpoint.frame_id<sp/>=<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(msg.header.frame_id);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/>setpoint.position<sp/>=<sp/>Eigen::Vector3d(msg.position.x,<sp/>msg.position.y,<sp/>msg.position.z);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/>setpoint.velocity<sp/>=<sp/>Eigen::Vector3d(msg.velocity.x,<sp/>msg.velocity.y,<sp/>msg.velocity.z);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/>setpoint.heading<sp/>=<sp/>msg.heading;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>setpoint;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="namespaceros2__uav_1_1utils_1ae8c420cd2484b81f1b4a8606d189a623" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::DisturbanceCoefficientsStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ros2_uav_interfaces::msg::Disturbance<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/>uav_cpp::types::DisturbanceCoefficientsStamped<sp/>disturbance;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/>disturbance.timestamp<sp/>=</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>std::chrono::nanoseconds{</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.sec)<sp/>*<sp/>1000000000<sp/>+</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.nanosec)};</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/>disturbance.frame_id<sp/>=<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(msg.header.frame_id);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/>disturbance.constant<sp/>=<sp/>Eigen::Vector3d(msg.constant.x,<sp/>msg.constant.y,<sp/>msg.constant.z);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/>disturbance.proportional<sp/>=<sp/>Eigen::Vector3d(</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.proportional.x,<sp/>msg.proportional.y,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.proportional.z);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>disturbance;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="namespaceros2__uav_1_1utils_1a6d25827a289591cbcdbf8b1133bb3caa" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>ros2_uav_interfaces::msg::Disturbance<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uav_cpp::types::DisturbanceCoefficientsStamped<sp/>&amp;<sp/>disturbance)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/>ros2_uav_interfaces::msg::Disturbance<sp/>msg;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/>msg.header.stamp.sec<sp/>=<sp/>disturbance.timestamp.count()<sp/>/<sp/>1000000000;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/>msg.header.stamp.nanosec<sp/>=<sp/>disturbance.timestamp.count()<sp/>%<sp/>1000000000;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/>msg.header.frame_id<sp/>=<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(disturbance.frame_id);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/>msg.constant.x<sp/>=<sp/>disturbance.constant.vector.x();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>msg.constant.y<sp/>=<sp/>disturbance.constant.vector.y();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/>msg.constant.z<sp/>=<sp/>disturbance.constant.vector.z();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/>msg.proportional.x<sp/>=<sp/>disturbance.proportional.vector.x();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/>msg.proportional.y<sp/>=<sp/>disturbance.proportional.vector.y();</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/>msg.proportional.z<sp/>=<sp/>disturbance.proportional.vector.z();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>msg;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131" refid="namespaceros2__uav_1_1utils_1a9314aef9dbf808b65c89dfa8e34d442d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::AttitudeThrustStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleAttitudeSetpoint<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/>uav_cpp::types::AttitudeThrustStamped<sp/>att_thrust;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/>att_thrust.timestamp<sp/>=<sp/>std::chrono::microseconds{msg.timestamp};</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/>att_thrust.attitude<sp/>=<sp/>Eigen::Quaterniond(msg.q_d[0],<sp/>msg.q_d[1],<sp/>-msg.q_d[2],<sp/>-msg.q_d[3]);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/>att_thrust.thrust<sp/>=<sp/>-msg.thrust_body[2];</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>att_thrust;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="namespaceros2__uav_1_1utils_1a060d2a65a2c88fb87508e469113ee0cd" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::OdometryStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleOdometry<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/>uav_cpp::types::OdometryStamped<sp/>odometry;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/>odometry.timestamp<sp/>=<sp/>std::chrono::microseconds{msg.timestamp};</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/>odometry.position<sp/>=<sp/>Eigen::Vector3d(msg.position[0],<sp/>-msg.position[1],<sp/>-msg.position[2]);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/>odometry.velocity<sp/>=<sp/>Eigen::Vector3d(msg.velocity[0],<sp/>-msg.velocity[1],<sp/>-msg.velocity[2]);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/>odometry.attitude<sp/>=<sp/>Eigen::Quaterniond(msg.q[0],<sp/>msg.q[1],<sp/>-msg.q[2],<sp/>-msg.q[3]);</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/>odometry.angular_velocity<sp/>=<sp/>Eigen::Vector3d(</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.angular_velocity[0],</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>-msg.angular_velocity[1],</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>-msg.angular_velocity[2]);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>odometry;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="namespaceros2__uav_1_1utils_1ad49a4e907ba9d315cdf6a72523b7348d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::ThrustStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>px4_msgs::msg::VehicleThrustSetpoint<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/>uav_cpp::types::ThrustStamped<sp/>thrust;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/>thrust.timestamp<sp/>=<sp/>std::chrono::microseconds{msg.timestamp};</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/>thrust.value<sp/>=<sp/>-msg.xyz[2];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>thrust;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>uav_cpp::types::PoseSpeedVectorStamped<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ros2_uav_interfaces::msg::WaypointList<sp/>&amp;<sp/>msg)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/>uav_cpp::types::PoseSpeedVectorStamped<sp/>pose_speed_vector;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/>pose_speed_vector.timestamp<sp/>=</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>std::chrono::nanoseconds{</highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.sec)<sp/>*<sp/>1000000000<sp/>+</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal">uint64_t</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(msg.header.stamp.nanosec)};</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/>pose_speed_vector.frame_id<sp/>=<sp/><ref refid="namespaceros2__uav_1_1utils_1a4dc8f3c52969b92885e4cadc34d14924" kindref="member">convert</ref>(msg.header.frame_id);</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>&amp;<sp/>waypoint<sp/>:<sp/>msg.waypoints)<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>uav_cpp::types::PoseSpeed<sp/>pose_speed;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>pose_speed.position<sp/>=<sp/>Eigen::Vector3d(</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>waypoint.position.x,<sp/>waypoint.position.y,</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>waypoint.position.z);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>pose_speed.speed<sp/>=<sp/>waypoint.speed;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>pose_speed_vector.waypoints.push_back(pose_speed);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>pose_speed_vector;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="191"><highlight class="normal">}<sp/><sp/></highlight><highlight class="comment">//<sp/>namespace<sp/>ros2_uav::utils</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="include/ros2_uav_px4/utils/type_conversions.hpp"/>
+  </compounddef>
+</doxygen>
