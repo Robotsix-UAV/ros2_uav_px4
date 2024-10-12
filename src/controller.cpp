@@ -67,7 +67,7 @@ int main(int argc, char * argv[])
   // Assign the actions to the interface
   InterfaceActions actions;
   actions.arm = [&px4_comm](bool arm) {px4_comm->setArm(arm);};
-  actions.offboard = [&px4_comm]() {px4_comm->setOffboard();};
+  actions.offboard = [&px4_comm](bool offboard) {px4_comm->setOffboard(offboard);};
   actions.land = [&px4_comm]() {px4_comm->land();};
   actions.landHome = [&px4_comm]() {px4_comm->landHome();};
   actions.setAttitudeThrust = [&px4_comm](const uav_cpp::types::AttitudeThrustStamped & setpoint) {
@@ -86,7 +86,8 @@ int main(int argc, char * argv[])
   using uav_cpp::pipelines::Se3Position;
   using uav_cpp::pipelines::NlmpcPosition;
   using uav_cpp::pipelines::NlmpcWaypoints;
-  auto pipeline_manager = std::make_shared<uav_cpp::pipelines::PipelineManager<Spin, Se3Position, NlmpcPosition, NlmpcWaypoints>>();
+  auto pipeline_manager = std::make_shared<uav_cpp::pipelines::PipelineManager<Spin, Se3Position,
+      NlmpcPosition, NlmpcWaypoints>>();
 
   // Sets the trigger for the pipelines
   std::vector<std::string> triggers = {uav_cpp::fsm::events::Odometry{}.tag};
@@ -113,12 +114,12 @@ int main(int argc, char * argv[])
           manager.fsmEvent(uav_cpp::fsm::events::UserRequestLand{});
           break;
         case UserRequest::Request::PIPELINE:
-        {
-          auto event = uav_cpp::fsm::events::UserRequestPipeline{};
-          event.pipeline = request->pipeline_name;
-          manager.fsmEvent(event);
-          break;
-        }
+          {
+            auto event = uav_cpp::fsm::events::UserRequestPipeline{};
+            event.pipeline = request->pipeline_name;
+            manager.fsmEvent(event);
+            break;
+          }
         default:
           break;
       }
@@ -128,6 +129,14 @@ int main(int argc, char * argv[])
   auto waypoint_list_sub = controller_node->create_subscription<WaypointList>(
     "command/waypoints", 1, [&pipeline_manager](const WaypointList::SharedPtr msg) {
       pipeline_manager->setInput<"NlmpcWaypoints", uav_cpp::types::PoseSpeedVectorStamped>(
+        ros2_uav::utils::convert(*msg));
+    });
+
+  auto pose_heading_sub = controller_node->create_subscription<PoseHeading>(
+    "command/pose_heading", 1, [&pipeline_manager](const PoseHeading::SharedPtr msg) {
+      pipeline_manager->setInput<"Se3Position", uav_cpp::types::PoseHeadingStamped>(
+        ros2_uav::utils::convert(*msg));
+      pipeline_manager->setInput<"NlmpcPosition", uav_cpp::types::PoseHeadingStamped>(
         ros2_uav::utils::convert(*msg));
     });
 

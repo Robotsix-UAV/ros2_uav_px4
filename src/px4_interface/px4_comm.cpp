@@ -1,8 +1,27 @@
+// Copyright 2024 The Technology Innovation Institute (TII)
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+/**
+ * @author Damien SIX (damien@robotsix.net)
+ */
+
 #include <chrono>
 #include <cmath>
+#include <limits>
 #include <uav_cpp/manager/core_manager.hpp>
+#include <uav_cpp/types/timestamped_types.hpp>
 #include "ros2_uav_px4/px4_interface/px4_comm.hpp"
-#include "uav_cpp/types/timestamped_types.hpp"
 #include "ros2_uav_px4/utils/type_conversions.hpp"
 
 namespace ros2_uav
@@ -37,12 +56,12 @@ void Px4Comm::setArm(bool arm)
   vehicle_command_pub->publish(msg);
 }
 
-void Px4Comm::setOffboard()
+void Px4Comm::setOffboard(bool offboard)
 {
   px4_msgs::msg::VehicleCommand msg;
   DefaultCommand(msg);
   msg.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_DO_SET_MODE;
-  msg.param1 = 1.0;
+  msg.param1 = (offboard) ? 1.0 : 0.0;
   msg.param2 = 6.0;
   vehicle_command_pub->publish(msg);
 }
@@ -146,13 +165,14 @@ void Px4Comm::DefaultCommand(px4_msgs::msg::VehicleCommand & msg)
   msg.target_component = 1;
   msg.source_system = 255;
   msg.from_external = true;
-  msg.param1 = float(NAN);
-  msg.param2 = float(NAN);
-  msg.param3 = float(NAN);
-  msg.param4 = float(NAN);
-  msg.param5 = float(NAN);
-  msg.param6 = float(NAN);
-  msg.param7 = float(NAN);
+  float nan_float = std::numeric_limits<float>::quiet_NaN();
+  msg.param1 = nan_float;
+  msg.param2 = nan_float;
+  msg.param3 = nan_float;
+  msg.param4 = nan_float;
+  msg.param5 = nan_float;
+  msg.param6 = nan_float;
+  msg.param7 = nan_float;
 }
 
 void Px4Comm::checkStatusReceived()
@@ -172,7 +192,6 @@ void Px4Comm::onVehicleStatus([[maybe_unused]] const px4_msgs::msg::VehicleStatu
 {
   std::lock_guard<std::mutex> lock(mtx_);
   last_status_received_ = node_->now().nanoseconds();
-  pingOffboard();
   connected_ = true;
 }
 

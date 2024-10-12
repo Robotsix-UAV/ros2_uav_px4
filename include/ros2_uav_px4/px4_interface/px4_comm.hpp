@@ -12,15 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#pragma once
+/**
+ * @author Damien SIX (damien@robotsix.net)
+ */
 
-#include "ros2_uav_px4/px4_interface/px4_comm_base.hpp"
-#include "uav_cpp/types/timestamped_types.hpp"
-#include "uav_cpp/interfaces/fcu_interface.hpp"
+#pragma once
 
 #include <memory>
 #include <mutex>
 #include <thread>
+
+#include <uav_cpp/types/timestamped_types.hpp>
+#include <uav_cpp/interfaces/fcu_interface.hpp>
+#include "ros2_uav_px4/px4_interface/px4_comm_base.hpp"
 
 namespace ros2_uav
 {
@@ -45,7 +49,7 @@ public:
   ~Px4Comm();
 
   void setArm(bool arm);
-  void setOffboard();
+  void setOffboard(bool offboard);
   void land();
   void takeoff();
   void landHome();
@@ -62,11 +66,13 @@ public:
 private:
   int target_system_; /**< Target system ID */
   bool connected_{false}; /**< Connection status */
-  std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface_; /**< Pointer to the FCU interface */
+  std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface_;
+  /**< Pointer to the FCU interface */
 
   int64_t last_status_received_{0};   /**< Last time the status was received */
-  std::mutex mtx_;                                        /**< Mutex for synchronization */
-  std::unique_ptr<std::jthread> check_connection_thread_; /**< Thread for checking connection status */
+  std::mutex mtx_;                    /**< Mutex for synchronization */
+  std::unique_ptr<std::jthread> check_connection_thread_;
+  /**< Thread for checking connection status */
 
   /**
    * @copydoc Px4CommBase::onVehicleControlMode

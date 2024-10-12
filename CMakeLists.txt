@@ -25,22 +25,8 @@ if(BUILD_TESTING)
   find_package(ament_cmake_gtest REQUIRED)
 endif()
 
-# Generate the PX4CommBase class with all the subscribers and publishers
-set(FC_COMM_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include/ros2_uav_px4/px4_interface)
-add_custom_command(
-  OUTPUT ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp
-  COMMAND python3 generate_px4_comm.py
-  DEPENDS ${FC_COMM_INCLUDE_DIR}/generate_px4_comm.py
-  ${FC_COMM_INCLUDE_DIR}/dds_topics.yaml
-  ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp.j2
-  WORKING_DIRECTORY ${FC_COMM_INCLUDE_DIR}
-  COMMENT "Generating px4_comm_base.hpp"
-)
-add_custom_target(px4_comm_base DEPENDS ${FC_COMM_INCLUDE_DIR}/px4_comm_base.hpp)
-
 add_executable(controller src/controller.cpp src/px4_interface/px4_comm.cpp)
 target_include_directories(controller PUBLIC include)
-add_dependencies(controller px4_comm_base)
 ament_target_dependencies(controller ros2_uav_interfaces uav_cpp ros2_uav_parameters px4_msgs)
 
 add_executable(disturbance_observer src/disturbance_observer.cpp)
