@@ -124,6 +124,7 @@ void Px4Comm::setAttitudeThrust(const AttitudeThrustStamped & input)
   offboard_control_mode_pub->publish(msg_offboard);
   usleep(1);
   vehicle_attitude_setpoint_pub->publish(msg_set_point);
+  last_ping_offboard_ = node_->now().nanoseconds();
 }
 
 void Px4Comm::setRatesThrust(const RatesThrustStamped & input)
@@ -142,6 +143,7 @@ void Px4Comm::setRatesThrust(const RatesThrustStamped & input)
   offboard_control_mode_pub->publish(msg_offboard);
   usleep(1);
   vehicle_rates_setpoint_pub->publish(msg_set_point);
+  last_ping_offboard_ = node_->now().nanoseconds();
 }
 
 
@@ -151,6 +153,7 @@ void Px4Comm::pingOffboard()
   msg_offboard.timestamp = Px4TimestampNow();
   msg_offboard.attitude = true;
   offboard_control_mode_pub->publish(msg_offboard);
+  last_ping_offboard_ = node_->now().nanoseconds();
 }
 
 int64_t Px4Comm::Px4TimestampNow()
@@ -185,6 +188,10 @@ void Px4Comm::checkStatusReceived()
       UAVCPP_FATAL("PX4 communication lost");
       connected_ = false;
     }
+  }
+  const int64_t max_ping{500000000};  // 500 ms
+  if (now_ns - last_ping_offboard_ > max_ping) {
+    pingOffboard();
   }
 }
 

@@ -25,6 +25,7 @@
 #include <std_msgs/msg/string.hpp>
 #include <ros2_uav_interfaces/msg/waypoint_list.hpp>
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
+#include <ros2_uav_interfaces/msg/disturbance.hpp>
 #include "ros2_uav_px4/px4_interface/px4_comm.hpp"
 #include "ros2_uav_px4/utils/type_conversions.hpp"
 #include "ros2_uav_px4/utils/origin_reset.hpp"
@@ -38,6 +39,7 @@ using ros2_uav::Px4Comm;
 using uav_cpp::parameters::ParameterMap;
 using ros2_uav_interfaces::msg::WaypointList;
 using ros2_uav_interfaces::msg::PoseHeading;
+using ros2_uav_interfaces::msg::Disturbance;
 
 int main(int argc, char * argv[])
 {
@@ -138,6 +140,14 @@ int main(int argc, char * argv[])
         ros2_uav::utils::convert(*msg));
       pipeline_manager->setInput<"NlmpcPosition", uav_cpp::types::PoseHeadingStamped>(
         ros2_uav::utils::convert(*msg));
+    });
+
+  // Disturbance observer
+  auto disturbance_sub_ = controller_node->create_subscription<ros2_uav_interfaces::msg::Disturbance>(
+    "disturbance", 1, [&manager](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
+      uav_cpp::types::DisturbanceCoefficientsStamped disturbance_coefficients;
+      disturbance_coefficients = ros2_uav::utils::convert(*msg);
+      manager.setDisturbanceCoefficients(disturbance_coefficients);
     });
 
   // Get the required parameters for the manager

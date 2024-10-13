@@ -68,7 +68,7 @@ private:
   bool connected_{false}; /**< Connection status */
   std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface_;
   /**< Pointer to the FCU interface */
-
+  int64_t last_ping_offboard_{0};     /**< Last time the offboard was pinged */
   int64_t last_status_received_{0};   /**< Last time the status was received */
   std::mutex mtx_;                    /**< Mutex for synchronization */
   std::unique_ptr<std::jthread> check_connection_thread_;
