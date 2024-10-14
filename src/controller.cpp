@@ -78,7 +78,8 @@ int main(int argc, char * argv[])
   actions.setRatesThrust = [&px4_comm](const uav_cpp::types::RatesThrustStamped & setpoint) {
       px4_comm->setRatesThrust(setpoint);
     };
-  actions.takeoff = [&px4_comm]() {
+  actions.takeoff = [&px4_comm, &origin_reset]() {
+      origin_reset->resetOrigin();
       px4_comm->takeoff();
     };
   auto fcu_interface = std::make_shared<FcuInterface>(actions);
@@ -101,7 +102,7 @@ int main(int argc, char * argv[])
   // Create the core manager with the FCU interface and the pipeline manager
   CoreManager manager(fcu_interface, pipeline_manager);
 
-  // Link the FCU interface to the PX4 interface
+  // Link the FCU interface taketo the PX4 interface
   px4_comm->setFcuInterface(fcu_interface);
 
   // Handle user requests in ROS2 to trigger the FSM events
@@ -117,7 +118,7 @@ int main(int argc, char * argv[])
           break;
         case UserRequest::Request::PIPELINE:
           {
-            auto event = uav_cpp::fsm::events::UserRequestPipeline{};
+            auto event = uav_cpp::fsm::events::RequestPipeline{};
             event.pipeline = request->pipeline_name;
             manager.fsmEvent(event);
             break;
@@ -143,7 +144,8 @@ int main(int argc, char * argv[])
     });
 
   // Disturbance observer
-  auto disturbance_sub_ = controller_node->create_subscription<ros2_uav_interfaces::msg::Disturbance>(
+  auto disturbance_sub_ =
+    controller_node->create_subscription<ros2_uav_interfaces::msg::Disturbance>(
     "disturbance", 1, [&manager](const ros2_uav_interfaces::msg::Disturbance::SharedPtr msg) {
       uav_cpp::types::DisturbanceCoefficientsStamped disturbance_coefficients;
       disturbance_coefficients = ros2_uav::utils::convert(*msg);
