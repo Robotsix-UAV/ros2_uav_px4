@@ -199,7 +199,10 @@ void Px4Comm::onVehicleStatus([[maybe_unused]] const px4_msgs::msg::VehicleStatu
 {
   std::lock_guard<std::mutex> lock(mtx_);
   last_status_received_ = node_->now().nanoseconds();
-  connected_ = true;
+  if (!connected_) {
+    target_system_ = msg->system_id;
+    connected_ = true;
+  }
 }
 
 void Px4Comm::onVehicleControlMode(const px4_msgs::msg::VehicleControlMode::SharedPtr msg)
