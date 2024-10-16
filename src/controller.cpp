@@ -23,6 +23,11 @@
 #include <ros2_uav_interfaces/srv/user_request.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
+#include "uav_cpp/custom_pipelines/se3_position.hpp"
+#include "uav_cpp/custom_pipelines/spin.hpp"
+#include "uav_cpp/custom_pipelines/nlmpc_position.hpp"
+#include "uav_cpp/custom_pipelines/nlmpc_waypoints.hpp"
+#include "uav_cpp/custom_pipelines/stop.hpp"
 #include <ros2_uav_interfaces/msg/waypoint_list.hpp>
 #include <ros2_uav_interfaces/msg/pose_heading.hpp>
 #include <ros2_uav_interfaces/msg/disturbance.hpp>
@@ -68,7 +73,9 @@ int main(int argc, char * argv[])
   // Create the interface to the PX4 for the UAVCPP controller
   // Assign the actions to the interface
   InterfaceActions actions;
-  actions.arm = [&px4_comm, &origin_reset](bool arm) {origin_reset->resetOrigin(); px4_comm->setArm(arm);};
+  actions.arm = [&px4_comm, &origin_reset](bool arm) {
+      origin_reset->resetOrigin(); px4_comm->setArm(arm);
+    };
   actions.offboard = [&px4_comm](bool offboard) {px4_comm->setOffboard(offboard);};
   actions.land = [&px4_comm]() {px4_comm->land();};
   actions.landHome = [&px4_comm]() {px4_comm->landHome();};
@@ -89,8 +96,9 @@ int main(int argc, char * argv[])
   using uav_cpp::pipelines::Se3Position;
   using uav_cpp::pipelines::NlmpcPosition;
   using uav_cpp::pipelines::NlmpcWaypoints;
+  using uav_cpp::pipelines::Stop;
   auto pipeline_manager = std::make_shared<uav_cpp::pipelines::PipelineManager<Spin, Se3Position,
-      NlmpcPosition, NlmpcWaypoints>>();
+      NlmpcPosition, NlmpcWaypoints, Stop>>();
 
   // Sets the trigger for the pipelines
   std::vector<std::string> triggers = {uav_cpp::fsm::events::Odometry{}.tag};
@@ -98,6 +106,7 @@ int main(int argc, char * argv[])
   pipeline_manager->getPipeline<"Se3Position">().setTriggerTags(triggers);
   pipeline_manager->getPipeline<"NlmpcPosition">().setTriggerTags(triggers);
   pipeline_manager->getPipeline<"NlmpcWaypoints">().setTriggerTags(triggers);
+  pipeline_manager->getPipeline<"Stop">().setTriggerTags(triggers);
 
   // Create the core manager with the FCU interface and the pipeline manager
   CoreManager manager(fcu_interface, pipeline_manager);

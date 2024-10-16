@@ -33,7 +33,7 @@ ThrustMatcher::ThrustMatcher()
   qos.keep_last(1);
   qos.best_effort();
   qos.transient_local();
-  actuators_suscriber_ = this->create_subscription<ActuatorMotors>(
+  actuators_subscriber_ = this->create_subscription<ActuatorMotors>(
     "fmu/out/actuator_motors", qos,
     std::bind(&ThrustMatcher::actuatorMotorsCallback, this, std::placeholders::_1));
   odometry_subscriber_ = this->create_subscription<VehicleOdometry>(

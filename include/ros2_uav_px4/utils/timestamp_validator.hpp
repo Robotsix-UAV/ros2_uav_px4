@@ -40,7 +40,7 @@ public:
    * @param tolerance_ns Acceptable difference in nanoseconds
    * @param max_outliers Max allowed consecutive outliers before reset
    */
-  explicit TimestampValidator(int64_t tolerance_ns = 1000000000, int max_outliers = 10)
+  explicit TimestampValidator(int64_t tolerance_ns = 5000000000, int max_outliers = 10)
   : uav_cpp::logger::LogTagHolder("Timestamp Validator"),
     previous_timestamp_ns_(0),
     tolerance_ns_(tolerance_ns),

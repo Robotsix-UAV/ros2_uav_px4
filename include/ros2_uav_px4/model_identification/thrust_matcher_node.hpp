@@ -33,7 +33,6 @@ namespace ros2_uav::identification
 {
 using uav_cpp::identification::ModelMatcher;
 using uav_cpp::models::QuadrotorModel;
-using uav_cpp::models::LiftDragQuaternion;
 using px4_msgs::msg::VehicleAcceleration;
 using px4_msgs::msg::VehicleOdometry;
 using px4_msgs::msg::VehicleControlMode;
@@ -90,7 +89,7 @@ private:
   double trigger_altitude_ = 2.0;   /**< Altitude at which the data collection is triggered. */
   uint8_t trigger_validation_ = 30;   /**< Number of samples to validate the trigger. */
   uint8_t trigger_counter_ = 0;   /**< Counter for the trigger validation. */
-  rclcpp::Subscription<ActuatorMotors>::SharedPtr actuators_suscriber_;
+  rclcpp::Subscription<ActuatorMotors>::SharedPtr actuators_subscriber_;
   /**< Subscriber for the actuator motors. */
   rclcpp::Subscription<VehicleOdometry>::SharedPtr odometry_subscriber_;
   /**< Subscriber for the odometry. */
@@ -98,7 +97,7 @@ private:
   /**< Subscriber for the control mode. */
   rclcpp::Subscription<VehicleAcceleration>::SharedPtr acceleration_subscriber_;
   /**< Derivative filter for the velocity. */
-  uav_cpp::identification::ModelMatcher<LiftDragQuaternion, QuadrotorModel,
+  uav_cpp::identification::ModelMatcher<QuadrotorModel,
     AttitudeThrustScaler> model_matcher_;
   /**< Model matcher for the quadrotor model and the attitude thrust scaler. */
   std::vector<uav_cpp::types::ThrustStamped> thrusts_;   /**< Vector of thrusts. */
