@@ -68,7 +68,7 @@ int main(int argc, char * argv[])
   // Create the interface to the PX4 for the UAVCPP controller
   // Assign the actions to the interface
   InterfaceActions actions;
-  actions.arm = [&px4_comm](bool arm) {origin_reset->resetOrigin(); px4_comm->setArm(arm);};
+  actions.arm = [&px4_comm, &origin_reset](bool arm) {origin_reset->resetOrigin(); px4_comm->setArm(arm);};
   actions.offboard = [&px4_comm](bool offboard) {px4_comm->setOffboard(offboard);};
   actions.land = [&px4_comm]() {px4_comm->land();};
   actions.landHome = [&px4_comm]() {px4_comm->landHome();};
