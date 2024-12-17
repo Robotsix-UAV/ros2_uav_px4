@@ -30,6 +30,7 @@
 #include "ros2_uav_px4/px4_interface/px4_comm.hpp"
 #include "ros2_uav_px4/utils/origin_reset.hpp"
 #include "ros2_uav_px4/utils/type_conversions.hpp"
+#include "uav_cpp/custom_pipelines/nlmpc_hit.hpp"
 #include "uav_cpp/custom_pipelines/nlmpc_position.hpp"
 #include "uav_cpp/custom_pipelines/nlmpc_waypoints.hpp"
 #include "uav_cpp/custom_pipelines/se3_position.hpp"
@@ -99,6 +100,7 @@ int main(int argc, char* argv[]) {
   auto fcu_interface = std::make_shared<FcuInterface>(actions);
 
   // Create the pipeline manager with the selected pipelines for our application
+  using uav_cpp::pipelines::NlmpcHit;
   using uav_cpp::pipelines::NlmpcPosition;
   using uav_cpp::pipelines::NlmpcTakeOff;
   using uav_cpp::pipelines::NlmpcWaypoints;
@@ -106,7 +108,8 @@ int main(int argc, char* argv[]) {
   using uav_cpp::pipelines::Spin;
   using uav_cpp::pipelines::Stop;
   auto pipeline_manager = std::make_shared<uav_cpp::pipelines::PipelineManager<
-      Spin, Se3Position, NlmpcPosition, NlmpcWaypoints, Stop, NlmpcTakeOff>>();
+      Spin, Se3Position, NlmpcPosition, NlmpcWaypoints, Stop, NlmpcTakeOff,
+      NlmpcHit>>();
 
   // Sets the trigger for the pipelines
   std::vector<std::string> triggers = {uav_cpp::fsm::events::Odometry{}.tag};
@@ -116,6 +119,7 @@ int main(int argc, char* argv[]) {
   pipeline_manager->getPipeline<"NlmpcWaypoints">().setTriggerTags(triggers);
   pipeline_manager->getPipeline<"Stop">().setTriggerTags(triggers);
   pipeline_manager->getPipeline<"NlmpcTakeOff">().setTriggerTags(triggers);
+  pipeline_manager->getPipeline<"NlmpcHit">().setTriggerTags(triggers);
 
   // Create the core manager with the FCU interface and the pipeline manager
   CoreManager manager(fcu_interface, pipeline_manager);
@@ -165,6 +169,9 @@ int main(int argc, char* argv[]) {
                 ros2_uav::utils::convert(*msg));
         pipeline_manager
             ->setInput<"NlmpcPosition", uav_cpp::types::PoseHeadingStamped>(
+                ros2_uav::utils::convert(*msg));
+        pipeline_manager
+            ->setInput<"NlmpcHit", uav_cpp::types::PoseHeadingStamped>(
                 ros2_uav::utils::convert(*msg));
       });
 
