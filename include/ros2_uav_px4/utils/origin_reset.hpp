@@ -51,6 +51,15 @@ public:
         current_alt = msg->alt;
         global_position_received = true;
       });
+    // TODO: Not sure about the topic name. Ask Damien
+    vehicle_origin_sub = node.create_subscription<px4_msgs::msg::VehicleGlobalPosition>(
+      "origin", rclcpp::QoS(1).best_effort(),
+      [this](const px4_msgs::msg::VehicleGlobalPosition::SharedPtr msg) {
+        origin_lat = msg->lat;
+        origin_lon = msg->lon;
+        origin_alt = msg->alt;
+        use_origin = true;
+      });
   }
 
   /**
@@ -59,6 +68,7 @@ public:
    */
   bool resetOrigin()
   {
+    // TODO: Not sure how to handle this? Ask Damien
     if (global_position_received) {
       px4_msgs::msg::VehicleCommand msg;
       msg.timestamp = round(node_.now().nanoseconds() / 1000.0);
@@ -66,9 +76,9 @@ public:
       msg.target_component = 1;
       msg.source_system = 255;
       msg.from_external = true;
-      msg.param5 = current_lat;
-      msg.param6 = current_lon;
-      msg.param7 = current_alt;
+      msg.param5 = use_origin ? origin_lat : current_lat;
+      msg.param6 = use_origin ? origin_lon : current_lon;
+      msg.param7 = use_origin ? origin_alt : current_alt;
       msg.command = px4_msgs::msg::VehicleCommand::VEHICLE_CMD_SET_GPS_GLOBAL_ORIGIN;
       vehicle_command_pub->publish(msg);
       UAVCPP_INFO("Global position origin reset");
@@ -82,8 +92,13 @@ private:
   rclcpp::Publisher<px4_msgs::msg::VehicleCommand>::SharedPtr vehicle_command_pub;
   ///< Publisher for the vehicle command
   rclcpp::Subscription<px4_msgs::msg::VehicleGlobalPosition>::SharedPtr vehicle_global_position_sub;
+  rclcpp::Subscription<px4_msgs::msg::VehicleGlobalPosition>::SharedPtr vehicle_origin_sub;
   ///< Subscription for the vehicle global position
   rclcpp::Node & node_;  ///< Reference node for the pub/sub
+  bool use_origin = false;
+  float origin_lat = 0;
+  float origin_lon = 0;
+  float origin_alt = 0;
   bool global_position_received = false;  ///< Flag to know if the global position was received
   float current_lat = 0;  ///< Current latitude
   float current_lon = 0;  ///< Current longitude
