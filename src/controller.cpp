@@ -27,6 +27,8 @@
 #include <uav_cpp/manager/core_manager.hpp>
 #include <uav_cpp/parameters/param_container.hpp>
 
+#include "arrc_interfaces/msg/uav_pose.hpp"
+#include "arrc_interfaces/srv/high_level_command.hpp"
 #include "ros2_uav_px4/px4_interface/px4_comm.hpp"
 #include "ros2_uav_px4/utils/origin_reset.hpp"
 #include "ros2_uav_px4/utils/type_conversions.hpp"
@@ -151,6 +153,73 @@ int main(int argc, char* argv[]) {
             break;
         }
       });
+
+  // Make a legacy service to handle high level commands
+  auto high_level_command_service = controller_node->create_service<
+      arrc_interfaces::srv::HighLevelCommand>(
+      "command/highLevelCommand",
+      [&manager](
+          const std::shared_ptr<arrc_interfaces::srv::HighLevelCommand::Request>
+              request,
+          [[maybe_unused]] std::shared_ptr<
+              arrc_interfaces::srv::HighLevelCommand::Response>
+              response) {
+        switch (request->cmd) {
+          case arrc_interfaces::srv::HighLevelCommand::Request::TAKEOFF:
+            UAVCPP_INFO("High level command takeoff");
+            manager.fsmEvent(uav_cpp::fsm::events::UserRequestTakeoff{});
+            break;
+          case arrc_interfaces::srv::HighLevelCommand::Request::LAND:
+            manager.fsmEvent(uav_cpp::fsm::events::UserRequestLand{});
+            break;
+          default:
+            break;
+        }
+      });
+
+  // Make a legacy subscriber for the UAV pose
+  auto uav_pose_sub =
+      controller_node->create_subscription<arrc_interfaces::msg::UavPose>(
+          "command/setPose", 1,
+          [&pipeline_manager,
+           &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+            // Switch to the NlmpcPosition pipeline using the fsm event
+            auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcPosition"};
+            manager.fsmEvent(event);
+
+            // Create a thread to set the input to the pipeline in 0.1s
+            std::thread([pipeline_manager, msg]() {
+              std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+              pipeline_manager->setInput<"NlmpcPosition",
+                                         uav_cpp::types::PoseHeadingStamped>(
+                  ros2_uav::utils::convert(*msg));
+            }).detach();
+          });
+
+  // Make a legacy subscriber for the hit pose
+  auto hit_pose_sub =
+      controller_node->create_subscription<arrc_interfaces::msg::UavPose>(
+          "command/setHit", 1,
+          [&pipeline_manager,
+           &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+            // Switch to the NlmpcHit pipeline using the fsm event
+            auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcHit"};
+            manager.fsmEvent(event);
+
+            // Create a thread to set the input to the pipeline in 0.1s
+            std::thread([pipeline_manager, msg]() {
+              std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+              auto nlmpc_input = ros2_uav::utils::convert(*msg);
+              // We will always try to hit at max speed
+              nlmpc_input.velocity = Eigen::Vector3d{50.0, 0.0, 0.0};
+
+              pipeline_manager
+                  ->setInput<"NlmpcHit", uav_cpp::types::PoseHeadingStamped>(
+                      nlmpc_input);
+            }).detach();
+          });
 
   // Handle the inputs from ROS2 topics
   auto waypoint_list_sub = controller_node->create_subscription<WaypointList>(
