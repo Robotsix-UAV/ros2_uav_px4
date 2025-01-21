@@ -23,3 +23,6 @@ repositories:
         type: git
         url: https://github.com/ICube-Robotics/acados_vendor_ros2
         version: main
+    arrc_interfaces:
+        type: git
+        url: https://github.com/Robotsix-UAV/arrc_interfaces
