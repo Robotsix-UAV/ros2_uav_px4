@@ -165,6 +165,10 @@ int main(int argc, char* argv[]) {
               arrc_interfaces::srv::HighLevelCommand::Response>
               response) {
         switch (request->cmd) {
+          case arrc_interfaces::srv::HighLevelCommand::Request::ARM:
+            UAVCPP_INFO("High level command arm");
+            manager.fsmEvent(uav_cpp::fsm::events::UserRequestArm{});
+            break;
           case arrc_interfaces::srv::HighLevelCommand::Request::TAKEOFF:
             UAVCPP_INFO("High level command takeoff");
             manager.fsmEvent(uav_cpp::fsm::events::UserRequestTakeoff{});
