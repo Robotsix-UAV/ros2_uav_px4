@@ -176,6 +176,9 @@ int main(int argc, char* argv[]) {
           case arrc_interfaces::srv::HighLevelCommand::Request::LAND:
             manager.fsmEvent(uav_cpp::fsm::events::UserRequestLand{});
             break;
+          case arrc_interfaces::srv::HighLevelCommand::Request::LANDHOME:
+            manager.fsmEvent(uav_cpp::fsm::events::UserRequestLandHome{});
+            break;
           default:
             break;
         }
