@@ -15,6 +15,7 @@ find_package(arrc_interfaces REQUIRED)
 find_package(px4_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(px4_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -26,7 +27,7 @@ endif()
 
 add_executable(controller src/controller.cpp src/px4_interface/px4_comm.cpp)
 target_include_directories(controller PUBLIC include)
-ament_target_dependencies(controller ros2_uav_interfaces uav_cpp ros2_uav_parameters px4_msgs arrc_interfaces)
+ament_target_dependencies(controller ros2_uav_interfaces uav_cpp ros2_uav_parameters px4_msgs arrc_interfaces nav_msgs)
 
 add_executable(disturbance_observer src/disturbance_observer.cpp)
 target_include_directories(disturbance_observer PUBLIC include)

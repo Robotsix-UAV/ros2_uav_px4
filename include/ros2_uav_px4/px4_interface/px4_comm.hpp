@@ -21,27 +21,26 @@
 #include <memory>
 #include <mutex>
 #include <thread>
-
-#include <uav_cpp/types/timestamped_types.hpp>
 #include <uav_cpp/interfaces/fcu_interface.hpp>
+#include <uav_cpp/types/timestamped_types.hpp>
+#include "nav_msgs/msg/odometry.hpp"
+
 #include "ros2_uav_px4/px4_interface/px4_comm_base.hpp"
 
-namespace ros2_uav
-{
+namespace ros2_uav {
 using uav_cpp::types::AttitudeThrustStamped;
 using uav_cpp::types::RatesThrustStamped;
 
 /**
  * Class for handling PX4 communication using ROS
  */
-class Px4Comm : public Px4CommBase
-{
-public:
+class Px4Comm : public Px4CommBase {
+ public:
   /**
    * Constructor
    * @param node parent ROS2 node
    */
-  explicit Px4Comm(rclcpp::Node * node);
+  explicit Px4Comm(rclcpp::Node* node);
 
   /**
    * Destructor
@@ -53,41 +52,45 @@ public:
   void land();
   void takeoff();
   void landHome();
-  void setAttitudeThrust(const AttitudeThrustStamped & setpoint);
-  void setRatesThrust(const RatesThrustStamped & setpoint);
+  void setAttitudeThrust(const AttitudeThrustStamped& setpoint);
+  void setRatesThrust(const RatesThrustStamped& setpoint);
   void pingOffboard();
-  bool isConnected() {return connected_;}
-  int getTargetSystem() {return target_system_;}
-  void setFcuInterface(std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface)
-  {
+  bool isConnected() { return connected_; }
+  int getTargetSystem() { return target_system_; }
+  void setFcuInterface(
+      std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface) {
     fcu_interface_ = fcu_interface;
   }
 
-private:
-  int target_system_; /**< Target system ID */
+ private:
+  int target_system_;     /**< Target system ID */
   bool connected_{false}; /**< Connection status */
   std::shared_ptr<uav_cpp::fcu_interface::FcuInterface> fcu_interface_;
   /**< Pointer to the FCU interface */
-  int64_t last_ping_offboard_{0};     /**< Last time the offboard was pinged */
-  int64_t last_status_received_{0};   /**< Last time the status was received */
-  std::mutex mtx_;                    /**< Mutex for synchronization */
+  int64_t last_ping_offboard_{0};   /**< Last time the offboard was pinged */
+  int64_t last_status_received_{0}; /**< Last time the status was received */
+  std::mutex mtx_;                  /**< Mutex for synchronization */
   std::unique_ptr<std::jthread> check_connection_thread_;
   /**< Thread for checking connection status */
+  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odometry_pub_;
 
   /**
    * @copydoc Px4CommBase::onVehicleControlMode
    */
-  void onVehicleControlMode(const px4_msgs::msg::VehicleControlMode::SharedPtr msg) override;
+  void onVehicleControlMode(
+      const px4_msgs::msg::VehicleControlMode::SharedPtr msg) override;
 
   /**
    * @copydoc Px4CommBase::onVehicleOdometry
    */
-  void onVehicleOdometry(const px4_msgs::msg::VehicleOdometry::SharedPtr msg) override;
+  void onVehicleOdometry(
+      const px4_msgs::msg::VehicleOdometry::SharedPtr msg) override;
 
   /**
    * @copydoc Px4CommBase::onVehicleStatus
    */
-  void onVehicleStatus(const px4_msgs::msg::VehicleStatus::SharedPtr msg) override;
+  void onVehicleStatus(
+      const px4_msgs::msg::VehicleStatus::SharedPtr msg) override;
 
   /**
    * Format the timestamp for PX4 messages
@@ -99,7 +102,7 @@ private:
    * Set default command values
    * @param msg Vehicle command message to send
    */
-  void DefaultCommand(px4_msgs::msg::VehicleCommand & msg);
+  void DefaultCommand(px4_msgs::msg::VehicleCommand& msg);
 
   /**
    * Check if a status message has been received for disconnection check
