@@ -217,18 +217,18 @@ void Px4Comm::onVehicleOdometry(
   odometry_msg.header.frame_id = "odom";
   odometry_msg.child_frame_id = "base_link";
   odometry_msg.pose.pose.position.x = odom.position.vector.x();
-  odometry_msg.pose.pose.position.y = -odom.position.vector.y();
-  odometry_msg.pose.pose.position.z = -odom.position.vector.z();
+  odometry_msg.pose.pose.position.y = odom.position.vector.y();
+  odometry_msg.pose.pose.position.z = odom.position.vector.z();
   odometry_msg.pose.pose.orientation.w = odom.attitude.quaternion.w();
   odometry_msg.pose.pose.orientation.x = odom.attitude.quaternion.x();
-  odometry_msg.pose.pose.orientation.y = -odom.attitude.quaternion.y();
-  odometry_msg.pose.pose.orientation.z = -odom.attitude.quaternion.z();
+  odometry_msg.pose.pose.orientation.y = odom.attitude.quaternion.y();
+  odometry_msg.pose.pose.orientation.z = odom.attitude.quaternion.z();
   odometry_msg.twist.twist.linear.x = odom.velocity.vector.x();
-  odometry_msg.twist.twist.linear.y = -odom.velocity.vector.y();
-  odometry_msg.twist.twist.linear.z = -odom.velocity.vector.z();
+  odometry_msg.twist.twist.linear.y = odom.velocity.vector.y();
+  odometry_msg.twist.twist.linear.z = odom.velocity.vector.z();
   odometry_msg.twist.twist.angular.x = odom.angular_velocity.vector.x();
-  odometry_msg.twist.twist.angular.y = -odom.angular_velocity.vector.y();
-  odometry_msg.twist.twist.angular.z = -odom.angular_velocity.vector.z();
+  odometry_msg.twist.twist.angular.y = odom.angular_velocity.vector.y();
+  odometry_msg.twist.twist.angular.z = odom.angular_velocity.vector.z();
   odometry_pub_->publish(odometry_msg);
 }
 
