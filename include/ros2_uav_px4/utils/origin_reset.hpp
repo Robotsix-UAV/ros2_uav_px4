@@ -21,6 +21,8 @@
 #include <rclcpp/rclcpp.hpp>
 #include <px4_msgs/msg/vehicle_command.hpp>
 #include <px4_msgs/msg/vehicle_global_position.hpp>
+#include "sensor_msgs/msg/nav_sat_fix.hpp"
+
 
 namespace ros2_uav::utils
 {
@@ -76,6 +78,17 @@ public:
     }
     return false;
   }
+
+  sensor_msgs::msg::NavSatFix getOrigin()
+  {
+    sensor_msgs::msg::NavSatFix origin;
+    origin.header.stamp = node_.now();
+    origin.latitude = current_lat;
+    origin.longitude = current_lon;
+    origin.altitude = current_alt;
+    return origin;
+  }
+
 
 private:
   int target_system_id_;  ///< The UAV system id

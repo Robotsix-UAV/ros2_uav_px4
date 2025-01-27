@@ -28,6 +28,7 @@
 #include <uav_cpp/parameters/param_container.hpp>
 
 #include "arrc_interfaces/msg/uav_pose.hpp"
+#include "arrc_interfaces/srv/gps_origin.hpp"
 #include "arrc_interfaces/srv/high_level_command.hpp"
 #include "ros2_uav_px4/px4_interface/px4_comm.hpp"
 #include "ros2_uav_px4/utils/origin_reset.hpp"
@@ -183,6 +184,17 @@ int main(int argc, char* argv[]) {
             break;
         }
       });
+
+  // Make a legacy service to get the origin
+  auto get_origin_service =
+      controller_node->create_service<arrc_interfaces::srv::GpsOrigin>(
+          "command/getOrigin",
+          [&origin_reset](
+              const std::shared_ptr<arrc_interfaces::srv::GpsOrigin::Request>,
+              std::shared_ptr<arrc_interfaces::srv::GpsOrigin::Response>
+                  response) {
+            response->coordinates = origin_reset->getOrigin();
+          });
 
   // Make a legacy subscriber for the UAV pose
   auto uav_pose_sub =
