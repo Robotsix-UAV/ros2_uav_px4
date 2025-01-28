@@ -202,6 +202,7 @@ int main(int argc, char* argv[]) {
           "command/setPose", 1,
           [&pipeline_manager,
            &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+            UAVCPP_INFO("[ROS Wrapper] Received UAV pose message");
             // Switch to the NlmpcPosition pipeline using the fsm event
             auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcPosition"};
             manager.fsmEvent(event);
@@ -222,6 +223,7 @@ int main(int argc, char* argv[]) {
           "command/setHit", 1,
           [&pipeline_manager,
            &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+            UAVCPP_INFO("[ROS Wrapper] Hit pose received");
             // Switch to the NlmpcHit pipeline using the fsm event
             auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcHit"};
             manager.fsmEvent(event);
