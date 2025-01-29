@@ -64,6 +64,10 @@ int main(int argc, char* argv[]) {
   auto px4_comm = std::make_shared<Px4Comm>(controller_node.get());
   UAVCPP_INFO("Waiting for connection to PX4");
 
+  uav_cpp::types::PoseHeadingStamped pending_pose_target;
+  std::atomic_bool pending_hit = false;
+  std::atomic_bool pending_pose = false;
+
   while (!px4_comm->isConnected()) {
     rclcpp::spin_some(controller_node);
   }
@@ -129,6 +133,25 @@ int main(int argc, char* argv[]) {
 
   // Link the FCU interface taketo the PX4 interface
   px4_comm->setFcuInterface(fcu_interface);
+
+  // timer to send the pending pose
+  auto timer = controller_node->create_wall_timer(
+      std::chrono::milliseconds(10),
+      [&pending_pose_target, &pending_hit, &pending_pose, &pipeline_manager]() {
+        if (pending_pose &&
+            pipeline_manager->getPipelineName() == "NlmpcPosition") {
+          pending_pose = false;
+          pipeline_manager
+              ->setInput<"NlmpcPosition", uav_cpp::types::PoseHeadingStamped>(
+                  pending_pose_target);
+        }
+        if (pending_hit && pipeline_manager->getPipelineName() == "NlmpcHit") {
+          pending_hit = false;
+          pipeline_manager
+              ->setInput<"NlmpcHit", uav_cpp::types::PoseHeadingStamped>(
+                  pending_pose_target);
+        }
+      });
 
   // Handle user requests in ROS2 to trigger the FSM events
   auto user_request_service = controller_node->create_service<UserRequest>(
@@ -200,46 +223,28 @@ int main(int argc, char* argv[]) {
   auto uav_pose_sub =
       controller_node->create_subscription<arrc_interfaces::msg::UavPose>(
           "command/setPose", 1,
-          [&pipeline_manager,
-           &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+          [&pipeline_manager, &manager, &pending_pose_target,
+           &pending_pose](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
             UAVCPP_INFO("[ROS Wrapper] Received UAV pose message");
             // Switch to the NlmpcPosition pipeline using the fsm event
             auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcPosition"};
             manager.fsmEvent(event);
-
-            // Create a thread to set the input to the pipeline in 0.1s
-            std::thread([pipeline_manager, msg]() {
-              std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-              pipeline_manager->setInput<"NlmpcPosition",
-                                         uav_cpp::types::PoseHeadingStamped>(
-                  ros2_uav::utils::convert(*msg));
-            }).detach();
+            pending_pose_target = ros2_uav::utils::convert(*msg);
+            pending_pose = true;
           });
 
   // Make a legacy subscriber for the hit pose
   auto hit_pose_sub =
       controller_node->create_subscription<arrc_interfaces::msg::UavPose>(
           "command/setHit", 1,
-          [&pipeline_manager,
-           &manager](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
+          [&pipeline_manager, &manager, &pending_pose_target,
+           &pending_hit](const arrc_interfaces::msg::UavPose::SharedPtr msg) {
             UAVCPP_INFO("[ROS Wrapper] Hit pose received");
             // Switch to the NlmpcHit pipeline using the fsm event
             auto event = uav_cpp::fsm::events::RequestPipeline{"NlmpcHit"};
             manager.fsmEvent(event);
-
-            // Create a thread to set the input to the pipeline in 0.1s
-            std::thread([pipeline_manager, msg]() {
-              std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-              auto nlmpc_input = ros2_uav::utils::convert(*msg);
-              // We will always try to hit at max speed
-              nlmpc_input.velocity = Eigen::Vector3d{50.0, 0.0, 0.0};
-
-              pipeline_manager
-                  ->setInput<"NlmpcHit", uav_cpp::types::PoseHeadingStamped>(
-                      nlmpc_input);
-            }).detach();
+            pending_pose_target = ros2_uav::utils::convert(*msg);
+            pending_hit = true;
           });
 
   // Handle the inputs from ROS2 topics
